@@ -69,8 +69,8 @@ export default function SectionPickUp({ isDesktop }) {
       {!isDesktop && (
         <AbsoluteLabelWrapper>
           <BevelLabel
-            buttonColor={theme.colors.yellow}
-            textColor={theme.colors.black}
+            buttonColor={theme.colors.pink}
+            textColor={theme.colors.white}
             labelText="取件櫃檯"
           />
         </AbsoluteLabelWrapper>
@@ -97,8 +97,8 @@ export default function SectionPickUp({ isDesktop }) {
         {isDesktop && (
           <AbsoluteLabelWrapper>
             <BevelLabel
-              buttonColor={theme.colors.yellow}
-              textColor={theme.colors.black}
+              buttonColor={theme.colors.pink}
+              textColor={theme.colors.white}
               labelText="取件櫃檯"
             />
           </AbsoluteLabelWrapper>

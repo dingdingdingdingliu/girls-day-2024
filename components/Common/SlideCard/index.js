@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
+import { useTheme } from "@emotion/react";
 import { ImageWrapper } from "@/components/Common/Index/Wrapper";
 import {
   AbsoluteSlideLabelWrapper,
@@ -120,6 +121,7 @@ const ExtendedCopyWrite = styled.p`
 `;
 
 export function ReportSlideCard({ cardColor, cardData, onClick = null }) {
+  const theme = useTheme();
   const { imageSrc, imageAlt, cardContent } = cardData;
   return (
     <SlideCardWrapper onClick={onClick} cardColor={cardColor}>
@@ -142,7 +144,11 @@ export function ReportSlideCard({ cardColor, cardData, onClick = null }) {
         </ContentWrapper>
       </ContentCardWrapper>
       <AbsoluteSlideLabelWrapper>
-        <SingleLeftBevelLabel labelText="閱讀更多" />
+        <SingleLeftBevelLabel
+          labelText="閱讀更多"
+          labelColor={theme.colors.green}
+          fontcolor={theme.colors.black}
+        />
       </AbsoluteSlideLabelWrapper>
     </SlideCardWrapper>
   );
@@ -156,6 +162,7 @@ export function ExtendedSlideCard({
 }) {
   const { imageSrc, imageAlt, title, cardContent } = cardData;
   const isNull = Object.keys(cardData).length === 0;
+  const theme = useTheme();
   return (
     <>
       {isNull ? (
@@ -185,7 +192,11 @@ export function ExtendedSlideCard({
           </ContentCardWrapper>
           {isShowLabel && (
             <AbsoluteSlideLabelWrapper>
-              <SingleLeftBevelLabel labelText="閱讀更多" />
+              <SingleLeftBevelLabel
+                labelColor={theme.colors.black}
+                fontcolor={theme.colors.yellow}
+                labelText="前往查看"
+              />
             </AbsoluteSlideLabelWrapper>
           )}
           )

@@ -6,9 +6,11 @@ const StorySectionWrapper = styled.div`
   width: 85%;
   background-color: ${(props) => props.theme.colors.white};
   margin: 0 auto;
+  border-top: 6px solid black;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     width: 100%;
+    border-top: 4px solid black;
   }
 `;
 
@@ -36,7 +38,6 @@ const ContentSectionWrapper = styled.div`
 // 標題層
 const TitleSectionWrapper = styled.div`
   width: 35%;
-  background-image: linear-gradient(to bottom, #ffff00, transparent 95%);
   padding: 60px 40px;
 
   @media (max-width: ${globalConfig.mediaQuery}) {

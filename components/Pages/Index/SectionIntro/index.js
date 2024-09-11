@@ -16,7 +16,7 @@ import {
 
 // 頁面底層灰色底色延展
 const StyledPageWrapper = styled(PageWrapper)`
-  background-color: ${(props) => props.theme.colors.grey};
+  background-color: ${(props) => props.theme.colors.mediumGrey};
   position: relative;
 `;
 
@@ -99,7 +99,7 @@ export default function SectionIntro({ isDesktop }) {
           <LabelWrapper id="target">
             <BevelLabel
               buttonColor={theme.colors.black}
-              textColor={theme.colors.yellow}
+              textColor={theme.colors.green}
               labelText="接待櫃檯"
             />
           </LabelWrapper>

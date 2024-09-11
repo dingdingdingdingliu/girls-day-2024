@@ -19,7 +19,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
 const Title = styled.p`
   font-size: ${(props) => props.theme.fontSizes[28]};
   font-weight: ${(props) => props.theme.fontWeights.bold};
-  color: ${(props) => props.theme.colors.yellow};
+  color: ${(props) => props.theme.colors.green};
   letter-spacing: 8px;
   margin-bottom: 36px;
   display: flex;

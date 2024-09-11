@@ -10,7 +10,10 @@ import {
 
 // 頁面底層灰色底色延展
 const StyledPageWrapper = styled(PageWrapper)`
-  background-color: ${(props) => props.theme.colors.grey};
+  background-image: ${(props) =>
+    `linear-gradient(to bottom, 
+    ${props.theme.colors.lightPink} 1%, 
+    ${props.theme.colors.mediumGrey} 40%)`};
   position: relative;
 `;
 
@@ -69,7 +72,7 @@ export default function SectionVision({ isDesktop }) {
         <LabelWrapper>
           <BevelLabel
             buttonColor={theme.colors.black}
-            textColor={theme.colors.yellow}
+            textColor={theme.colors.pink}
             labelText="驗光區"
           />
         </LabelWrapper>
@@ -79,7 +82,7 @@ export default function SectionVision({ isDesktop }) {
           <LabelWrapper>
             <BevelLabel
               buttonColor={theme.colors.black}
-              textColor={theme.colors.yellow}
+              textColor={theme.colors.pink}
               labelText="驗光區"
             />
           </LabelWrapper>
@@ -93,8 +96,8 @@ export default function SectionVision({ isDesktop }) {
             <GameSection
               imageSrc="/images/chiikawa.jpeg"
               imageAlt="chiikawa"
-              bevelColor={theme.colors.black}
-              bevelTextColor={theme.colors.yellow}
+              bevelColor={theme.colors.pink}
+              bevelTextColor={theme.colors.white}
               buttonText="前往驗光"
             />
           </MainSectionWrapper>

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
+import { useTheme } from "@emotion/react";
 import { DramaTitle } from "@/components/Common/Index/TitleWithLine";
 import {
   SectionWrapper,
@@ -95,6 +96,7 @@ function DramaIntro() {
 }
 
 function DramaAction() {
+  const theme = useTheme();
   return (
     <DramaActionWrapper>
       <DramaContentWrapper>
@@ -116,9 +118,11 @@ function DramaAction() {
       <DramaButtonWrapper>
         <AbsoluteButtonWrapper>
           <SingleLeftBevelLabel
-            labelText="閱讀更多"
+            labelText="點擊下載"
             isPointer={true}
             onClick={() => {}}
+            labelColor={theme.colors.pink}
+            fontcolor={theme.colors.white}
           />
         </AbsoluteButtonWrapper>
       </DramaButtonWrapper>

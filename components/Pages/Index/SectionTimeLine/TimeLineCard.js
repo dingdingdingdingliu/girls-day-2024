@@ -42,7 +42,7 @@ const BottomTimeCardWrapper = styled(TimeCardWrapper)`
 export const GuideLine = styled.div`
   width: 4px;
   height: 100px;
-  background-color: ${(props) => props.backGroundColor};
+  background-color: ${(props) => props.lineColor};
   @media (max-width: ${globalConfig.mediaQuery}) {
     height: 50px;
   }
@@ -60,7 +60,9 @@ export const CardWrapper = styled.div`
   justify-content: space-between;
   align-items: start;
   border-radius: 2px;
-  background-color: ${(props) => props.backGroundColor};
+  background-color: ${(props) => props.theme.colors.white};
+  border: ${(props) =>
+    props.isBorder ? `4px solid ${props.theme.colors.green}` : "none"};
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     width: 100%;
@@ -106,13 +108,13 @@ const ContentSection = styled.p`
 
 // isAbove: 卡片在 TimeLine 上方，指引線在卡片之下
 export default function TimeLineCard({ cardData }) {
-  const { title, content, backGroundColor, position } = cardData;
+  const { title, content, lineColor, isBorder, position } = cardData;
   return (
     <div>
       {position === "above" ? (
         <TopTimeCardWrapper position={position}>
-          <GuideLine backGroundColor={backGroundColor} />
-          <CardWrapper backGroundColor={backGroundColor}>
+          <GuideLine lineColor={lineColor} />
+          <CardWrapper isBorder={isBorder}>
             <TitleSection>{title}</TitleSection>
             <ContentScrollWrapper>
               <ContentSection>{content}</ContentSection>
@@ -121,8 +123,8 @@ export default function TimeLineCard({ cardData }) {
         </TopTimeCardWrapper>
       ) : (
         <BottomTimeCardWrapper position={position}>
-          <GuideLine backGroundColor={backGroundColor} />
-          <CardWrapper backGroundColor={backGroundColor}>
+          <GuideLine lineColor={lineColor} />
+          <CardWrapper isBorder={isBorder}>
             <TitleSection>{title}</TitleSection>
             <ContentScrollWrapper>
               <ContentSection>{content}</ContentSection>

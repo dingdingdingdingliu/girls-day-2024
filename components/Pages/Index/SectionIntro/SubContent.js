@@ -39,7 +39,12 @@ const GirlsDaySectionWrapper = styled(SubSectionWrapper)`
 
 // 主題區塊層
 const ThemeSectionWrapper = styled(SubSectionWrapper)`
-  background-image: linear-gradient(to right, #ffff00, transparent 95%);
+  background-image: ${(props) =>
+    `linear-gradient(to right, 
+    ${props.theme.colors.lightGreen} 0%, 
+    ${props.theme.colors.lightOrange} 40%, 
+    ${props.theme.colors.lightPink} 80%)`};
+
   margin-top: 20px;
   position: relative;
 

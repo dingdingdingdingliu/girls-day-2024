@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { ThemeProvider } from "@emotion/react";
 import theme from "../styles/theme";
 import { Noto_Sans_TC as NotoSansTC } from "next/font/google";
@@ -12,10 +13,16 @@ const notoSansTC = NotoSansTC({
 
 export default function App({ Component, pageProps }) {
   return (
-    <ThemeProvider theme={theme}>
-      <div className={notoSansTC.className}>
-        <Component {...pageProps} />
-      </div>
-    </ThemeProvider>
+    <>
+      <Head>
+        <title>2024 臺灣女孩日｜偏見眼鏡行</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <ThemeProvider theme={theme}>
+        <div className={notoSansTC.className}>
+          <Component {...pageProps} />
+        </div>
+      </ThemeProvider>
+    </>
   );
 }

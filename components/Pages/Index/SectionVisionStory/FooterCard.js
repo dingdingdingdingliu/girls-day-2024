@@ -26,10 +26,10 @@ const FooterCardButtonWrapper = styled.div`
 `;
 
 const ExplainTitleStyle = styled.p`
-  color: ${(props) => props.theme.colors.yellow};
+  color: ${(props) => props.theme.colors.pink};
   font-size: ${(props) => props.theme.fontSizes[16]};
   white-space: nowrap;
-  border-bottom: 0.75px solid yellow;
+  border-bottom: ${(props) => `0.75px solid ${props.theme.colors.pink}`};
   padding-bottom: 6px;
   margin-bottom: 12px;
 
@@ -51,7 +51,7 @@ const ContentTitleWrapper = styled.div`
 `;
 
 const ArrowDownStyle = styled(MdOutlineKeyboardArrowDown)`
-  color: ${(props) => props.theme.colors.yellow};
+  color: ${(props) => props.theme.colors.pink};
   font-size: 32px;
   margin-bottom: -2px;
 
@@ -66,7 +66,7 @@ const ArrowDownStyle = styled(MdOutlineKeyboardArrowDown)`
 `;
 
 const ArrowUpStyle = styled(MdOutlineKeyboardArrowUp)`
-  color: ${(props) => props.theme.colors.yellow};
+  color: ${(props) => props.theme.colors.pink};
   font-size: 32px;
   margin-bottom: -2px;
 
@@ -81,7 +81,7 @@ const ArrowUpStyle = styled(MdOutlineKeyboardArrowUp)`
 `;
 
 const ContentTitleStyle = styled.p`
-  color: ${(props) => props.theme.colors.yellow};
+  color: ${(props) => props.theme.colors.pink};
   font-size: ${(props) => props.theme.fontSizes[26]};
   font-weight: ${(props) => props.theme.fontWeights.bold};
   white-space: nowrap;

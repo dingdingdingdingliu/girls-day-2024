@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
+import { useTheme } from "@emotion/react";
 import {
   PageWrapper,
   ContentWrapper,
@@ -79,7 +80,7 @@ const titleCopyWrite =
 
 // 頁面底層灰色底色延展
 const StyledPageWrapper = styled(PageWrapper)`
-  background-color: ${(props) => props.theme.colors.grey};
+  background-color: ${(props) => props.theme.colors.mediumGrey};
 `;
 
 // 頁面內層
@@ -97,6 +98,19 @@ const StyledContentWrapper = styled(ContentWrapper)`
 const StyledStorySectionWrapper = styled(StorySectionWrapper)`
   display: flex;
   flex-direction: column;
+  border-top: 6px solid black;
+
+  @media (max-width: ${globalConfig.mediaQuery}) {
+    border-top: 4px solid black;
+  }
+`;
+
+// 加上背景圖片的TitleSectionWrapper
+const StyledTitleSectionWrapper = styled(TitleSectionWrapper)`
+  background-image: ${(props) =>
+    `linear-gradient(to bottom, 
+    ${props.theme.colors.lightPink} 5%, 
+    ${props.theme.colors.white} 85%)`};
 `;
 
 // 底部卡片層
@@ -109,7 +123,7 @@ const FooterSectionWrapper = styled.div`
   gap: 24px;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    background-color: ${(props) => props.theme.colors.grey};
+    background-color: ${(props) => props.theme.colors.mediumGrey};
     grid-template-columns: 1fr;
     padding: 0;
     padding-top: 16px;
@@ -119,7 +133,7 @@ const FooterSectionWrapper = styled.div`
 // 標題內容區塊元件
 export function TitleSection() {
   return (
-    <TitleSectionWrapper>
+    <StyledTitleSectionWrapper>
       <TitleSectionInnerWrapper>
         <TitleContentWrapper>
           <GameStoryTitle gameOrder="I" />
@@ -152,11 +166,12 @@ export function TitleSection() {
           </ImageWrapper>
         </TitleImageDesktopWrapper>
       </TitleSectionInnerWrapper>
-    </TitleSectionWrapper>
+    </StyledTitleSectionWrapper>
   );
 }
 
 export default function SectionVisionStory({ isDesktop }) {
+  const theme = useTheme();
   return (
     <StyledPageWrapper>
       <StyledContentWrapper>
@@ -171,6 +186,8 @@ export default function SectionVisionStory({ isDesktop }) {
                     labelText={data?.title}
                     imageSrc={data?.imageSrc}
                     copyWrite={data?.copyWrite}
+                    labelColor={theme.colors.pink}
+                    textColor={theme.colors.white}
                   />
                 );
               })}

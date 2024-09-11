@@ -10,7 +10,10 @@ import {
 
 // 頁面底層灰色底色延展
 const StyledPageWrapper = styled(PageWrapper)`
-  background-color: ${(props) => props.theme.colors.grey};
+  background-image: ${(props) =>
+    `linear-gradient(to bottom, 
+    ${props.theme.colors.lightGreen} 1%, 
+    ${props.theme.colors.mediumGrey} 40%)`};
   position: relative;
 `;
 
@@ -68,8 +71,8 @@ export default function SectionFindObject({ isDesktop }) {
       {!isDesktop && (
         <LabelWrapper>
           <BevelLabel
-            buttonColor={theme.colors.yellow}
-            textColor={theme.colors.black}
+            buttonColor={theme.colors.black}
+            textColor={theme.colors.green}
             labelText="展售區"
           />
         </LabelWrapper>
@@ -78,8 +81,8 @@ export default function SectionFindObject({ isDesktop }) {
         {isDesktop && (
           <LabelWrapper>
             <BevelLabel
-              buttonColor={theme.colors.yellow}
-              textColor={theme.colors.black}
+              buttonColor={theme.colors.black}
+              textColor={theme.colors.green}
               labelText="展售區"
             />
           </LabelWrapper>
@@ -93,7 +96,7 @@ export default function SectionFindObject({ isDesktop }) {
             <GameSection
               imageSrc="/images/chiikawa.jpeg"
               imageAlt="chiikawa"
-              bevelColor={theme.colors.yellow}
+              bevelColor={theme.colors.green}
               bevelTextColor={theme.colors.black}
               buttonText="前往挑款"
             />

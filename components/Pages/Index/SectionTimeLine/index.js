@@ -134,7 +134,7 @@ export default function SectionTimeLine({ isDesktop }) {
       {!isDesktop && (
         <LabelWrapper>
           <BevelLabel
-            buttonColor={theme.colors.yellow}
+            buttonColor={theme.colors.green}
             textColor={theme.colors.black}
             labelText="加工區"
           />
@@ -144,7 +144,7 @@ export default function SectionTimeLine({ isDesktop }) {
         {isDesktop && (
           <LabelWrapper>
             <BevelLabel
-              buttonColor={theme.colors.yellow}
+              buttonColor={theme.colors.green}
               textColor={theme.colors.black}
               labelText="加工區"
             />

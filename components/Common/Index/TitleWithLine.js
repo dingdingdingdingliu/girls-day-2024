@@ -299,7 +299,7 @@ export function TimeLineTitle() {
       <WrapTitleWithLine
         upText="臺灣性別平等"
         lowerText="發展進程"
-        color={theme.colors.yellow}
+        color={theme.colors.green}
         paddingBottom={{
           desktop: "12px",
           mobile: "6px",

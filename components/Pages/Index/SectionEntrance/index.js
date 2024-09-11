@@ -8,7 +8,7 @@ import {
 import BevelButton from "@/components/Common/Button/BevelButton";
 
 const StyledPageWrapper = styled(PageWrapper)`
-  background-color: ${(props) => props.theme.colors.grey};
+  background-color: ${(props) => props.theme.colors.mediumGrey};
   height: 100vh; ㄕ
 `;
 

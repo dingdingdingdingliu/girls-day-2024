@@ -12,7 +12,7 @@ const StoryCardWrapper = styled.div`
 
 const TitleContentWrapper = styled.div`
   width: 100%;
-  border-top: 2px solid ${(props) => props.theme.colors.black};
+  border-top: 4px solid ${(props) => props.theme.colors.black};
   margin-bottom: 12px;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
@@ -23,7 +23,7 @@ const TitleContentWrapper = styled.div`
 // 角度內層
 const BevelLabelStyle = styled.div`
   float: left;
-  background-color: ${(props) => props.theme.colors.black};
+  background-color: ${(props) => props.labelColor};
   clip-path: polygon(0 0, 100% 0%, 93% 100%, 0% 100%);
   display: flex;
   align-items: center;
@@ -39,7 +39,7 @@ const BevelLabelStyle = styled.div`
 const BevelLabelText = styled.p`
   font-size: ${(props) => props.theme.fontSizes[20]};
   font-weight: ${(props) => props.theme.fontWeights.normal};
-  color: ${(props) => props.theme.colors.yellow};
+  color: ${(props) => props.textColor};
   white-space: nowrap;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
@@ -95,20 +95,30 @@ const CopyWrite = styled.p`
   }
 `;
 
-function BevelTitle({ labelText }) {
+function BevelTitle({ labelText, labelColor, textColor }) {
   return (
     <TitleContentWrapper>
-      <BevelLabelStyle>
-        <BevelLabelText>{labelText}</BevelLabelText>
+      <BevelLabelStyle labelColor={labelColor}>
+        <BevelLabelText textColor={textColor}>{labelText}</BevelLabelText>
       </BevelLabelStyle>
     </TitleContentWrapper>
   );
 }
 
-export default function GameStoryCard({ labelText, imageSrc, copyWrite }) {
+export default function GameStoryCard({
+  labelText,
+  imageSrc,
+  copyWrite,
+  labelColor,
+  textColor,
+}) {
   return (
     <StoryCardWrapper>
-      <BevelTitle labelText={labelText} />
+      <BevelTitle
+        labelText={labelText}
+        labelColor={labelColor}
+        textColor={textColor}
+      />
       <CardContentWrapper>
         <ImageSectionWrapper>
           <ImageWrapper>

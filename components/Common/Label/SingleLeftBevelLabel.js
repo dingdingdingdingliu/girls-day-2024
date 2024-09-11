@@ -29,7 +29,7 @@ export const AbsoluteLabelWrapper = styled.div`
 const BevelLabelStyle = styled.div`
   width: 100%;
   height: 40px;
-  background-color: ${(props) => props.theme.colors.black};
+  background-color: ${(props) => props.labelColor};
   clip-path: polygon(7% 0, 100% 0%, 100% 100%, 0% 100%);
   display: flex;
   align-items: center;
@@ -48,7 +48,7 @@ const LabelContentWrapper = styled.div`
 `;
 
 const ArrowRightStyle = styled(MdOutlineKeyboardArrowRight)`
-  color: ${(props) => props.theme.colors.yellow};
+  color: ${(props) => props.fontcolor};
   font-size: 28px;
   margin-right: -15px;
 
@@ -60,7 +60,7 @@ const ArrowRightStyle = styled(MdOutlineKeyboardArrowRight)`
 const BevelLabelText = styled.p`
   font-size: ${(props) => props.theme.fontSizes[16]};
   font-weight: ${(props) => props.theme.fontWeights.normal};
-  color: ${(props) => props.theme.colors.yellow};
+  color: ${(props) => props.fontcolor};
   margin-right: -6px;
   white-space: nowrap;
 
@@ -73,12 +73,18 @@ export function SingleLeftBevelLabel({
   labelText,
   onClick = null,
   isPointer = false,
+  labelColor,
+  fontcolor,
 }) {
   return (
-    <BevelLabelStyle onClick={onClick} isPointer={isPointer}>
+    <BevelLabelStyle
+      onClick={onClick}
+      isPointer={isPointer}
+      labelColor={labelColor}
+    >
       <LabelContentWrapper>
-        <BevelLabelText>{labelText}</BevelLabelText>
-        <ArrowRightStyle />
+        <BevelLabelText fontcolor={fontcolor}>{labelText}</BevelLabelText>
+        <ArrowRightStyle fontcolor={fontcolor} />
       </LabelContentWrapper>
     </BevelLabelStyle>
   );
