@@ -1,0 +1,38 @@
+const globalTheme = {
+  colors: {
+    white: "#ffffff",
+    black: "#000000",
+    grey: "#b1b1b1",
+    lightGrey: "#ececec",
+    mediumGrey: "#DDDDDD",
+    light: "#F5F5F5",
+    yellow: "#ffff00",
+    green: "#00FF93",
+    pink: "#FF78B9",
+    lightGreen: "#84FFB7",
+    lightOrange: "#EBD8D2",
+    lightPink: "#FF98C3",
+  },
+  fontSizes: {
+    10: "10px",
+    12: "12px",
+    14: "14px",
+    16: "16px",
+    18: "18px",
+    20: "20px",
+    26: "26px",
+    28: "28px",
+    32: "32px",
+    36: "36px",
+    40: "40px",
+  },
+  fontWeights: {
+    normal: "normal",
+    bold: "bolder",
+  },
+  spacing: {
+    pageTopSpacing: "25px",
+  },
+};
+
+export default globalTheme;

@@ -16,9 +16,16 @@ body {
   overflow-x: hidden;
 }
 
+html {
+	scroll-behavior: smooth;
+	will-change: scroll-position;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-
+p {
+	word-break: break-all;
+}

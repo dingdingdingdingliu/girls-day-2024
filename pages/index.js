@@ -1,102 +1,42 @@
-import styled from "@emotion/styled";
-// import Image from "next/image";
-// import { Inter } from "next/font/google";
-// import styles from "@/styles/Home.module.css";
+import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import globalConfig from "@/styles/globalConfig";
 
-// const inter = Inter({ subsets: ["latin"] });
-
-const IndexBox = styled.div`
-  border: 1px solid red;
-  height: 300px;
-`;
+import SectionEntrance from "../components/Pages/Index/SectionEntrance";
+import SectionIntro from "../components/Pages/Index/SectionIntro";
+import SectionPromoVideo from "@/components/Pages/Index/SectionPromoVideo";
+import SectionReport from "@/components/Pages/Index/SectionReport";
+import SectionVision from "@/components/Pages/Index/SectionVision";
+import SectionVisionStory from "@/components/Pages/Index/SectionVisionStory";
+import SectionFindObject from "@/components/Pages/Index/SectionFindObject";
+import SectionFindObjectStory from "@/components/Pages/Index/SectionFindObjectStory";
+import SectionTimeLine from "@/components/Pages/Index/SectionTimeLine";
+import SectionGirlImage from "@/components/Pages/Index/SectionGirlImage";
+import SectionPickUp from "@/components/Pages/Index/SectionPickUp";
+import SectionExtended from "@/components/Pages/Index/SectionExtended";
 
 export default function Home() {
+  const isDesktopSize = useMediaQuery({ minWidth: globalConfig.mediaQuery });
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    setIsDesktop(isDesktopSize);
+  }, [isDesktopSize]);
+
   return (
-    <>
-      {/* <main className={`${styles.main} ${inter.className}`}> */}
-      <main>
-        {/* <div className={styles.description}> */}
-        <IndexBox>
-          <div>
-            <h1>Welcome to the Homepage</h1>
-            <nav>
-              <a href="/gameOne">Go to Game 1</a>
-              <br />
-              <a href="/gameTwo">Go to Game 2</a>
-            </nav>
-          </div>
-        </IndexBox>
-
-        {/* <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-        </div> */}
-
-        {/* <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div> */}
-      </main>
-    </>
+    <div style={{ width: "100vw" }}>
+      <SectionEntrance />
+      <SectionIntro isDesktop={isDesktop} />
+      <SectionPromoVideo />
+      <SectionReport />
+      <SectionVision isDesktop={isDesktop} />
+      <SectionVisionStory />
+      <SectionFindObject isDesktop={isDesktop} />
+      <SectionFindObjectStory />
+      <SectionTimeLine isDesktop={isDesktop} />
+      <SectionGirlImage />
+      <SectionPickUp isDesktop={isDesktop} />
+      <SectionExtended />
+    </div>
   );
 }
