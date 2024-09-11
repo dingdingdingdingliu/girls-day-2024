@@ -14,6 +14,7 @@ import SectionTimeLine from "@/components/Pages/Index/SectionTimeLine";
 import SectionGirlImage from "@/components/Pages/Index/SectionGirlImage";
 import SectionPickUp from "@/components/Pages/Index/SectionPickUp";
 import SectionExtended from "@/components/Pages/Index/SectionExtended";
+import Footer from "@/components/Pages/Index/SectionFooter";
 
 export default function Home() {
   const isDesktopSize = useMediaQuery({ minWidth: globalConfig.mediaQuery });
@@ -37,6 +38,7 @@ export default function Home() {
       <SectionGirlImage />
       <SectionPickUp isDesktop={isDesktop} />
       <SectionExtended />
+      <Footer />
     </div>
   );
 }
