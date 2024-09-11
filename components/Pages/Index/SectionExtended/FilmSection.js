@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
-import ResponsiveSlider from "@/components/Common/Slider";
+import { UnderThreeResponsiveSlider } from "@/components/Common/Slider";
 import Image from "next/image";
 import { useTheme } from "@emotion/react";
 import { filmCardData } from "./extendedData";
@@ -35,9 +35,10 @@ const StyledContentWrapper = styled(ContentWrapper)`
 // Slide 卡片區塊
 function FilmSlider() {
   const theme = useTheme();
+
   return (
     <ActionWrapper>
-      <ResponsiveSlider
+      <UnderThreeResponsiveSlider
         cardColor={theme.colors.light}
         sliderData={filmCardData}
         isShowLabel={false}

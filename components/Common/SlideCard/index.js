@@ -161,47 +161,41 @@ export function ExtendedSlideCard({
   onClick = null,
 }) {
   const { imageSrc, imageAlt, title, cardContent } = cardData;
-  const isNull = Object.keys(cardData).length === 0;
   const theme = useTheme();
   return (
     <>
-      {isNull ? (
-        <></>
-      ) : (
-        <SlideCardWrapper onClick={onClick} cardColor={cardColor}>
-          <CardImageWrapper>
-            <ImageWrapper>
-              <Image
-                src={imageSrc}
-                alt={imageAlt}
-                fill
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "center",
-                }}
-              />
-            </ImageWrapper>
-          </CardImageWrapper>
-          <ContentCardWrapper>
-            <TitleWrapper>
-              <ExtendedTitle>{title}</ExtendedTitle>
-            </TitleWrapper>
-            <ContentWrapper>
-              <ExtendedCopyWrite>{cardContent}</ExtendedCopyWrite>
-            </ContentWrapper>
-          </ContentCardWrapper>
-          {isShowLabel && (
-            <AbsoluteSlideLabelWrapper>
-              <SingleLeftBevelLabel
-                labelColor={theme.colors.black}
-                fontcolor={theme.colors.yellow}
-                labelText="前往查看"
-              />
-            </AbsoluteSlideLabelWrapper>
-          )}
-          )
-        </SlideCardWrapper>
-      )}
+      <SlideCardWrapper onClick={onClick} cardColor={cardColor}>
+        <CardImageWrapper>
+          <ImageWrapper>
+            <Image
+              src={imageSrc}
+              alt={imageAlt}
+              fill
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+            />
+          </ImageWrapper>
+        </CardImageWrapper>
+        <ContentCardWrapper>
+          <TitleWrapper>
+            <ExtendedTitle>{title}</ExtendedTitle>
+          </TitleWrapper>
+          <ContentWrapper>
+            <ExtendedCopyWrite>{cardContent}</ExtendedCopyWrite>
+          </ContentWrapper>
+        </ContentCardWrapper>
+        {isShowLabel && (
+          <AbsoluteSlideLabelWrapper>
+            <SingleLeftBevelLabel
+              labelColor={theme.colors.black}
+              fontcolor={theme.colors.yellow}
+              labelText="前往查看"
+            />
+          </AbsoluteSlideLabelWrapper>
+        )}
+      </SlideCardWrapper>
     </>
   );
 }

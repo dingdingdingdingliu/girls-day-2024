@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import { useMediaQuery } from "react-responsive";
 import { ReportSlideCard, ExtendedSlideCard } from "../SlideCard";
 
 // 定義卡片樣式，使其能夠根據父層的寬度動態調整
@@ -41,6 +42,42 @@ const StyledSlider = styled(Slider)`
 
 const OverThreeSetting = {
   dots: true,
+  infinite: false,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 3,
+  initialSlide: 0,
+  arrows: false,
+  swipe: true,
+  touchMove: true,
+  responsive: [
+    {
+      breakpoint: 1440,
+      settings: {
+        slidesToShow: 3, // 三張卡片顯示
+        slidesToScroll: 3, // 一次滑動三張
+      },
+    },
+    {
+      breakpoint: 1280,
+      settings: {
+        slidesToShow: 2, // 兩張卡片顯示
+        slidesToScroll: 2, // 一次滑動兩張
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        infinite: true,
+        slidesToShow: 1, // 單張卡片顯示
+        slidesToScroll: 1, // 一次滑動一張
+      },
+    },
+  ],
+};
+
+const ThreeSetting = {
+  dots: true,
   infinite: true,
   speed: 500,
   slidesToShow: 3,
@@ -74,52 +111,15 @@ const OverThreeSetting = {
   ],
 };
 
-const ThreeSetting = {
-  dots: true,
-  infinite: false,
-  speed: 500,
-  slidesToShow: 3,
-  slidesToScroll: 3,
-  initialSlide: 0,
-  arrows: false,
-  swipe: true,
-  touchMove: true,
-  responsive: [
-    {
-      breakpoint: 1440,
-      settings: {
-        slidesToShow: 3, // 三張卡片顯示
-        slidesToScroll: 0, // 一次滑動三張
-      },
-    },
-    {
-      breakpoint: 1280,
-      settings: {
-        slidesToShow: 2, // 兩張卡片顯示
-        slidesToScroll: 0, // 一次滑動兩張
-      },
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 1, // 單張卡片顯示
-        slidesToScroll: 1, // 一次滑動一張
-      },
-    },
-  ],
-};
-
-function ResponsiveSlider({
+function OverThreeResponsiveSlider({
   cardColor,
   isShowLabel,
   isReport = false,
   sliderData = [],
 }) {
-  const settings = sliderData.length > 3 ? OverThreeSetting : ThreeSetting;
-
   return (
     <SlideWrapper>
-      <StyledSlider {...settings}>
+      <StyledSlider {...OverThreeSetting}>
         {isReport &&
           sliderData?.map((data, index) => {
             return (
@@ -147,4 +147,51 @@ function ResponsiveSlider({
   );
 }
 
-export default ResponsiveSlider;
+function UnderThreeResponsiveSlider({
+  cardColor,
+  isShowLabel,
+  isReport = false,
+  sliderData = [],
+}) {
+  const isSlideTablet = useMediaQuery({
+    minWidth: globalConfig.sliderTablet,
+  });
+
+  const [isSetThreeCard, setIsSetThreeCard] = useState(true);
+
+  useEffect(() => {
+    setIsSetThreeCard(isSlideTablet);
+  }, [isSlideTablet]);
+
+  return (
+    <SlideWrapper>
+      <StyledSlider {...ThreeSetting}>
+        {isReport &&
+          sliderData?.map((data, index) => {
+            return (
+              <ReportSlideCard
+                key={index}
+                cardColor={cardColor}
+                isShowLabel={isShowLabel}
+                cardData={data}
+              />
+            );
+          })}
+        {!isReport &&
+          sliderData?.map((data, index) => {
+            return (
+              <ExtendedSlideCard
+                key={index}
+                cardColor={cardColor}
+                isShowLabel={isShowLabel}
+                cardData={data}
+              />
+            );
+          })}
+        {isSetThreeCard && <div></div>}
+      </StyledSlider>
+    </SlideWrapper>
+  );
+}
+
+export { OverThreeResponsiveSlider, UnderThreeResponsiveSlider };
