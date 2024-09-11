@@ -8,7 +8,7 @@ import {
   CopyWriteWrapper,
   ActionWrapper,
 } from "./Components";
-import ResponsiveSlider from "@/components/Common/Slider";
+import { OverThreeResponsiveSlider } from "@/components/Common/Slider";
 
 const copyWrite = {
   reportIntro:
@@ -62,7 +62,7 @@ function ReportSlider() {
   const theme = useTheme();
   return (
     <ActionWrapper>
-      <ResponsiveSlider
+      <OverThreeResponsiveSlider
         cardColor={theme.colors.light}
         isReport={true}
         sliderData={sliderData}

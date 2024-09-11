@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
-import ResponsiveSlider from "@/components/Common/Slider";
+import { OverThreeResponsiveSlider } from "@/components/Common/Slider";
 import Image from "next/image";
 import { useTheme } from "@emotion/react";
 import { movieCardData } from "./extendedData";
@@ -37,7 +37,7 @@ function MovieSlider() {
   const theme = useTheme();
   return (
     <ActionWrapper>
-      <ResponsiveSlider
+      <OverThreeResponsiveSlider
         cardColor={theme.colors.white}
         sliderData={movieCardData}
         isShowLabel={false}
