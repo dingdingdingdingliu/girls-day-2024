@@ -129,7 +129,6 @@ export const filmCardData = [
     title: "《Unnatural 法醫女王》\nアンナチュラル",
     cardContent: "日本TBS電視台\n2018｜十集",
   },
-  {},
 ];
 
 export const cartoonCardData = [
