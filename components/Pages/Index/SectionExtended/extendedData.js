@@ -73,42 +73,49 @@ export const societyCardData = [
 
 export const movieCardData = [
   {
+    order: 0,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《淑女鳥》\nLadybird",
     cardContent: "葛莉塔·潔薇導演\n2017｜美國｜劇情片",
   },
   {
+    order: 1,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《美國女孩》\nAmerican Girl",
     cardContent: "阮鳳儀導演\n2021｜臺灣｜劇情片",
   },
   {
+    order: 2,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《哈勇家》",
     cardContent: "陳潔瑤導演\n2022｜臺灣｜劇情片",
   },
   {
+    order: 3,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《薯片》\nChicharon",
     cardContent: "鄒隆娜導演\n2013｜台灣｜劇情片",
   },
   {
+    order: 4,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《青春未知數》\nHaif Of It",
     cardContent: "伍思薇導演\n2020｜劇情片",
   },
   {
+    order: 5,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《關鍵少數》\nThe Hidden Figures",
     cardContent: "西奧多·梅爾菲\n執導兼編劇\n2016｜美國｜劇情片",
   },
   {
+    order: 6,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《我12 歲，你介意嗎？》\nCaught in the Net",
@@ -118,12 +125,14 @@ export const movieCardData = [
 
 export const filmCardData = [
   {
+    order: 0,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《性愛自修室》\nSex Education",
     cardContent: "Netflix\n2019-2023｜共四季",
   },
   {
+    order: 1,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《Unnatural 法醫女王》\nアンナチュラル",
@@ -133,30 +142,35 @@ export const filmCardData = [
 
 export const cartoonCardData = [
   {
+    order: 0,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《神隱少女》\n千と千尋の神隠し",
     cardContent: "吉卜力工作室製作\n2001｜日本",
   },
   {
+    order: 1,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《魔法滿屋》\nEncanto",
     cardContent: "華特迪士尼動畫工作室製作\n2021｜美國",
   },
   {
+    order: 2,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《北投女巫》",
     cardContent: "簡士頡\n2017",
   },
   {
+    order: 3,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《終將成為妳》",
     cardContent: "仲谷鳰\n2015-2019｜連載漫畫\n2018｜改編動畫",
   },
   {
+    order: 4,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《海倫娜與大野狼先生》",
@@ -166,66 +180,77 @@ export const cartoonCardData = [
 
 export const bookCardData = [
   {
+    order: 0,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《妳想活出怎樣的人生？：東大教授寫給女孩與女人的性別入門讀本》",
     cardContent: "上野千鶴子\n2022｜這邊出版",
   },
   {
+    order: 1,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《我們都應該是女性主義者》",
     cardContent: "Chimamanda Ngozi Adichie著，施清真譯\n2022｜木馬文化",
   },
   {
+    order: 2,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《診間裡的女人：婦產科女醫師從身體的難題帶妳找到生命的出口》",
     cardContent: "林靜儀\n2018｜鏡文學",
   },
   {
+    order: 3,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《夜遊：解嚴前夕一個國中女生的身體時代記》",
     cardContent: "房慧真\n2024｜春山出版",
   },
   {
+    order: 4,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《那些少女沒有抵達》",
     cardContent: "吳曉樂\n2023｜鏡文學",
   },
   {
+    order: 5,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《可是我偏偏不喜歡》",
     cardContent: "吳曉樂\n2019｜網路與書出版",
   },
   {
+    order: 6,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《台北家族，違章女生》",
     cardContent: "李屏瑤\n2019｜麥田",
   },
   {
+    order: 7,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《女子漢》",
     cardContent: "楊隸亞\n2017｜九歌",
   },
   {
+    order: 8,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《祖靈遺忘的孩子》",
     cardContent: "利格拉樂．阿烏\n2015｜前衛出版",
   },
   {
+    order: 9,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《愛的自由式：女同志故事書》",
     cardContent: "張娟芬\n2011｜時報出版",
   },
   {
+    order: 10,
     imageSrc: "/images/chiikawa.jpeg",
     imageAlt: "chiikawa",
     title: "《你想活出怎樣的人生？》",

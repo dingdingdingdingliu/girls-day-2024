@@ -69,7 +69,7 @@ export default function SectionFindObject({ isDesktop }) {
   return (
     <StyledPageWrapper>
       {!isDesktop && (
-        <LabelWrapper>
+        <LabelWrapper id="findObject">
           <BevelLabel
             buttonColor={theme.colors.black}
             textColor={theme.colors.green}
@@ -79,7 +79,7 @@ export default function SectionFindObject({ isDesktop }) {
       )}
       <StyledContentWrapper>
         {isDesktop && (
-          <LabelWrapper>
+          <LabelWrapper id="findObject">
             <BevelLabel
               buttonColor={theme.colors.black}
               textColor={theme.colors.green}

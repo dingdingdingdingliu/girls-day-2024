@@ -69,7 +69,7 @@ export default function SectionVision({ isDesktop }) {
   return (
     <StyledPageWrapper>
       {!isDesktop && (
-        <LabelWrapper>
+        <LabelWrapper id="vision">
           <BevelLabel
             buttonColor={theme.colors.black}
             textColor={theme.colors.pink}
@@ -79,7 +79,7 @@ export default function SectionVision({ isDesktop }) {
       )}
       <StyledContentWrapper>
         {isDesktop && (
-          <LabelWrapper>
+          <LabelWrapper id="vision">
             <BevelLabel
               buttonColor={theme.colors.black}
               textColor={theme.colors.pink}

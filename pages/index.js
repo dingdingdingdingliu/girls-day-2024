@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import globalConfig from "@/styles/globalConfig";
 
+import Hamburger from "@/components/Common/Index/Hamburger";
+import MobileNavCard from "@/components/Common/Index/MobileNavCard";
+import DesktopNavCard from "@/components/Common/Index/DesktopNavCard";
+import PageDialog from "@/components/Common/Index/PageDialog";
+
 import SectionEntrance from "../components/Pages/Index/SectionEntrance";
 import SectionIntro from "../components/Pages/Index/SectionIntro";
 import SectionPromoVideo from "@/components/Pages/Index/SectionPromoVideo";
@@ -19,13 +24,59 @@ import Footer from "@/components/Pages/Index/SectionFooter";
 export default function Home() {
   const isDesktopSize = useMediaQuery({ minWidth: globalConfig.mediaQuery });
   const [isDesktop, setIsDesktop] = useState(true);
+  const [isHamburgerShow, setIsHamburgerShow] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const [isDesktopNavOpen, setIsDesktopNavOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [dialogData, setDialogData] = useState({});
 
   useEffect(() => {
     setIsDesktop(isDesktopSize);
   }, [isDesktopSize]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const targetSection = document.querySelector("#show-hamburger-target");
+      const targetSectionTop = targetSection.getBoundingClientRect().top;
+
+      if (targetSectionTop <= 0) {
+        setIsHamburgerShow(true);
+      } else {
+        setIsHamburgerShow(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div style={{ width: "100vw" }}>
+      <Hamburger
+        isShow={isHamburgerShow}
+        isDesktop={isDesktop}
+        setIsMobileNavOpen={setIsMobileNavOpen}
+        setIsDesktopNavOpen={setIsDesktopNavOpen}
+      />
+      <MobileNavCard
+        isMobileNavOpen={isMobileNavOpen}
+        setIsMobileNavOpen={setIsMobileNavOpen}
+      />
+      <DesktopNavCard
+        isDesktopNavOpen={isDesktopNavOpen}
+        setIsDesktopNavOpen={setIsDesktopNavOpen}
+      />
+      <PageDialog
+        isDesktop={isDesktop}
+        isDialogOpen={isDialogOpen}
+        setIsDialogOpen={setIsDialogOpen}
+        dialogData={dialogData}
+        setDialogData={setDialogData}
+      />
       <SectionEntrance />
       <SectionIntro isDesktop={isDesktop} />
       <SectionPromoVideo />
@@ -37,7 +88,10 @@ export default function Home() {
       <SectionTimeLine isDesktop={isDesktop} />
       <SectionGirlImage />
       <SectionPickUp isDesktop={isDesktop} />
-      <SectionExtended />
+      <SectionExtended
+        setDialogData={setDialogData}
+        setIsDialogOpen={setIsDialogOpen}
+      />
       <Footer />
     </div>
   );

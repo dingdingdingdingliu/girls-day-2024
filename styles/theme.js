@@ -2,7 +2,7 @@ const globalTheme = {
   colors: {
     white: "#ffffff",
     black: "#000000",
-    grey: "#b1b1b1",
+    grey: "#919191",
     lightGrey: "#ececec",
     mediumGrey: "#DDDDDD",
     light: "#F5F5F5",
@@ -20,6 +20,7 @@ const globalTheme = {
     16: "16px",
     18: "18px",
     20: "20px",
+    22: "22px",
     26: "26px",
     28: "28px",
     32: "32px",
