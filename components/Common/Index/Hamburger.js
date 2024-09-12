@@ -16,7 +16,8 @@ const Wrapper = styled.div`
   display: ${(props) => (props.isShow ? "block" : "none")};
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: ${(props) => (props.isShow ? "block" : "none")};
   }
 `;
 
