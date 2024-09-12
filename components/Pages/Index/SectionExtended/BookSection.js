@@ -4,6 +4,7 @@ import { OverThreeResponsiveSlider } from "@/components/Common/Slider";
 import Image from "next/image";
 import { useTheme } from "@emotion/react";
 import { bookCardData } from "./extendedData";
+import { bookDialogData } from "./extendedDialogData";
 import { ExtendedTitle } from "@/components/Common/Index/TitleWithLine";
 import {
   InnerContentWrapper,
@@ -33,14 +34,17 @@ const StyledContentWrapper = styled(ContentWrapper)`
 `;
 
 // Slide 卡片區塊
-function BookSlider() {
+function BookSlider({ setDialogData, setIsDialogOpen }) {
   const theme = useTheme();
   return (
     <ActionWrapper>
       <OverThreeResponsiveSlider
         cardColor={theme.colors.light}
-        sliderData={bookCardData}
         isShowLabel={false}
+        sliderData={bookCardData}
+        dialogContent={bookDialogData}
+        setDialogData={setDialogData}
+        setIsDialogOpen={setIsDialogOpen}
       />
     </ActionWrapper>
   );
@@ -68,14 +72,17 @@ function BookTitleSection() {
   );
 }
 
-export default function FilmSection() {
+export default function FilmSection({ setDialogData, setIsDialogOpen }) {
   return (
     <StyledPageWrapper>
       <StyledContentWrapper>
         <InnerContentWrapper>
           <SectionWrapper>
             <BookTitleSection />
-            <BookSlider />
+            <BookSlider
+              setDialogData={setDialogData}
+              setIsDialogOpen={setIsDialogOpen}
+            />
           </SectionWrapper>
         </InnerContentWrapper>
       </StyledContentWrapper>

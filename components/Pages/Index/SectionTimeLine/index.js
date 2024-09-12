@@ -132,7 +132,7 @@ export default function SectionTimeLine({ isDesktop }) {
   return (
     <StyledPageWrapper>
       {!isDesktop && (
-        <LabelWrapper>
+        <LabelWrapper id="processing">
           <BevelLabel
             buttonColor={theme.colors.green}
             textColor={theme.colors.black}
@@ -142,7 +142,7 @@ export default function SectionTimeLine({ isDesktop }) {
       )}
       <StyledContentWrapper>
         {isDesktop && (
-          <LabelWrapper>
+          <LabelWrapper id="processing">
             <BevelLabel
               buttonColor={theme.colors.green}
               textColor={theme.colors.black}
