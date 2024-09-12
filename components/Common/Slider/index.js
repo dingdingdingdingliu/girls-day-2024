@@ -116,6 +116,9 @@ function OverThreeResponsiveSlider({
   isShowLabel,
   isReport = false,
   sliderData = [],
+  dialogContent = [],
+  setDialogData,
+  setIsDialogOpen,
 }) {
   return (
     <SlideWrapper>
@@ -139,6 +142,9 @@ function OverThreeResponsiveSlider({
                 cardColor={cardColor}
                 isShowLabel={isShowLabel}
                 cardData={data}
+                dialogContent={dialogContent}
+                setDialogData={setDialogData}
+                setIsDialogOpen={setIsDialogOpen}
               />
             );
           })}
@@ -152,6 +158,9 @@ function UnderThreeResponsiveSlider({
   isShowLabel,
   isReport = false,
   sliderData = [],
+  dialogContent = [],
+  setDialogData,
+  setIsDialogOpen,
 }) {
   const isSlideTablet = useMediaQuery({
     minWidth: globalConfig.sliderTablet,
@@ -185,6 +194,9 @@ function UnderThreeResponsiveSlider({
                 cardColor={cardColor}
                 isShowLabel={isShowLabel}
                 cardData={data}
+                dialogContent={dialogContent}
+                setDialogData={setDialogData}
+                setIsDialogOpen={setIsDialogOpen}
               />
             );
           })}

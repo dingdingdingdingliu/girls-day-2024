@@ -84,9 +84,9 @@ export default function SectionIntro({ isDesktop }) {
   const theme = useTheme();
 
   return (
-    <StyledPageWrapper>
+    <StyledPageWrapper id="show-hamburger-target">
       {!isDesktop && (
-        <LabelWrapper id="target">
+        <LabelWrapper id="reception">
           <BevelLabel
             buttonColor={theme.colors.black}
             textColor={theme.colors.yellow}
@@ -96,7 +96,7 @@ export default function SectionIntro({ isDesktop }) {
       )}
       <StyledContentWrapper>
         {isDesktop && (
-          <LabelWrapper id="target">
+          <LabelWrapper id="reception">
             <BevelLabel
               buttonColor={theme.colors.black}
               textColor={theme.colors.green}

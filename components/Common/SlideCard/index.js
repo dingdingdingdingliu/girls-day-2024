@@ -158,13 +158,18 @@ export function ExtendedSlideCard({
   cardColor,
   isShowLabel,
   cardData,
-  onClick = null,
+  dialogContent,
+  setDialogData,
 }) {
-  const { imageSrc, imageAlt, title, cardContent } = cardData;
+  const { imageSrc, imageAlt, title, cardContent, order } = cardData;
   const theme = useTheme();
+  const onCardClick = () => {
+    if (isShowLabel) return;
+    setDialogData(dialogContent[order]);
+  };
   return (
     <>
-      <SlideCardWrapper onClick={onClick} cardColor={cardColor}>
+      <SlideCardWrapper onClick={onCardClick} cardColor={cardColor}>
         <CardImageWrapper>
           <ImageWrapper>
             <Image

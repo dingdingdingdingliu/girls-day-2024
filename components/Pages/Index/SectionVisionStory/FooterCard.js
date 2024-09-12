@@ -142,7 +142,7 @@ const CopyWriteWrapper = styled.div`
   top: 0;
   left: 0;
   border: 4px solid ${(props) => props.theme.colors.black};
-  z-index: ${(props) => Number(props.count) * 100};
+  z-index: ${(props) => Number(props.count) * 10};
   max-height: ${(props) => (props.isVisible ? "900px" : "0")};
   opacity: ${(props) => (props.isVisible ? 1 : 0)};
   animation: ${(props) => (props.isVisible ? fadeIn : fadeOut)} 0.5s ease-in-out

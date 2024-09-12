@@ -4,6 +4,7 @@ import { UnderThreeResponsiveSlider } from "@/components/Common/Slider";
 import Image from "next/image";
 import { useTheme } from "@emotion/react";
 import { filmCardData } from "./extendedData";
+import { filmDialogData } from "./extendedDialogData";
 import { ExtendedTitle } from "@/components/Common/Index/TitleWithLine";
 import {
   InnerContentWrapper,
@@ -33,15 +34,18 @@ const StyledContentWrapper = styled(ContentWrapper)`
 `;
 
 // Slide 卡片區塊
-function FilmSlider() {
+function FilmSlider({ setDialogData, setIsDialogOpen }) {
   const theme = useTheme();
 
   return (
     <ActionWrapper>
       <UnderThreeResponsiveSlider
         cardColor={theme.colors.light}
-        sliderData={filmCardData}
         isShowLabel={false}
+        sliderData={filmCardData}
+        dialogContent={filmDialogData}
+        setDialogData={setDialogData}
+        setIsDialogOpen={setIsDialogOpen}
       />
     </ActionWrapper>
   );
@@ -69,14 +73,17 @@ function FilmTitleSection() {
   );
 }
 
-export default function FilmSection() {
+export default function FilmSection({ setDialogData, setIsDialogOpen }) {
   return (
     <StyledPageWrapper>
       <StyledContentWrapper>
         <InnerContentWrapper>
           <SectionWrapper>
             <FilmTitleSection />
-            <FilmSlider />
+            <FilmSlider
+              setDialogData={setDialogData}
+              setIsDialogOpen={setIsDialogOpen}
+            />
           </SectionWrapper>
         </InnerContentWrapper>
       </StyledContentWrapper>

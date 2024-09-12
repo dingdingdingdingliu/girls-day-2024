@@ -4,6 +4,7 @@ import { OverThreeResponsiveSlider } from "@/components/Common/Slider";
 import Image from "next/image";
 import { useTheme } from "@emotion/react";
 import { movieCardData } from "./extendedData";
+import { movieDialogData } from "./extendedDialogData";
 import { ExtendedTitle } from "@/components/Common/Index/TitleWithLine";
 import {
   InnerContentWrapper,
@@ -33,14 +34,17 @@ const StyledContentWrapper = styled(ContentWrapper)`
 `;
 
 // Slide 卡片區塊
-function MovieSlider() {
+function MovieSlider({ setDialogData, setIsDialogOpen }) {
   const theme = useTheme();
   return (
     <ActionWrapper>
       <OverThreeResponsiveSlider
         cardColor={theme.colors.white}
-        sliderData={movieCardData}
         isShowLabel={false}
+        sliderData={movieCardData}
+        dialogContent={movieDialogData}
+        setDialogData={setDialogData}
+        setIsDialogOpen={setIsDialogOpen}
       />
     </ActionWrapper>
   );
@@ -68,14 +72,17 @@ function MovieTitleSection() {
   );
 }
 
-export default function MovieSection() {
+export default function MovieSection({ setDialogData, setIsDialogOpen }) {
   return (
     <StyledPageWrapper>
       <StyledContentWrapper>
         <InnerContentWrapper>
           <SectionWrapper>
             <MovieTitleSection />
-            <MovieSlider />
+            <MovieSlider
+              setDialogData={setDialogData}
+              setIsDialogOpen={setIsDialogOpen}
+            />
           </SectionWrapper>
         </InnerContentWrapper>
       </StyledContentWrapper>

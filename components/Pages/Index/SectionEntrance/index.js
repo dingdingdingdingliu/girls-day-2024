@@ -47,7 +47,7 @@ export default function SectionEntrance() {
     <StyledPageWrapper>
       <StyledContentWrapper>
         <ButtonWrapper>
-          <a href="#target">
+          <a href="#reception">
             <BevelButton
               size="large"
               buttonColor={theme.colors.black}
