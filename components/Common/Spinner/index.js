@@ -42,9 +42,10 @@ const Text = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: ${(props) => props.theme.fontSizes[26]};
+  font-size: ${(props) => props.theme.fontSizes[22]};
   font-weight: ${(props) => props.theme.fontWeights.bold};
   color: ${(props) => props.theme.colors.black};
+  white-space: nowrap;
   z-index: 2;
 `;
 
