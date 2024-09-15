@@ -8,7 +8,7 @@ import {
   ContentWrapper,
 } from "@/components/Common/VisionGame/WrapperComponent";
 import { GameSmallBevelButton } from "@/components/Common/Button/GameUsedBevelButton";
-import { answerImageData } from "@/pages/visionExamGame/gameImageData";
+import { answerImageData } from "./gameImageData";
 
 const introCopyWrite =
   "歡迎來到偏見眼鏡行的驗光室！\n共有12道題目，每題限時5秒";
