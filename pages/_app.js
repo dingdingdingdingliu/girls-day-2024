@@ -1,8 +1,9 @@
 import Head from "next/head";
 import { ThemeProvider } from "@emotion/react";
-import theme from "../styles/theme";
 import { Noto_Sans_TC as NotoSansTC } from "next/font/google";
+import { VisionGameProvider } from "@/context/VisionGameContext";
 
+import theme from "../styles/theme";
 import "@/styles/globals.css";
 
 // 引入 Noto Sans TC 字型
@@ -19,9 +20,11 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <ThemeProvider theme={theme}>
-        <div className={notoSansTC.className}>
-          <Component {...pageProps} />
-        </div>
+        <VisionGameProvider>
+          <div className={notoSansTC.className}>
+            <Component {...pageProps} />
+          </div>
+        </VisionGameProvider>
       </ThemeProvider>
     </>
   );
