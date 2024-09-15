@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import visionGameData from "@/pages/visionExamGame/visionGameData";
+import visionGameData from "@/components/Common/VisionGame/visionGameData";
 
 export const VisionGameContext = createContext();
 

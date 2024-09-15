@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "@react-spring/web";
-import { answerImageData } from "@/pages/visionExamGame/gameImageData";
+import { answerImageData } from "./gameImageData";
 import { RxCross2 } from "react-icons/rx";
 
 const delay = (i) => Number(i) * 100;

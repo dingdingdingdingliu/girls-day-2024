@@ -8,7 +8,7 @@ import { VisionGameContext } from "@/context/VisionGameContext";
 import {
   answerImageData,
   questionImageData,
-} from "@/pages/visionExamGame/gameImageData";
+} from "@/components/Common/VisionGame/gameImageData";
 import {
   PageWrapper,
   ContentWrapper,
