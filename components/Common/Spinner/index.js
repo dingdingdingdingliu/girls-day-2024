@@ -42,8 +42,9 @@ const Text = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 18px;
-  color: black;
+  font-size: ${(props) => props.theme.fontSizes[26]};
+  font-weight: ${(props) => props.theme.fontWeights.bold};
+  color: ${(props) => props.theme.colors.black};
   z-index: 2;
 `;
 

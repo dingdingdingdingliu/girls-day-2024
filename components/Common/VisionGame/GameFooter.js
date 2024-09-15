@@ -6,6 +6,7 @@ const LogosWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 80px 0 28px 0;
+  padding: 0 10px;
 `;
 
 const LogoWrapper = styled.div`
