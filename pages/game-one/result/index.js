@@ -65,7 +65,7 @@ const AnimatedWrapper = styled(animated.div)`
   width: 100%;
 `;
 
-export default function gameResultPage() {
+export default function VisionGameResult() {
   const theme = useTheme();
   const router = useRouter();
   const { visionGameData, playerAnswers } = useContext(VisionGameContext);
