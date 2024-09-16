@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import globalConfig from "@/styles/globalConfig";
+// import styled from "@emotion/styled";
 
 import Hamburger from "@/components/Common/Index/Hamburger";
 import MobileNavCard from "@/components/Common/Index/MobileNavCard";
@@ -20,6 +21,22 @@ import SectionGirlImage from "@/components/Pages/Index/SectionGirlImage";
 import SectionPickUp from "@/components/Pages/Index/SectionPickUp";
 import SectionExtended from "@/components/Pages/Index/SectionExtended";
 import Footer from "@/components/Pages/Index/SectionFooter";
+
+// const StyledWrapper = styled.div`
+//   width: 100vw;
+//   height: 100vh;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   white-space: nowrap;
+//   font-size: ${(props) => props.theme.fontSizes[40]};
+//   font-weight: ${(props) => props.theme.fontWeights.bold};
+//   color: ${(props) => props.theme.colors.black};
+
+//   @media (max-width: ${globalConfig.mediaQuery}) {
+//     font-size: ${(props) => props.theme.fontSizes[28]};
+//   }
+// `;
 
 export default function Home() {
   const isDesktopSize = useMediaQuery({ minWidth: globalConfig.mediaQuery });
@@ -96,3 +113,7 @@ export default function Home() {
     </div>
   );
 }
+
+// export default function Home() {
+//   return <StyledWrapper>Coming Soon...!</StyledWrapper>;
+// }

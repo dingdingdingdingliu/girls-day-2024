@@ -12,6 +12,7 @@ const globalTheme = {
     lightGreen: "#84FFB7",
     lightOrange: "#EBD8D2",
     lightPink: "#FF98C3",
+    darkGreen: "#20c57a",
   },
   fontSizes: {
     10: "10px",
@@ -26,6 +27,7 @@ const globalTheme = {
     32: "32px",
     36: "36px",
     40: "40px",
+    72: "72px",
   },
   fontWeights: {
     normal: "normal",
