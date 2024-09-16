@@ -196,7 +196,7 @@ export default function VisionGameIndex() {
             <CopyWrite>來測測你的偏見度數是多少吧！</CopyWrite>
           </AnimatedIntroWrapper>
           <AnimatedButtonWrapper style={fadeInBebel}>
-            <Link href="/visionExamGame/GameStart">
+            <Link href="/game-one/start">
               <GameSmallBevelButton
                 buttonColor={theme.colors.black}
                 textColor={theme.colors.pink}

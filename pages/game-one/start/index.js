@@ -126,7 +126,7 @@ export default function VisionGameStart() {
   useEffect(() => {
     if (isShowSpinner)
       setTimeout(() => {
-        router.push("/visionExamGame/GameResult");
+        router.push("/game-one/result");
       }, 3000);
   }, [isShowSpinner]);
 
@@ -173,7 +173,7 @@ export default function VisionGameStart() {
   // 儲存玩家回答後執行，遊戲動作邏輯function，點擊或卡片飛出時執行資料設定與動畫
   const gameSettingFunction = (arg) => {
     const { x, rotate, type } = arg;
-    if (currentCardIndex === visionGameData.length)
+    if (currentCardIndex >= visionGameData.length)
       return setIsShowSpinner(true);
 
     if (type === "isClick" && currentCardIndex < visionGameData.length) {
@@ -215,13 +215,21 @@ export default function VisionGameStart() {
 
     // 儲存玩家回答
     if (currentCardIndex <= visionGameData.length) {
-      setPlayerAnswers((prevAnswers) => [
-        ...prevAnswers,
-        {
-          id: currentQuestion.id,
-          selectedAnswer: answer,
-        },
-      ]);
+      setPlayerAnswers((prevAnswers) => {
+        const answerExists = prevAnswers.some(
+          (answer) => answer.id === currentQuestion.id,
+        );
+
+        if (!answerExists) {
+          return [
+            ...prevAnswers,
+            {
+              id: currentQuestion.id,
+              selectedAnswer: answer,
+            },
+          ];
+        }
+      });
     }
 
     api.start((index) => {
@@ -248,13 +256,21 @@ export default function VisionGameStart() {
 
     // 儲存玩家回答
     if (currentCardIndex <= visionGameData.length) {
-      setPlayerAnswers((prevAnswers) => [
-        ...prevAnswers,
-        {
-          id: currentQuestion.id,
-          selectedAnswer: "incorrect",
-        },
-      ]);
+      setPlayerAnswers((prevAnswers) => {
+        const answerExists = prevAnswers.some(
+          (answer) => answer.id === currentQuestion.id,
+        );
+
+        if (!answerExists) {
+          return [
+            ...prevAnswers,
+            {
+              id: currentQuestion.id,
+              selectedAnswer: "incorrect",
+            },
+          ];
+        }
+      });
     }
 
     api.start((index) => {
