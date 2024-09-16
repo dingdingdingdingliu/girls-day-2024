@@ -107,7 +107,7 @@ export default function VisionGameResult() {
 
   useEffect(() => {
     if (playerAnswers.length === 0) {
-      router.push("/visionExamGame");
+      router.push("/game-one");
     }
   }, [playerAnswers.length]);
 
