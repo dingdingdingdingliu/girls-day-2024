@@ -103,11 +103,19 @@ export default function VisionGameStart() {
   const router = useRouter();
   const [seconds, setSeconds] = useState(initTimer); // 時間條秒數
   const [questionOrder, setQuestionOrder] = useState(1); // 顯示題目 title
-  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [currentCardIndex, setCurrentCardIndex] = useState(1);
   const [isPageShake, setIsPageShake] = useState(false);
   const [isShowSpinner, setIsShowSpinner] = useState(false);
   const [isClickable, setIsClickable] = useState(true);
   const { visionGameData, setPlayerAnswers } = useContext(VisionGameContext);
+
+  // useSprings 設置多張動畫
+  const [springs, api] = useSprings(visionGameData.length, () => ({
+    x: 0,
+    y: 0,
+    rotate: 0,
+    opacity: 1,
+  }));
 
   // 進入此頁面時重置遊戲結果
   useEffect(() => {
@@ -128,56 +136,63 @@ export default function VisionGameStart() {
     if (!isShowSpinner && seconds === 1) setIsPageShake(true);
 
     // 1秒後停止晃動頁面
-    setTimeout(() => {
+    const shakeTimeout = setTimeout(() => {
       setIsPageShake(false);
     }, 1000);
+
+    // 清理晃動計時器
+    return () => clearTimeout(shakeTimeout);
   }, [seconds, isShowSpinner]);
 
   // 自動倒數秒數，倒計時為 0 時，觸發卡片自動往左飛離
   useEffect(() => {
     if (currentCardIndex > visionGameData.length) return;
+
+    // 大於零：倒數秒數
+    // 等於零：飛出卡片 + 等待一秒
+    // -1 : 重新讓按鈕可點擊
     let interval;
     if (seconds > 0) {
       interval = setInterval(() => {
         setSeconds((prev) => prev - 1);
       }, 1000);
+    } else if (seconds === 0) {
+      interval = setInterval(() => {
+        setSeconds((prev) => prev - 1);
+      }, 1000);
+      handleCardFlyOut(); // 倒計時為零，觸發卡片自動往左飛離
     } else {
-      handleCardFlyOut("left"); // 倒計時為零，觸發卡片自動往左飛離
-    }
-    return () => clearInterval(interval);
-  }, [seconds, currentCardIndex, visionGameData.length]);
-
-  // useSprings 設置多張動畫
-  const [springs, api] = useSprings(visionGameData.length, () => ({
-    x: 0,
-    y: 0,
-    rotate: 0,
-    opacity: 1,
-  }));
-
-  // 儲存玩家回答後執行，遊戲動作邏輯function，點擊或卡片飛出時執行資料設定與動畫
-  const gameSettingFunction = (x, rotate) => {
-    const newCardIndex = currentCardIndex + 1; // 最大是 11 + 1
-    if (newCardIndex >= visionGameData.length) return setIsShowSpinner(true);
-
-    if (newCardIndex < visionGameData.length) {
       setCurrentCardIndex((pre) => pre + 1);
       setQuestionOrder((pre) => pre + 1);
       setSeconds(initTimer); // 重置秒數
       setIsClickable(true); // 重置可點擊
     }
+    return () => clearInterval(interval);
+  }, [seconds, currentCardIndex, visionGameData.length]);
 
+  // 儲存玩家回答後執行，遊戲動作邏輯function，點擊或卡片飛出時執行資料設定與動畫
+  const gameSettingFunction = (arg) => {
+    const { x, rotate, type } = arg;
+    if (currentCardIndex === visionGameData.length)
+      return setIsShowSpinner(true);
+
+    if (type === "isClick" && currentCardIndex < visionGameData.length) {
+      setCurrentCardIndex((pre) => pre + 1);
+      setQuestionOrder((pre) => pre + 1);
+      setSeconds(initTimer); // 重置秒數
+      setIsClickable(true); // 重置可點擊
+    }
     // 執行後回傳動畫
     return {
       x,
       rotate,
       opacity: 0,
-      delay: 300,
-      config: { mass: 2, tension: 700, friction: 30 },
+      delay: 100,
+      config: { mass: 2, tension: 400, friction: 50 },
     };
   };
 
-  // 要修時間上的細節，可以玩一下
+  // 點擊按鈕事件
   const handleClick = (direction) => {
     // 已移出卡片不觸發
     // 時間0秒
@@ -185,7 +200,7 @@ export default function VisionGameStart() {
     // 不觸發動作
     if (
       !isClickable ||
-      currentCardIndex >= visionGameData.length ||
+      currentCardIndex > visionGameData.length ||
       seconds === 0
     )
       return;
@@ -193,57 +208,64 @@ export default function VisionGameStart() {
     // 點擊後不可重複點擊
     setIsClickable(false);
 
-    const currentQuestion = visionGameData[currentCardIndex];
+    const currentQuestion = visionGameData[currentCardIndex - 1];
     const x = direction === "left" ? -300 : 300;
     const rotate = direction === "left" ? -45 : 45;
     const answer = direction === "left" ? "yes" : "no";
 
     // 儲存玩家回答
-    setPlayerAnswers((prevAnswers) => [
-      ...prevAnswers,
-      {
-        id: currentQuestion.id,
-        selectedAnswer: answer,
-      },
-    ]);
+    if (currentCardIndex <= visionGameData.length) {
+      setPlayerAnswers((prevAnswers) => [
+        ...prevAnswers,
+        {
+          id: currentQuestion.id,
+          selectedAnswer: answer,
+        },
+      ]);
+    }
 
     api.start((index) => {
-      if (index === currentCardIndex) {
-        const apiArg = gameSettingFunction(x, rotate);
-        return {
-          ...apiArg,
-        };
+      if (index === currentCardIndex - 1) {
+        return gameSettingFunction({
+          x,
+          rotate,
+          type: "isClick",
+        });
       }
       return null; // 對於 current card Index 以外卡片不設置行為
     });
   };
 
   // 秒數為0時，自動飛出卡片
-  const handleCardFlyOut = (direction) => {
-    const currentQuestion = visionGameData[currentCardIndex];
-    const x = direction === "left" ? -300 : 300;
-    const rotate = direction === "left" ? -45 : 45;
+  const handleCardFlyOut = () => {
+    const currentQuestion = visionGameData[currentCardIndex - 1];
+    const x = -300;
+    const rotate = -45;
 
-    if (currentCardIndex >= visionGameData.length) return;
-
+    if (currentCardIndex > visionGameData.length) return;
     // 飛出時不可點擊
     setIsClickable(false);
 
-    setPlayerAnswers((prevAnswers) => [
-      ...prevAnswers,
-      {
-        id: currentQuestion.id,
-        selectedAnswer: "incorrect",
-      },
-    ]);
+    // 儲存玩家回答
+    if (currentCardIndex <= visionGameData.length) {
+      setPlayerAnswers((prevAnswers) => [
+        ...prevAnswers,
+        {
+          id: currentQuestion.id,
+          selectedAnswer: "incorrect",
+        },
+      ]);
+    }
 
     api.start((index) => {
-      if (index === currentCardIndex) {
-        const apiArg = gameSettingFunction(x, rotate);
-        return {
-          ...apiArg,
-        };
+      if (index === currentCardIndex - 1) {
+        return gameSettingFunction({
+          x,
+          rotate,
+          type: "isFlyout",
+        }); // 更新動畫和狀態
       }
+
       return null; // 對於 current card Index 以外卡片不設置行為
     });
   };
@@ -303,7 +325,7 @@ export default function VisionGameStart() {
             </OptionOuterWrapper>
             <ProgressBarWrapper>
               <ProgressBar seconds={seconds}>
-                <TimerText>{seconds}</TimerText>
+                <TimerText>{seconds >= 0 ? seconds : 0}</TimerText>
               </ProgressBar>
             </ProgressBarWrapper>
           </Wrapper>
