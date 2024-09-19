@@ -11,7 +11,7 @@ const visionGameData = [
   },
   { id: 4, question: "哇你是女生怎麼理工這麼強？", correctAnswer: "no" },
   { id: 5, question: "請指出正確的方向", correctAnswer: "yes" },
-  { id: 6, question: "女生打扮就是無心課業", correctAnswer: "no" },
+  { id: 6, question: "女生愛打扮就是無心課業", correctAnswer: "no" },
   {
     id: 7,
     question: "女騎士三寶闖國道違規，恐吞萬元罰單！",
@@ -25,12 +25,12 @@ const visionGameData = [
   { id: 9, question: "男生留長髮、留短髮都可以！", correctAnswer: "yes" },
   {
     id: 10,
-    question: "你從偏鄉來喔？感覺那裡到處是單親媽媽，生育率比畢業率高！",
-    correctAnswer: "no",
+    question: "女孩男孩一樣好，生來通通都是寶！健康最重要！",
+    correctAnswer: "yes",
   },
   {
     id: 11,
-    question: "月經不要直接講出來，要說「那個來」",
+    question: "月經來不要直接講出來！要說「那個來」",
     correctAnswer: "no",
   },
   { id: 12, question: "請指出正確的方向", correctAnswer: "no" },
