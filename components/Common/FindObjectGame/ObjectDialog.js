@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
+import { useSpring, animated } from "@react-spring/web";
 import { RxCross2 } from "react-icons/rx";
 import { ImageWrapper } from "./WrapperComponent";
 
-const Overlay = styled.div`
+const AnimatedOverlay = styled(animated.div)`
   width: 85%;
   height: 100%;
   max-height: 100%;
@@ -14,18 +15,18 @@ const Overlay = styled.div`
   z-index: 20;
   background-color: ${(props) => props.theme.colors.white};
   border: 12px solid ${(props) => props.theme.colors.mediumGrey};
-  display: ${(props) => (props.isOpen ? "flex" : "none")};
+  display: flex;
   justify-content: center;
   align-items: center;
 
   @media (max-width: ${globalConfig.findObjectGame}) {
     width: 100%;
-    height: 80%;
-    max-height: 80%;
+    height: 73%;
+    max-height: 73%;
   }
 `;
 
-const DialogWrapper = styled.div`
+const AnimatedDialogWrapper = styled(animated.div)`
   width: 50%;
   max-width: 600px;
   height: 80%;
@@ -109,9 +110,27 @@ const Intro = styled.p`
 export default function ObjectDialog({ data, isOpen, setIsShowDialog }) {
   const onCrossClick = () => setIsShowDialog(false);
 
+  const fadeInDialog = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+    config: { duration: 500 }, // 動畫持續時間
+    delay: isOpen && 200,
+    reset: isOpen,
+  });
+
+  const fadeInOverlay = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+    config: { duration: 300 }, // 動畫持續時間
+    reset: isOpen,
+  });
+
   return (
-    <Overlay isOpen={isOpen}>
-      <DialogWrapper titleLength={data?.title.length}>
+    <AnimatedOverlay isOpen={isOpen} style={fadeInOverlay}>
+      <AnimatedDialogWrapper
+        titleLength={data?.title.length}
+        style={fadeInDialog}
+      >
         <StyledRxCross2 onClick={onCrossClick} />
         <ObjectTitle>{data?.title}</ObjectTitle>
         <ImageSection titleLength={data?.title.length}>
@@ -128,7 +147,7 @@ export default function ObjectDialog({ data, isOpen, setIsShowDialog }) {
           </ImageWrapper>
         </ImageSection>
         <Intro>{data?.intro}</Intro>
-      </DialogWrapper>
-    </Overlay>
+      </AnimatedDialogWrapper>
+    </AnimatedOverlay>
   );
 }

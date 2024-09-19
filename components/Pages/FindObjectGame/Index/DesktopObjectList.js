@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
@@ -61,18 +62,30 @@ const StyledFaCheck = styled(FaCheck)`
   font-size: 24px;
 `;
 
-export function DesktopObjectList({ isClickIdArray }) {
+export default function DesktopObjectList({ isClickIdArray, scrollToId }) {
+  const peopleRef = useRef(null);
+  const placeRef = useRef(null);
+  const eventRef = useRef(null);
   const peopleFindIds = isClickIdArray.filter((id) =>
     peopleIdArray.includes(id),
   );
-
   const placeFindIds = isClickIdArray.filter((id) => placeIdArray.includes(id));
-
   const eventFindIds = isClickIdArray.filter((id) => eventIdArray.includes(id));
+
+  // 當 scrollToId 改變時，觸發滾動動畫
+  useEffect(() => {
+    if (scrollToId === "people") {
+      peopleRef.current.scrollIntoView({ behavior: "smooth" });
+    } else if (scrollToId === "place") {
+      placeRef.current.scrollIntoView({ behavior: "smooth" });
+    } else if (scrollToId === "event") {
+      eventRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [scrollToId]);
 
   return (
     <DesktopWrapper>
-      <ListWrapper isLast={false}>
+      <ListWrapper ref={peopleRef} isLast={false}>
         <ListBevelLabel listText="人物" count={peopleFindIds.length} />
         {objectData.slice(0, 4).map((data, index) => {
           const isCheck = isClickIdArray.some((id) => id === data.id);
@@ -96,7 +109,7 @@ export function DesktopObjectList({ isClickIdArray }) {
           );
         })}
       </ListWrapper>
-      <ListWrapper isLast={false}>
+      <ListWrapper ref={placeRef} isLast={false}>
         <ListBevelLabel listText="地點" count={placeFindIds.length} />
         {objectData.slice(4, 8).map((data, index) => {
           const isCheck = isClickIdArray.some((id) => id === data.id);
@@ -120,7 +133,7 @@ export function DesktopObjectList({ isClickIdArray }) {
           );
         })}
       </ListWrapper>
-      <ListWrapper isLast={true}>
+      <ListWrapper ref={eventRef} isLast={true}>
         <ListBevelLabel listText="事件" count={eventFindIds.length} />
         {objectData.slice(8).map((data, index) => {
           const isCheck = isClickIdArray.some((id) => id === data.id);

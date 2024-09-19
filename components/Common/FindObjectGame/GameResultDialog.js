@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSpring } from "@react-spring/web";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
@@ -6,8 +7,8 @@ import {
   ImageWrapper,
   Overlay,
   OuterWrapper,
-  DialogWrapper,
   ContentWrapper,
+  AnimatedDialogWrapper,
 } from "@/components/Common/FindObjectGame/WrapperComponent";
 import FindObjectGameBevelButton from "@/components/Common/FindObjectGame/BevelButton";
 import GameFooter from "./GameFooter";
@@ -39,13 +40,13 @@ const resultCopyWrite = {
   },
 };
 
-const getResult = (score) => {
+const getResult = (findCount) => {
   let gameResult;
-  if (score >= 0 && score <= 4) {
+  if (findCount >= 0 && findCount <= 4) {
     gameResult = resultCopyWrite.bad;
-  } else if (score >= 5 && score <= 8) {
+  } else if (findCount >= 5 && findCount <= 8) {
     gameResult = resultCopyWrite.average;
-  } else if (score >= 9 && score <= 12) {
+  } else if (findCount >= 9 && findCount <= 12) {
     gameResult = resultCopyWrite.good;
   } else {
     gameResult = resultCopyWrite.good; // 預設值
@@ -110,36 +111,42 @@ const Button = styled.div`
 
 export default function GameResultDialog({
   isDesktop,
-  totalScore,
-  isShowResult,
+  findCount,
+  isGameEnd,
+  onReplay,
 }) {
   const [introCopyWrite, setIntroCopyWrite] = useState("");
-  const [gameResult, setGameResult] = useState({});
+  const gameResult = getResult(findCount);
 
   useEffect(() => {
-    if (isShowResult) {
-      const gameResult = getResult(totalScore);
-      setGameResult(gameResult);
+    if (isGameEnd) {
       if (isDesktop) {
         setIntroCopyWrite(gameResult.introDesktop);
       } else {
         setIntroCopyWrite(gameResult.introMobile);
       }
     }
-  }, [isDesktop]);
+  }, [isDesktop, findCount, isGameEnd]);
 
-  // const onButtonClick = () => setIsGameStart(true);
+  const fadeInFromTopDelayed = useSpring({
+    opacity: 1,
+    transform: "translateY(0)",
+    from: { opacity: 0, transform: "translateY(-30px)" },
+    config: { duration: 1200 },
+    delay: isGameEnd && 1800, // 只有在 isGameEnd 為 true 時設置延遲
+    reset: !isGameEnd, // 當 isGameEnd 變化時重置動畫
+  });
 
   return (
-    <Overlay isOpen={isShowResult}>
+    <Overlay isOpen={isGameEnd}>
       <OuterWrapper>
-        <DialogWrapper>
+        <AnimatedDialogWrapper style={fadeInFromTopDelayed}>
           <ContentWrapper>
-            <Title>{gameResult.title}</Title>
+            <Title>{gameResult?.title}</Title>
             <GameImageSection>
               <ImageWrapper>
                 <Image
-                  src={gameResult.imageSrc}
+                  src={gameResult?.imageSrc}
                   alt="find-object-game-result"
                   fill
                   style={{
@@ -154,7 +161,7 @@ export default function GameResultDialog({
               <FindObjectGameBevelButton
                 buttonText="再玩一次"
                 isSpacing={true}
-                onClick={null}
+                onClick={onReplay}
               />
               <FindObjectGameBevelButton
                 buttonText="前往偏見眼鏡行"
@@ -169,7 +176,7 @@ export default function GameResultDialog({
             </Button>
             <GameFooter />
           </ContentWrapper>
-        </DialogWrapper>
+        </AnimatedDialogWrapper>
       </OuterWrapper>
     </Overlay>
   );

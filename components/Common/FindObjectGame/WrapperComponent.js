@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import { animated } from "@react-spring/web";
 
 export const GamePageWrapper = styled.div`
   width: 100vw;
@@ -18,7 +19,7 @@ export const GameContentWrapper = styled.div`
 
   @media (max-width: ${globalConfig.findObjectGame}) {
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
   }
 `;
@@ -37,7 +38,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 9;
   display: ${(props) => (props.isOpen ? "block" : "none")};
   pointer-events: auto; /* 覆蓋層本身阻止點擊 */
@@ -52,7 +53,7 @@ export const OuterWrapper = styled.div`
   align-items: center;
 `;
 
-export const DialogWrapper = styled.div`
+export const AnimatedDialogWrapper = styled(animated.div)`
   width: 80%;
   max-width: 840px;
   height: 90%;

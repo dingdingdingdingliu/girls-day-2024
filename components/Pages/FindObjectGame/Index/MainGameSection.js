@@ -1,13 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
-// import { FaCheck } from "react-icons/fa6";
-// import { ListBevelLabel } from "@/components/Common/FindObjectGame/SingleBevelLabel";
 import { ImageWrapper } from "@/components/Common/FindObjectGame/WrapperComponent";
 import ObjectDialog from "@/components/Common/FindObjectGame/ObjectDialog";
 import clickableCoordinates from "./clickableData";
 import objectData from "./objectData";
+
+const getScrollTo = (id) => {
+  let scrollTo;
+  if (id >= 1 && id <= 4) {
+    scrollTo = "people";
+  } else if (id >= 5 && id <= 8) {
+    scrollTo = "place";
+  } else if (id >= 9 && id <= 12) {
+    scrollTo = "event";
+  } else {
+    scrollTo = "people";
+  }
+  return scrollTo;
+};
 
 const DesktopWrapper = styled.div`
   width: 85%;
@@ -18,8 +30,8 @@ const DesktopWrapper = styled.div`
 
   @media (max-width: ${globalConfig.findObjectGame}) {
     width: 100%;
-    height: 80%;
-    max-height: 80%;
+    height: 75%;
+    max-height: 75%;
   }
 `;
 
@@ -42,25 +54,34 @@ const ClickableArea = styled.div`
   height: ${(props) => `${props.data?.bottom - props.data?.top}px`};
 `;
 
-export default function MainGameSection({ setIsClickIdArray, isClickIdArray }) {
-  const [isShowObject, setIsShowDialog] = useState(false);
+export default function MainGameSection({
+  setIsClickIdArray,
+  isClickIdArray,
+  setScrollToId,
+  setFindCount,
+  isShowObject,
+  setIsShowObject,
+}) {
   const [showObjectIndex, setShowObjectIndex] = useState(null);
-  const onAreaClick = (id, order) => {
+  const onAreaClick = (id, order, scrollTo) => {
     const idExists = isClickIdArray.some((num) => num === id);
     if (idExists) return;
     setIsClickIdArray((prev) => [...prev, id]);
     setShowObjectIndex(order);
-    console.log("order", order);
-    setIsShowDialog(true);
+    setIsShowObject(true);
+    setScrollToId(scrollTo);
+    setFindCount((prev) => prev + 1);
   };
 
   return (
     <DesktopWrapper isScroll={!isShowObject}>
-      <ObjectDialog
-        isOpen={isShowObject}
-        data={objectData[showObjectIndex]}
-        setIsShowDialog={setIsShowDialog}
-      />
+      {isShowObject && (
+        <ObjectDialog
+          isOpen={isShowObject}
+          data={objectData[showObjectIndex]}
+          setIsShowDialog={setIsShowObject}
+        />
+      )}
       <GameImageSection>
         <ImageWrapper>
           <Image
@@ -77,7 +98,9 @@ export default function MainGameSection({ setIsClickIdArray, isClickIdArray }) {
               <ClickableArea
                 key={index}
                 data={data}
-                onClick={() => onAreaClick(data.id, index)}
+                onClick={() =>
+                  onAreaClick(data.id, index, getScrollTo(data.id))
+                }
               />
             );
           })}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSpring } from "@react-spring/web";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
@@ -6,7 +7,7 @@ import {
   ImageWrapper,
   Overlay,
   OuterWrapper,
-  DialogWrapper,
+  AnimatedDialogWrapper,
   ContentWrapper,
 } from "@/components/Common/FindObjectGame/WrapperComponent";
 import FindObjectGameBevelButton from "@/components/Common/FindObjectGame/BevelButton";
@@ -73,10 +74,22 @@ const Button = styled.div`
   margin-top: 20px;
 `;
 
-export default function GameStartDialog({ isDesktop }) {
-  const [isGameStart, setIsGameStart] = useState(true);
+export default function GameStartDialog({
+  isDesktop,
+  isGameStart,
+  setIsGameStart,
+}) {
   const [upperCopyWrite, setUpperCopyWrite] = useState("");
   const [lowerCopyWrite, setLowerCopyWrite] = useState("");
+
+  const fadeInFromTopDelayed = useSpring({
+    opacity: 1,
+    transform: "translateY(0)",
+    from: { opacity: 0, transform: "translateY(-30px)" },
+    config: { duration: 1000 },
+    delay: isGameStart && 1500, // 只有在 isGameEnd 為 true 時設置延遲
+    reset: !isGameStart, // 當 isGameEnd 變化時重置動畫
+  });
 
   useEffect(() => {
     if (isDesktop) {
@@ -93,7 +106,7 @@ export default function GameStartDialog({ isDesktop }) {
   return (
     <Overlay isOpen={!isGameStart}>
       <OuterWrapper>
-        <DialogWrapper>
+        <AnimatedDialogWrapper style={fadeInFromTopDelayed}>
           <ContentWrapper>
             <BoldTitle>2024 臺灣女孩日</BoldTitle>
             <TitleTwo>偏見眼鏡行</TitleTwo>
@@ -125,7 +138,7 @@ export default function GameStartDialog({ isDesktop }) {
               />
             </Button>
           </ContentWrapper>
-        </DialogWrapper>
+        </AnimatedDialogWrapper>
       </OuterWrapper>
     </Overlay>
   );
