@@ -88,6 +88,7 @@ export default function FirstEditionIndex() {
                 objectFit: "cover",
                 objectPosition: "center",
               }}
+              priority={true}
             />
           </ImageWrapper>
         </IndexImageWrapper>
