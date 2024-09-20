@@ -74,7 +74,7 @@ const HintText = styled.p`
   text-align: end;
   letter-spacing: 1px;
   padding-right: 28px;
-  margin-bottom: -8px;
+  margin-bottom: -10px;
 `;
 
 export default function VisionGameResult() {
@@ -153,12 +153,18 @@ export default function VisionGameResult() {
                 />
               </Link>
             </div>
-            <GameFullBevelButton
-              buttonColor={theme.colors.black}
-              textColor={theme.colors.pink}
-              buttonText="前往社家署網站瞭解更多"
-              fontSize={theme.fontSizes[20]}
-            />
+            <a
+              href="https://www.sfaa.gov.tw/SFAA/default.aspx"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GameFullBevelButton
+                buttonColor={theme.colors.black}
+                textColor={theme.colors.pink}
+                buttonText="前往社家署網站瞭解更多"
+                fontSize={theme.fontSizes[20]}
+              />
+            </a>
             <AnswerInstructWrapper>
               <ArrowDownStyle />
               <AnswerInstructText>想知道各題答案請滑</AnswerInstructText>

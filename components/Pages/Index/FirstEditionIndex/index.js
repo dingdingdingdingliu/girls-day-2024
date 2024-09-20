@@ -81,8 +81,8 @@ export default function FirstEditionIndex() {
         <IndexImageWrapper>
           <ImageWrapper>
             <Image
-              src="/images/chiikawa.jpeg"
-              alt="chiikawa"
+              src="/images/index_first_edition.png"
+              alt="index-coming-soon"
               fill
               style={{
                 objectFit: "cover",
