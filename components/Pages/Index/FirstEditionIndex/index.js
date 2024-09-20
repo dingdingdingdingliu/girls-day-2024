@@ -73,6 +73,7 @@ const BevelButtonText = styled.p`
   font-weight: ${(props) => props.theme.fontWeights.bold};
   color: ${(props) => props.theme.colors.green};
   letter-spacing: 2px;
+  -webkit-text-stroke: 1px ${(props) => props.theme.colors.green};
 `;
 
 const AnimatedWrapper = styled(animated.div)`

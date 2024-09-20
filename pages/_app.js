@@ -4,7 +4,14 @@ import Head from "next/head";
 import { ThemeProvider } from "@emotion/react";
 import { VisionGameProvider } from "@/context/VisionGameContext";
 import theme from "../styles/theme";
-import "@/styles/globals.css";
+import { Noto_Sans_TC } from "@next/font/google";
+import "../styles/globals.css";
+
+const notoSansTC = Noto_Sans_TC({
+  weight: ["100", "300", "400", "500", "700", "900"],
+  subsets: ["latin-ext"], // 繁體中文
+  display: "swap",
+});
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -30,7 +37,7 @@ export default function App({ Component, pageProps }) {
       </Head>
       <ThemeProvider theme={theme}>
         <VisionGameProvider>
-          <div>
+          <div className={notoSansTC.className}>
             <Component {...pageProps} />
           </div>
         </VisionGameProvider>
