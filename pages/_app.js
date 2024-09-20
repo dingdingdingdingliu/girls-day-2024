@@ -4,10 +4,10 @@ import Head from "next/head";
 import { ThemeProvider } from "@emotion/react";
 import { VisionGameProvider } from "@/context/VisionGameContext";
 import theme from "../styles/theme";
-import { Noto_Sans_TC } from "@next/font/google";
+import { Noto_Sans_TC as NotoSansTC } from "@next/font/google";
 import "../styles/globals.css";
 
-const notoSansTC = Noto_Sans_TC({
+const notoSansTC = NotoSansTC({
   weight: ["100", "300", "400", "500", "700", "900"],
   subsets: ["latin-ext"], // 繁體中文
   display: "swap",
