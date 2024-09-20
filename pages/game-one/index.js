@@ -6,6 +6,7 @@ import { useSpring, animated } from "@react-spring/web";
 import {
   PageWrapper,
   ContentWrapper,
+  ImageWrapper,
 } from "@/components/Common/VisionGame/WrapperComponent";
 import { GameSmallBevelButton } from "@/components/Common/Button/GameUsedBevelButton";
 import { answerImageData } from "../../components/Common/VisionGame/gameImageData";
@@ -63,25 +64,12 @@ const TitleTwo = styled.p`
   white-space: nowrap;
 `;
 
-const TitleThreeWrapper = styled.div`
+const MainImageWrapper = styled.div`
   width: 270px;
   height: 200px;
   min-width: 270px;
   min-height: 200px;
-  background-image: url("images/chiikawa.jpeg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  margin: 10px 0 12px 0;
-`;
-
-const TitleThree = styled.p`
-  color: ${(props) => props.theme.colors.black};
-  font-size: ${(props) => props.theme.fontSizes[72]};
-  font-weight: ${(props) => props.theme.fontWeights.bold};
-  letter-spacing: 4px;
-  text-align: center;
-  white-space: nowrap;
+  margin: 10px 0 20px 0;
 `;
 
 const CopyWrite = styled.p`
@@ -94,7 +82,6 @@ const CopyWrite = styled.p`
 `;
 
 // GameTopic Component
-
 // GameTopic 外層
 const GameTopicOuterWrapper = styled.div`
   width: 290px;
@@ -163,11 +150,18 @@ export default function VisionGameIndex() {
       <StyledContentWrapper>
         <Wrapper>
           <AnimatedIntroWrapper style={fadeInIntro}>
-            <TitleOne>113年 臺灣女孩日</TitleOne>
+            <TitleOne>2024 臺灣女孩日</TitleOne>
             <TitleTwo>偏見眼鏡行</TitleTwo>
-            <TitleThreeWrapper>
-              <TitleThree>驗光室</TitleThree>
-            </TitleThreeWrapper>
+            <MainImageWrapper>
+              <ImageWrapper>
+                <Image
+                  src="/images/visionGame/vision_game_index.png"
+                  alt="vision_game_index"
+                  width={270}
+                  height={200}
+                />
+              </ImageWrapper>
+            </MainImageWrapper>
             <CopyWrite>{introCopyWrite}</CopyWrite>
             <GameTopicOuterWrapper>
               <GameTopicWrapper>

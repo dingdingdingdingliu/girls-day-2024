@@ -11,7 +11,7 @@ const delay = (i) => Number(i) * 100;
 const SectionWrapper = styled(animated.div)`
   width: 100%;
   display: flex;
-  padding: 18px 30px 18px 18px;
+  padding: 18px 18px 18px 30px;
   justify-content: space-around;
   align-items: center;
   background-image: ${(props) =>
@@ -52,11 +52,11 @@ const QuestionText = styled.div`
 `;
 
 const StyledRxCross = styled(RxCross2)`
-  color: ${(props) => props.theme.colors.pink};
+  color: ${(props) => props.theme.colors.white};
   font-size: 28px;
   position: absolute;
   top: 50%;
-  right: 4px;
+  left: 6px;
   transform: translateY(-50%);
 `;
 
