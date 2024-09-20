@@ -85,7 +85,7 @@ const ShadowRelativeWrapper = styled.div`
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     height: 665px;
-    margin: 10px 0;
+    margin: 0;
   }
 `;
 

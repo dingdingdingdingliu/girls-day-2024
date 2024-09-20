@@ -68,11 +68,34 @@ const TitleSection = styled.p`
 
 const ContentScrollWrapper = styled.div`
   width: 100%;
+  height: 100%;
+  max-height: 100%;
+  overflow-y: scroll;
+`;
+
+const FakeScroll = styled.div`
+  width: 12px;
+  height: calc(80% - 2px);
+  max-height: 80%;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-image: ${(props) =>
+    `linear-gradient(to bottom, 
+    ${props.theme.colors.mediumGrey} 1%, 
+    ${props.theme.colors.white} 90%)`};
+`;
+
+const ContentWrapper = styled.div`
+  width: 100%;
   height: 80%;
   max-height: 80%;
   overflow-y: auto;
   overflow-x: hidden;
   margin-top: 24px;
+  position: relative;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     height: 75%;
@@ -80,11 +103,13 @@ const ContentScrollWrapper = styled.div`
   }
 `;
 
-const ContentSection = styled.p`
+const ContentSection = styled.div`
   font-size: ${(props) => props.theme.fontSizes[16]};
   font-weight: ${(props) => props.theme.fontWeights.normal};
   color: ${(props) => props.theme.colors.black};
   letter-spacing: 2px;
+  position: relative;
+  padding-right: 10px;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     font-size: ${(props) => props.theme.fontSizes[10]};
@@ -101,9 +126,12 @@ export default function TimeLineCard({ cardData }) {
           <GuideLine lineColor={lineColor} />
           <CardWrapper isBorder={isBorder}>
             <TitleSection>{title}</TitleSection>
-            <ContentScrollWrapper>
-              <ContentSection>{content}</ContentSection>
-            </ContentScrollWrapper>
+            <ContentWrapper>
+              <FakeScroll />
+              <ContentScrollWrapper>
+                <ContentSection>{content}</ContentSection>
+              </ContentScrollWrapper>
+            </ContentWrapper>
           </CardWrapper>
         </TopTimeCardWrapper>
       ) : (
@@ -111,9 +139,12 @@ export default function TimeLineCard({ cardData }) {
           <GuideLine lineColor={lineColor} />
           <CardWrapper isBorder={isBorder}>
             <TitleSection>{title}</TitleSection>
-            <ContentScrollWrapper>
-              <ContentSection>{content}</ContentSection>
-            </ContentScrollWrapper>
+            <ContentWrapper>
+              <FakeScroll />
+              <ContentScrollWrapper>
+                <ContentSection>{content}</ContentSection>
+              </ContentScrollWrapper>
+            </ContentWrapper>
           </CardWrapper>
         </BottomTimeCardWrapper>
       )}
