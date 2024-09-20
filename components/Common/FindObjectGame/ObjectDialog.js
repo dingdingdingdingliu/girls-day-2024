@@ -1,9 +1,12 @@
+import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
 import { useSpring, animated } from "@react-spring/web";
 import { RxCross2 } from "react-icons/rx";
 import { ImageWrapper } from "./WrapperComponent";
+
+const initTimer = 5;
 
 const AnimatedOverlay = styled(animated.div)`
   width: 85%;
@@ -34,7 +37,7 @@ const AnimatedDialogWrapper = styled(animated.div)`
   overflow-y: scroll;
   position: relative;
   padding: 48px 56px;
-  padding-top: ${(props) => (props.titleLength > 5 ? "48px" : "72px")};
+  padding-top: ${(props) => (props.length > 5 ? "48px" : "72px")};
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -78,7 +81,7 @@ const ImageSection = styled.div`
   min-width: 40%;
   height: auto;
   aspect-ratio: 1 / 1;
-  margin: ${(props) => (props.titleLength > 5 ? "26px 0" : "36px 0")};
+  margin: ${(props) => (props.length > 5 ? "26px 0" : "36px 0")};
 
   @media (max-width: ${globalConfig.findObjectGame}) {
     width: 60%;
@@ -108,6 +111,7 @@ const Intro = styled.p`
 `;
 
 export default function ObjectDialog({ data, isOpen, setIsShowDialog }) {
+  const [countdownTime, setCountdownTime] = useState(initTimer);
   const onCrossClick = () => setIsShowDialog(false);
 
   const fadeInDialog = useSpring({
@@ -115,25 +119,38 @@ export default function ObjectDialog({ data, isOpen, setIsShowDialog }) {
     from: { opacity: 0 },
     config: { duration: 500 }, // 動畫持續時間
     delay: isOpen && 200,
-    reset: isOpen,
   });
 
   const fadeInOverlay = useSpring({
     opacity: 1,
     from: { opacity: 0 },
     config: { duration: 300 }, // 動畫持續時間
-    reset: isOpen,
   });
+
+  // 倒數計時關閉彈窗的 useEffect
+  useEffect(() => {
+    let timer;
+
+    if (isOpen) {
+      timer = setInterval(() => {
+        setCountdownTime((prevTime) => prevTime - 1);
+      }, 1000);
+    }
+
+    if (countdownTime < 0) {
+      setCountdownTime(initTimer);
+      setIsShowDialog(false);
+    }
+
+    return () => clearInterval(timer); // 清除計時器
+  }, [isOpen, countdownTime]);
 
   return (
     <AnimatedOverlay isOpen={isOpen} style={fadeInOverlay}>
-      <AnimatedDialogWrapper
-        titleLength={data?.title.length}
-        style={fadeInDialog}
-      >
+      <AnimatedDialogWrapper length={data?.title.length} style={fadeInDialog}>
         <StyledRxCross2 onClick={onCrossClick} />
         <ObjectTitle>{data?.title}</ObjectTitle>
-        <ImageSection titleLength={data?.title.length}>
+        <ImageSection length={data?.title.length}>
           <ImageWrapper>
             <Image
               src={data?.imageSrc}

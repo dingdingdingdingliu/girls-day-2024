@@ -1,4 +1,3 @@
-// import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import globalConfig from "@/styles/globalConfig";
@@ -30,7 +29,6 @@ export default function FindObjectGame() {
 
   const onReplay = () => {
     setIsGameEnd(false);
-    setIsGameStart(false);
     setIsClickIdArray([]);
     setFindCount(0);
     setScrollToId(null);
