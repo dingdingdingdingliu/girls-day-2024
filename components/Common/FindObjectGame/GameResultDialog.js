@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSpring } from "@react-spring/web";
+import Link from "next/link";
+import Image from "next/image";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
-import Image from "next/image";
 import {
   ImageWrapper,
   Overlay,
@@ -163,16 +164,24 @@ export default function GameResultDialog({
                 isSpacing={true}
                 onClick={onReplay}
               />
-              <FindObjectGameBevelButton
-                buttonText="前往偏見眼鏡行"
-                isSpacing={true}
-                onClick={null}
-              />
-              <FindObjectGameBevelButton
-                buttonText="前往社家署官網"
-                isSpacing={true}
-                onClick={null}
-              />
+              <Link href="/">
+                <FindObjectGameBevelButton
+                  buttonText="前往偏見眼鏡行"
+                  isSpacing={true}
+                  onClick={null}
+                />
+              </Link>
+              <a
+                href="https://www.sfaa.gov.tw/SFAA/default.aspx"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FindObjectGameBevelButton
+                  buttonText="前往社家署官網"
+                  isSpacing={true}
+                  onClick={null}
+                />
+              </a>
             </Button>
             <GameFooter />
           </ContentWrapper>
