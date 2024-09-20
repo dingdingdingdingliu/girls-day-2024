@@ -155,7 +155,7 @@ export default function VisionGameIndex() {
             <MainImageWrapper>
               <ImageWrapper>
                 <Image
-                  src="/images/VisionGame/vision_game_index.png"
+                  src="/images/visionGame/vision_game_index.png"
                   alt="vision_game_index"
                   width={270}
                   height={200}
