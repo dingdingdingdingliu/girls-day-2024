@@ -1,6 +1,7 @@
 import Image from "next/image";
 import globalConfig from "@/styles/globalConfig";
 import styled from "@emotion/styled";
+import { useSpring, animated } from "@react-spring/web";
 import { ImageWrapper } from "@/components/Common/Index/Wrapper";
 
 const StyledWrapper = styled.div`
@@ -74,7 +75,23 @@ const BevelButtonText = styled.p`
   letter-spacing: 2px;
 `;
 
+const AnimatedWrapper = styled(animated.div)`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 export default function FirstEditionIndex() {
+  const fadeIn = useSpring({
+    opacity: 1,
+    transform: "translateY(0)",
+    from: { opacity: 0, transform: "translateY(-30px)" },
+    config: { duration: 500 },
+    delay: 800, // 延遲效果
+  });
+
   return (
     <StyledWrapper>
       <OuterWrapper>
@@ -92,10 +109,12 @@ export default function FirstEditionIndex() {
             />
           </ImageWrapper>
         </IndexImageWrapper>
-        <IndexTitle>2024 年臺灣女孩日</IndexTitle>
-        <BevelButtonStyle>
-          <BevelButtonText>coming soon</BevelButtonText>
-        </BevelButtonStyle>
+        <AnimatedWrapper style={fadeIn}>
+          <IndexTitle>2024 年臺灣女孩日</IndexTitle>
+          <BevelButtonStyle>
+            <BevelButtonText>coming soon</BevelButtonText>
+          </BevelButtonStyle>
+        </AnimatedWrapper>
       </OuterWrapper>
     </StyledWrapper>
   );
