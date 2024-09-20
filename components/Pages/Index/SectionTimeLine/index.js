@@ -79,12 +79,13 @@ const TitleContent = styled.p`
 
 const ShadowRelativeWrapper = styled.div`
   width: 100%;
-  height: 1330px;
+  height: 665px;
   position: relative;
+  margin: 80px 0;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    width: 100%;
     height: 665px;
+    margin: 10px 0;
   }
 `;
 
@@ -96,15 +97,11 @@ const TimeLineScrollWrapper = styled.div`
 
 // 陰影層
 const ShadowWrapper = styled.div`
-  width: 150px;
+  width: 80px;
   height: 100%;
   position: absolute;
   top: 0;
   z-index: 4;
-
-  @media (max-width: ${globalConfig.mediaQuery}) {
-    width: 80px;
-  }
 `;
 
 // 左側陰影層
