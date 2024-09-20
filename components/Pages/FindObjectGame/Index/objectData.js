@@ -32,19 +32,19 @@ const objectData = [
   },
   {
     id: 5,
-    title: "衛福部\n社家署",
+    title: "臺中女兒館",
     imageSrc: "/images/chiikawa.jpeg",
     alt: "chiikawa",
     intro:
-      "衛生福利部社會及家庭署（簡稱社家署）負責老人、身心障礙者、婦女、兒童、少年福利及家庭支持等相關業務。",
+      "2015年10月揭幕，以服務15至23歲青少女為主，提供女孩性別意識培力、議題倡議的空間。",
   },
   {
     id: 6,
-    title: "勵馨基金會",
+    title: "淡水女學堂",
     imageSrc: "/images/chiikawa.jpeg",
     alt: "chiikawa",
     intro:
-      "1988年成立，目前在全國15個縣市有50餘個服務據點，每年服務近兩萬名性別暴力倖存者展開新生活。",
+      "1884年由加拿大長老教會傳教士馬偕創辦，是臺灣第一所新式女學堂，培養出許多優秀的女性人才。見證了臺灣女性受教權的發展。",
   },
   {
     id: 7,
@@ -64,7 +64,7 @@ const objectData = [
   },
   {
     id: 9,
-    title: "同婚專法",
+    title: "同性婚姻合法化\n法制運動",
     imageSrc: "/images/chiikawa.jpeg",
     alt: "chiikawa",
     intro:
@@ -88,11 +88,11 @@ const objectData = [
   },
   {
     id: 12,
-    title: "創意私房",
+    title: "＃MeToo\n運動",
     imageSrc: "/images/chiikawa.jpeg",
     alt: "chiikawa",
     intro:
-      "也被稱為「臺版N號房」，論壇上有不少復仇式色情、偷拍、兒童色情等非法性私密影像，受害者遍及亞洲多個國家。",
+      "＃MeToo是透過hashtag召喚共同經驗，於社群揭發性暴力的運動。2023年較有規模地在臺灣引發效應，影響了性平三法修法。",
   },
 ];
 

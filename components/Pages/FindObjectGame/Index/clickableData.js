@@ -5,7 +5,7 @@ const clickableCoordinates = [
   { id: 4, name: "Lin, Yu-Ting", top: 600, left: 900, right: 950, bottom: 650 },
   {
     id: 5,
-    name: "Social and Family Affairs Administration,",
+    name: "TWTC Girls",
     top: 700,
     left: 200,
     right: 300,
@@ -13,7 +13,7 @@ const clickableCoordinates = [
   },
   {
     id: 6,
-    name: "The Garden of Hope Foundation.",
+    name: "Tamsui Girls' School",
     top: 30,
     left: 200,
     right: 270,
@@ -54,7 +54,7 @@ const clickableCoordinates = [
   },
   {
     id: 12,
-    name: "Taiwan N Room",
+    name: "Me Too",
     top: 700,
     left: 1080,
     right: 1200,
