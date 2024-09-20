@@ -65,6 +65,18 @@ const AnimatedWrapper = styled(animated.div)`
   width: 100%;
 `;
 
+const HintText = styled.p`
+  width: 100%;
+  font-size: ${(props) => props.theme.fontSizes[14]};
+  font-weight: ${(props) => props.theme.fontWeights.bold};
+  color: ${(props) => props.theme.colors.black};
+  white-space: nowrap;
+  text-align: end;
+  letter-spacing: 1px;
+  padding-right: 28px;
+  margin-bottom: -10px;
+`;
+
 export default function VisionGameResult() {
   const theme = useTheme();
   const router = useRouter();
@@ -75,7 +87,7 @@ export default function VisionGameResult() {
     return acc;
   }, {});
 
-  const results = playerAnswers.map((playerAnswer) => {
+  const results = playerAnswers?.map((playerAnswer) => {
     const correctAnswer = correctAnswersMap[playerAnswer.id];
     const isCorrect = playerAnswer.selectedAnswer === correctAnswer;
 
@@ -106,12 +118,12 @@ export default function VisionGameResult() {
   });
 
   useEffect(() => {
-    if (playerAnswers.length === 0) {
+    if (playerAnswers?.length === 0) {
       router.push("/game-one");
     }
-  }, [playerAnswers.length]);
+  }, [playerAnswers?.length]);
 
-  if (playerAnswers.length === 0) {
+  if (playerAnswers?.length === 0) {
     return (
       <ResultPageWrapper>
         <ResultUpperWrapper></ResultUpperWrapper>
@@ -141,12 +153,18 @@ export default function VisionGameResult() {
                 />
               </Link>
             </div>
-            <GameFullBevelButton
-              buttonColor={theme.colors.black}
-              textColor={theme.colors.pink}
-              buttonText="前往社家署網站瞭解更多"
-              fontSize={theme.fontSizes[20]}
-            />
+            <a
+              href="https://www.sfaa.gov.tw/SFAA/default.aspx"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GameFullBevelButton
+                buttonColor={theme.colors.black}
+                textColor={theme.colors.pink}
+                buttonText="前往社家署網站瞭解更多"
+                fontSize={theme.fontSizes[20]}
+              />
+            </a>
             <AnswerInstructWrapper>
               <ArrowDownStyle />
               <AnswerInstructText>想知道各題答案請滑</AnswerInstructText>
@@ -157,6 +175,7 @@ export default function VisionGameResult() {
       </ResultUpperWrapper>
       <ResultLowerWrapper>
         <ResultLowerContentWrapper>
+          <HintText>正解</HintText>
           {results?.map((data, index) => {
             return <GameAnswerCard key={index} data={data} />;
           })}
