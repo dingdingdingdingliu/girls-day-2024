@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@next/font": "^14.2.13",
     "@react-spring/web": "^9.7.4",
     "eslint-config-next": "14.2.6",
     "next": "^13.5.6",
