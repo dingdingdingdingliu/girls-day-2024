@@ -55,7 +55,6 @@ export default function Home() {
     };
   }, []);
 
-export default function Home() {
   return (
     <div style={{ width: "100vw" }}>
       <Hamburger
