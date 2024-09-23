@@ -100,7 +100,7 @@ export default function VisionGameResult() {
     };
   });
 
-  const correctCount = results.filter((result) => result.isCorrect).length;
+  const correctCount = results?.filter((result) => result.isCorrect).length;
 
   const fadeInCard = useSpring({
     opacity: 1,
