@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
+import { useSpring, animated } from "@react-spring/web";
 import {
   GirlDayTitle,
   ThemeTitle,
@@ -79,6 +80,14 @@ const ThemeContentWrapper = styled(SectionContentWrapper)`
   width: calc(60% - 135px);
 `;
 
+const AnimatedTitleWrapper = styled(animated.div)`
+  width: auto;
+`;
+
+const AnimatedContentWrapper = styled(animated.div)`
+  width: 100%;
+`;
+
 // 圖片顯示層
 export const ThemeImageWrapper = styled.div`
   width: 30%;
@@ -94,26 +103,66 @@ export const ThemeImageWrapper = styled.div`
 `;
 
 export function GirlDaySection() {
+  const fadeInTitle = useSpring({
+    opacity: 1,
+    transform: "translateX(0);",
+    from: { opacity: 0, transform: "translateX(-20px)" },
+    config: { duration: 600 },
+    delay: 600, // 延遲效果
+  });
+
+  const fadeInContent = useSpring({
+    opacity: 1,
+    transform: "translateX(0);",
+    from: { opacity: 0, transform: "translateX(40px)" },
+    config: { duration: 600 },
+    delay: 800, // 延遲效果
+  });
+
   return (
     <GirlsDaySectionWrapper>
-      <GirlDayTitle />
+      <AnimatedTitleWrapper style={fadeInTitle}>
+        <GirlDayTitle />
+      </AnimatedTitleWrapper>
       <GirlsDayContentWrapper>
-        <p>{copyWrite.girlsDayFirst}</p>
-        <br />
-        <p>{copyWrite.girlsDaySecond}</p>
+        <AnimatedContentWrapper style={fadeInContent}>
+          <p>{copyWrite.girlsDayFirst}</p>
+          <br />
+          <p>{copyWrite.girlsDaySecond}</p>
+        </AnimatedContentWrapper>
       </GirlsDayContentWrapper>
     </GirlsDaySectionWrapper>
   );
 }
 
 export function ThemeSection() {
+  const fadeInTitle = useSpring({
+    opacity: 1,
+    transform: "translateX(0);",
+    from: { opacity: 0, transform: "translateX(-20px)" },
+    config: { duration: 600 },
+    delay: 1000, // 延遲效果
+  });
+
+  const fadeInContent = useSpring({
+    opacity: 1,
+    transform: "translateX(0);",
+    from: { opacity: 0, transform: "translateX(40px)" },
+    config: { duration: 600 },
+    delay: 1200, // 延遲效果
+  });
+
   return (
     <ThemeSectionWrapper>
-      <ThemeTitle />
+      <AnimatedTitleWrapper style={fadeInTitle}>
+        <ThemeTitle />
+      </AnimatedTitleWrapper>
       <ThemeContentWrapper>
-        <p>{copyWrite.themeFirst}</p>
-        <br />
-        <p>{copyWrite.themeSecond}</p>
+        <AnimatedContentWrapper style={fadeInContent}>
+          <p>{copyWrite.themeFirst}</p>
+          <br />
+          <p>{copyWrite.themeSecond}</p>
+        </AnimatedContentWrapper>
       </ThemeContentWrapper>
       <ThemeImageWrapper>
         <ImageWrapper>
