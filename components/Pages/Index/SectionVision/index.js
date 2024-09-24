@@ -73,7 +73,7 @@ export default function SectionVision({ isDesktop }) {
           <BevelLabel
             buttonColor={theme.colors.black}
             textColor={theme.colors.pink}
-            labelText="驗光區"
+            labelText="驗光室"
           />
         </LabelWrapper>
       )}
@@ -83,7 +83,7 @@ export default function SectionVision({ isDesktop }) {
             <BevelLabel
               buttonColor={theme.colors.black}
               textColor={theme.colors.pink}
-              labelText="驗光區"
+              labelText="驗光室"
             />
           </LabelWrapper>
         )}

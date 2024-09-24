@@ -34,7 +34,7 @@ const Title = styled.p`
 `;
 
 const VideoWrapper = styled.div`
-  width: 70%;
+  width: 100%;
 	aspect-ratio: 2 / 1;
 	margin: 0 auto;
 

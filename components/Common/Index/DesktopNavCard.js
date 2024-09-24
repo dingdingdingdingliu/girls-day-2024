@@ -95,7 +95,7 @@ export default function DesktopNavCard({
           <LinkContent>接待櫃檯｜關於女孩日</LinkContent>
         </LinkWrapper>
         <LinkWrapper onClick={() => handleNavClick("vision")}>
-          <LinkContent>驗光區｜小遊戲 I</LinkContent>
+          <LinkContent>驗光室｜小遊戲 I</LinkContent>
         </LinkWrapper>
         <LinkWrapper onClick={() => handleNavClick("findObject")}>
           <LinkContent>展售區｜小遊戲 II</LinkContent>
