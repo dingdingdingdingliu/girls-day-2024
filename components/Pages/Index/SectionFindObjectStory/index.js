@@ -155,7 +155,7 @@ export default function SectionVisionStory({ isDesktop }) {
           <MainSectionWrapper>
             <TitleSection />
             <ContentSectionWrapper>
-              {cardData.map((data, index) => {
+              {cardData?.map((data, index) => {
                 return (
                   <GameStoryCard
                     key={index}
