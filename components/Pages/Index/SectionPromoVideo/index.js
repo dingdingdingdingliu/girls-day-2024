@@ -34,13 +34,13 @@ const Title = styled.p`
 `;
 
 const VideoWrapper = styled.div`
-  width: 100%;
-	aspect-ratio: 2 / 1;
-	margin: 0 auto;
+  width: 70%;
+  aspect-ratio: 2 / 1;
+  margin: 0 auto;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    100%;
-		aspect-ratio: 3 / 2;
+    width: 100%;
+    aspect-ratio: 3 / 2;
   }
 `;
 

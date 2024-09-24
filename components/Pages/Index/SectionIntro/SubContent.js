@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
+import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "@react-spring/web";
 import {
   GirlDayTitle,
@@ -103,24 +104,27 @@ export const ThemeImageWrapper = styled.div`
 `;
 
 export function GirlDaySection() {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0,
+  });
+
   const fadeInTitle = useSpring({
-    opacity: 1,
-    transform: "translateX(0);",
-    from: { opacity: 0, transform: "translateX(-20px)" },
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateX(0)" : "translateX(-20px)",
     config: { duration: 600 },
     delay: 600, // 延遲效果
   });
 
   const fadeInContent = useSpring({
-    opacity: 1,
-    transform: "translateX(0);",
-    from: { opacity: 0, transform: "translateX(40px)" },
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateX(0)" : "translateX(40px)",
     config: { duration: 600 },
     delay: 800, // 延遲效果
   });
 
   return (
-    <GirlsDaySectionWrapper>
+    <GirlsDaySectionWrapper ref={ref}>
       <AnimatedTitleWrapper style={fadeInTitle}>
         <GirlDayTitle />
       </AnimatedTitleWrapper>
@@ -136,24 +140,27 @@ export function GirlDaySection() {
 }
 
 export function ThemeSection() {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0,
+  });
+
   const fadeInTitle = useSpring({
-    opacity: 1,
-    transform: "translateX(0);",
-    from: { opacity: 0, transform: "translateX(-20px)" },
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateX(0)" : "translateX(-20px)",
     config: { duration: 600 },
     delay: 1000, // 延遲效果
   });
 
   const fadeInContent = useSpring({
-    opacity: 1,
-    transform: "translateX(0);",
-    from: { opacity: 0, transform: "translateX(40px)" },
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateX(0)" : "translateX(40px)",
     config: { duration: 600 },
     delay: 1200, // 延遲效果
   });
 
   return (
-    <ThemeSectionWrapper>
+    <ThemeSectionWrapper ref={ref}>
       <AnimatedTitleWrapper style={fadeInTitle}>
         <ThemeTitle />
       </AnimatedTitleWrapper>
