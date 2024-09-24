@@ -179,7 +179,7 @@ export default function SectionVisionStory({ isDesktop }) {
           <MainSectionWrapper>
             <TitleSection />
             <ContentSectionWrapper>
-              {cardData.map((data, index) => {
+              {cardData?.map((data, index) => {
                 return (
                   <GameStoryCard
                     key={index}
@@ -194,7 +194,7 @@ export default function SectionVisionStory({ isDesktop }) {
             </ContentSectionWrapper>
           </MainSectionWrapper>
           <FooterSectionWrapper>
-            {footerCardData.map((cardData, index) => {
+            {footerCardData?.map((cardData, index) => {
               return (
                 <FooterCard
                   key={index}

@@ -298,7 +298,7 @@ export default function VisionGameStart() {
               buttonText={`第 ${questionOrder} 題`}
             />
             <GameOuterWrapper>
-              {springs.map((style, index) => (
+              {springs?.map((style, index) => (
                 <GameWrapper
                   key={index}
                   style={{
@@ -311,6 +311,7 @@ export default function VisionGameStart() {
                     alt="question_card"
                     width={270}
                     height={300}
+                    priority={index === 0 && true}
                   />
                 </GameWrapper>
               ))}
@@ -325,6 +326,7 @@ export default function VisionGameStart() {
                   alt="answerIcon"
                   width={105}
                   height={105}
+                  priority
                 />
               </OptionWrapper>
               <OptionWrapper
@@ -336,6 +338,7 @@ export default function VisionGameStart() {
                   alt="answerIcon"
                   width={105}
                   height={105}
+                  priority
                 />
               </OptionWrapper>
             </OptionOuterWrapper>

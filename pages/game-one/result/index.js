@@ -82,7 +82,7 @@ export default function VisionGameResult() {
   const router = useRouter();
   const { visionGameData, playerAnswers } = useContext(VisionGameContext);
 
-  const correctAnswersMap = visionGameData.reduce((acc, question) => {
+  const correctAnswersMap = visionGameData?.reduce((acc, question) => {
     acc[question.id] = question.correctAnswer;
     return acc;
   }, {});
