@@ -51,10 +51,8 @@ const IndexTitle = styled.p`
   font-weight: ${(props) => props.theme.fontWeights.bold};
   color: ${(props) => props.theme.colors.black};
   white-space: nowrap;
-  // letter-spacing: 1px;
   text-align: center;
   margin: 40px 0 24px 0;
-  -webkit-text-stroke: 0.5px ${(props) => props.theme.colors.black};
 `;
 
 const BevelButtonStyle = styled.div`
@@ -111,7 +109,7 @@ export default function FirstEditionIndex() {
           </ImageWrapper>
         </IndexImageWrapper>
         <AnimatedWrapper style={fadeIn}>
-          <IndexTitle>2024 臺灣女孩日</IndexTitle>
+          <IndexTitle>2024 年臺灣女孩日</IndexTitle>
           <BevelButtonStyle>
             <BevelButtonText>coming soon</BevelButtonText>
           </BevelButtonStyle>

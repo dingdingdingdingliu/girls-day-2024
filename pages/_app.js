@@ -4,7 +4,7 @@ import Head from "next/head";
 import { ThemeProvider } from "@emotion/react";
 import { VisionGameProvider } from "@/context/VisionGameContext";
 import theme from "../styles/theme";
-import { Noto_Sans_TC as NotoSansTC } from "@next/font/google";
+import { Noto_Sans_TC as NotoSansTC } from "next/font/google";
 import "../styles/globals.css";
 
 const notoSansTC = NotoSansTC({
