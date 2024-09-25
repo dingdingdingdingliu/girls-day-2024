@@ -85,7 +85,7 @@ export default function MainGameSection({
       <GameImageSection>
         <ImageWrapper>
           <Image
-            src="/images/findObjectGame/main_game_test.png"
+            src="/images/findObjectGame/game-two-map.jpg"
             alt="find-object-game"
             fill
             style={{
