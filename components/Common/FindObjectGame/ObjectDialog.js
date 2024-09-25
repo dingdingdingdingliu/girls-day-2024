@@ -157,7 +157,7 @@ export default function ObjectDialog({ data, isOpen, setIsShowDialog }) {
               alt={data?.alt}
               fill
               style={{
-                objectFit: "cover",
+                objectFit: "contain",
                 objectPosition: "center",
               }}
             />

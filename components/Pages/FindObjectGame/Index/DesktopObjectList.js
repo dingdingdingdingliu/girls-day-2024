@@ -42,6 +42,7 @@ const ListItem = styled.div`
   border-radius: 2px;
   position: relative;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  padding: 10px;
 `;
 
 const IsCheckMark = styled.div`
@@ -97,7 +98,7 @@ export default function DesktopObjectList({ isClickIdArray, scrollToId }) {
                   alt={data.alt}
                   fill
                   style={{
-                    objectFit: "cover",
+                    objectFit: "contain",
                     objectPosition: "center",
                   }}
                 />
@@ -121,7 +122,7 @@ export default function DesktopObjectList({ isClickIdArray, scrollToId }) {
                   alt={data.alt}
                   fill
                   style={{
-                    objectFit: "cover",
+                    objectFit: "contain",
                     objectPosition: "center",
                   }}
                 />
@@ -145,7 +146,7 @@ export default function DesktopObjectList({ isClickIdArray, scrollToId }) {
                   alt={data.alt}
                   fill
                   style={{
-                    objectFit: "cover",
+                    objectFit: "contain",
                     objectPosition: "center",
                   }}
                 />
