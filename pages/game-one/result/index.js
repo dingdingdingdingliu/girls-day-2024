@@ -82,7 +82,7 @@ export default function VisionGameResult() {
   const router = useRouter();
   const { visionGameData, playerAnswers } = useContext(VisionGameContext);
 
-  const correctAnswersMap = visionGameData.reduce((acc, question) => {
+  const correctAnswersMap = visionGameData?.reduce((acc, question) => {
     acc[question.id] = question.correctAnswer;
     return acc;
   }, {});
@@ -100,7 +100,7 @@ export default function VisionGameResult() {
     };
   });
 
-  const correctCount = results.filter((result) => result.isCorrect).length;
+  const correctCount = results?.filter((result) => result.isCorrect).length;
 
   const fadeInCard = useSpring({
     opacity: 1,

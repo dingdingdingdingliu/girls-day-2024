@@ -51,7 +51,6 @@ const IndexTitle = styled.p`
   font-weight: ${(props) => props.theme.fontWeights.bold};
   color: ${(props) => props.theme.colors.black};
   white-space: nowrap;
-  letter-spacing: 1px;
   text-align: center;
   margin: 40px 0 24px 0;
 `;

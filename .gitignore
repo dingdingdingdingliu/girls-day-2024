@@ -33,3 +33,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# firebase log
+firebase-debug.log
+
+# 忽略 Firebase 本地配置資料夾
+.firebase/
+.firebase/*
+.firebaserc
+.firebase/hosting.b3V0.cache
