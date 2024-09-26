@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      window.gtag("config", process.env.NEXT_PUBLIC_GA4_ID, {
+      window.gtag("config", "G-ZJ39RQ6Y2F", {
         page_path: url,
       });
     };
