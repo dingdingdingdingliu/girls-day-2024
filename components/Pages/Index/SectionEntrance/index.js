@@ -48,12 +48,17 @@ const AnimatedWrapper = styled(animated.div)`
 export default function SectionEntrance() {
   const theme = useTheme();
 
+  // 彈簧效果
   const fadeInEntrance = useSpring({
     opacity: 1,
     transform: "translateY(0);",
     from: { opacity: 0, transform: "translateY(-100px)" },
-    config: { duration: 800 },
-    delay: 1500, // 延遲效果
+    config: {
+      tension: 800, // 张力，值越大弹簧的速度越快
+      friction: 20, // 摩擦力，值越小弹簧的回弹效果越明显
+      mass: 3, // 质量，值越大，弹簧越沉，惯性越强
+    },
+    delay: 600, // 延遲效果
   });
 
   return (

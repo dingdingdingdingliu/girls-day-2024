@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import { useInView } from "react-intersection-observer";
+import { useSpring, animated } from "@react-spring/web";
 import { PageWrapper, ContentWrapper } from "@/components/Common/Index/Wrapper";
 
 // 頁面底層底色延展
@@ -16,7 +18,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
   }
 `;
 
-const Title = styled.p`
+const AnimatedTitle = styled(animated.div)`
   font-size: ${(props) => props.theme.fontSizes[28]};
   font-weight: ${(props) => props.theme.fontWeights.bold};
   color: ${(props) => props.theme.colors.green};
@@ -33,7 +35,7 @@ const Title = styled.p`
   }
 `;
 
-const VideoWrapper = styled.div`
+const AnimatedVideoWrapper = styled(animated.div)`
   width: 70%;
   aspect-ratio: 2 / 1;
   margin: 0 auto;
@@ -45,11 +47,31 @@ const VideoWrapper = styled.div`
 `;
 
 export default function SectionPromoVideo() {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
+  const fadeInTitle = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateY(0)" : "translateY(10px)",
+    config: { duration: 400 },
+    delay: 400, // 延遲效果
+  });
+
+  const fadeInVideo = useSpring({
+    opacity: inView ? 1 : 0,
+    config: { duration: 1000 },
+    delay: 700, // 延遲效果
+  });
+
   return (
     <StyledPageWrapper>
-      <StyledContentWrapper>
-        <Title>113年臺灣女孩日宣傳影片</Title>
-        <VideoWrapper>
+      <StyledContentWrapper ref={ref}>
+        <AnimatedTitle style={fadeInTitle}>
+          2024年臺灣女孩日宣傳影片
+        </AnimatedTitle>
+        <AnimatedVideoWrapper style={fadeInVideo}>
           <iframe
             width="100%"
             height="100%"
@@ -61,7 +83,7 @@ export default function SectionPromoVideo() {
             style={{ border: 0 }}
             loading="lazy"
           ></iframe>
-        </VideoWrapper>
+        </AnimatedVideoWrapper>
       </StyledContentWrapper>
     </StyledPageWrapper>
   );

@@ -106,21 +106,21 @@ export const ThemeImageWrapper = styled.div`
 export function GirlDaySection() {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0,
+    threshold: 0.2,
   });
 
   const fadeInTitle = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView ? "translateX(0)" : "translateX(-20px)",
     config: { duration: 600 },
-    delay: 600, // 延遲效果
+    delay: 400, // 延遲效果
   });
 
   const fadeInContent = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView ? "translateX(0)" : "translateX(40px)",
     config: { duration: 600 },
-    delay: 800, // 延遲效果
+    delay: 600, // 延遲效果
   });
 
   return (
@@ -142,21 +142,21 @@ export function GirlDaySection() {
 export function ThemeSection() {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0,
+    threshold: 0.2,
   });
 
   const fadeInTitle = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView ? "translateX(0)" : "translateX(-20px)",
     config: { duration: 600 },
-    delay: 1000, // 延遲效果
+    delay: 700, // 延遲效果
   });
 
   const fadeInContent = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView ? "translateX(0)" : "translateX(40px)",
     config: { duration: 600 },
-    delay: 1200, // 延遲效果
+    delay: 900, // 延遲效果
   });
 
   return (

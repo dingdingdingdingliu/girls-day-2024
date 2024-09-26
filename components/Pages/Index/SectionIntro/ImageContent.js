@@ -19,7 +19,7 @@ const AnimatedImageSectionWrapper = styled(animated.div)`
 export default function ImageSection() {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0,
+    threshold: 0.5,
   });
 
   const fadeInImage = useSpring({
