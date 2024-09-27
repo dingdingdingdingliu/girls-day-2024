@@ -27,6 +27,8 @@ const globalTheme = {
     32: "32px",
     36: "36px",
     40: "40px",
+    48: "48px",
+    60: "60px",
     72: "72px",
   },
   fontWeights: {
