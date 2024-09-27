@@ -20,6 +20,7 @@ import SectionGirlImage from "@/components/Pages/Index/SectionGirlImage";
 import SectionPickUp from "@/components/Pages/Index/SectionPickUp";
 import SectionExtended from "@/components/Pages/Index/SectionExtended";
 import Footer from "@/components/Pages/Index/SectionFooter";
+// import FirstEditionIndex from "@/components/Pages/Index/FirstEditionIndex";
 
 export default function Home() {
   const isDesktopSize = useMediaQuery({ minWidth: globalConfig.mediaQuery });
@@ -96,3 +97,7 @@ export default function Home() {
     </div>
   );
 }
+
+// export default function Home() {
+//   return <StyledWrapper>Coming Soon...!</StyledWrapper>;
+// }
