@@ -42,12 +42,11 @@ const GameImageSection = styled.div`
   min-width: 1254px;
   position: relative;
   margin: 0 auto;
+  cursor: pointer;
 `;
 
 const ClickableArea = styled.div`
   position: absolute;
-  border: 4px solid orange;
-  cursor: pointer;
   top: ${(props) => `${props.data.top}px`};
   left: ${(props) => `${props.data.left}px`};
   width: ${(props) => `${props.data?.right - props.data?.left}px`};
@@ -85,7 +84,7 @@ export default function MainGameSection({
       <GameImageSection>
         <ImageWrapper>
           <Image
-            src="/images/findObjectGame/game-two-map.jpg"
+            src="/images/findObjectGame/game_two_map.jpg"
             alt="find-object-game"
             fill
             style={{

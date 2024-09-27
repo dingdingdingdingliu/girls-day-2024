@@ -41,7 +41,9 @@ const ListItem = styled.div`
   margin-bottom: ${(props) => (props.index < 3 ? "10px" : "0px")};
   border-radius: 2px;
   position: relative;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    -1px -1px 4px rgba(0, 0, 0, 0.1),
+    4px 4px 4px rgba(0, 0, 0, 0.2);
   padding: 10px;
 `;
 

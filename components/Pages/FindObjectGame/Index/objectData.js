@@ -40,19 +40,19 @@ const objectData = [
   },
   {
     id: 6,
-    title: "淡水女學堂",
-    imageSrc: "/images/findObjectGame/icons/tamsui-girls-school.svg",
-    alt: "tamsui-girls-school",
-    intro:
-      "1884年由加拿大長老教會傳教士馬偕創辦，是臺灣第一所新式女學堂，培養出許多優秀的女性人才。見證了臺灣女性受教權的發展。",
-  },
-  {
-    id: 7,
     title: "台灣\n國家婦女館",
     imageSrc: "/images/findObjectGame/icons/taiwan-women-center.svg",
     alt: "taiwan-women-center",
     intro:
       "館內除了收藏國內外性別相關書籍、期刊與研究資料外，還會不定期舉辦婦女/性別議題靜態展示與性別倡議活動。",
+  },
+  {
+    id: 7,
+    title: "淡水女學堂",
+    imageSrc: "/images/findObjectGame/icons/tamsui-girls-school.svg",
+    alt: "tamsui-girls-school",
+    intro:
+      "1884年由加拿大長老教會傳教士馬偕創辦，是臺灣第一所新式女學堂，培養出許多優秀的女性人才。見證了臺灣女性受教權的發展。",
   },
   {
     id: 8,
@@ -65,8 +65,8 @@ const objectData = [
   {
     id: 9,
     title: "同性婚姻合法化\n法制運動",
-    imageSrc: "/images/findObjectGame/icons/same-sex-marriage-law.svg",
-    alt: "same-sex-marriage-law",
+    imageSrc: "/images/findObjectGame/icons/same-sex-marriage.svg",
+    alt: "same-sex-marriage",
     intro:
       "2019年《司法院釋字第七四八號解釋施行法》於立法院三讀通過，中華民國成為亞洲第一個承認同性婚姻的國家。",
   },

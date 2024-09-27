@@ -16,8 +16,7 @@ const AnimatedOverlay = styled(animated.div)`
   top: 0;
   right: 0;
   z-index: 20;
-  background-color: ${(props) => props.theme.colors.white};
-  border: 12px solid ${(props) => props.theme.colors.mediumGrey};
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;

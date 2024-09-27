@@ -47,7 +47,9 @@ const ListItem = styled.div`
     props.isCheck ? `6px solid ${props.theme.colors.green};` : "none"};
   border-radius: 2px;
   position: relative;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    -1px -1px 4px rgba(0, 0, 0, 0.1),
+    4px 4px 4px rgba(0, 0, 0, 0.2);
   padding: 6px;
 `;
 
