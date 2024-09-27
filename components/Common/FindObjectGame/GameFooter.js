@@ -12,6 +12,7 @@ const LogosWrapper = styled.div`
 
   @media (max-width: ${globalConfig.findObjectGame}) {
     width: 80%;
+    min-width: 270px;
   }
 `;
 
@@ -28,6 +29,10 @@ const Title = styled.p`
   color: ${(props) => props.theme.colors.black};
   margin-bottom: 6px;
   white-space: nowrap;
+
+  @media (max-width: ${globalConfig.findObjectGame}) {
+    font-size: ${(props) => props.theme.fontSizes[10]};
+  }
 `;
 
 // 圖片顯示層
@@ -40,6 +45,9 @@ const LogoImagesWrapper = styled.div`
 const LogoImg = styled.img`
   height: 16px;
   width: auto;
+  @media (max-width: ${globalConfig.findObjectGame}) {
+    height: 12px;
+  }
 `;
 
 function Organizer() {
