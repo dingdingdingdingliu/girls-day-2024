@@ -10,6 +10,7 @@ import {
 } from "@/components/Common/VisionGame/WrapperComponent";
 import { GameSmallBevelButton } from "@/components/Common/Button/GameUsedBevelButton";
 import { answerImageData } from "../../components/Common/VisionGame/gameImageData";
+import ResponsiveContainer from "@/components/Common/ResponsiveContainer";
 
 const introCopyWrite =
   "歡迎來到偏見眼鏡行的驗光室！\n共有12道題目，每題限時5秒";
@@ -27,7 +28,7 @@ const StyledPageWrapper = styled(PageWrapper)`
 `;
 
 const StyledContentWrapper = styled(ContentWrapper)`
-  padding: 22px 42px;
+  padding: 20px 40px;
 `;
 
 const Wrapper = styled.div`
@@ -45,7 +46,7 @@ const AnimatedIntroWrapper = styled(animated.div)`
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 `;
 
 const TitleOne = styled.p`
@@ -146,61 +147,63 @@ export default function VisionGameIndex() {
   });
 
   return (
-    <StyledPageWrapper className="game-page">
-      <StyledContentWrapper>
-        <Wrapper>
-          <AnimatedIntroWrapper style={fadeInIntro}>
-            <TitleOne>2024 臺灣女孩日</TitleOne>
-            <TitleTwo>偏見眼鏡行</TitleTwo>
-            <MainImageWrapper>
-              <ImageWrapper>
-                <Image
-                  src="/images/visionGame/vision_game_index.png"
-                  alt="vision_game_index"
-                  width={270}
-                  height={200}
+    <ResponsiveContainer heightUnit={100} widthUnit={100}>
+      <StyledPageWrapper className="game-page">
+        <StyledContentWrapper>
+          <Wrapper>
+            <AnimatedIntroWrapper style={fadeInIntro}>
+              <TitleOne>2024 臺灣女孩日</TitleOne>
+              <TitleTwo>偏見眼鏡行</TitleTwo>
+              <MainImageWrapper>
+                <ImageWrapper>
+                  <Image
+                    src="/images/visionGame/vision_game_index.png"
+                    alt="vision_game_index"
+                    width={270}
+                    height={200}
+                  />
+                </ImageWrapper>
+              </MainImageWrapper>
+              <CopyWrite>{introCopyWrite}</CopyWrite>
+              <GameTopicOuterWrapper>
+                <GameTopicWrapper>
+                  <GameTopicIntro>{topicIntro.positive}</GameTopicIntro>
+                  <GameTopicImageWrapper>
+                    <Image
+                      src={answerImageData.correct}
+                      alt="answerIcon"
+                      width={53}
+                      height={53}
+                    />
+                  </GameTopicImageWrapper>
+                </GameTopicWrapper>
+                <GameTopicWrapper>
+                  <GameTopicIntro>{topicIntro.negative}</GameTopicIntro>
+                  <GameTopicImageWrapper>
+                    <Image
+                      src={answerImageData.wrong}
+                      alt="answerIcon"
+                      width={53}
+                      height={53}
+                    />
+                  </GameTopicImageWrapper>
+                </GameTopicWrapper>
+              </GameTopicOuterWrapper>
+              <CopyWrite>來測測你的偏見度數是多少吧！</CopyWrite>
+            </AnimatedIntroWrapper>
+            <AnimatedButtonWrapper style={fadeInBebel}>
+              <Link href="/game-one/start">
+                <GameSmallBevelButton
+                  buttonColor={theme.colors.black}
+                  textColor={theme.colors.pink}
+                  fontSize={theme.fontSizes[28]}
+                  buttonText="開始驗光"
                 />
-              </ImageWrapper>
-            </MainImageWrapper>
-            <CopyWrite>{introCopyWrite}</CopyWrite>
-            <GameTopicOuterWrapper>
-              <GameTopicWrapper>
-                <GameTopicIntro>{topicIntro.positive}</GameTopicIntro>
-                <GameTopicImageWrapper>
-                  <Image
-                    src={answerImageData.correct}
-                    alt="answerIcon"
-                    width={53}
-                    height={53}
-                  />
-                </GameTopicImageWrapper>
-              </GameTopicWrapper>
-              <GameTopicWrapper>
-                <GameTopicIntro>{topicIntro.negative}</GameTopicIntro>
-                <GameTopicImageWrapper>
-                  <Image
-                    src={answerImageData.wrong}
-                    alt="answerIcon"
-                    width={53}
-                    height={53}
-                  />
-                </GameTopicImageWrapper>
-              </GameTopicWrapper>
-            </GameTopicOuterWrapper>
-            <CopyWrite>來測測你的偏見度數是多少吧！</CopyWrite>
-          </AnimatedIntroWrapper>
-          <AnimatedButtonWrapper style={fadeInBebel}>
-            <Link href="/game-one/start">
-              <GameSmallBevelButton
-                buttonColor={theme.colors.black}
-                textColor={theme.colors.pink}
-                fontSize={theme.fontSizes[28]}
-                buttonText="開始驗光"
-              />
-            </Link>
-          </AnimatedButtonWrapper>
-        </Wrapper>
-      </StyledContentWrapper>
-    </StyledPageWrapper>
+              </Link>
+            </AnimatedButtonWrapper>
+          </Wrapper>
+        </StyledContentWrapper>
+      </StyledPageWrapper>
+    </ResponsiveContainer>
   );
 }

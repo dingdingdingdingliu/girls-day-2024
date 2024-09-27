@@ -17,6 +17,7 @@ import { GameFullBevelButton } from "@/components/Common/Button/GameUsedBevelBut
 import GameResultCard from "@/components/Common/VisionGame/GameResultCard";
 import GameAnswerCard from "@/components/Common/VisionGame/GameAnswerCard";
 import GameFooter from "@/components/Common/VisionGame/GameFooter";
+import ResponsiveContainer from "@/components/Common/ResponsiveContainer";
 
 const downloadCopyWrite = "/長按圖片下載分享/";
 
@@ -125,63 +126,67 @@ export default function VisionGameResult() {
 
   if (playerAnswers?.length === 0) {
     return (
-      <ResultPageWrapper>
-        <ResultUpperWrapper></ResultUpperWrapper>
-      </ResultPageWrapper>
+      <ResponsiveContainer heightUnit={100} widthUnit={100}>
+        <ResultPageWrapper>
+          <ResultUpperWrapper></ResultUpperWrapper>
+        </ResultPageWrapper>
+      </ResponsiveContainer>
     );
   }
 
   return (
-    <ResultPageWrapper>
-      <ResultUpperWrapper>
-        <ResultUpperContentWrapper>
-          <ResultTitle>你的結果是......</ResultTitle>
-          <AnimatedWrapper style={fadeInCard}>
-            <GameResultCard score={Number(correctCount)} />
-            <StyledDownLoadCopyWrite>
-              {downloadCopyWrite}
-            </StyledDownLoadCopyWrite>
-          </AnimatedWrapper>
-          <AnimatedWrapper style={fadeInFromTopDelayed}>
-            <div style={{ marginBottom: "16px" }}>
-              <Link href="/">
+    <ResponsiveContainer heightUnit={100} widthUnit={100}>
+      <ResultPageWrapper>
+        <ResultUpperWrapper>
+          <ResultUpperContentWrapper>
+            <ResultTitle>你的結果是......</ResultTitle>
+            <AnimatedWrapper style={fadeInCard}>
+              <GameResultCard score={Number(correctCount)} />
+              <StyledDownLoadCopyWrite>
+                {downloadCopyWrite}
+              </StyledDownLoadCopyWrite>
+            </AnimatedWrapper>
+            <AnimatedWrapper style={fadeInFromTopDelayed}>
+              <div style={{ marginBottom: "16px" }}>
+                <Link href="/">
+                  <GameFullBevelButton
+                    buttonColor={theme.colors.black}
+                    textColor={theme.colors.pink}
+                    buttonText="前往偏見眼鏡行瞭解更多"
+                    fontSize={theme.fontSizes[20]}
+                  />
+                </Link>
+              </div>
+              <a
+                href="https://www.sfaa.gov.tw/SFAA/default.aspx"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <GameFullBevelButton
                   buttonColor={theme.colors.black}
                   textColor={theme.colors.pink}
-                  buttonText="前往偏見眼鏡行瞭解更多"
+                  buttonText="前往社家署網站瞭解更多"
                   fontSize={theme.fontSizes[20]}
                 />
-              </Link>
-            </div>
-            <a
-              href="https://www.sfaa.gov.tw/SFAA/default.aspx"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <GameFullBevelButton
-                buttonColor={theme.colors.black}
-                textColor={theme.colors.pink}
-                buttonText="前往社家署網站瞭解更多"
-                fontSize={theme.fontSizes[20]}
-              />
-            </a>
-            <AnswerInstructWrapper>
-              <ArrowDownStyle />
-              <AnswerInstructText>想知道各題答案請滑</AnswerInstructText>
-              <ArrowDownStyle position="right" />
-            </AnswerInstructWrapper>
-          </AnimatedWrapper>
-        </ResultUpperContentWrapper>
-      </ResultUpperWrapper>
-      <ResultLowerWrapper>
-        <ResultLowerContentWrapper>
-          <HintText>正解</HintText>
-          {results?.map((data, index) => {
-            return <GameAnswerCard key={index} data={data} />;
-          })}
-          <GameFooter />
-        </ResultLowerContentWrapper>
-      </ResultLowerWrapper>
-    </ResultPageWrapper>
+              </a>
+              <AnswerInstructWrapper>
+                <ArrowDownStyle />
+                <AnswerInstructText>想知道各題答案請滑</AnswerInstructText>
+                <ArrowDownStyle position="right" />
+              </AnswerInstructWrapper>
+            </AnimatedWrapper>
+          </ResultUpperContentWrapper>
+        </ResultUpperWrapper>
+        <ResultLowerWrapper>
+          <ResultLowerContentWrapper>
+            <HintText>正解</HintText>
+            {results?.map((data, index) => {
+              return <GameAnswerCard key={index} data={data} />;
+            })}
+            <GameFooter />
+          </ResultLowerContentWrapper>
+        </ResultLowerWrapper>
+      </ResultPageWrapper>
+    </ResponsiveContainer>
   );
 }
