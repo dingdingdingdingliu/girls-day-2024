@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
 export const PageWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,8 +19,8 @@ export const ContentWrapper = styled.div`
 
 // 遊戲結果頁外層包裝，內層分成背景漸層上層與灰色背景下層
 export const ResultPageWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-image: ${(props) =>
     `linear-gradient(to bottom, 
     ${props.theme.colors.lightPink} 1%, 

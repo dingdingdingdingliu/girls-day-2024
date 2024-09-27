@@ -20,6 +20,7 @@ import {
 } from "@/components/Common/TimerProgress";
 import { GameSmallBevelButton } from "@/components/Common/Button/GameUsedBevelButton";
 import Spinner from "@/components/Common/Spinner";
+import ResponsiveContainer from "@/components/Common/ResponsiveContainer";
 
 const initTimer = 5;
 
@@ -287,69 +288,74 @@ export default function VisionGameStart() {
   };
 
   return (
-    <StyledPageWrapper isShowSpinner={isShowSpinner} isPageShake={isPageShake}>
-      {isShowSpinner && <Spinner />}
-      {!isShowSpinner && (
-        <StyledContentWrapper>
-          <Wrapper>
-            <GameSmallBevelButton
-              buttonColor={theme.colors.black}
-              textColor={theme.colors.pink}
-              buttonText={`第 ${questionOrder} 題`}
-            />
-            <GameOuterWrapper>
-              {springs?.map((style, index) => (
-                <GameWrapper
-                  key={index}
-                  style={{
-                    zIndex: visionGameData.length - index,
-                    ...style,
-                  }}
+    <ResponsiveContainer heightUnit={100} widthUnit={100}>
+      <StyledPageWrapper
+        isShowSpinner={isShowSpinner}
+        isPageShake={isPageShake}
+      >
+        {isShowSpinner && <Spinner />}
+        {!isShowSpinner && (
+          <StyledContentWrapper>
+            <Wrapper>
+              <GameSmallBevelButton
+                buttonColor={theme.colors.black}
+                textColor={theme.colors.pink}
+                buttonText={`第 ${questionOrder} 題`}
+              />
+              <GameOuterWrapper>
+                {springs?.map((style, index) => (
+                  <GameWrapper
+                    key={index}
+                    style={{
+                      zIndex: visionGameData.length - index,
+                      ...style,
+                    }}
+                  >
+                    <Image
+                      src={questionImageData[index]}
+                      alt="question_card"
+                      width={270}
+                      height={300}
+                      priority={index === 0 && true}
+                    />
+                  </GameWrapper>
+                ))}
+              </GameOuterWrapper>
+              <OptionOuterWrapper>
+                <OptionWrapper
+                  isClickable={isClickable}
+                  onClick={() => handleClick("left")}
                 >
                   <Image
-                    src={questionImageData[index]}
-                    alt="question_card"
-                    width={270}
-                    height={300}
-                    priority={index === 0 && true}
+                    src={answerImageData.correct}
+                    alt="answerIcon"
+                    width={105}
+                    height={105}
+                    priority
                   />
-                </GameWrapper>
-              ))}
-            </GameOuterWrapper>
-            <OptionOuterWrapper>
-              <OptionWrapper
-                isClickable={isClickable}
-                onClick={() => handleClick("left")}
-              >
-                <Image
-                  src={answerImageData.correct}
-                  alt="answerIcon"
-                  width={105}
-                  height={105}
-                  priority
-                />
-              </OptionWrapper>
-              <OptionWrapper
-                isClickable={isClickable}
-                onClick={() => handleClick("right")}
-              >
-                <Image
-                  src={answerImageData.wrong}
-                  alt="answerIcon"
-                  width={105}
-                  height={105}
-                  priority
-                />
-              </OptionWrapper>
-            </OptionOuterWrapper>
-            <ProgressBarWrapper>
-              <ProgressBar seconds={seconds}>
-                <TimerText>{seconds >= 0 ? seconds : 0}</TimerText>
-              </ProgressBar>
-            </ProgressBarWrapper>
-          </Wrapper>
-        </StyledContentWrapper>
-      )}
-    </StyledPageWrapper>
+                </OptionWrapper>
+                <OptionWrapper
+                  isClickable={isClickable}
+                  onClick={() => handleClick("right")}
+                >
+                  <Image
+                    src={answerImageData.wrong}
+                    alt="answerIcon"
+                    width={105}
+                    height={105}
+                    priority
+                  />
+                </OptionWrapper>
+              </OptionOuterWrapper>
+              <ProgressBarWrapper>
+                <ProgressBar seconds={seconds}>
+                  <TimerText>{seconds >= 0 ? seconds : 0}</TimerText>
+                </ProgressBar>
+              </ProgressBarWrapper>
+            </Wrapper>
+          </StyledContentWrapper>
+        )}
+      </StyledPageWrapper>
+    </ResponsiveContainer>
   );
 }
