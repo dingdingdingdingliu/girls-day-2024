@@ -3,10 +3,11 @@ import globalConfig from "@/styles/globalConfig";
 import styled from "@emotion/styled";
 import { useSpring, animated } from "@react-spring/web";
 import { ImageWrapper } from "@/components/Common/Index/Wrapper";
+import ResponsiveContainer from "@/components/Common/ResponsiveContainer";
 
 const StyledWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,29 +93,31 @@ export default function FirstEditionIndex() {
   });
 
   return (
-    <StyledWrapper>
-      <OuterWrapper>
-        <IndexImageWrapper>
-          <ImageWrapper>
-            <Image
-              src="/images/index_first_edition.png"
-              alt="index-coming-soon"
-              fill
-              style={{
-                objectFit: "cover",
-                objectPosition: "center",
-              }}
-              priority={true}
-            />
-          </ImageWrapper>
-        </IndexImageWrapper>
-        <AnimatedWrapper style={fadeIn}>
-          <IndexTitle>2024 年臺灣女孩日</IndexTitle>
-          <BevelButtonStyle>
-            <BevelButtonText>coming soon</BevelButtonText>
-          </BevelButtonStyle>
-        </AnimatedWrapper>
-      </OuterWrapper>
-    </StyledWrapper>
+    <ResponsiveContainer heightUnit={100} widthUnit={100}>
+      <StyledWrapper>
+        <OuterWrapper>
+          <IndexImageWrapper>
+            <ImageWrapper>
+              <Image
+                src="/images/index_first_edition.png"
+                alt="index-coming-soon"
+                fill
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center",
+                }}
+                priority={true}
+              />
+            </ImageWrapper>
+          </IndexImageWrapper>
+          <AnimatedWrapper style={fadeIn}>
+            <IndexTitle>2024 年臺灣女孩日</IndexTitle>
+            <BevelButtonStyle>
+              <BevelButtonText>coming soon</BevelButtonText>
+            </BevelButtonStyle>
+          </AnimatedWrapper>
+        </OuterWrapper>
+      </StyledWrapper>
+    </ResponsiveContainer>
   );
 }
