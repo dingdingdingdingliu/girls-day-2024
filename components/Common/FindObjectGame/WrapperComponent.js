@@ -3,8 +3,8 @@ import globalConfig from "@/styles/globalConfig";
 import { animated } from "@react-spring/web";
 
 export const GamePageWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   background-color: ${(props) => props.theme.colors.mediumGrey};
   padding: 14px;
@@ -36,8 +36,8 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9;
   display: ${(props) => (props.isOpen ? "block" : "none")};
