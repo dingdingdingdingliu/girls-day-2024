@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
+import Link from "next/link";
 import { ImageWrapper } from "@/components/Common/Index/Wrapper";
 import SmallBevelButton from "@/components/Common/Button/SmallBevelButton";
 
@@ -58,6 +59,7 @@ export function GameSection({
   bevelColor,
   bevelTextColor,
   buttonText,
+  linkHref = "",
 }) {
   return (
     <GameSectionWrapper>
@@ -74,11 +76,13 @@ export function GameSection({
           />
         </ImageWrapper>
       </GameImageSection>
-      <SmallBevelButton
-        buttonColor={bevelColor}
-        textColor={bevelTextColor}
-        buttonText={buttonText}
-      ></SmallBevelButton>
+      <Link href={linkHref}>
+        <SmallBevelButton
+          buttonColor={bevelColor}
+          textColor={bevelTextColor}
+          buttonText={buttonText}
+        />
+      </Link>
     </GameSectionWrapper>
   );
 }

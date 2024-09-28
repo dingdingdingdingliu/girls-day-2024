@@ -20,6 +20,7 @@ import SectionGirlImage from "@/components/Pages/Index/SectionGirlImage";
 import SectionPickUp from "@/components/Pages/Index/SectionPickUp";
 import SectionExtended from "@/components/Pages/Index/SectionExtended";
 import Footer from "@/components/Pages/Index/SectionFooter";
+import ResponsiveContainer from "@/components/Common/ResponsiveContainer";
 // import FirstEditionIndex from "@/components/Pages/Index/FirstEditionIndex";
 
 export default function Home() {
@@ -56,7 +57,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div style={{ width: "100vw" }}>
+    <ResponsiveContainer widthUnit={100}>
       <Hamburger
         isShow={isHamburgerShow}
         isDesktop={isDesktop}
@@ -94,10 +95,6 @@ export default function Home() {
         setIsDialogOpen={setIsDialogOpen}
       />
       <Footer />
-    </div>
+    </ResponsiveContainer>
   );
 }
-
-// export default function Home() {
-//   return <StyledWrapper>Coming Soon...!</StyledWrapper>;
-// }

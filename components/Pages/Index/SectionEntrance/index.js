@@ -7,10 +7,11 @@ import {
   IndexContentWrapper,
 } from "@/components/Common/Index/Wrapper";
 import BevelButton from "@/components/Common/Button/BevelButton";
+import ResponsiveContainer from "@/components/Common/ResponsiveContainer";
 
 const StyledPageWrapper = styled(PageWrapper)`
   background-color: ${(props) => props.theme.colors.mediumGrey};
-  height: 100vh;
+  height: 100%;
 `;
 
 const StyledContentWrapper = styled(IndexContentWrapper)`
@@ -58,25 +59,27 @@ export default function SectionEntrance() {
       friction: 20, // 摩擦力，值越小弹簧的回弹效果越明显
       mass: 3, // 质量，值越大，弹簧越沉，惯性越强
     },
-    delay: 600, // 延遲效果
+    delay: 800, // 延遲效果
   });
 
   return (
-    <StyledPageWrapper>
-      <StyledContentWrapper>
-        <ButtonWrapper>
-          <AnimatedWrapper style={fadeInEntrance}>
-            <a href="#reception">
-              <BevelButton
-                size="large"
-                buttonColor={theme.colors.black}
-                textColor={theme.colors.white}
-                buttonText="推門進入"
-              ></BevelButton>
-            </a>
-          </AnimatedWrapper>
-        </ButtonWrapper>
-      </StyledContentWrapper>
-    </StyledPageWrapper>
+    <ResponsiveContainer heightUnit={100} widthUnit={100}>
+      <StyledPageWrapper>
+        <StyledContentWrapper>
+          <ButtonWrapper>
+            <AnimatedWrapper style={fadeInEntrance}>
+              <a href="#reception">
+                <BevelButton
+                  size="large"
+                  buttonColor={theme.colors.black}
+                  textColor={theme.colors.white}
+                  buttonText="推門進入"
+                ></BevelButton>
+              </a>
+            </AnimatedWrapper>
+          </ButtonWrapper>
+        </StyledContentWrapper>
+      </StyledPageWrapper>
+    </ResponsiveContainer>
   );
 }

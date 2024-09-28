@@ -99,6 +99,7 @@ export default function SectionVision({ isDesktop }) {
               bevelColor={theme.colors.pink}
               bevelTextColor={theme.colors.white}
               buttonText="前往驗光"
+              linkHref="/game-one"
             />
           </MainSectionWrapper>
         </SectionIntroWrapper>
