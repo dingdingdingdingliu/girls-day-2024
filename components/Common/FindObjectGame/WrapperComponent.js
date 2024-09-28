@@ -27,7 +27,7 @@ export const GameContentWrapper = styled.div`
 export const ImageWrapper = styled.div`
   width: 100%;
   height: 100%;
-  position: relative; /* 必須設置 position relative 以便內部圖片填滿 */
+  position: relative;
 `;
 
 // OverLay

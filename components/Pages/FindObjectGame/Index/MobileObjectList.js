@@ -15,33 +15,35 @@ const MobileWrapper = styled.div`
   display: none;
 
   @media (max-width: ${globalConfig.findObjectGame}) {
-    display: block;
+    display: flex;
     width: 100%;
+    min-width: 100%;
     height: 25%;
     max-height: 25%;
     overflow-x: scroll;
     overflow-y: hidden;
     margin-top: 12px;
-    display: flex;
   }
 `;
 
 const ListWrapper = styled.div`
   height: 100%;
+  width: auto;
   padding: 40px 12px 12px 12px;
   background-color: ${(props) => props.theme.colors.white};
   border-radius: 2px;
   margin-right: ${(props) => (props.isLast ? "0px" : "16px")};
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
+  flex-shrink: 0;
 `;
 
 const ListItem = styled.div`
-  width: auto;
   height: 100%;
   min-height: 100%;
+  width: auto;
   aspect-ratio: 1 / 1;
   border: ${(props) =>
     props.isCheck ? `6px solid ${props.theme.colors.green};` : "none"};
