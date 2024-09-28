@@ -38,7 +38,7 @@ const RegularTitle = styled.p`
   font-weight: ${(props) => props.theme.fontWeights.normal};
   letter-spacing: 1px;
   white-space: pre-wrap;
-  margin: 24px 0px;
+  margin: 20px 0px;
   text-align: center;
 `;
 

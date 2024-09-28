@@ -11,6 +11,7 @@ import GameStartDialog from "@/components/Common/FindObjectGame/GameStartDialog"
 import GameResultDialog from "@/components/Common/FindObjectGame/GameResultDialog";
 import MainGameSection from "@/components/Pages/FindObjectGame/Index/MainGameSection";
 import GameBevelLabel from "@/components/Common/FindObjectGame/GameBevelLabel";
+import ResponsiveContainer from "@/components/Common/ResponsiveContainer";
 
 const initTimer = 120;
 
@@ -64,38 +65,40 @@ export default function FindObjectGame() {
   }, [findCount, isShowObject]);
 
   return (
-    <GamePageWrapper>
-      <GameBevelLabel findCount={findCount} countdownTime={countdownTime} />
-      <GameStartDialog
-        isDesktop={isDesktop}
-        setIsGameStart={setIsGameStart}
-        isGameStart={isGameStart}
-      />
-      <GameResultDialog
-        isDesktop={isDesktop}
-        findCount={findCount}
-        isGameEnd={isGameEnd}
-        isShowObject={isShowObject}
-        onReplay={onReplay}
-      />
-      <GameContentWrapper>
-        <DesktopObjectList
-          isClickIdArray={isClickIdArray}
-          scrollToId={scrollToId}
+    <ResponsiveContainer heightUnit={100} widthUnit={100}>
+      <GamePageWrapper>
+        <GameBevelLabel findCount={findCount} countdownTime={countdownTime} />
+        <GameStartDialog
+          isDesktop={isDesktop}
+          setIsGameStart={setIsGameStart}
+          isGameStart={isGameStart}
         />
-        <MainGameSection
-          setFindCount={setFindCount}
-          isClickIdArray={isClickIdArray}
-          setIsClickIdArray={setIsClickIdArray}
-          setScrollToId={setScrollToId}
+        <GameResultDialog
+          isDesktop={isDesktop}
+          findCount={findCount}
+          isGameEnd={isGameEnd}
           isShowObject={isShowObject}
-          setIsShowObject={setIsShowObject}
+          onReplay={onReplay}
         />
-        <MobileObjectList
-          isClickIdArray={isClickIdArray}
-          scrollToId={scrollToId}
-        />
-      </GameContentWrapper>
-    </GamePageWrapper>
+        <GameContentWrapper>
+          <DesktopObjectList
+            isClickIdArray={isClickIdArray}
+            scrollToId={scrollToId}
+          />
+          <MainGameSection
+            setFindCount={setFindCount}
+            isClickIdArray={isClickIdArray}
+            setIsClickIdArray={setIsClickIdArray}
+            setScrollToId={setScrollToId}
+            isShowObject={isShowObject}
+            setIsShowObject={setIsShowObject}
+          />
+          <MobileObjectList
+            isClickIdArray={isClickIdArray}
+            scrollToId={scrollToId}
+          />
+        </GameContentWrapper>
+      </GamePageWrapper>
+    </ResponsiveContainer>
   );
 }
