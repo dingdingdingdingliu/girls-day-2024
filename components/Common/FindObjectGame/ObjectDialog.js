@@ -33,8 +33,20 @@ const AnimatedDialogWrapper = styled(animated.div)`
   max-width: 600px;
   height: 80%;
   max-height: 600px;
-  overflow-y: scroll;
   position: relative;
+
+  @media (max-width: ${globalConfig.findObjectGame}) {
+    width: 90%;
+    max-width: 90%;
+    height: 90%;
+    max-height: 90%;
+  }
+`;
+
+const DialogWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
   padding: 48px 56px;
   padding-top: ${(props) => (props.length > 5 ? "48px" : "72px")};
   display: flex;
@@ -53,10 +65,6 @@ const AnimatedDialogWrapper = styled(animated.div)`
     -4px 0 10px rgba(0, 0, 0, 0.1);
 
   @media (max-width: ${globalConfig.findObjectGame}) {
-    width: 90%;
-    max-width: 90%;
-    height: 90%;
-    max-height: 90%;
     padding: 28px;
     padding-top: 40px;
   }
@@ -147,22 +155,24 @@ export default function ObjectDialog({ data, isOpen, setIsShowDialog }) {
   return (
     <AnimatedOverlay isOpen={isOpen} style={fadeInOverlay}>
       <AnimatedDialogWrapper length={data?.title.length} style={fadeInDialog}>
-        <StyledRxCross2 onClick={onCrossClick} />
-        <ObjectTitle>{data?.title}</ObjectTitle>
-        <ImageSection length={data?.title.length}>
-          <ImageWrapper>
-            <Image
-              src={data?.imageSrc}
-              alt={data?.alt}
-              fill
-              style={{
-                objectFit: "contain",
-                objectPosition: "center",
-              }}
-            />
-          </ImageWrapper>
-        </ImageSection>
-        <Intro>{data?.intro}</Intro>
+        <DialogWrapper>
+          <StyledRxCross2 onClick={onCrossClick} />
+          <ObjectTitle>{data?.title}</ObjectTitle>
+          <ImageSection length={data?.title.length}>
+            <ImageWrapper>
+              <Image
+                src={data?.imageSrc}
+                alt={data?.alt}
+                fill
+                style={{
+                  objectFit: "contain",
+                  objectPosition: "center",
+                }}
+              />
+            </ImageWrapper>
+          </ImageSection>
+          <Intro>{data?.intro}</Intro>
+        </DialogWrapper>
       </AnimatedDialogWrapper>
     </AnimatedOverlay>
   );
