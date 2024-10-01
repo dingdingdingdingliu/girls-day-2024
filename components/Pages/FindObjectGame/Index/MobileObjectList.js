@@ -18,9 +18,9 @@ const MobileWrapper = styled.div`
     display: flex;
     width: 100%;
     min-width: 100%;
-    height: 25%;
-    max-height: 25%;
-    overflow-x: scroll;
+    height: 20%;
+    max-height: 20%;
+    overflow-x: auto;
     overflow-y: hidden;
     margin-top: 12px;
   }

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useSpring } from "@react-spring/web";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
@@ -13,10 +12,8 @@ import {
 import FindObjectGameBevelButton from "@/components/Common/FindObjectGame/BevelButton";
 
 const introCopyWrite = {
-  upperDesktop: "請在限時 120 秒內，\n在畫面中找到並點擊欄位中的 12 個內容。",
-  upperMobile: "請在限時 120 秒內，\n在畫面中找到並點擊欄位中的\n12個內容。",
-  lowerDesktop: "來測測你與眼鏡行內的眼鏡是否為天作之合吧！",
-  lowerMobile: "來測測你與眼鏡行內的眼鏡\n是否為天作之合吧！",
+  upperContent: "請在限時 120 秒內，\n在畫面中找到並點擊欄位中的 12 個內容。",
+  lowerContent: "來測測你與眼鏡行內的眼鏡是否為天作之合吧！",
 };
 
 const BoldTitle = styled.p`
@@ -28,6 +25,7 @@ const BoldTitle = styled.p`
   text-align: center;
 
   @media (max-width: ${globalConfig.findObjectGame}) {
+    font-size: ${(props) => props.theme.fontSizes[14]};
     white-space: pre-wrap;
   }
 `;
@@ -40,6 +38,10 @@ const RegularTitle = styled.p`
   white-space: pre-wrap;
   margin: 20px 0px;
   text-align: center;
+
+  @media (max-width: ${globalConfig.findObjectGame}) {
+    font-size: ${(props) => props.theme.fontSizes[14]};
+  }
 `;
 
 const TitleTwo = styled.p`
@@ -48,6 +50,10 @@ const TitleTwo = styled.p`
   font-weight: ${(props) => props.theme.fontWeights.bold};
   letter-spacing: 4px;
   white-space: nowrap;
+
+  @media (max-width: ${globalConfig.findObjectGame}) {
+    font-size: ${(props) => props.theme.fontSizes[14]};
+  }
 `;
 
 const GameImageSection = styled.div`
@@ -58,9 +64,6 @@ const GameImageSection = styled.div`
   margin: 20px 0 10px 0;
 
   @media (max-width: ${globalConfig.findObjectGame}) {
-    width: 75%;
-    min-width: 75%;
-    height: auto;
     aspect-ratio: 4 / 3;
     margin: 12px 0px;
   }
@@ -79,9 +82,6 @@ export default function GameStartDialog({
   isGameStart,
   setIsGameStart,
 }) {
-  const [upperCopyWrite, setUpperCopyWrite] = useState("");
-  const [lowerCopyWrite, setLowerCopyWrite] = useState("");
-
   const fadeInFromTopDelayed = useSpring({
     opacity: 1,
     transform: "translateY(0)",
@@ -90,16 +90,6 @@ export default function GameStartDialog({
     delay: isGameStart && 1500, // 只有在 isGameEnd 為 true 時設置延遲
     reset: !isGameStart, // 當 isGameEnd 變化時重置動畫
   });
-
-  useEffect(() => {
-    if (isDesktop) {
-      setUpperCopyWrite(introCopyWrite.upperDesktop);
-      setLowerCopyWrite(introCopyWrite.lowerDesktop);
-    } else {
-      setUpperCopyWrite(introCopyWrite.upperMobile);
-      setLowerCopyWrite(introCopyWrite.lowerMobile);
-    }
-  }, [isDesktop]);
 
   const onButtonClick = () => setIsGameStart(true);
 
@@ -128,8 +118,8 @@ export default function GameStartDialog({
               </ImageWrapper>
             </GameImageSection>
             <BoldTitle>歡迎來到偏見眼鏡行的展售區！</BoldTitle>
-            <RegularTitle>{upperCopyWrite}</RegularTitle>
-            <BoldTitle>{lowerCopyWrite}</BoldTitle>
+            <RegularTitle>{introCopyWrite.upperContent}</RegularTitle>
+            <BoldTitle>{introCopyWrite.lowerContent}</BoldTitle>
             <Button>
               <FindObjectGameBevelButton
                 buttonText="開始試戴"
