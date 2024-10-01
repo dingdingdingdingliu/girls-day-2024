@@ -36,12 +36,6 @@ p {
   display: none;
 }
 
-/* 為可滾動元素重新顯示滾動條 */
-*:not([style*="overflow: hidden"]):not([style*="overflow:hidden"]) {
-  scrollbar-width: auto; /* Firefox */
-  -ms-overflow-style: scrollbar; /* IE and Edge */
-}
-
 /* 為 Webkit 瀏覽器的可滾動元素重新顯示滾動條 */
 *:not([style*="overflow: hidden"]):not([style*="overflow:hidden"])::-webkit-scrollbar {
   display: block;
