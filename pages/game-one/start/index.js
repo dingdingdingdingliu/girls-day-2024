@@ -51,6 +51,7 @@ const StyledPageWrapper = styled(PageWrapper)`
 const StyledContentWrapper = styled(ContentWrapper)`
   padding: 48px;
   overflow-x: hidden;
+  border: 2px solid red;
 `;
 
 const Wrapper = styled.div`
