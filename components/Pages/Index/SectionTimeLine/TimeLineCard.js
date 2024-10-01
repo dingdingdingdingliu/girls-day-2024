@@ -87,7 +87,8 @@ const ContentScrollWrapper = styled.div`
   width: 100%;
   height: 80%;
   max-height: 80%;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin-top: 24px;
   @media (max-width: ${globalConfig.mediaQuery}) {
     height: 75%;

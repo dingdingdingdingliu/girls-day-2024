@@ -15,7 +15,8 @@ const DesktopWrapper = styled.div`
   width: 10%;
   height: 100%;
   max-height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin-right: 16px;
 
   @media (max-width: ${globalConfig.findObjectGame}) {
