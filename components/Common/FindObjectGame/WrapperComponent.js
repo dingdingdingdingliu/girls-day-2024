@@ -69,8 +69,6 @@ export const AnimatedDialogWrapper = styled(animated.div)`
   border-radius: 2px;
   position: relative;
   padding-top: 32px;
-  overflow-y: auto;
-  overflow-x: hidden;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     width: 92%;
@@ -86,4 +84,6 @@ export const ContentWrapper = styled.div`
   flex-direction: column;
   justify-content: start;
   align-items: center;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
