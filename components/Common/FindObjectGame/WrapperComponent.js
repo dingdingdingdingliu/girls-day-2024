@@ -68,8 +68,8 @@ export const AnimatedDialogWrapper = styled(animated.div)`
   align-items: center;
   border-radius: 2px;
   position: relative;
-  padding-top: 36px;
-  overflow-y: auto !important;
+  padding-top: 32px;
+  overflow-y: auto;
   overflow-x: hidden;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
