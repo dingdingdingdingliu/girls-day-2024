@@ -1,36 +1,23 @@
 import styled from "@emotion/styled";
-import globalConfig from "@/styles/globalConfig";
 import TimeLineCard from "./TimeLineCard";
 import TimeCardBevelLabel from "@/components/Common/Label/TimeCardBevelLabel";
 
 // TimeLine區塊底層，包含年份 + 指引線 + 上下卡片空間
 const TimeLineBoxWrapper = styled.div`
-  width: 530px;
-  height: 1130px;
-  max-height: 1130px;
+  width: 276px;
+  height: 580px;
+  max-width: 276px;
+  max-height: 580px;
   position: absolute;
   top: 0;
-  left: ${(props) => props.movingDesktopPx};
-
-  @media (max-width: ${globalConfig.mediaQuery}) {
-    width: 276px;
-    max-height: 580px;
-    left: ${(props) => props.movingMobilePx};
-  }
+  left: ${(props) => props.movingPx};
 `;
 
-export default function TimeLineBox({
-  timeBoxData,
-  movingMobilePx,
-  movingDesktopPx,
-}) {
+export default function TimeLineBox({ timeBoxData, movingPx }) {
   const cardData = timeBoxData.card;
 
   return (
-    <TimeLineBoxWrapper
-      movingMobilePx={`${movingMobilePx}px`}
-      movingDesktopPx={`${movingDesktopPx}px`}
-    >
+    <TimeLineBoxWrapper movingPx={`${movingPx}px`}>
       <TimeLineCard cardData={cardData?.main} />
       {cardData?.sub && <TimeLineCard cardData={cardData?.sub} />}
       <TimeCardBevelLabel

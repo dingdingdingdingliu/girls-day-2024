@@ -14,14 +14,14 @@ export const AbsoluteSlideLabelWrapper = styled.div`
 `;
 
 // 戲劇體驗工作訪卡片用層
-export const AbsoluteLabelWrapper = styled.div`
-  width: 125px;
+export const AbsoluteButtonWrapper = styled.div`
+  width: 200px;
   position: absolute;
   bottom: 0;
   right: 0;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    width: 50%;
+    width: 150px;
   }
 `;
 
@@ -51,6 +51,7 @@ const ArrowRightStyle = styled(MdOutlineKeyboardArrowRight)`
   color: ${(props) => props.fontcolor};
   font-size: 28px;
   margin-right: -15px;
+  margin-left: ${(props) => (props.isDownLoad ? "10px" : "0px")};
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     font-size: 36px;
@@ -75,6 +76,7 @@ export function SingleLeftBevelLabel({
   isPointer = false,
   labelColor,
   fontcolor,
+  isDownLoad = false,
 }) {
   return (
     <BevelLabelStyle
@@ -84,7 +86,7 @@ export function SingleLeftBevelLabel({
     >
       <LabelContentWrapper>
         <BevelLabelText fontcolor={fontcolor}>{labelText}</BevelLabelText>
-        <ArrowRightStyle fontcolor={fontcolor} />
+        <ArrowRightStyle fontcolor={fontcolor} isDownLoad={isDownLoad} />
       </LabelContentWrapper>
     </BevelLabelStyle>
   );

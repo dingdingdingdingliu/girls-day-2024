@@ -1,11 +1,13 @@
+import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
-import Image from "next/image";
+// import Image from "next/image";
+import { useSpring, animated } from "@react-spring/web";
 import { useTheme } from "@emotion/react";
 import {
   PageWrapper,
   ContentWrapper,
-  ImageWrapper,
+  // ImageWrapper,
 } from "@/components/Common/Index/Wrapper";
 import { GirlDaySection, ThemeSection } from "./SubContent";
 import ImageContent from "./ImageContent";
@@ -13,6 +15,11 @@ import {
   BevelLabel,
   AbsoluteLabelWrapper,
 } from "@/components/Common/Label/BevelLabel";
+
+const sloganImageSrc = {
+  desktop: "/images/sloganDesktop.png",
+  mobile: "/images/sloganMobile.png",
+};
 
 // 頁面底層灰色底色延展
 const StyledPageWrapper = styled(PageWrapper)`
@@ -59,17 +66,45 @@ const MainSectionWrapper = styled.div`
 `;
 
 // 標語內容層
-const SloganSectionWrapper = styled.div`
+// const SloganSectionWrapper = styled.div`
+//   width: 70%;
+//   height: auto;
+//   aspect-ratio: 10 / 1;
+//   margin: 110px auto;
+
+//   @media (max-width: ${globalConfig.mediaQuery}) {
+//     width: 60%;
+//     aspect-ratio: 5 / 3;
+//     margin: 30px auto;
+//   }
+// `;
+
+const Container = styled.div`
+  overflow: hidden;
+  position: relative;
   width: 70%;
   height: auto;
   aspect-ratio: 10 / 1;
   margin: 110px auto;
+  will-change: transform;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     width: 60%;
     aspect-ratio: 5 / 3;
     margin: 30px auto;
   }
+`;
+
+const ScrollWrapper = styled(animated.div)`
+  display: flex;
+  width: 200%;
+  will-change: transform;
+`;
+
+const SloganImage = styled.img`
+  width: 50%; // 每個圖像佔整個寬度的一半
+  object-fit: cover;
+  margin-right: ${(props) => props.isMargin && "60px"};
 `;
 
 const LabelWrapper = styled(AbsoluteLabelWrapper)`
@@ -82,6 +117,28 @@ const LabelWrapper = styled(AbsoluteLabelWrapper)`
 
 export default function SectionIntro({ isDesktop }) {
   const theme = useTheme();
+  const [imgSrc, setImgSrc] = useState(sloganImageSrc.desktop);
+
+  const [{ x }, api] = useSpring(() => ({
+    x: 0,
+    config: { duration: 10000, easing: (t) => t }, // 延长时间控制滑动速度
+  }));
+
+  useEffect(() => {
+    api.start({
+      from: { x: 0 },
+      to: { x: -100 },
+      loop: true,
+    });
+  }, [api]);
+
+  useEffect(() => {
+    if (isDesktop) {
+      setImgSrc(sloganImageSrc.desktop);
+    } else {
+      setImgSrc(sloganImageSrc.mobile);
+    }
+  }, [isDesktop]);
 
   return (
     <StyledPageWrapper id="show-hamburger-target">
@@ -111,7 +168,7 @@ export default function SectionIntro({ isDesktop }) {
             <ThemeSection />
           </MainSectionWrapper>
         </SectionIntroWrapper>
-        <SloganSectionWrapper>
+        {/* <SloganSectionWrapper>
           <ImageWrapper>
             <Image
               src={
@@ -127,7 +184,21 @@ export default function SectionIntro({ isDesktop }) {
               }}
             />
           </ImageWrapper>
-        </SloganSectionWrapper>
+        </SloganSectionWrapper> */}
+        <Container>
+          <ScrollWrapper
+            style={{
+              x: x.to((x) => `${x}%`),
+            }}
+          >
+            <SloganImage src={imgSrc} alt="slogan" isMargin />
+            <SloganImage src={imgSrc} alt="slogan" isMargin />
+            <SloganImage src={imgSrc} alt="slogan" isMargin />
+            <SloganImage src={imgSrc} alt="slogan" isMargin />
+            <SloganImage src={imgSrc} alt="slogan" isMargin />
+            <SloganImage src={imgSrc} alt="slogan" />
+          </ScrollWrapper>
+        </Container>
       </StyledContentWrapper>
     </StyledPageWrapper>
   );
