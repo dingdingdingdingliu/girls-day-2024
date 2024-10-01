@@ -30,13 +30,3 @@ a {
 p {
 	word-break: break-all;
 }
-
-/* 對於Webkit瀏覽器（Chrome、Safari、新版Edge等） */
-::-webkit-scrollbar {
-  display: none;
-}
-
-/* 為 Webkit 瀏覽器的可滾動元素重新顯示滾動條 */
-*:not([style*="overflow: hidden"]):not([style*="overflow:hidden"])::-webkit-scrollbar {
-  display: block;
-}
