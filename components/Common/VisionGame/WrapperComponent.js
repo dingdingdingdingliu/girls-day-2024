@@ -14,7 +14,8 @@ export const ContentWrapper = styled.div`
   max-width: 376px;
   height: 100%;
   max-height: 678px;
-  overflow: scroll !important;
+  overflow-y: scroll !important;
+  overflow-x: hidden;
 `;
 
 // 遊戲結果頁外層包裝，內層分成背景漸層上層與灰色背景下層
