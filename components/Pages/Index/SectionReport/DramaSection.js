@@ -9,7 +9,7 @@ import {
   ActionWrapper,
 } from "./Components";
 import {
-  AbsoluteSlideLabelWrapper,
+  AbsoluteButtonWrapper,
   SingleLeftBevelLabel,
 } from "@/components/Common/Label/SingleLeftBevelLabel";
 import globalConfig from "@/styles/globalConfig";
@@ -64,14 +64,6 @@ const DramaCopyWriteWrapper = styled(CopyWriteWrapper)`
   }
 `;
 
-const AbsoluteButtonWrapper = styled(AbsoluteSlideLabelWrapper)`
-  width: 110px;
-
-  @media (max-width: ${globalConfig.mediaQuery}) {
-    width: 150px;
-  }
-`;
-
 const StyledImageWrapper = styled.div`
   width: 200px;
   height: 200px;
@@ -123,6 +115,7 @@ function DramaAction() {
             onClick={() => {}}
             labelColor={theme.colors.pink}
             fontcolor={theme.colors.white}
+            isDownLoad={true}
           />
         </AbsoluteButtonWrapper>
       </DramaButtonWrapper>

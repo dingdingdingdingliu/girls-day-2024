@@ -99,6 +99,7 @@ export default function SectionFindObject({ isDesktop }) {
               bevelColor={theme.colors.green}
               bevelTextColor={theme.colors.black}
               buttonText="前往挑款"
+              linkHref="/game-two"
             />
           </MainSectionWrapper>
         </SectionIntroWrapper>

@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
+import { useInView } from "react-intersection-observer";
+import { useSpring, animated } from "@react-spring/web";
 import {
   GirlDayTitle,
   ThemeTitle,
@@ -79,6 +81,14 @@ const ThemeContentWrapper = styled(SectionContentWrapper)`
   width: calc(60% - 135px);
 `;
 
+const AnimatedTitleWrapper = styled(animated.div)`
+  width: auto;
+`;
+
+const AnimatedContentWrapper = styled(animated.div)`
+  width: 100%;
+`;
+
 // 圖片顯示層
 export const ThemeImageWrapper = styled.div`
   width: 30%;
@@ -94,26 +104,72 @@ export const ThemeImageWrapper = styled.div`
 `;
 
 export function GirlDaySection() {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
+  const fadeInTitle = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateX(0)" : "translateX(-20px)",
+    config: { duration: 600 },
+    delay: 400, // 延遲效果
+  });
+
+  const fadeInContent = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateX(0)" : "translateX(40px)",
+    config: { duration: 600 },
+    delay: 600, // 延遲效果
+  });
+
   return (
-    <GirlsDaySectionWrapper>
-      <GirlDayTitle />
+    <GirlsDaySectionWrapper ref={ref}>
+      <AnimatedTitleWrapper style={fadeInTitle}>
+        <GirlDayTitle />
+      </AnimatedTitleWrapper>
       <GirlsDayContentWrapper>
-        <p>{copyWrite.girlsDayFirst}</p>
-        <br />
-        <p>{copyWrite.girlsDaySecond}</p>
+        <AnimatedContentWrapper style={fadeInContent}>
+          <p>{copyWrite.girlsDayFirst}</p>
+          <br />
+          <p>{copyWrite.girlsDaySecond}</p>
+        </AnimatedContentWrapper>
       </GirlsDayContentWrapper>
     </GirlsDaySectionWrapper>
   );
 }
 
 export function ThemeSection() {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
+  const fadeInTitle = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateX(0)" : "translateX(-20px)",
+    config: { duration: 600 },
+    delay: 700, // 延遲效果
+  });
+
+  const fadeInContent = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateX(0)" : "translateX(40px)",
+    config: { duration: 600 },
+    delay: 900, // 延遲效果
+  });
+
   return (
-    <ThemeSectionWrapper>
-      <ThemeTitle />
+    <ThemeSectionWrapper ref={ref}>
+      <AnimatedTitleWrapper style={fadeInTitle}>
+        <ThemeTitle />
+      </AnimatedTitleWrapper>
       <ThemeContentWrapper>
-        <p>{copyWrite.themeFirst}</p>
-        <br />
-        <p>{copyWrite.themeSecond}</p>
+        <AnimatedContentWrapper style={fadeInContent}>
+          <p>{copyWrite.themeFirst}</p>
+          <br />
+          <p>{copyWrite.themeSecond}</p>
+        </AnimatedContentWrapper>
       </ThemeContentWrapper>
       <ThemeImageWrapper>
         <ImageWrapper>

@@ -7,8 +7,8 @@ const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 99;
   display: ${(props) => (props.isOpen ? "block" : "none")};
@@ -21,8 +21,8 @@ const Overlay = styled.div`
 
 // 1/4 區塊
 const DesktopNavWrapper = styled.div`
-  width: 30vw;
-  height: 100vh;
+  width: 30%;
+  height: 100%;
   background-color: ${(props) => props.theme.colors.black};
   display: flex;
   flex-direction: column;
@@ -95,7 +95,7 @@ export default function DesktopNavCard({
           <LinkContent>接待櫃檯｜關於女孩日</LinkContent>
         </LinkWrapper>
         <LinkWrapper onClick={() => handleNavClick("vision")}>
-          <LinkContent>驗光區｜小遊戲 I</LinkContent>
+          <LinkContent>驗光室｜小遊戲 I</LinkContent>
         </LinkWrapper>
         <LinkWrapper onClick={() => handleNavClick("findObject")}>
           <LinkContent>展售區｜小遊戲 II</LinkContent>
