@@ -57,10 +57,6 @@ export const ResultUpperContentWrapper = styled.div`
   overflow: scroll !important;
   padding: 30px 48px;
   padding-bottom: 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const ResultLowerContentWrapper = styled.div`
