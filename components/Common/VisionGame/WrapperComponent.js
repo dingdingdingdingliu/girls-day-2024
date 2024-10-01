@@ -14,7 +14,8 @@ export const ContentWrapper = styled.div`
   max-width: 376px;
   height: 100%;
   max-height: 678px;
-  overflow: scroll !important;
+  overflow-y: auto !important;
+  overflow-x: hidden;
 `;
 
 // 遊戲結果頁外層包裝，內層分成背景漸層上層與灰色背景下層
@@ -54,7 +55,8 @@ export const ResultLowerWrapper = styled.div`
 export const ResultUpperContentWrapper = styled.div`
   width: 100%;
   max-width: 376px;
-  overflow: scroll !important;
+  overflow-y: auto !important;
+  overflow-x: hidden;
   padding: 30px 48px;
   padding-bottom: 0px;
 `;
