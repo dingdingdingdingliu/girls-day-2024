@@ -85,7 +85,8 @@ const ContentWrapper = styled.div`
   width: 100%;
   height: auto;
   max-height: 310px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
   word-break: break-all;
   font-size: ${(props) => props.theme.fontSizes[18]};
   color: ${(props) => props.theme.colors.black};

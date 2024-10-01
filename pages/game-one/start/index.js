@@ -194,7 +194,7 @@ export default function VisionGameStart() {
   };
 
   // 點擊按鈕事件
-  const handleClick = (direction) => {
+  const handleClick = async (direction) => {
     // 已移出卡片不觸發
     // 時間0秒
     // 點擊後尚未跳到下一題
@@ -216,7 +216,7 @@ export default function VisionGameStart() {
 
     // 儲存玩家回答
     if (currentCardIndex <= visionGameData.length) {
-      setPlayerAnswers((prevAnswers) => {
+      await setPlayerAnswers((prevAnswers) => {
         const answerExists = prevAnswers.some(
           (answer) => answer.id === currentQuestion.id,
         );
