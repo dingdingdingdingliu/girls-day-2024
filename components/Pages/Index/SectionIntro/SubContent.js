@@ -56,7 +56,8 @@ const ThemeSectionWrapper = styled(SubSectionWrapper)`
 // 女孩日與主題內容層
 const SectionContentWrapper = styled.div`
   max-height: 310px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin: 0 0 0 36px;
   word-break: break-all;
   font-size: ${(props) => props.theme.fontSizes[20]};

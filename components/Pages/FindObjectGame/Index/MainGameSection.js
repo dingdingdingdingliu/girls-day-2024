@@ -22,16 +22,16 @@ const getScrollTo = (id) => {
 };
 
 const DesktopWrapper = styled.div`
-  width: 85%;
+  width: 89%;
   height: 100%;
   max-height: 100%;
-  overflow: scroll;
+  overflow: auto;
   overflow: ${(props) => (props.isScroll ? "scroll" : "hidden")};
 
   @media (max-width: ${globalConfig.findObjectGame}) {
     width: 100%;
-    height: 75%;
-    max-height: 75%;
+    height: 80%;
+    max-height: 80%;
   }
 `;
 

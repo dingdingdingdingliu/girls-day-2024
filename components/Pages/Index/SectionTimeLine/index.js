@@ -91,7 +91,7 @@ const ShadowRelativeWrapper = styled.div`
 const TimeLineScrollWrapper = styled.div`
   width: 100%;
   max-width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
 `;
 
 // 陰影層

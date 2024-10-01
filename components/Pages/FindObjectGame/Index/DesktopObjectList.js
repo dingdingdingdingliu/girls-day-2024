@@ -12,7 +12,7 @@ const placeIdArray = [5, 6, 7, 8];
 const eventIdArray = [9, 10, 11, 12];
 
 const DesktopWrapper = styled.div`
-  width: 13%;
+  width: 10%;
   height: 100%;
   max-height: 100%;
   overflow-y: scroll;
