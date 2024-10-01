@@ -64,6 +64,10 @@ const ArrowDownStyle = styled(MdOutlineKeyboardArrowDown)`
 
 const AnimatedWrapper = styled(animated.div)`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
 `;
 
 const HintText = styled.p`
