@@ -6,7 +6,7 @@ import { useSpring, animated } from "@react-spring/web";
 import { RxCross2 } from "react-icons/rx";
 import { ImageWrapper } from "./WrapperComponent";
 
-const initTimer = 100;
+const initTimer = 7;
 
 const AnimatedOverlay = styled(animated.div)`
   width: 89%;
