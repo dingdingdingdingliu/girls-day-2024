@@ -5,14 +5,15 @@ const objectData = [
     imageSrc: "/images/findObjectGame/icons/peng-wan-ru.svg",
     alt: "peng-wan-ru",
     intro:
-      "1996年彭婉如事促成《性侵害犯罪防治法》，且教育部要求各級學校實施兩性平等教育，後續成為了《性別平等教育法》的基礎。",
+      "1996年彭婉如事件促成《性侵害犯罪防治法》，且教育部要求各級學校實施兩性平等教育，後續成為《性別平等教育法》的基礎。",
   },
   {
     id: 2,
     title: "葉永鋕",
     imageSrc: "/images/findObjectGame/icons/ye-yong-zhi.svg",
     alt: "ye-yong-zhi",
-    intro: "2004年葉永鋕事件促成《性別平等教育法》。",
+    intro:
+      "2000年葉永鋕事件發生，促使《兩性平等教育法》在2004年修訂為《性別平等教育法》。",
   },
   {
     id: 3,
@@ -68,7 +69,7 @@ const objectData = [
     imageSrc: "/images/findObjectGame/icons/same-sex-marriage.svg",
     alt: "same-sex-marriage",
     intro:
-      "1996 年彭婉如事促成《性侵害犯罪防治法》，且教育部要求各級學校實施兩性平等教育，後續成為了《性別平等教育法》的基礎。1996 年彭婉如事促成《性侵害犯罪防治法》，且教育部要求各級學校實施兩性平等教育，後續成為了《性別平等教育法》的基礎。",
+      "2019年《司法院釋字第七四八號解釋施行法》於立法院三讀通過，中華民國成為亞洲第一個承認同性婚姻的國家。",
   },
   {
     id: 10,
@@ -76,7 +77,7 @@ const objectData = [
     imageSrc: "/images/findObjectGame/icons/tainan-girls-school.svg",
     alt: "tainan-girls-school",
     intro:
-      "2010年台南女中學生集體脫下短褲，爭取混合穿搭制服與運動服的自主權，成為女校爭取服儀自由的第一槍。",
+      "2010年台南女中學生升旗時脫下長褲露出短褲，爭取混合穿搭制服與運動服的自主權，成為女校爭取服儀自由的第一槍。",
   },
   {
     id: 11,
