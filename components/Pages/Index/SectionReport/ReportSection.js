@@ -12,7 +12,7 @@ import { OverThreeResponsiveSlider } from "@/components/Common/Slider";
 
 const copyWrite = {
   reportIntro:
-    "文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字",
+    "此處特別整理了 2024 年臺灣女孩日《偏見眼鏡行》戲劇體驗工作坊學員心得，以及媒體新聞和平台文章的精彩內容，千萬別錯過！",
 };
 
 const sliderData = [

@@ -44,7 +44,7 @@ export const CardWrapper = styled.div`
   height: 220px;
   max-width: 100%;
   max-height: 220px;
-  padding: 16px 28px;
+  padding: 16px 22px 16px 28px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -66,21 +66,24 @@ const TitleSection = styled.p`
   }
 `;
 
+// 放置 scroll bar
 const ContentScrollWrapper = styled.div`
   width: 100%;
   height: 100%;
   max-height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
 `;
 
 const FakeScroll = styled.div`
   width: 12px;
-  height: calc(80% - 2px);
-  max-height: 80%;
+  height: calc(100% - 3px);
+  max-height: calc(100% - 3px);
   pointer-events: none;
   transition: opacity 0.2s;
   position: absolute;
-  top: 0px;
+  top: 2px;
   right: 0px;
   background-image: ${(props) =>
     `linear-gradient(to bottom, 

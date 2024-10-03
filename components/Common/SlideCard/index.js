@@ -5,7 +5,9 @@ import { useTheme } from "@emotion/react";
 import { ImageWrapper } from "@/components/Common/Index/Wrapper";
 import {
   AbsoluteSlideLabelWrapper,
+  AbsoluteReportLabelWrapper,
   SingleLeftBevelLabel,
+  SlideSingleLeftBevelLabel,
 } from "@/components/Common/Label/SingleLeftBevelLabel";
 
 // Slide 長型卡片區塊
@@ -15,7 +17,7 @@ const SlideCardWrapper = styled.div`
   position: absolute;
   transition: box-shadow 0.3s ease-in-out;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0); /* 初始無陰影 */
-  cursor: pointer;
+  cursor: ${(props) => (props.isPointer ? "pointer" : "default")};
   z-index: 1;
   width: 94%;
   height: 100%;
@@ -43,7 +45,7 @@ const ContentCardWrapper = styled.div`
   width: 100%;
   height: 63%;
   max-height: 63%;
-  padding: 15px 18px;
+  padding: 12px 16px;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     padding: 15px 25px;
@@ -90,8 +92,9 @@ const ExtendedTitle = styled.p`
   font-size: ${(props) => props.theme.fontSizes[18]};
   font-weight: ${(props) => props.theme.fontWeights.bold};
   color: ${(props) => props.theme.colors.black};
-  white-space: pre-wrap;
-  margin-bottom: 8px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  margin-bottom: 6px;
 
   @media (max-width: ${globalConfig.sliderCardContentLimit}) {
     font-size: ${(props) => props.theme.fontSizes[14]};
@@ -143,13 +146,13 @@ export function ReportSlideCard({ cardColor, cardData, onClick = null }) {
           <ReportCopyWrite>{cardContent}</ReportCopyWrite>
         </ContentWrapper>
       </ContentCardWrapper>
-      <AbsoluteSlideLabelWrapper>
+      <AbsoluteReportLabelWrapper>
         <SingleLeftBevelLabel
           labelText="閱讀更多"
           labelColor={theme.colors.green}
           fontcolor={theme.colors.black}
         />
-      </AbsoluteSlideLabelWrapper>
+      </AbsoluteReportLabelWrapper>
     </SlideCardWrapper>
   );
 }
@@ -169,7 +172,11 @@ export function ExtendedSlideCard({
   };
   return (
     <>
-      <SlideCardWrapper onClick={onCardClick} cardColor={cardColor}>
+      <SlideCardWrapper
+        onClick={onCardClick}
+        cardColor={cardColor}
+        isPointer={!isShowLabel}
+      >
         <CardImageWrapper>
           <ImageWrapper>
             <Image
@@ -186,6 +193,9 @@ export function ExtendedSlideCard({
         <ContentCardWrapper>
           <TitleWrapper>
             <ExtendedTitle>{title}</ExtendedTitle>
+            {cardData?.engTitle && (
+              <ExtendedTitle>{cardData?.engTitle}</ExtendedTitle>
+            )}
           </TitleWrapper>
           <ContentWrapper>
             <ExtendedCopyWrite>{cardContent}</ExtendedCopyWrite>
@@ -193,11 +203,17 @@ export function ExtendedSlideCard({
         </ContentCardWrapper>
         {isShowLabel && (
           <AbsoluteSlideLabelWrapper>
-            <SingleLeftBevelLabel
-              labelColor={theme.colors.black}
-              fontcolor={theme.colors.yellow}
-              labelText="前往查看"
-            />
+            <a
+              href={cardData.linkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SlideSingleLeftBevelLabel
+                labelColor={theme.colors.black}
+                fontcolor={theme.colors.yellow}
+                labelText="詳情請前往查看"
+              />
+            </a>
           </AbsoluteSlideLabelWrapper>
         )}
       </SlideCardWrapper>

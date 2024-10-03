@@ -10,7 +10,7 @@ import { TimeLineTitle } from "@/components/Common/Index/TitleWithLine";
 import TimeLineSection from "./TimeLineSection";
 
 const titleCopyWrite =
-  "台灣的性別運動發展至今，以婦女運動為先驅，到出現同志運動、男性研究，更多專精特定性別議題的民間團體，而政府部門也積極實踐聯合國的「性別主流化」概念，把性別議題從邊緣拉到主流，融入各項業務中。整體來說，台灣的性別人權發展有著透過修法、立法、行政組織帶來改變，並回應國際重要議題的特徵。";
+  "臺灣的性別運動發展至今，以婦女運動為先驅，到出現同志運動、男性研究，更多專精特定性別議題的民間團體，而政府部門也積極實踐聯合國的「性別主流化」概念，把性別議題從邊緣拉到主流，融入各項業務中。整體來說，臺灣的性別人權發展有著透過修法、立法、行政組織帶來改變，並回應國際重要議題的特徵。";
 
 // 頁面底層底色延展
 const StyledPageWrapper = styled(PageWrapper)`

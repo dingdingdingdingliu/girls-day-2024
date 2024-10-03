@@ -82,10 +82,10 @@ const ArrowUpStyle = styled(MdOutlineKeyboardArrowUp)`
 
 const ContentTitleStyle = styled.p`
   color: ${(props) => props.theme.colors.pink};
-  font-size: ${(props) => props.theme.fontSizes[26]};
+  font-size: ${(props) => props.theme.fontSizes[20]};
   font-weight: ${(props) => props.theme.fontWeights.bold};
   white-space: nowrap;
-  margin: 0 6px;
+  margin: 0 4px;
   letter-spacing: 1px;
 
   @media (max-width: ${globalConfig.sliderTablet}) {

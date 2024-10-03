@@ -14,9 +14,9 @@ const SectionWrapper = styled.div`
 // TimeLine
 const TimeLine = styled.div`
   height: 12px;
-  width: 4048px;
+  width: 5002px;
   max-height: 12px;
-  max-width: 4048px;
+  max-width: 5002px;
   background-color: ${(props) => props.theme.colors.grey};
   position: absolute;
   top: 50%;
@@ -33,22 +33,18 @@ export default function TimeLineSection() {
         if (order === 1) {
           movingPosition = {
             mobile: 112,
-            desktop: 210,
           };
         } else if (order === 2) {
           movingPosition = {
             mobile: 426,
-            desktop: 838,
           };
         } else if (order === 3) {
           movingPosition = {
-            mobile: 804,
-            desktop: 1586,
+            mobile: 750,
           };
         } else {
           movingPosition = {
-            mobile: 804 + (order - 3) * 314,
-            desktop: 1586 + (order - 3) * 628,
+            mobile: 750 + (order - 3) * 350,
           };
         }
         return (
