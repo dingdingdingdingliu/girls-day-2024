@@ -179,7 +179,9 @@ export default function GameStartDialog({
             onButtonClick={onButtonClick}
           />
         )}
-        {isShowMainHint && <AnimatedMainHint fadeInHint={fadeInHint} />}
+        {isShowMainHint && (
+          <AnimatedMainHint fadeInHint={fadeInHint} isDesktop={isDesktop} />
+        )}
         {isShowListHint && (
           <AnimatedListHint fadeInHint={fadeInHint} isDesktop={isDesktop} />
         )}
