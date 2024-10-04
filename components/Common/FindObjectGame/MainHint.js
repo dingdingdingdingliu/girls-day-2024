@@ -12,13 +12,13 @@ import {
 
 const AnimatedUpWrapper = styled(animated.div)`
   position: absolute;
-  top: 30%;
+  top: 33%;
   left: 50%;
 `;
 
 const AnimatedDownWrapper = styled(animated.div)`
   position: absolute;
-  top: 70%;
+  top: 67%;
   left: 50%;
 `;
 
@@ -26,22 +26,24 @@ const AnimatedRightWrapper = styled(animated.div)`
   position: absolute;
   top: 50%;
   left: 60%;
+  @media (max-width: ${globalConfig.findObjectGame}) {
+    left: calc(50% + 90px);
+  }
 `;
 
 const AnimatedLeftWrapper = styled(animated.div)`
   position: absolute;
   top: 50%;
   left: 40%;
+  @media (max-width: ${globalConfig.findObjectGame}) {
+    left: calc(50% - 90px);
+  }
 `;
 
 const ArrowWrapper = styled.div`
   width: 100%;
-  height: 90%;
+  height: 100%;
   position: relative;
-
-  @media (max-width: ${globalConfig.findObjectGame}) {
-    height: 60%;
-  }
 `;
 
 const Hint = styled.p`
@@ -49,12 +51,16 @@ const Hint = styled.p`
   color: ${(props) => props.theme.colors.white};
   font-size: ${(props) => props.theme.fontSizes[18]};
   font-weight: ${(props) => props.theme.fontWeights.bold};
-  bottom: 15%;
+  bottom: 100px;
   left: 50%;
   transform: translate(-45%, 0);
+  text-align: start;
 
   @media (max-width: ${globalConfig.findObjectGame}) {
     font-size: ${(props) => props.theme.fontSizes[14]};
+    white-space: pre-wrap;
+    text-align: center;
+    bottom: 50px;
   }
 `;
 
@@ -142,7 +148,7 @@ function AnimatedArrowLeft() {
   );
 }
 
-export default function AnimatedMainHint({ fadeInHint }) {
+export default function AnimatedMainHint({ fadeInHint, isDesktop }) {
   return (
     <AnimatedMainSectionWrapper style={fadeInHint}>
       <ArrowWrapper>
@@ -152,7 +158,8 @@ export default function AnimatedMainHint({ fadeInHint }) {
         <AnimatedArrowLeft />
         <HandFinger />
       </ArrowWrapper>
-      <Hint>請在圖片區域中，上下左右滑動尋找指定物件！</Hint>
+      {isDesktop && <Hint>請在圖片區域中，上下左右滑動尋找指定物件</Hint>}
+      {!isDesktop && <Hint>{`請在圖片區域中\n上下左右滑動尋找指定物件`}</Hint>}
     </AnimatedMainSectionWrapper>
   );
 }
