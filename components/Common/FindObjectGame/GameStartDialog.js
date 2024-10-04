@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useSpring } from "@react-spring/web";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
@@ -10,6 +11,8 @@ import {
   ContentWrapper,
 } from "@/components/Common/FindObjectGame/WrapperComponent";
 import FindObjectGameBevelButton from "@/components/Common/FindObjectGame/BevelButton";
+import AnimatedMainHint from "./MainHint";
+import AnimatedListHint from "./ListHint";
 
 const introCopyWrite = {
   upperContent: "請在限時 120 秒內，\n在畫面中找到並點擊欄位中的 12 個內容。",
@@ -77,12 +80,54 @@ const Button = styled.div`
   margin-top: 20px;
 `;
 
+// 展售區主要 Dialog
+function AnimatedDialog({ fadeInDialog, isDesktop, onButtonClick }) {
+  return (
+    <AnimatedDialogWrapper style={fadeInDialog}>
+      <ContentWrapper>
+        <BoldTitle>2024 臺灣女孩日</BoldTitle>
+        <TitleTwo>偏見眼鏡行</TitleTwo>
+        <GameImageSection>
+          <ImageWrapper>
+            <Image
+              src={
+                isDesktop
+                  ? "/images/findObjectGame/desktop_main_dialog.png"
+                  : "/images/findObjectGame/mobile_main_dialog.png"
+              }
+              alt="find-object-game"
+              fill
+              style={{
+                objectFit: "contain",
+                objectPosition: "center",
+              }}
+            />
+          </ImageWrapper>
+        </GameImageSection>
+        <BoldTitle>歡迎來到偏見眼鏡行的展售區！</BoldTitle>
+        <RegularTitle>{introCopyWrite.upperContent}</RegularTitle>
+        <BoldTitle>{introCopyWrite.lowerContent}</BoldTitle>
+        <Button>
+          <FindObjectGameBevelButton
+            buttonText="開始試戴"
+            isSpacing={true}
+            onClick={onButtonClick}
+          />
+        </Button>
+      </ContentWrapper>
+    </AnimatedDialogWrapper>
+  );
+}
+
 export default function GameStartDialog({
   isDesktop,
   isGameStart,
   setIsGameStart,
 }) {
-  const fadeInFromTopDelayed = useSpring({
+  const [isShowMainHint, setIsShowMainHint] = useState(false);
+  const [isShowListHint, setIsShowListHint] = useState(false);
+
+  const fadeInDialog = useSpring({
     opacity: 1,
     transform: "translateY(0)",
     from: { opacity: 0, transform: "translateY(-30px)" },
@@ -91,44 +136,53 @@ export default function GameStartDialog({
     reset: !isGameStart, // 當 isGameEnd 變化時重置動畫
   });
 
-  const onButtonClick = () => setIsGameStart(true);
+  const fadeInHint = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+    config: { duration: 800 }, // 動畫持續時間
+    delay: isShowMainHint && 600, // 只有在 isGameEnd 為 true 時設置延遲
+    reset: !isShowMainHint, // 當 isGameEnd 變化時重置動畫
+  });
+
+  const onButtonClick = () => setIsShowMainHint(true);
+
+  useEffect(() => {
+    if (isShowMainHint) {
+      const timeout = setTimeout(() => {
+        setIsShowListHint(true); // 先執行第一個更新
+      }, 4000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [isShowMainHint]);
+
+  useEffect(() => {
+    if (isShowListHint) {
+      setIsShowMainHint(false); // 第二個更新
+
+      const timeout = setTimeout(() => {
+        setIsShowListHint(false); // 先執行第一個更新
+        setIsGameStart(true);
+      }, 4000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [isShowListHint]);
 
   return (
     <Overlay isOpen={!isGameStart}>
       <OuterWrapper>
-        <AnimatedDialogWrapper style={fadeInFromTopDelayed}>
-          <ContentWrapper>
-            <BoldTitle>2024 臺灣女孩日</BoldTitle>
-            <TitleTwo>偏見眼鏡行</TitleTwo>
-            <GameImageSection>
-              <ImageWrapper>
-                <Image
-                  src={
-                    isDesktop
-                      ? "/images/findObjectGame/desktop_main_dialog.png"
-                      : "/images/findObjectGame/mobile_main_dialog.png"
-                  }
-                  alt="find-object-game"
-                  fill
-                  style={{
-                    objectFit: "contain",
-                    objectPosition: "center",
-                  }}
-                />
-              </ImageWrapper>
-            </GameImageSection>
-            <BoldTitle>歡迎來到偏見眼鏡行的展售區！</BoldTitle>
-            <RegularTitle>{introCopyWrite.upperContent}</RegularTitle>
-            <BoldTitle>{introCopyWrite.lowerContent}</BoldTitle>
-            <Button>
-              <FindObjectGameBevelButton
-                buttonText="開始試戴"
-                isSpacing={true}
-                onClick={onButtonClick}
-              />
-            </Button>
-          </ContentWrapper>
-        </AnimatedDialogWrapper>
+        {!isShowMainHint && !isShowListHint && (
+          <AnimatedDialog
+            fadeInDialog={fadeInDialog}
+            isDesktop={isDesktop}
+            onButtonClick={onButtonClick}
+          />
+        )}
+        {isShowMainHint && <AnimatedMainHint fadeInHint={fadeInHint} />}
+        {isShowListHint && (
+          <AnimatedListHint fadeInHint={fadeInHint} isDesktop={isDesktop} />
+        )}
       </OuterWrapper>
     </Overlay>
   );
