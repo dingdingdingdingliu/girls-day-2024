@@ -48,9 +48,17 @@ export const Overlay = styled.div`
 export const OuterWrapper = styled.div`
   width: 100%;
   height: 100%;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+// 提示遮罩 relative 父元件
+export const HintOuterWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
 `;
 
 export const AnimatedDialogWrapper = styled(animated.div)`
@@ -86,4 +94,58 @@ export const ContentWrapper = styled.div`
   flex-direction: column;
   justify-content: start;
   align-items: center;
+`;
+
+// 遊戲圖片區塊，以及設定提示遮罩尺寸
+export const MainSectionWrapper = styled.div`
+  width: 89%;
+  height: 100%;
+  max-height: 100%;
+  overflow: ${(props) => (props.isScroll ? "auto" : "hidden")};
+
+  @media (max-width: ${globalConfig.findObjectGame}) {
+    width: 100%;
+    height: 80%;
+    max-height: 80%;
+  }
+`;
+
+// 主要區塊遮罩，尺寸同遊戲圖片區塊，但為動態元件
+export const AnimatedMainSectionWrapper = styled(animated.div)`
+  width: 89%;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+
+  @media (max-width: ${globalConfig.findObjectGame}) {
+    width: 100%;
+    height: 78%;
+    max-height: 78%;
+  }
+`;
+
+// 物件區塊遮罩，尺寸同遊戲物件區塊，但為動態元件
+export const AnimatedListSectionWrapper = styled(animated.div)`
+  width: 11%;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  @media (max-width: ${globalConfig.findObjectGame}) {
+    width: 100%;
+    height: 22%;
+    max-height: 22%;
+  }
 `;

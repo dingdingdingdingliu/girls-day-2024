@@ -89,7 +89,7 @@ const objectData = [
   },
   {
     id: 12,
-    title: "＃MeToo\n運動",
+    title: "＃MeToo運動",
     imageSrc: "/images/findObjectGame/icons/metoo.svg",
     alt: "metoo",
     intro:
