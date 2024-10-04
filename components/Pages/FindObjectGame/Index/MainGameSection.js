@@ -1,8 +1,10 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
-import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
-import { ImageWrapper } from "@/components/Common/FindObjectGame/WrapperComponent";
+import {
+  ImageWrapper,
+  MainSectionWrapper,
+} from "@/components/Common/FindObjectGame/WrapperComponent";
 import ObjectDialog from "@/components/Common/FindObjectGame/ObjectDialog";
 import clickableCoordinates from "./clickableData";
 import objectData from "./objectData";
@@ -20,20 +22,6 @@ const getScrollTo = (id) => {
   }
   return scrollTo;
 };
-
-const DesktopWrapper = styled.div`
-  width: 89%;
-  height: 100%;
-  max-height: 100%;
-  overflow: auto;
-  overflow: ${(props) => (props.isScroll ? "scroll" : "hidden")};
-
-  @media (max-width: ${globalConfig.findObjectGame}) {
-    width: 100%;
-    height: 80%;
-    max-height: 80%;
-  }
-`;
 
 const GameImageSection = styled.div`
   height: 873px;
@@ -73,7 +61,7 @@ export default function MainGameSection({
   };
 
   return (
-    <DesktopWrapper isScroll={!isShowObject}>
+    <MainSectionWrapper isScroll={!isShowObject}>
       {isShowObject && (
         <ObjectDialog
           isOpen={isShowObject}
@@ -105,6 +93,6 @@ export default function MainGameSection({
           })}
         </ImageWrapper>
       </GameImageSection>
-    </DesktopWrapper>
+    </MainSectionWrapper>
   );
 }
