@@ -27,11 +27,11 @@ const GameSectionWrapper = styled.div`
 const GameImageSection = styled.div`
   width: 100%;
   height: auto;
-  aspect-ratio: 9 / 4;
+  aspect-ratio: 7 / 3.8;
   margin-bottom: 24px;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    aspect-ratio: 2 / 1;
+    aspect-ratio: 5 / 3;
   }
 `;
 
@@ -45,7 +45,7 @@ export function ImageSection({ titleImageSrc, titleImageAlt }) {
           fill
           style={{
             objectFit: "contain",
-            objectPosition: "center",
+            objectPosition: "bottom",
           }}
         />
       </ImageWrapper>
@@ -60,7 +60,10 @@ export function GameSection({
   bevelTextColor,
   buttonText,
   linkHref = "",
+  isVisionGame,
 }) {
+  const imageStyle = isVisionGame ? "cover" : "contain";
+  const imagePosition = isVisionGame ? "center" : "bottom";
   return (
     <GameSectionWrapper>
       <GameImageSection>
@@ -70,8 +73,8 @@ export function GameSection({
             alt={imageAlt}
             fill
             style={{
-              objectFit: "cover",
-              objectPosition: "center",
+              objectFit: imageStyle,
+              objectPosition: imagePosition,
             }}
           />
         </ImageWrapper>

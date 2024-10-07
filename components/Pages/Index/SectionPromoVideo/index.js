@@ -1,8 +1,13 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "@react-spring/web";
-import { PageWrapper, ContentWrapper } from "@/components/Common/Index/Wrapper";
+import {
+  PageWrapper,
+  ContentWrapper,
+  ImageWrapper,
+} from "@/components/Common/Index/Wrapper";
 
 // 頁面底層底色延展
 const StyledPageWrapper = styled(PageWrapper)`
@@ -39,6 +44,9 @@ const AnimatedVideoWrapper = styled(animated.div)`
   width: 70%;
   aspect-ratio: 2 / 1;
   margin: 0 auto;
+  background-color: ${(props) =>
+    props.isFirstEdition ? props.theme.colors.white : "transparent"};
+  border-radius: 2px;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     width: 100%;
@@ -46,15 +54,15 @@ const AnimatedVideoWrapper = styled(animated.div)`
   }
 `;
 
-export default function SectionPromoVideo() {
+export default function SectionPromoVideo({ isFirstEdition }) {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.2,
   });
 
   const fadeInTitle = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? "translateY(0)" : "translateY(10px)",
+    transform: inView ? "translateY(0)" : "translateY(-20px)",
     config: { duration: 400 },
     delay: 400, // 延遲效果
   });
@@ -71,18 +79,36 @@ export default function SectionPromoVideo() {
         <AnimatedTitle style={fadeInTitle}>
           2024年臺灣女孩日宣傳影片
         </AnimatedTitle>
-        <AnimatedVideoWrapper style={fadeInVideo}>
-          <iframe
-            width="100%"
-            height="100%"
-            src="https://www.youtube.com/embed/GJerkayEgXE?si=8-d5fFLN_HOwEgMG"
-            title="YouTube video player"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-            style={{ border: 0 }}
-            loading="lazy"
-          ></iframe>
+        <AnimatedVideoWrapper
+          style={fadeInVideo}
+          isFirstEdition={isFirstEdition}
+        >
+          {!isFirstEdition && (
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/GJerkayEgXE?si=8-d5fFLN_HOwEgMG"
+              title="YouTube video player"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              style={{ border: 0 }}
+              loading="lazy"
+            ></iframe>
+          )}
+          {isFirstEdition && (
+            <ImageWrapper>
+              <Image
+                src="/images/index/index_coming_soon.png"
+                alt="coming_soon"
+                fill
+                style={{
+                  objectFit: "contain",
+                  objectPosition: "center",
+                }}
+              />
+            </ImageWrapper>
+          )}
         </AnimatedVideoWrapper>
       </StyledContentWrapper>
     </StyledPageWrapper>

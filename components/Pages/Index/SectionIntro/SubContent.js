@@ -11,17 +11,18 @@ import { ImageWrapper } from "@/components/Common/Index/Wrapper";
 
 const copyWrite = {
   girlsDayFirst:
-    "說到「女孩」，你腦中浮現的畫面是什麼呢？是洋裝、芭比娃娃、蝴蝶結嗎？有沒有大隊接力搶跑道、學生會主席，或玩具車和機器人的想像呢？",
+    "說到「女孩」，你腦中浮現什麼呢？是芭比、蝴蝶結？也有大隊接力搶跑道、學生會主席、機器人嗎？",
   girlsDaySecond:
-    "聯合國號召各國打破性別框架，實踐「重視女孩、投資女孩」的目標，將10月11日訂為「國際女童日」，而身為民主國家的臺灣積極響應，把同日訂為「臺灣女孩日」，在肯定女孩的基礎上看見每個女孩的差異，自信的、內向的、高矮胖瘦的、帥氣的、可愛的、不同文化背景的女孩，都值得培養，都該擁有舞台發揮潛力。",
-  themeFirst: "今年臺灣女孩日，將透過「偏見眼鏡行」讓性別偏見一一現形瓦解！",
-  themeSecond:
-    "本次透過「戲劇體驗工作坊」跟「主題網頁策展」，來認識生活中無處不在的歧視言論和刻板印象來源，並鼓勵女孩「打破偏見」勇敢表達自我，看見看見臺灣女孩的一百種可能！",
+    "聯合國號召各國重視、投資女孩，將10月11日訂為「國際女童日」，臺灣響應此訂為「臺灣女孩日」，自信、內向、高矮胖瘦、帥氣、可愛、說不同語言的女孩們，都值得受到栽培發揮潛力。",
+  girlsDayThird:
+    "女孩兼具「女性」和「兒童」身分，聯合國關於女孩的公約有兩部，臺灣都已加入。行政院列出參與決策、受教權、性健康、學科性別隔離、性別暴力等重點努力方向，看見臺灣女孩的一百種可能，用培力讓偏見現形瓦解！",
+  themeFirst:
+    "2024 年臺灣女孩日，將透過《偏見眼鏡行》中「戲劇體驗工作坊」和「主題網頁策展」兩大內容，來認識生活中無處不在的偏見言論和刻板印象來源，並鼓勵女孩「打破偏見」學習勇敢表達自我，突破限制！",
 };
+
 // 女孩日與主題區塊層
 const SubSectionWrapper = styled.div`
   border-radius: 2px;
-  padding: 30px 5%;
   display: flex;
   flex-direction: row;
   justify-content: start;
@@ -30,13 +31,17 @@ const SubSectionWrapper = styled.div`
   @media (max-width: ${globalConfig.mediaQuery}) {
     flex-direction: column;
     align-items: start;
-    padding: 25px;
   }
 `;
 
 // 女孩日區塊層
 const GirlsDaySectionWrapper = styled(SubSectionWrapper)`
   background-color: ${(props) => props.theme.colors.white};
+  padding: 30px 5%;
+
+  @media (max-width: ${globalConfig.mediaQuery}) {
+    padding: 25px;
+  }
 `;
 
 // 主題區塊層
@@ -46,20 +51,18 @@ const ThemeSectionWrapper = styled(SubSectionWrapper)`
     ${props.theme.colors.lightGreen} 0%, 
     ${props.theme.colors.lightOrange} 40%, 
     ${props.theme.colors.lightPink} 80%)`};
-
   margin-top: 20px;
   position: relative;
+  padding: 30px 5%;
+  padding-right: 0px;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    margin-top: 15px;
+    padding: 25px;
   }
 `;
 
 // 女孩日與主題內容層
 const SectionContentWrapper = styled.div`
-  max-height: 310px;
-  overflow-y: auto;
-  overflow-x: hidden;
   margin: 0 0 0 36px;
   word-break: break-all;
   font-size: ${(props) => props.theme.fontSizes[20]};
@@ -91,7 +94,7 @@ const AnimatedContentWrapper = styled(animated.div)`
 
 // 圖片顯示層
 export const ThemeImageWrapper = styled.div`
-  width: 30%;
+  width: 24%;
   height: 100%;
   position: absolute;
   top: 0;
@@ -105,7 +108,7 @@ export const ThemeImageWrapper = styled.div`
 
 export function GirlDaySection() {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.2,
   });
 
@@ -133,6 +136,8 @@ export function GirlDaySection() {
           <p>{copyWrite.girlsDayFirst}</p>
           <br />
           <p>{copyWrite.girlsDaySecond}</p>
+          <br />
+          <p>{copyWrite.girlsDayThird}</p>
         </AnimatedContentWrapper>
       </GirlsDayContentWrapper>
     </GirlsDaySectionWrapper>
@@ -141,7 +146,7 @@ export function GirlDaySection() {
 
 export function ThemeSection() {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.2,
   });
 
@@ -149,14 +154,14 @@ export function ThemeSection() {
     opacity: inView ? 1 : 0,
     transform: inView ? "translateX(0)" : "translateX(-20px)",
     config: { duration: 600 },
-    delay: 700, // 延遲效果
+    delay: 400, // 延遲效果
   });
 
   const fadeInContent = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView ? "translateX(0)" : "translateX(40px)",
     config: { duration: 600 },
-    delay: 900, // 延遲效果
+    delay: 600, // 延遲效果
   });
 
   return (
@@ -167,18 +172,16 @@ export function ThemeSection() {
       <ThemeContentWrapper>
         <AnimatedContentWrapper style={fadeInContent}>
           <p>{copyWrite.themeFirst}</p>
-          <br />
-          <p>{copyWrite.themeSecond}</p>
         </AnimatedContentWrapper>
       </ThemeContentWrapper>
       <ThemeImageWrapper>
         <ImageWrapper>
           <Image
-            src="/images/themeSectionImage.png"
+            src="/images/index/intro_theme.png"
             alt="imageSections"
             fill
             style={{
-              objectFit: "cover",
+              objectFit: "contain",
               objectPosition: "center",
             }}
           />

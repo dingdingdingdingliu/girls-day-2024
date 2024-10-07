@@ -46,8 +46,8 @@ export default function SectionGirlImage() {
         <ImageDesktopWrapper>
           <ImageWrapper>
             <Image
-              src="/images/girlImage.png"
-              alt="girlImage"
+              src="/images/index/main_girl_image.png"
+              alt="girl_image"
               fill
               style={{
                 objectFit: "cover",
@@ -60,8 +60,8 @@ export default function SectionGirlImage() {
       <ImageMobileWrapper>
         <ImageWrapper>
           <Image
-            src="/images/girlImage.png"
-            alt="girlImage"
+            src="/images/index/main_girl_image.png"
+            alt="girl_image"
             fill
             style={{
               objectFit: "cover",

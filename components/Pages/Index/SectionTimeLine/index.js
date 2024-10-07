@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import { useInView } from "react-intersection-observer";
+import { useSpring, animated } from "@react-spring/web";
 import { useTheme } from "@emotion/react";
 import { PageWrapper, ContentWrapper } from "@/components/Common/Index/Wrapper";
 import {
@@ -10,7 +12,7 @@ import { TimeLineTitle } from "@/components/Common/Index/TitleWithLine";
 import TimeLineSection from "./TimeLineSection";
 
 const titleCopyWrite =
-  "台灣的性別運動發展至今，以婦女運動為先驅，到出現同志運動、男性研究，更多專精特定性別議題的民間團體，而政府部門也積極實踐聯合國的「性別主流化」概念，把性別議題從邊緣拉到主流，融入各項業務中。整體來說，台灣的性別人權發展有著透過修法、立法、行政組織帶來改變，並回應國際重要議題的特徵。";
+  "臺灣的性別運動發展至今，以婦女運動為先驅，到出現同志運動、男性研究，更多專精特定性別議題的民間團體，而政府部門也積極實踐聯合國的「性別主流化」概念，把性別議題從邊緣拉到主流，融入各項業務中。整體來說，臺灣的性別人權發展有著透過修法、立法、行政組織帶來改變，並回應國際重要議題的特徵。";
 
 // 頁面底層底色延展
 const StyledPageWrapper = styled(PageWrapper)`
@@ -30,7 +32,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
 `;
 
 // 內容區塊，和專題報導區左右兩側切齊，內含上層標題層和下層時間軸層
-const InnerContentWrapper = styled.div`
+const InnerContentWrapper = styled(animated.div)`
   width: 75%;
   margin: 0 auto;
 
@@ -126,14 +128,28 @@ const LabelWrapper = styled(AbsoluteLabelWrapper)`
 
 export default function SectionTimeLine({ isDesktop }) {
   const theme = useTheme();
+
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.2,
+  });
+
+  const fadeIn = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateX(0)" : "translateY(-50px)",
+    config: { duration: 800 },
+    delay: 400, // 延遲效果
+  });
+
   return (
-    <StyledPageWrapper>
+    <StyledPageWrapper ref={ref}>
       {!isDesktop && (
         <LabelWrapper id="processing">
           <BevelLabel
             buttonColor={theme.colors.green}
             textColor={theme.colors.black}
             labelText="加工區"
+            inView={inView}
           />
         </LabelWrapper>
       )}
@@ -144,10 +160,11 @@ export default function SectionTimeLine({ isDesktop }) {
               buttonColor={theme.colors.green}
               textColor={theme.colors.black}
               labelText="加工區"
+              inView={inView}
             />
           </LabelWrapper>
         )}
-        <InnerContentWrapper>
+        <InnerContentWrapper style={fadeIn}>
           <TitleContentOuterWrapper>
             <TitleContentWrapper>
               <TimeLineTitle />

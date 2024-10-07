@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
 import { useTheme } from "@emotion/react";
+import { useSpring } from "@react-spring/web";
+import { useInView } from "react-intersection-observer";
 import { DramaTitle } from "@/components/Common/Index/TitleWithLine";
 import {
-  SectionWrapper,
+  AnimatedSectionWrapper,
   IntroWrapper,
   CopyWriteWrapper,
   ActionWrapper,
@@ -16,7 +18,7 @@ import globalConfig from "@/styles/globalConfig";
 
 const copyWrite = {
   dramaContent:
-    "文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字",
+    "今年女孩日特別與由資深應用戲劇跟公⺠教育工作者創立的「思樂樂劇場」合作，辦理《偏見眼鏡行》戲劇體驗工作坊。透過「戲劇演出」＋「情境互動」，引導觀眾主動參與討論和學習。沒能參與實體活動也別擔心！我們整理了線上引導教材，歡迎點擊了解更多資訊！",
 };
 
 const DramaActionWrapper = styled(ActionWrapper)`
@@ -94,8 +96,8 @@ function DramaAction() {
       <DramaContentWrapper>
         <StyledImageWrapper>
           <Image
-            src="/images/chiikawa.jpeg"
-            alt="chiikawa"
+            src="/images/index/report_drama.png"
+            alt="drama_section"
             fill
             style={{
               objectFit: "cover",
@@ -124,10 +126,22 @@ function DramaAction() {
 }
 
 export default function DramaSection() {
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0,
+  });
+
+  const fadeIn = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateX(0)" : "translateX(-100px)",
+    config: { duration: 600 },
+    delay: 300, // 延遲效果
+  });
+
   return (
-    <SectionWrapper>
+    <AnimatedSectionWrapper style={fadeIn} ref={ref}>
       <DramaIntro />
       <DramaAction />
-    </SectionWrapper>
+    </AnimatedSectionWrapper>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -50,6 +50,7 @@ const OverThreeSetting = {
   arrows: false,
   swipe: true,
   touchMove: true,
+  draggable: true,
   responsive: [
     {
       breakpoint: 1440,
@@ -86,6 +87,7 @@ const ThreeSetting = {
   arrows: false,
   swipe: true,
   touchMove: true,
+  draggable: true,
   responsive: [
     {
       breakpoint: 1440,
@@ -120,6 +122,48 @@ function OverThreeResponsiveSlider({
   setDialogData,
   setIsDialogOpen,
 }) {
+  const sliderRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+
+  useEffect(() => {
+    const handleWheel = (e) => {
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        sliderRef.current.slickGoTo(
+          sliderRef.current.innerSlider.state.currentSlide +
+            (e.deltaY > 0 ? 1 : -1),
+        );
+      }
+    };
+
+    const sliderElement = sliderRef.current?.innerSlider.list;
+    if (sliderElement) {
+      sliderElement.addEventListener("wheel", handleWheel, { passive: false });
+    }
+
+    return () => {
+      if (sliderElement) {
+        sliderElement.removeEventListener("wheel", handleWheel);
+      }
+    };
+  }, []);
+
+  const handleMouseDown = (e) => {
+    setIsDragging(false);
+    setStartX(e.clientX);
+  };
+
+  const handleMouseMove = (e) => {
+    if (Math.abs(e.clientX - startX) > 5) {
+      setIsDragging(true);
+    }
+  };
+
+  const handleMouseUp = () => {
+    setStartX(0);
+  };
+
   return (
     <SlideWrapper>
       <StyledSlider {...OverThreeSetting}>
@@ -145,6 +189,10 @@ function OverThreeResponsiveSlider({
                 dialogContent={dialogContent}
                 setDialogData={setDialogData}
                 setIsDialogOpen={setIsDialogOpen}
+                isDragging={isDragging}
+                handleMouseDown={handleMouseDown}
+                handleMouseMove={handleMouseMove}
+                handleMouseUp={handleMouseUp}
               />
             );
           })}
@@ -167,10 +215,51 @@ function UnderThreeResponsiveSlider({
   });
 
   const [isSetThreeCard, setIsSetThreeCard] = useState(true);
+  const sliderRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
 
   useEffect(() => {
     setIsSetThreeCard(isSlideTablet);
   }, [isSlideTablet]);
+
+  useEffect(() => {
+    const handleWheel = (e) => {
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        sliderRef.current.slickGoTo(
+          sliderRef.current.innerSlider.state.currentSlide +
+            (e.deltaY > 0 ? 1 : -1),
+        );
+      }
+    };
+
+    const sliderElement = sliderRef.current?.innerSlider.list;
+    if (sliderElement) {
+      sliderElement.addEventListener("wheel", handleWheel, { passive: false });
+    }
+
+    return () => {
+      if (sliderElement) {
+        sliderElement.removeEventListener("wheel", handleWheel);
+      }
+    };
+  }, []);
+
+  const handleMouseDown = (e) => {
+    setIsDragging(false);
+    setStartX(e.clientX);
+  };
+
+  const handleMouseMove = (e) => {
+    if (Math.abs(e.clientX - startX) > 5) {
+      setIsDragging(true);
+    }
+  };
+
+  const handleMouseUp = () => {
+    setStartX(0);
+  };
 
   return (
     <SlideWrapper>
@@ -197,6 +286,10 @@ function UnderThreeResponsiveSlider({
                 dialogContent={dialogContent}
                 setDialogData={setDialogData}
                 setIsDialogOpen={setIsDialogOpen}
+                isDragging={isDragging}
+                handleMouseDown={handleMouseDown}
+                handleMouseMove={handleMouseMove}
+                handleMouseUp={handleMouseUp}
               />
             );
           })}

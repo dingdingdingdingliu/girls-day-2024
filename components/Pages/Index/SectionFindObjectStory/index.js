@@ -1,7 +1,10 @@
+import { useState } from "react";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
 import { useTheme } from "@emotion/react";
+import { useInView } from "react-intersection-observer";
+import { useSpring, animated } from "@react-spring/web";
 import {
   PageWrapper,
   ContentWrapper,
@@ -24,40 +27,45 @@ import GameStoryCard from "@/components/Common/GameStoryCard";
 // 卡片資料
 const cardData = [
   {
-    title: "新二代女孩",
-    imageSrc: "/images/storyGirlImage.png",
+    title: "原住民族女孩",
+    imageSrc: "/images/index/objectGameGirls/aboriginal_girl.png",
+    imageAlt: "aboriginal_girl",
     copyWrite:
-      "自從台灣與東南亞多國頻繁婚姻移民後，具歧視意涵的「外籍新娘」一詞已被強調在地生根的「新住民」取代，而「新二代」則專指新住民之子女。過去在國族偏見下，臺灣社會對東南亞文化的輕視甚至歧視，新二代甚至被部分人認為「不是混血兒」，掩蓋其跨文化實力。新二代女孩更同時面對國族和性別歧視，除了面對「妳媽媽是買來的」的無知言論，在學校可能僅因身分就被歸類到問題學生，更能共感母親在人際、工作、家庭關係中被刁難的處境。新二代的優勢自2016年「新南向政策」後逐漸被社會重視。",
+      "全球的殖民歷史帶來「膚色歧視」，在臺灣，呈現華人比東南亞、原住民族優越的偏見，而原住民族女孩面臨「性別」加「族群」兩層歧視，時常以出於善意卻強化偏見的「親善型歧視」出現，例如：隨意邀請原民女孩「唱歌跳舞一段吧」其實是對祭典無知、把女孩當花瓶的邏輯；會讀書的原民女孩被教育體系鼓勵從事與「照顧」相關職業，是來自刻板社會分工。從1980年代，大量原住民女童因「仲介婚姻」或人口販運從部落移往市區，到當代，教育體制為原住民學生設有額外名額或設立原住民專班，從教育培力原住民族女孩。",
+  },
+  {
+    title: "隔代教養家庭女孩",
+    imageSrc: "/images/index/objectGameGirls/intergenerational_girl.png",
+    imageAlt: "intergenerational_girl",
+    copyWrite:
+      "「一個爸爸、一個媽媽、小孩」的核心家庭事實上目前僅佔三成，但長期以來，在教育和媒體的反覆強化下，被塑造為「最佳」的家庭型態，而忽略家庭的照顧功能健全才是幸福的重點，造成單親、隔代教養、同志家庭、其他親戚（如姑姑、舅舅）擔任主要照顧者的小孩，基於偏見被貼上「不幸」或「失能家庭」的標籤，鄰居、老師、同學家長擅自給予非預期的「同情」是造成負面的烙印效果，尤其女孩更容易被告誡要聽話、孝順、乖巧，打破這些性別偏見，才能讓女孩們適性發揮。",
+  },
+  {
+    title: "新二代女孩",
+    imageSrc: "/images/index/objectGameGirls/new_second_generation.png",
+    imageAlt: "new_second_generation",
+    copyWrite:
+      "自從臺灣與東南亞多國頻繁婚姻移民後，具歧視意涵的「外籍新娘」一詞已被強調在地生根的「新住民」取代，而「新二代」則專指新住民之子女。在國族偏見下，新二代甚至被部分人認為「不是混血兒」，新二代女孩更同時面對國族和性別歧視，除了面對「妳媽媽是買來的」的無知言論，在學校可能僅因身分就被歸類到問題學生，更能共感母親在人際、工作、家庭關係中被刁難的處境。2016年「新南向政策」後，新二代的語言、文化優勢逐漸被社會及企業重視，尤其成為跨國企業外派的優質人選。",
   },
   {
     title: "女同志學生",
-    imageSrc: "/images/storyGirlImage.png",
+    imageSrc: "/images/index/objectGameGirls/LGBT_girl.png",
+    imageAlt: "LGBT_girl",
     copyWrite:
-      "同志（LGBTQ+）教育和資訊不普及的時代，同志學生經常缺乏自我探索及社會支援，而女同志兼具女性和同志身份，更加邊緣，例如媒體經常以偏概全強調女同志「情殺」、「自殺」的社會事件，或提出「情境式女同志」以否認這種性傾向是常態，都影響大眾對女同志的認知，造成女同志小孩認同之路的阻礙。1994年北一女中學生殉情案件，遺書便寫著「在社會生存的本質就不適合我們」，時任校長丁亞雯受訪時更說出「北一女沒有同性戀」的違背事實言論，呈現社會對未成年女同志的無知與害怕。",
-  },
-  {
-    title: "性私密影像受害者",
-    imageSrc: "/images/storyGirlImage.png",
-    copyWrite:
-      "「性暴力」概念過去以肢體傷害為主，數位科技則提供新型態的犯罪媒介——影像，性暴力受害者常被「譴責被害者」的迷思所害，例如「不拍就不會外流」的說法，卻說不清為何女性必須用壓制自我展現的空間換取安全，更避而不談外流的人才是犯罪者，而數位傳播性使傷害迅速擴大，2022年鏡週刊記者蔣宜婷發表「青春煉獄　網路獵騙性私密影像事件簿」系列報導，揭露了犯罪集團有系統透過社交媒體對青少女的性剝削，例如，逐步誘導小網紅拍攝性私密影像、散播偷拍影像、販售影片社團等犯罪型態，上述對受害者的歧視也是助長這類犯罪的幫凶",
-  },
-  {
-    title: "未成年意外懷孕",
-    imageSrc: "/images/storyGirlImage.png",
-    copyWrite:
-      "在未成年情侶非預期懷孕並決定生產的狀態，女方比男方遭受更多的身心壓力，包含社會對未婚懷孕和單親媽媽的歧視、對墮胎的污名、教育斷層危機、母職的壓力等，2021年獨立媒體報導者的文章「我有小孩，我想念書：中學生小媽媽與自我實現的距離」指出小媽媽生育後決定留養小孩的比例已破九成，但因為「生育」和「養育」責任經常被綁定，在校園及原生家庭支持不夠的情況下，小媽媽比小爸爸回到校園完成學業的難度高許多，也因為上述歧視，讓小媽媽們選擇以其他理由休學，隱藏真實狀態而無法獲取正式資源，成為統計上的黑數，而教育程度低更影響就業選擇與經濟能力。",
+      "同志（LGBTQ+）教育和資訊不普及的時代，同志學生經常缺乏自我探索及社會支援，而女同志兼具女性和同志身份，更加邊緣，例如媒體經常以偏概全強調女同志「情殺」、「自殺」的社會事件，或提出「情境式女同志」以否認這種性傾向是常態，都影響大眾對女同志的認知，造成女同志小孩認同之路的阻礙。目前臺灣已有不少同志團體，提供入校宣講及線上資源，也出現公開出櫃的政務官員、民意代表及藝人等公眾人物，這些榜樣都對未成年女同志帶來正面影響。",
   },
   {
     title: "農漁村生活的女孩",
-    imageSrc: "/images/storyGirlImage.png",
+    imageSrc: "/images/index/objectGameGirls/country_side_girl.png",
+    imageAlt: "country_side_girl",
     copyWrite:
-      "偏鄉學童面對著基礎建設、教育資源、交通便利性都不高的環境限制，造成有限的教育資源更可能以重男輕女邏輯配置，認為女孩不用讀太好的學校，近的學校唸一唸、趕快出去工作——從當地現有產業選擇就好，或者，就近就業以方便照顧家中老小。整體而言女孩更容易承受「性別」和「城鄉」交叉歧視的後果，成為階級複製的犧牲品，除非少數學科表現優異且家庭願意付出更多教育成本的女孩，才有機會靠教育階級翻身。",
+      "偏鄉學童面對基礎建設、教育資源、交通便利性的環境限制，使有限的教育資源更可能以「重男輕女」邏輯配置，認為女孩不用讀太好的學校，就近唸一唸出去工作——選擇當地產業就好，或就近就業以方便照顧家中老小，偏鄉女孩更容易承受「性別」和「城鄉」交叉歧視，易成為階級複製的犧牲品。而當教育與社福政策投注資源，例如保障名額、計畫優先錄取，學校、社會、家庭陸續重視栽培女孩潛力，偏鄉女孩便有機會靠教育階級翻身。",
   },
 ];
 
 // 標題文案
 const titleCopyWrite =
-  "覺察不同情境的歧視覺察不同情境的歧視覺察不同情境的歧視覺察不同情境的歧視覺察不同情境的歧視覺察不同情境的歧視覺察不同情境的歧視覺察不同情境的歧視覺察不同情境的歧視";
+  "在「展售區」小遊戲中，大家探索了過去與現在的性別平等相關的臺灣人物、事件和地點。隨著時代推移，人、事、地、物及身份的多元性不斷交織出新的性別偏見。現在，讓我們運用同樣敏銳的覺察力，一起瞭解身邊更多值得關注的情境案例，喚醒現實中的覺察力吧！";
 
 // 頁面底層灰色底色延展
 const StyledPageWrapper = styled(PageWrapper)`
@@ -82,7 +90,7 @@ const StyledTitleSectionWrapper = styled(TitleSectionWrapper)`
 `;
 
 // 電腦版底部滿版圖層
-const ImageDesktopWrapper = styled.div`
+const AnimatedImageDesktopWrapper = styled(animated.div)`
   width: 100%;
   height: 200px;
   position: relative; /* 必須設置 position relative 以便內部圖片填滿 */
@@ -94,7 +102,7 @@ const ImageDesktopWrapper = styled.div`
 `;
 
 // 手機版底部滿版圖層
-const ImageMobileWrapper = styled.div`
+const AnimatedImageMobileWrapper = styled(animated.div)`
   display: none;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
@@ -103,21 +111,51 @@ const ImageMobileWrapper = styled.div`
     height: 100px;
     position: relative; /* 必須設置 position relative 以便內部圖片填滿 */
     margin-top: 24px;
+    padding: 0 8px;
   }
 `;
 
+const AnimatedTitleSection = styled(animated.div)`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+`;
+
 // 標題內容區塊元件
-export function TitleSection() {
+export function TitleSection({ inView }) {
+  const fadeIn = useSpring({
+    opacity: inView ? 1 : 0,
+    config: { duration: 1500 },
+    delay: 600, // 延遲效果
+  });
   return (
     <StyledTitleSectionWrapper>
-      <TitleSectionInnerWrapper>
-        <TitleContentWrapper>
-          <GameStoryTitle gameOrder="II" />
-          <TitleImageMobileWrapper>
+      <AnimatedTitleSection style={fadeIn}>
+        <TitleSectionInnerWrapper>
+          <TitleContentWrapper>
+            <GameStoryTitle gameOrder="II" />
+            <TitleImageMobileWrapper>
+              <ImageWrapper>
+                <Image
+                  src="/images/index/object_game_intro.png"
+                  alt="object_game"
+                  fill
+                  style={{
+                    objectFit: "cover",
+                    objectPosition: "center",
+                  }}
+                />
+              </ImageWrapper>
+            </TitleImageMobileWrapper>
+          </TitleContentWrapper>
+          <TitleCopyWriteWrapper>{titleCopyWrite}</TitleCopyWriteWrapper>
+          <TitleImageDesktopWrapper>
             <ImageWrapper>
               <Image
-                src="/images/visionImage.png"
-                alt="visionImage"
+                src="/images/index/object_game_intro.png"
+                alt="object_game"
                 fill
                 style={{
                   objectFit: "cover",
@@ -125,35 +163,36 @@ export function TitleSection() {
                 }}
               />
             </ImageWrapper>
-          </TitleImageMobileWrapper>
-        </TitleContentWrapper>
-        <TitleCopyWriteWrapper>{titleCopyWrite}</TitleCopyWriteWrapper>
-        <TitleImageDesktopWrapper>
-          <ImageWrapper>
-            <Image
-              src="/images/visionImage.png"
-              alt="visionImage"
-              fill
-              style={{
-                objectFit: "cover",
-                objectPosition: "center",
-              }}
-            />
-          </ImageWrapper>
-        </TitleImageDesktopWrapper>
-      </TitleSectionInnerWrapper>
+          </TitleImageDesktopWrapper>
+        </TitleSectionInnerWrapper>
+      </AnimatedTitleSection>
     </StyledTitleSectionWrapper>
   );
 }
 
-export default function SectionVisionStory({ isDesktop }) {
+export default function SectionVisionStory() {
+  const [reverse, setReverse] = useState(false);
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0,
+  });
+
   const theme = useTheme();
+
+  const flashingImage = useSpring({
+    from: { opacity: reverse ? 1 : 0.2 },
+    to: { opacity: reverse ? 0.2 : 1 },
+    config: { duration: 500 }, // 每個階段的時間一致
+    onRest: () => setReverse(!reverse), // 動畫完成後反轉
+    loop: true, // 無限循環
+  });
+
   return (
-    <StyledPageWrapper>
+    <StyledPageWrapper ref={ref}>
       <StyledContentWrapper>
         <StorySectionWrapper>
           <MainSectionWrapper>
-            <TitleSection />
+            <TitleSection inView={inView} />
             <ContentSectionWrapper>
               {cardData?.map((data, index) => {
                 return (
@@ -170,29 +209,29 @@ export default function SectionVisionStory({ isDesktop }) {
             </ContentSectionWrapper>
           </MainSectionWrapper>
         </StorySectionWrapper>
-        <ImageDesktopWrapper>
+        <AnimatedImageDesktopWrapper style={flashingImage}>
           <Image
-            src="/images/visionImage.png"
-            alt="visionImage"
+            src="/images/index/game_bottom_image.png"
+            alt="game_bottom_image"
             fill
             style={{
               objectFit: "contain",
               objectPosition: "center",
             }}
           />
-        </ImageDesktopWrapper>
+        </AnimatedImageDesktopWrapper>
       </StyledContentWrapper>
-      <ImageMobileWrapper>
+      <AnimatedImageMobileWrapper style={flashingImage}>
         <Image
-          src="/images/visionImage.png"
-          alt="visionImage"
+          src="/images/index/game_bottom_image.png"
+          alt="game_bottom_image"
           fill
           style={{
             objectFit: "contain",
             objectPosition: "center",
           }}
         />
-      </ImageMobileWrapper>
+      </AnimatedImageMobileWrapper>
     </StyledPageWrapper>
   );
 }
