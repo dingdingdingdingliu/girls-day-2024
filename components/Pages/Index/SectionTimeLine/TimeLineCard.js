@@ -1,5 +1,8 @@
+import { useState } from "react";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import { useSpring, animated } from "@react-spring/web";
+import { MdOutlineKeyboardDoubleArrowDown } from "react-icons/md";
 
 // 卡片區塊底層(含卡片+指引線)
 const TimeCardWrapper = styled.div`
@@ -58,7 +61,7 @@ export const CardWrapper = styled.div`
 const TitleSection = styled.p`
   font-size: ${(props) => props.theme.fontSizes[18]};
   font-weight: ${(props) => props.theme.fontWeights.bold};
-  color: ${(props) => props.theme.colors.black};
+  color: ${(props) => props.theme.colors.green};
   white-space: pre-wrap;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
@@ -66,29 +69,11 @@ const TitleSection = styled.p`
   }
 `;
 
-// 放置 scroll bar
-const ContentScrollWrapper = styled.div`
-  width: 100%;
+const AnimatedArrowWrapper = styled(animated.div)`
+  width: 14px;
   height: 100%;
   max-height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-right: 8px;
-`;
-
-const FakeScroll = styled.div`
-  width: 12px;
-  height: calc(100% - 3px);
-  max-height: calc(100% - 3px);
-  pointer-events: none;
-  transition: opacity 0.2s;
-  position: absolute;
-  top: 2px;
-  right: 0px;
-  background-image: ${(props) =>
-    `linear-gradient(to bottom, 
-    ${props.theme.colors.mediumGrey} 1%, 
-    ${props.theme.colors.white} 90%)`};
+  overflow: hidden;
 `;
 
 const ContentWrapper = styled.div`
@@ -98,7 +83,9 @@ const ContentWrapper = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   margin-top: 24px;
-  position: relative;
+  display: flex;
+  justify-content: start;
+  align-items: start;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     height: 75%;
@@ -111,8 +98,7 @@ const ContentSection = styled.div`
   font-weight: ${(props) => props.theme.fontWeights.normal};
   color: ${(props) => props.theme.colors.black};
   letter-spacing: 2px;
-  position: relative;
-  padding-right: 10px;
+  width: calc(100% - 14px);
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     font-size: ${(props) => props.theme.fontSizes[10]};
@@ -121,7 +107,16 @@ const ContentSection = styled.div`
 
 // isAbove: 卡片在 TimeLine 上方，指引線在卡片之下
 export default function TimeLineCard({ cardData }) {
+  const [reverse, setReverse] = useState(false);
   const { title, content, lineColor, isBorder, position } = cardData;
+
+  const flashingIcon = useSpring({
+    from: { opacity: reverse ? 1 : 0.2 },
+    to: { opacity: reverse ? 0.2 : 1 },
+    config: { duration: 500 }, // 每個階段的時間一致
+    onRest: () => setReverse(!reverse), // 動畫完成後反轉
+    loop: true, // 無限循環
+  });
   return (
     <div>
       {position === "above" ? (
@@ -130,10 +125,10 @@ export default function TimeLineCard({ cardData }) {
           <CardWrapper isBorder={isBorder}>
             <TitleSection>{title}</TitleSection>
             <ContentWrapper>
-              <FakeScroll />
-              <ContentScrollWrapper>
-                <ContentSection>{content}</ContentSection>
-              </ContentScrollWrapper>
+              <ContentSection>{content}</ContentSection>
+              <AnimatedArrowWrapper style={flashingIcon}>
+                <MdOutlineKeyboardDoubleArrowDown />
+              </AnimatedArrowWrapper>
             </ContentWrapper>
           </CardWrapper>
         </TopTimeCardWrapper>
@@ -143,10 +138,10 @@ export default function TimeLineCard({ cardData }) {
           <CardWrapper isBorder={isBorder}>
             <TitleSection>{title}</TitleSection>
             <ContentWrapper>
-              <FakeScroll />
-              <ContentScrollWrapper>
-                <ContentSection>{content}</ContentSection>
-              </ContentScrollWrapper>
+              <ContentSection>{content}</ContentSection>
+              <AnimatedArrowWrapper style={flashingIcon}>
+                <MdOutlineKeyboardDoubleArrowDown />
+              </AnimatedArrowWrapper>
             </ContentWrapper>
           </CardWrapper>
         </BottomTimeCardWrapper>

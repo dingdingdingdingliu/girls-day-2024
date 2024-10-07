@@ -31,63 +31,63 @@ const timeCardData = [
   },
   {
     years: "1996",
-    labelColor: globalTheme.colors.green,
+    labelColor: globalTheme.colors.white,
     card: {
       main: {
         title: "彭婉如事件促成《性侵害犯罪防治法》",
         content:
           "時任民進黨婦女部主任彭婉如女士，致力於推動「四分之一女性保障名額」明文化，一次高雄會議後夜間搭乘計程車返回飯店卻消失，三天後證實遭到性侵殺害，至今卻未破獲兇手。該事件引發社會譁然，婦女團體發起「女權活動火照夜路大遊行」訴求女性夜行人身安全、施壓立法院通過《性侵害犯罪防治法》、催生教育部「性別平等教育委員會」，另外後成立「財團法人彭婉如文教基金會」延續其未竟之業。",
-        lineColor: globalTheme.colors.green,
-        isBorder: true,
+        lineColor: globalTheme.colors.white,
+        isBorder: false,
         position: "above",
       },
     },
   },
   {
     years: "1998",
-    labelColor: globalTheme.colors.green,
+    labelColor: globalTheme.colors.white,
     card: {
       main: {
         title: "鄧如雯殺夫案催生《家庭暴力防治法》",
         content:
           "鄧如雯是未成年的性侵受害者，在當時女性受害難以獲得司法與社會正義，甚至可能認為受害者「髒掉了」而嫁給加害人，她因此與幼子長期處於丈夫的家暴裡，直到某日趁丈夫酒醉將其殺害，表示「終於能好好睡一覺了」。該案催生家暴立法，隔年臺灣實施民事保護令制度，成為亞洲第一，宣告告別「法不入家門」的時代。",
-        lineColor: globalTheme.colors.green,
-        isBorder: true,
+        lineColor: globalTheme.colors.white,
+        isBorder: false,
         position: "below",
       },
     },
   },
   {
     years: "2004",
-    labelColor: globalTheme.colors.green,
+    labelColor: globalTheme.colors.white,
     card: {
       main: {
         title: "葉永鋕事件促成《性別平等教育法》",
         content:
           "屏東高樹一位國中男學生，因氣質陰柔，長期受霸凌，總在上課時去廁所以躲避同學捉弄，一日卻因此失去生命，校方儘速清理現場引發群眾譁然，以「玫瑰少年」稱呼氣質類似的男孩並促成立法，從許多面向深耕校園性別意識，包含「學習環境及資源」、「課程、教材及教學」、「校園性別事件之防治」、「申請調查及救濟」及「罰則」部分，葉媽媽陳君汝更多次現身相關活動，鼓勵性別氣質不符常規的孩子們。",
-        lineColor: globalTheme.colors.green,
-        isBorder: true,
+        lineColor: globalTheme.colors.white,
+        isBorder: false,
         position: "above",
       },
     },
   },
   {
     years: "2007-2010",
-    labelColor: globalTheme.colors.green,
+    labelColor: globalTheme.colors.white,
     card: {
       main: {
         title: "《民法》子女從姓修法",
         content:
           "本土婦女運動具有菁英特質，早期以修法、立法為倡議策略，主要目標是體現家庭倫理及經濟秩序的《民法》〈親屬編〉，近二十年間經歷十六次修法。其中第1059條子女從姓的規定，2007年「原則從父姓」改為「父母約定之」；2010年，該條文再次修正，賦予成年子女自主更改姓氏的權利。",
-        lineColor: globalTheme.colors.green,
-        isBorder: true,
+        lineColor: globalTheme.colors.white,
+        isBorder: false,
         position: "below",
       },
     },
   },
   {
     years: "2010",
-    labelColor: globalTheme.colors.green,
+    labelColor: globalTheme.colors.white,
     card: {
       main: {
         title: "台南女中短褲抗爭",
@@ -101,8 +101,8 @@ const timeCardData = [
         title: "白玫瑰運動",
         content:
           "兩起女童性侵案輕判引發的司法改革運動，判決指出女童無積極抵抗而認定「未違反意願」，引起民眾怨氣，網路連署抗議人數高達15萬人，接著民眾自發性聚集兩波街頭示威，「925白玫瑰運動」民眾身穿黑衣、手持白玫瑰、牽著小孩，訴求擴大加重性侵的保護對象、兒童性侵案審判須專家陪同、不適任法官退場機制等；「1120白玫瑰運動」促成延宕多年的《法官法》，以及《性侵害犯罪防治法》修法，又稱為「白玫瑰法案」。",
-        lineColor: globalTheme.colors.green,
-        isBorder: true,
+        lineColor: globalTheme.colors.white,
+        isBorder: false,
         position: "above",
       },
     },
@@ -165,28 +165,28 @@ const timeCardData = [
   },
   {
     years: "2020",
-    labelColor: globalTheme.colors.green,
+    labelColor: globalTheme.colors.white,
     card: {
       main: {
         title: "蔡英文連任臺灣總統",
         content:
           "臺灣首任女性總統蔡英文女士於2016年就任，由公共衛生學者陳建仁擔任副總統，並在2020年大選搭檔前行政院院長賴清德爭取連任，最終創下817萬票的臺灣史上最高票紀錄，成功連任。在任期間獲多項國際肯定，如2020年全美議會交流理事會「國際領袖先鋒獎」、美國《TIME》雜誌百大影響人物，以及2023年美國哈德遜研究所「全球領導力獎」等。",
-        lineColor: globalTheme.colors.green,
-        isBorder: true,
+        lineColor: globalTheme.colors.white,
+        isBorder: false,
         position: "above",
       },
     },
   },
   {
     years: "2022",
-    labelColor: globalTheme.colors.green,
+    labelColor: globalTheme.colors.white,
     card: {
       main: {
         title: "臺灣性別人權「三個亞洲第一」",
         content:
           "臺灣第四次CEDAW公約的國家報告中，行政院撰寫四年來的性別人權成果，羅列三個亞洲第一：2021年性別不平等指數（Gender Inequality Index, GII）中性別平等排名居亞洲之冠、2020年女性立委比率突破4成，以及2019年同婚合法化。臺灣以人權進行外交的成果，也呈現臺灣民眾整體性別平等觀念從2018年的73.5分提升至2020年75.6分的逐步邁進。",
-        lineColor: globalTheme.colors.green,
-        isBorder: true,
+        lineColor: globalTheme.colors.white,
+        isBorder: false,
         position: "below",
       },
     },
@@ -207,8 +207,8 @@ const timeCardData = [
         title: "MeToo運動引發「性平三法」修法",
         content:
           "#MeToo 是社群揭發性暴力的運動，透過hashtag召喚共同經驗，對抗受害者被質疑的默許性暴力文化。從2017年美國好萊塢開始，影響各國，2023年臺灣較有規模地引發效應。MeToo敘事呈現出高度相似性是「權勢不對等」以及「陳年故事」，因此性平三法修法，讓這類性暴力能妥善進入司法，包含強化《性別平等教育法》的「師對生」性平事件流程、擴大《性別平等工作法》適用範圍，以及延長《性騷擾防治法》申訴期限等。",
-        lineColor: globalTheme.colors.green,
-        isBorder: true,
+        lineColor: globalTheme.colors.white,
+        isBorder: false,
         position: "below",
       },
     },
