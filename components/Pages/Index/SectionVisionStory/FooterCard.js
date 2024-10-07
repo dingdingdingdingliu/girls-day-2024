@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { keyframes } from "@emotion/react";
+import { useInView } from "react-intersection-observer";
+import { useSpring, animated } from "@react-spring/web";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import {
@@ -7,10 +8,12 @@ import {
   MdOutlineKeyboardArrowDown,
 } from "react-icons/md";
 
-const FooterCardWrapper = styled.div`
+const AnimatedFooterCardWrapper = styled(animated.div)`
   display: flex;
   flex-direction: column;
   align-items: start;
+  position: relative;
+  z-index: ${(props) => (props.isVisible ? 10 : 1)};
 `;
 
 const FooterCardButtonWrapper = styled.div`
@@ -23,6 +26,7 @@ const FooterCardButtonWrapper = styled.div`
   padding: 24px 0;
   border-radius: 2px 2px 0 0;
   cursor: pointer;
+  z-index: 2;
 `;
 
 const ExplainTitleStyle = styled.p`
@@ -89,74 +93,40 @@ const ContentTitleStyle = styled.p`
   letter-spacing: 1px;
 
   @media (max-width: ${globalConfig.sliderTablet}) {
-    font-size: ${(props) => props.theme.fontSizes[16]};
+    font-size: ${(props) => props.theme.fontSizes[12]};
+    letter-spacing: 0px;
     margin: 0;
   }
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     font-size: ${(props) => props.theme.fontSizes[20]};
+    letter-spacing: 1px;
     margin: 0 28px;
   }
 `;
 
-const fadeIn = keyframes`
-  from {
-    max-height: 0;
-    opacity: 0;
-    transform: translateY(-20px); /* 模擬從上往下展開 */
-  }
-  to {
-    max-height: 900px;
-    opacity: 1;
-    transform: translateY(0); /* 最後回到原位 */
-  }
-`;
-
-const fadeOut = keyframes`
-  from {
-    max-height: 900px;
-    opacity: 1;
-    transform: translateY(0); /* 初始位置 */
-  }
-  to {
-    max-height: 0;
-    opacity: 0;
-    transform: translateY(-20px); /* 往上收合 */
-  }
-`;
-
 const RelativePosition = styled.div`
-  background-color: ${(props) =>
-    props.isVisible ? "transparent" : props.theme.colors.black};
+  background-color: ${(props) => props.theme.colors.black};
   width: 100%;
   height: 1px;
-  position: relative;
 `;
 
-const CopyWriteWrapper = styled.div`
-  display: ${(props) => (props.isVisible ? "block" : "none")};
+const AnimatedCopyWriteWrapper = styled(animated.div)`
   background-color: ${(props) => props.theme.colors.white};
   width: 100%;
   padding: 16px 24px;
-  position: absolute;
-  top: 0;
-  left: 0;
   border: 4px solid ${(props) => props.theme.colors.black};
-  z-index: ${(props) => Number(props.count) * 10};
-  max-height: ${(props) => (props.isVisible ? "900px" : "0")};
-  opacity: ${(props) => (props.isVisible ? 1 : 0)};
-  animation: ${(props) => (props.isVisible ? fadeIn : fadeOut)} 0.5s ease-in-out
-    forwards;
-  transition:
-    max-height 0.5s ease-in-out,
-    opacity 0.5s ease-in-out; /* 增加平滑過渡 */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     padding: 24px 36px;
   }
 `;
 
-const CopyWriteStyle = styled.p`
+const CopyWriteStyle = styled.p`s
   color: ${(props) => props.theme.colors.black};
   font-size: ${(props) => props.theme.fontSizes[20]};
   font-weight: ${(props) => props.theme.fontWeights.normal};
@@ -172,8 +142,27 @@ export default function FooterCard({ title, copyWrite, count }) {
   const [isVisible, setIsVisible] = useState(false);
   const onCardClick = () => setIsVisible((visible) => !visible);
 
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0,
+  });
+
+  const fadeIn = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateX(0)" : "translateY(-50px)",
+    config: { duration: 800 },
+    delay: 400, // 延遲效果
+  });
+
+  const fadeInCard = useSpring({
+    opacity: isVisible ? 1 : 0,
+    transform: isVisible ? "translateX(0)" : "translateY(-10px)",
+    zIndex: isVisible ? (10 - count) * 100 : 0,
+    config: { duration: 100 },
+  });
+
   return (
-    <FooterCardWrapper>
+    <AnimatedFooterCardWrapper ref={ref} style={fadeIn} isVisible={isVisible}>
       <FooterCardButtonWrapper onClick={onCardClick}>
         <ExplainTitleStyle>名詞解釋</ExplainTitleStyle>
         <ContentTitleWrapper>
@@ -182,11 +171,11 @@ export default function FooterCard({ title, copyWrite, count }) {
           {isVisible ? <ArrowUpStyle /> : <ArrowDownStyle />}
         </ContentTitleWrapper>
       </FooterCardButtonWrapper>
-      <RelativePosition isVisible={isVisible}>
-        <CopyWriteWrapper isVisible={isVisible} count={count}>
+      <RelativePosition>
+        <AnimatedCopyWriteWrapper style={fadeInCard}>
           <CopyWriteStyle>{copyWrite}</CopyWriteStyle>
-        </CopyWriteWrapper>
+        </AnimatedCopyWriteWrapper>
       </RelativePosition>
-    </FooterCardWrapper>
+    </AnimatedFooterCardWrapper>
   );
 }
