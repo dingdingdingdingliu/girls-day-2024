@@ -1,9 +1,13 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
+import { useInView } from "react-intersection-observer";
+import { useSpring, animated } from "@react-spring/web";
 import { ImageWrapper } from "../Index/Wrapper";
 
-const StoryCardWrapper = styled.div`
+const delay = (i) => Number(i) * 150;
+
+const AnimatedStoryCardWrapper = styled(animated.div)`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -108,12 +112,27 @@ function BevelTitle({ labelText, labelColor, textColor }) {
 export default function GameStoryCard({
   labelText,
   imageSrc,
+  imageAlt,
   copyWrite,
   labelColor,
   textColor,
+  id,
 }) {
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0,
+  });
+
+  const getSpringProps = (id) =>
+    useSpring({
+      opacity: inView ? 1 : 0,
+      transform: inView ? "translateY(0)" : "translateY(-30px)",
+      config: { duration: 500 },
+      delay: delay(id), // 每個元素的延遲時間
+    });
+
   return (
-    <StoryCardWrapper>
+    <AnimatedStoryCardWrapper style={getSpringProps(id)} ref={ref}>
       <BevelTitle
         labelText={labelText}
         labelColor={labelColor}
@@ -124,7 +143,7 @@ export default function GameStoryCard({
           <ImageWrapper>
             <Image
               src={imageSrc}
-              alt="storyGirlImage"
+              alt={imageAlt}
               fill
               style={{
                 objectFit: "contain",
@@ -137,6 +156,6 @@ export default function GameStoryCard({
           <CopyWrite>{copyWrite}</CopyWrite>
         </CopyWriteSectionWrapper>
       </CardContentWrapper>
-    </StoryCardWrapper>
+    </AnimatedStoryCardWrapper>
   );
 }

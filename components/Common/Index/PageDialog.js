@@ -59,25 +59,24 @@ const Title = styled.p`
   font-size: ${(props) => props.theme.fontSizes[28]};
   font-weight: ${(props) => props.theme.fontWeights.bold};
   color: ${(props) => props.theme.colors.black};
-  white-space: pre-wrap;
   letter-spacing: 1px;
-
-  @media (max-width: ${globalConfig.mediaQuery}) {
-    white-space: pre-wrap;
-  }
 `;
 
 const Intro = styled.p`
   font-size: ${(props) => props.theme.fontSizes[14]};
   font-weight: ${(props) => props.theme.fontWeights.normal};
   color: ${(props) => props.theme.colors.black};
-  white-space: nowrap;
+  white-space: pre-wrap;
   letter-spacing: 1px;
-  margin: 8px 0 36px 0;
+  margin: 8px 0 4px 0;
+`;
 
-  @media (max-width: ${globalConfig.mediaQuery}) {
-    white-space: pre-wrap;
-  }
+const HashTag = styled.p`
+  font-size: ${(props) => props.theme.fontSizes[14]};
+  font-weight: ${(props) => props.theme.fontWeights.normal};
+  color: ${(props) => props.theme.colors.green};
+  white-space: pre-wrap;
+  letter-spacing: 1px;
 `;
 
 // 內容層
@@ -88,9 +87,22 @@ const ContentWrapper = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   word-break: break-all;
+  white-space: pre-wrap;
   font-size: ${(props) => props.theme.fontSizes[18]};
   color: ${(props) => props.theme.colors.black};
   letter-spacing: 1px;
+  padding-right: 14px;
+  margin-top: 36px;
+`;
+
+const Footer = styled.p`
+  font-size: ${(props) => props.theme.fontSizes[18]};
+  font-weight: ${(props) => props.theme.fontWeights.normal};
+  color: ${(props) => props.theme.colors.black};
+  white-space: pre-wrap;
+  letter-spacing: 1px;
+  margin: 8px 0 36px 0;
+  text-align: end;
 `;
 
 export default function PageDialog({
@@ -118,9 +130,14 @@ export default function PageDialog({
           <IconWrapper onClick={() => onDesktopCloseClick()}>
             <StyledRxCross />
           </IconWrapper>
-          <Title>{dialogData.title}</Title>
-          <Intro>{dialogData.intro}</Intro>
-          <ContentWrapper>{dialogData.content}</ContentWrapper>
+          <Title>{dialogData?.title}</Title>
+          {dialogData?.engTitle && <Title>{dialogData?.engTitle}</Title>}
+          <Intro>{dialogData?.intro}</Intro>
+          {dialogData?.hashTag && <HashTag>{dialogData?.hashTag}</HashTag>}
+          <ContentWrapper>
+            {dialogData?.content}
+            {dialogData?.footer && <Footer>{dialogData?.footer}</Footer>}
+          </ContentWrapper>
         </DialogWrapper>
       </Wrapper>
     </Overlay>

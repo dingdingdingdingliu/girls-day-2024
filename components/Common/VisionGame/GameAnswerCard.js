@@ -63,7 +63,7 @@ const StyledRxCross = styled(RxCross2)`
 export default function GameAnswerCard({ data }) {
   const { id, question, correctAnswer, isCorrect } = data;
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0,
   });
 

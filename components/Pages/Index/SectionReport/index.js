@@ -16,8 +16,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
   padding-bottom: 0;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    padding: 0;
-    padding-top: 24px;
+    padding: 24px 0;
   }
 `;
 
@@ -33,60 +32,42 @@ const InnerContentWrapper = styled.div`
   }
 `;
 
-// 電腦版底部滿版圖層
-const ImageDesktopWrapper = styled.div`
+// 手機版底部滿版圖層
+const ImageWrapper = styled.div`
   width: 100%;
   height: 200px;
-  position: relative; /* 必須設置 position relative 以便內部圖片填滿 */
+  max-height: 200px;
+  margin-top: 20px;
+  position: relative;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    display: none;
-  }
-`;
-
-// 手機版底部滿版圖層
-const ImageMobileWrapper = styled.div`
-  display: none;
-
-  @media (max-width: ${globalConfig.mediaQuery}) {
-    display: block;
     width: 100%;
     height: 100px;
-    position: relative; /* 必須設置 position relative 以便內部圖片填滿 */
+    max-height: 100px;
+    margin-top: 0;
   }
 `;
 
-export default function SectionReport() {
+export default function SectionReport({ isFirstEdition }) {
   return (
     <StyledPageWrapper>
       <StyledContentWrapper>
         <InnerContentWrapper>
-          <ReportSection />
+          <ReportSection isFirstEdition={isFirstEdition} />
           <DramaSection />
         </InnerContentWrapper>
-        <ImageDesktopWrapper>
-          <Image
-            src="/images/reportDesktopImage.png"
-            alt="reportDesktopImage"
-            fill
-            style={{
-              objectFit: "cover",
-              objectPosition: "center",
-            }}
-          />
-        </ImageDesktopWrapper>
       </StyledContentWrapper>
-      <ImageMobileWrapper>
+      <ImageWrapper>
         <Image
-          src="/images/reportMobileImage.png"
-          alt="reportMobileImage"
+          src="/images/index/report_bottom_image.png"
+          alt="report_image"
           fill
           style={{
             objectFit: "cover",
             objectPosition: "center",
           }}
         />
-      </ImageMobileWrapper>
+      </ImageWrapper>
     </StyledPageWrapper>
   );
 }

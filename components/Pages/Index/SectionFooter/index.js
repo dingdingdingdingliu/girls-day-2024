@@ -61,6 +61,10 @@ const Title = styled.p`
   letter-spacing: 1px;
   white-space: nowrap;
 
+  @media (max-width: ${globalConfig.sliderTablet}) {
+    font-size: ${(props) => props.theme.fontSizes[18]};
+  }
+
   @media (max-width: ${globalConfig.sliderCardContentLimit}) {
     margin: 0 36px 0 0;
   }
@@ -95,6 +99,10 @@ const LogoImg = styled.img`
   height: 40px;
   width: auto;
 
+  @media (max-width: ${globalConfig.sliderTablet}) {
+    height: 28px;
+  }
+
   @media (max-width: ${globalConfig.mediaQuery}) {
     height: 32px;
   }
@@ -105,12 +113,18 @@ function Organizer() {
     <LogoWrapper>
       <Title>主辦單位</Title>
       <LogoImagesWrapper>
-        <LogoImg src="/images/logos/Welfare.png" alt="Welfare" />
-        <LogoImg
-          src="/images/logos/MOHW.png"
-          alt="MOHW"
-          style={{ marginLeft: "24px" }}
-        />
+        <a
+          href="https://www.sfaa.gov.tw/SFAA/default.aspx"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <LogoImg src="/images/logos/welfare.png" alt="welfare" />
+          <LogoImg
+            src="/images/logos/MOHW.png"
+            alt="MOHW"
+            style={{ marginLeft: "24px" }}
+          />
+        </a>
       </LogoImagesWrapper>
     </LogoWrapper>
   );
@@ -121,7 +135,13 @@ function CoOrganizer() {
     <LogoWrapper>
       <Title>承辦單位</Title>
       <LogoImagesWrapper>
-        <LogoImg src="/images/logos/clubon.png" alt="clubon" />
+        <a
+          href="https://www.clubon.space/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <LogoImg src="/images/logos/clubon.png" alt="clubon" />
+        </a>
       </LogoImagesWrapper>
     </LogoWrapper>
   );
@@ -132,7 +152,13 @@ function Consultant() {
     <LogoWrapper>
       <Title>議題顧問</Title>
       <LogoImagesWrapper>
-        <LogoImg src="/images/logos/gohLogo.svg" alt="gohLogo" />
+        <a
+          href="https://www.goh.org.tw/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <LogoImg src="/images/logos/gohTaiwanLogo.png" alt="gohTaiwanLogo" />
+        </a>
       </LogoImagesWrapper>
     </LogoWrapper>
   );
@@ -143,12 +169,32 @@ function Partner() {
     <LogoWrapper>
       <FakeTitle>合作夥伴</FakeTitle>
       <LogoImagesWrapper>
-        <LogoImg src="/images/logos/logoOne.png" alt="logoOne" />
         <LogoImg
-          src="/images/logos/logoTwo.png"
-          alt="logoTwo"
+          src="/images/logos/charity-lottery.png"
+          alt="charity-lottery"
+        />
+        <LogoImg
+          src="/images/logos/child-welfare.png"
+          alt="child-welfare"
           style={{ marginLeft: "24px" }}
         />
+      </LogoImagesWrapper>
+    </LogoWrapper>
+  );
+}
+
+function DramaPartner() {
+  return (
+    <LogoWrapper>
+      <Title>議題顧問</Title>
+      <LogoImagesWrapper>
+        <a
+          href="https://www.facebook.com/thinkfeelmove.tw/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <LogoImg src="/images/logos/thinkfeelmove.png" alt="thinkfeelmove" />
+        </a>
       </LogoImagesWrapper>
     </LogoWrapper>
   );
@@ -161,6 +207,7 @@ export default function Footer() {
         <LogosWrapper>
           <Organizer />
           <CoOrganizer />
+          <DramaPartner />
           <Consultant />
           <Partner />
         </LogosWrapper>

@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
-import globalConfig from "@/styles/globalConfig";
-import { OverThreeResponsiveSlider } from "@/components/Common/Slider";
 import Image from "next/image";
+import globalConfig from "@/styles/globalConfig";
+import { useInView } from "react-intersection-observer";
+import { useSpring } from "@react-spring/web";
+import { OverThreeResponsiveSlider } from "@/components/Common/Slider";
 import { useTheme } from "@emotion/react";
 import { societyCardData } from "./extendedData";
 import { SocietyTitle } from "@/components/Common/Index/TitleWithLine";
@@ -11,6 +13,7 @@ import {
   IntroWrapper,
   IntroImageWrapper,
   ActionWrapper,
+  AnimatedWrapper,
 } from "./Components";
 import {
   PageWrapper,
@@ -54,8 +57,8 @@ function SocietyTitleSection() {
       <IntroImageWrapper>
         <ImageWrapper>
           <Image
-            src="/images/visionImage.png"
-            alt="visionImage"
+            src="/images/index/societySection/society_intro.png"
+            alt="society_intro"
             fill
             style={{
               objectFit: "contain",
@@ -69,15 +72,29 @@ function SocietyTitleSection() {
 }
 
 export default function SocietySection() {
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.2,
+  });
+
+  const fadeIn = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateX(0)" : "translateY(-20px)",
+    config: { duration: 700 },
+    delay: 300,
+  });
+
   return (
     <StyledPageWrapper>
-      <StyledContentWrapper>
-        <InnerContentWrapper>
-          <SectionWrapper>
-            <SocietyTitleSection />
-            <SocietySlider />
-          </SectionWrapper>
-        </InnerContentWrapper>
+      <StyledContentWrapper ref={ref}>
+        <AnimatedWrapper style={fadeIn}>
+          <InnerContentWrapper>
+            <SectionWrapper>
+              <SocietyTitleSection />
+              <SocietySlider />
+            </SectionWrapper>
+          </InnerContentWrapper>
+        </AnimatedWrapper>
       </StyledContentWrapper>
     </StyledPageWrapper>
   );

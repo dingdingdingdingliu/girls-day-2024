@@ -1,11 +1,19 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import { useSpring, animated } from "@react-spring/web";
 
 export const AbsoluteLabelWrapper = styled.div`
   width: 27%;
   position: absolute;
   top: 0;
   left: 0;
+`;
+
+const AnimatedBevelWrapper = styled(animated.div)`
+  width: 100%;
+  @media (max-width: ${globalConfig.mediaQuery}) {
+    width: 200px;
+  }
 `;
 
 const BevelLabelStyle = styled.div`
@@ -19,7 +27,7 @@ const BevelLabelStyle = styled.div`
   padding-right: 6%;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    width: 200px;
+    width: 100%;
     height: 50px;
     padding-right: 16px;
   }
@@ -38,10 +46,18 @@ const BevelLabelText = styled.p`
   }
 `;
 
-export function BevelLabel({ buttonColor, textColor, labelText }) {
+export function BevelLabel({ buttonColor, textColor, labelText, inView }) {
+  const fadeInLabel = useSpring({
+    opacity: inView ? 1 : 0.5,
+    transform: inView ? "translateX(0)" : "translateX(-120px)",
+    config: { duration: 500 },
+  });
+
   return (
-    <BevelLabelStyle buttonColor={buttonColor}>
-      <BevelLabelText textColor={textColor}>{labelText}</BevelLabelText>
-    </BevelLabelStyle>
+    <AnimatedBevelWrapper style={fadeInLabel}>
+      <BevelLabelStyle buttonColor={buttonColor}>
+        <BevelLabelText textColor={textColor}>{labelText}</BevelLabelText>
+      </BevelLabelStyle>
+    </AnimatedBevelWrapper>
   );
 }

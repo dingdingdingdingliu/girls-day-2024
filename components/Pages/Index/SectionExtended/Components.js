@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import { animated } from "@react-spring/web";
 
 // 內容分區底層，電腦版左右排列標題與 slider，手機版上下排列
 export const SectionWrapper = styled.div`
@@ -34,7 +35,7 @@ export const IntroWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
-  align-items: start;
+  align-items: center;
   margin: 0;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
@@ -50,7 +51,7 @@ export const IntroWrapper = styled.div`
 export const IntroImageWrapper = styled.div`
   width: 100%;
   height: auto;
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 5 / 3;
   margin-top: 65px;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
@@ -67,4 +68,8 @@ export const ActionWrapper = styled.div`
   @media (max-width: ${globalConfig.mediaQuery}) {
     width: 100%;
   }
+`;
+
+export const AnimatedWrapper = styled(animated.div)`
+  width: 100%;
 `;

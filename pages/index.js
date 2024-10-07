@@ -21,6 +21,8 @@ import SectionPickUp from "@/components/Pages/Index/SectionPickUp";
 import SectionExtended from "@/components/Pages/Index/SectionExtended";
 import Footer from "@/components/Pages/Index/SectionFooter";
 import ResponsiveContainer from "@/components/Common/ResponsiveContainer";
+
+const isFirstEdition = true;
 // import FirstEditionIndex from "@/components/Pages/Index/FirstEditionIndex";
 
 export default function Home() {
@@ -81,8 +83,8 @@ export default function Home() {
       />
       <SectionEntrance />
       <SectionIntro isDesktop={isDesktop} />
-      <SectionPromoVideo />
-      <SectionReport />
+      <SectionPromoVideo isFirstEdition={isFirstEdition} />
+      <SectionReport isFirstEdition={isFirstEdition} />
       <SectionVision isDesktop={isDesktop} />
       <SectionVisionStory />
       <SectionFindObject isDesktop={isDesktop} />

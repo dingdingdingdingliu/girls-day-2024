@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
-import globalConfig from "@/styles/globalConfig";
-import { UnderThreeResponsiveSlider } from "@/components/Common/Slider";
 import Image from "next/image";
+import globalConfig from "@/styles/globalConfig";
+import { useInView } from "react-intersection-observer";
+import { useSpring } from "@react-spring/web";
+import { UnderThreeResponsiveSlider } from "@/components/Common/Slider";
 import { useTheme } from "@emotion/react";
 import { filmCardData } from "./extendedData";
 import { filmDialogData } from "./extendedDialogData";
@@ -12,6 +14,7 @@ import {
   IntroWrapper,
   IntroImageWrapper,
   ActionWrapper,
+  AnimatedWrapper,
 } from "./Components";
 import {
   PageWrapper,
@@ -59,8 +62,8 @@ function FilmTitleSection() {
       <IntroImageWrapper>
         <ImageWrapper>
           <Image
-            src="/images/visionImage.png"
-            alt="visionImage"
+            src="/images/index/filmSection/film_intro.png"
+            alt="film_intro"
             fill
             style={{
               objectFit: "contain",
@@ -74,18 +77,31 @@ function FilmTitleSection() {
 }
 
 export default function FilmSection({ setDialogData, setIsDialogOpen }) {
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.2,
+  });
+
+  const fadeIn = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateX(0)" : "translateY(-20px)",
+    config: { duration: 700 },
+    delay: 300,
+  });
   return (
     <StyledPageWrapper>
-      <StyledContentWrapper>
-        <InnerContentWrapper>
-          <SectionWrapper>
-            <FilmTitleSection />
-            <FilmSlider
-              setDialogData={setDialogData}
-              setIsDialogOpen={setIsDialogOpen}
-            />
-          </SectionWrapper>
-        </InnerContentWrapper>
+      <StyledContentWrapper ref={ref}>
+        <AnimatedWrapper style={fadeIn}>
+          <InnerContentWrapper>
+            <SectionWrapper>
+              <FilmTitleSection />
+              <FilmSlider
+                setDialogData={setDialogData}
+                setIsDialogOpen={setIsDialogOpen}
+              />
+            </SectionWrapper>
+          </InnerContentWrapper>
+        </AnimatedWrapper>
       </StyledContentWrapper>
     </StyledPageWrapper>
   );

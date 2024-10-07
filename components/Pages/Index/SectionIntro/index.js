@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
-// import Image from "next/image";
+import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "@react-spring/web";
 import { useTheme } from "@emotion/react";
-import {
-  PageWrapper,
-  ContentWrapper,
-  // ImageWrapper,
-} from "@/components/Common/Index/Wrapper";
+import { PageWrapper, ContentWrapper } from "@/components/Common/Index/Wrapper";
 import { GirlDaySection, ThemeSection } from "./SubContent";
 import ImageContent from "./ImageContent";
 import {
@@ -16,10 +12,7 @@ import {
   AbsoluteLabelWrapper,
 } from "@/components/Common/Label/BevelLabel";
 
-const sloganImageSrc = {
-  desktop: "/images/sloganDesktop.png",
-  mobile: "/images/sloganMobile.png",
-};
+const sloganImageSrc = "/images/index/intro_slogan.png";
 
 // 頁面底層灰色底色延展
 const StyledPageWrapper = styled(PageWrapper)`
@@ -65,33 +58,19 @@ const MainSectionWrapper = styled.div`
   }
 `;
 
-// 標語內容層
-// const SloganSectionWrapper = styled.div`
-//   width: 70%;
-//   height: auto;
-//   aspect-ratio: 10 / 1;
-//   margin: 110px auto;
-
-//   @media (max-width: ${globalConfig.mediaQuery}) {
-//     width: 60%;
-//     aspect-ratio: 5 / 3;
-//     margin: 30px auto;
-//   }
-// `;
-
-const Container = styled.div`
+const SloganContainer = styled.div`
   overflow: hidden;
   position: relative;
-  width: 70%;
+  width: 85%;
   height: auto;
   aspect-ratio: 10 / 1;
   margin: 110px auto;
   will-change: transform;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    width: 60%;
-    aspect-ratio: 5 / 3;
-    margin: 30px auto;
+    width: 100%;
+    aspect-ratio: 10 / 1;
+    margin: 50px auto;
   }
 `;
 
@@ -102,9 +81,13 @@ const ScrollWrapper = styled(animated.div)`
 `;
 
 const SloganImage = styled.img`
-  width: 50%; // 每個圖像佔整個寬度的一半
+  width: 100%; // 每個圖像佔整個寬度的一半
   object-fit: cover;
   margin-right: ${(props) => props.isMargin && "60px"};
+
+  @media (max-width: ${globalConfig.mediaQuery}) {
+    width: 100%;
+  }
 `;
 
 const LabelWrapper = styled(AbsoluteLabelWrapper)`
@@ -117,7 +100,11 @@ const LabelWrapper = styled(AbsoluteLabelWrapper)`
 
 export default function SectionIntro({ isDesktop }) {
   const theme = useTheme();
-  const [imgSrc, setImgSrc] = useState(sloganImageSrc.desktop);
+
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.2,
+  });
 
   const [{ x }, api] = useSpring(() => ({
     x: 0,
@@ -132,22 +119,15 @@ export default function SectionIntro({ isDesktop }) {
     });
   }, [api]);
 
-  useEffect(() => {
-    if (isDesktop) {
-      setImgSrc(sloganImageSrc.desktop);
-    } else {
-      setImgSrc(sloganImageSrc.mobile);
-    }
-  }, [isDesktop]);
-
   return (
-    <StyledPageWrapper id="show-hamburger-target">
+    <StyledPageWrapper id="show-hamburger-target" ref={ref}>
       {!isDesktop && (
         <LabelWrapper id="reception">
           <BevelLabel
             buttonColor={theme.colors.black}
             textColor={theme.colors.yellow}
             labelText="接待櫃檯"
+            inView={inView}
           />
         </LabelWrapper>
       )}
@@ -158,6 +138,7 @@ export default function SectionIntro({ isDesktop }) {
               buttonColor={theme.colors.black}
               textColor={theme.colors.green}
               labelText="接待櫃檯"
+              inView={inView}
             />
           </LabelWrapper>
         )}
@@ -168,37 +149,20 @@ export default function SectionIntro({ isDesktop }) {
             <ThemeSection />
           </MainSectionWrapper>
         </SectionIntroWrapper>
-        {/* <SloganSectionWrapper>
-          <ImageWrapper>
-            <Image
-              src={
-                isDesktop
-                  ? "/images/sloganDesktop.png"
-                  : "/images/sloganMobile.png"
-              }
-              alt="slogan"
-              fill
-              style={{
-                objectFit: "contain",
-                objectPosition: "center",
-              }}
-            />
-          </ImageWrapper>
-        </SloganSectionWrapper> */}
-        <Container>
+        <SloganContainer>
           <ScrollWrapper
             style={{
               x: x.to((x) => `${x}%`),
             }}
           >
-            <SloganImage src={imgSrc} alt="slogan" isMargin />
-            <SloganImage src={imgSrc} alt="slogan" isMargin />
-            <SloganImage src={imgSrc} alt="slogan" isMargin />
-            <SloganImage src={imgSrc} alt="slogan" isMargin />
-            <SloganImage src={imgSrc} alt="slogan" isMargin />
-            <SloganImage src={imgSrc} alt="slogan" />
+            <SloganImage src={sloganImageSrc} alt="slogan" isMargin />
+            <SloganImage src={sloganImageSrc} alt="slogan" isMargin />
+            <SloganImage src={sloganImageSrc} alt="slogan" isMargin />
+            <SloganImage src={sloganImageSrc} alt="slogan" isMargin />
+            <SloganImage src={sloganImageSrc} alt="slogan" isMargin />
+            <SloganImage src={sloganImageSrc} alt="slogan" />
           </ScrollWrapper>
-        </Container>
+        </SloganContainer>
       </StyledContentWrapper>
     </StyledPageWrapper>
   );

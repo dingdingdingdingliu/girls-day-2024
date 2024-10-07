@@ -3,7 +3,7 @@ import globalConfig from "@/styles/globalConfig";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 // slide 卡片用層
-export const AbsoluteSlideLabelWrapper = styled.div`
+export const AbsoluteReportLabelWrapper = styled.div`
   width: 50%;
   position: absolute;
   bottom: 0;
@@ -25,6 +25,13 @@ export const AbsoluteButtonWrapper = styled.div`
   }
 `;
 
+// slide 卡片用層
+export const AbsoluteSlideLabelWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+`;
+
 // 角度內層
 const BevelLabelStyle = styled.div`
   width: 100%;
@@ -35,6 +42,23 @@ const BevelLabelStyle = styled.div`
   align-items: center;
   justify-content: center;
   cursor: ${(props) => props.isPointer && "pointer"};
+
+  @media (max-width: ${globalConfig.mediaQuery}) {
+    height: 50px;
+  }
+`;
+
+// 角度內層
+const SlideBevelLabelStyle = styled.div`
+  width: 100%;
+  height: 40px;
+  background-color: ${(props) => props.labelColor};
+  clip-path: polygon(7% 0, 100% 0%, 100% 100%, 0% 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: ${(props) => props.isPointer && "pointer"};
+  padding: 0 16px;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     height: 50px;
@@ -89,5 +113,27 @@ export function SingleLeftBevelLabel({
         <ArrowRightStyle fontcolor={fontcolor} isDownLoad={isDownLoad} />
       </LabelContentWrapper>
     </BevelLabelStyle>
+  );
+}
+
+export function SlideSingleLeftBevelLabel({
+  labelText,
+  onClick = null,
+  isPointer = false,
+  labelColor,
+  fontcolor,
+  isDownLoad = false,
+}) {
+  return (
+    <SlideBevelLabelStyle
+      onClick={onClick}
+      isPointer={isPointer}
+      labelColor={labelColor}
+    >
+      <LabelContentWrapper>
+        <BevelLabelText fontcolor={fontcolor}>{labelText}</BevelLabelText>
+        <ArrowRightStyle fontcolor={fontcolor} isDownLoad={isDownLoad} />
+      </LabelContentWrapper>
+    </SlideBevelLabelStyle>
   );
 }
