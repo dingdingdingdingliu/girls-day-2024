@@ -31,7 +31,7 @@ const GameImageSection = styled.div`
   margin-bottom: 24px;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 5 / 3;
   }
 `;
 

@@ -24,9 +24,9 @@ export default function ImageSection() {
 
   const fadeInImage = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? "translateY(0)" : "translateY(-50px)",
-    config: { duration: 1500 },
-    delay: 400, // 延遲效果
+    transform: inView ? "translateY(0)" : "translateY(-20px)",
+    config: { duration: 800 },
+    delay: 300, // 延遲效果
   });
 
   return (

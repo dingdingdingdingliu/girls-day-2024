@@ -20,6 +20,7 @@ const StyledPageWrapper = styled(PageWrapper)`
 
 const StyledContentWrapper = styled(IndexContentWrapper)`
   height: 100%;
+  max-width: none;
   position: relative;
   background-image: url(${desktopImageUrl});
   background-repeat: no-repeat;

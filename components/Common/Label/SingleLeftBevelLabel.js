@@ -30,9 +30,6 @@ export const AbsoluteSlideLabelWrapper = styled.div`
   position: absolute;
   bottom: 0;
   right: 0;
-  @media (max-width: ${globalConfig.mediaQuery}) {
-    width: 150px;
-  }
 `;
 
 // 角度內層
