@@ -118,7 +118,7 @@ function Organizer() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <LogoImg src="/images/logos/welfare.png" alt="welfare" />
+          <LogoImg src="/images/logos/welfare-logo.png" alt="welfare" />
           <LogoImg
             src="/images/logos/MOHW.png"
             alt="MOHW"
