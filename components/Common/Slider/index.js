@@ -50,6 +50,7 @@ const OverThreeSetting = {
   arrows: false,
   swipe: true,
   touchMove: true,
+  draggable: true,
   responsive: [
     {
       breakpoint: 1440,
@@ -86,6 +87,7 @@ const ThreeSetting = {
   arrows: false,
   swipe: true,
   touchMove: true,
+  draggable: true,
   responsive: [
     {
       breakpoint: 1440,

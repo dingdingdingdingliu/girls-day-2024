@@ -1,13 +1,15 @@
+import { useState } from "react";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { useSpring, animated } from "@react-spring/web";
 
 const BevelButtonStyle = styled.div`
   width: 40%;
-  min-width: 200px;
+  min-width: 282px;
   height: 64px;
   background-color: ${(props) => props.buttonColor};
-  clip-path: polygon(4% 0, 100% 0%, 96% 100%, 0% 100%);
+  clip-path: polygon(6% 0, 100% 0%, 94% 100%, 0% 100%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,6 +39,12 @@ const BevelButtonText = styled.div`
   }
 `;
 
+const AnimatedArrowWrapper = styled(animated.div)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const ArrowRightStyle = styled(MdOutlineKeyboardArrowRight)`
   color: ${(props) => props.textColor};
   font-size: 48px;
@@ -54,12 +62,24 @@ export default function SmallBevelButton({
   buttonText,
   onClick,
 }) {
+  const [reverse, setReverse] = useState(false);
+
+  const flashingIcon = useSpring({
+    from: { opacity: reverse ? 1 : 0.1 },
+    to: { opacity: reverse ? 0.1 : 1 },
+    config: { duration: 500 }, // 每個階段的時間一致
+    onRest: () => setReverse(!reverse), // 動畫完成後反轉
+    loop: true, // 無限循環
+  });
+
   return (
     <BevelButtonStyle buttonColor={buttonColor} onClick={onClick}>
-      <BevelButtonText textColor={textColor}>
-        {buttonText}
-        <ArrowRightStyle position="right" />
-      </BevelButtonText>
+      <AnimatedArrowWrapper style={flashingIcon}>
+        <BevelButtonText textColor={textColor}>
+          {buttonText}
+          <ArrowRightStyle position="right" />
+        </BevelButtonText>
+      </AnimatedArrowWrapper>
     </BevelButtonStyle>
   );
 }
