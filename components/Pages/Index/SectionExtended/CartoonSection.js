@@ -43,11 +43,11 @@ function CartoonSlider({ setDialogData, setIsDialogOpen }) {
     <ActionWrapper>
       <OverThreeResponsiveSlider
         cardColor={theme.colors.white}
-        isShowLabel={false}
         sliderData={cartoonCardData}
         dialogContent={cartoonDialogData}
         setDialogData={setDialogData}
         setIsDialogOpen={setIsDialogOpen}
+        labelText="點擊查看"
       />
     </ActionWrapper>
   );

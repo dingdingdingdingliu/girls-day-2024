@@ -4,7 +4,7 @@ import globalConfig from "@/styles/globalConfig";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useSpring, animated } from "@react-spring/web";
 
-const BevelButtonStyle = styled.div`
+const BevelButtonStyle = styled(animated.div)`
   width: 40%;
   min-width: 282px;
   height: 64px;
@@ -39,12 +39,6 @@ const BevelButtonText = styled.div`
   }
 `;
 
-const AnimatedArrowWrapper = styled(animated.div)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const ArrowRightStyle = styled(MdOutlineKeyboardArrowRight)`
   color: ${(props) => props.textColor};
   font-size: 48px;
@@ -73,13 +67,15 @@ export default function SmallBevelButton({
   });
 
   return (
-    <BevelButtonStyle buttonColor={buttonColor} onClick={onClick}>
-      <AnimatedArrowWrapper style={flashingIcon}>
-        <BevelButtonText textColor={textColor}>
-          {buttonText}
-          <ArrowRightStyle position="right" />
-        </BevelButtonText>
-      </AnimatedArrowWrapper>
+    <BevelButtonStyle
+      buttonColor={buttonColor}
+      onClick={onClick}
+      style={flashingIcon}
+    >
+      <BevelButtonText textColor={textColor}>
+        {buttonText}
+        <ArrowRightStyle position="right" />
+      </BevelButtonText>
     </BevelButtonStyle>
   );
 }

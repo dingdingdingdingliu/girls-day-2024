@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import { useInView } from "react-intersection-observer";
@@ -9,6 +10,11 @@ import {
   BevelLabel,
   AbsoluteLabelWrapper,
 } from "@/components/Common/Label/BevelLabel";
+
+const mainImageUrl = {
+  desktop: "/images/index/find_object_main_desktop.png",
+  mobile: "/images/index/find_object_main_mobile.png",
+};
 
 // 頁面底層灰色底色延展
 const StyledPageWrapper = styled(PageWrapper)`
@@ -71,6 +77,7 @@ const LabelWrapper = styled(AbsoluteLabelWrapper)`
 
 export default function SectionFindObject({ isDesktop }) {
   const theme = useTheme();
+  const [imageUrl, setImageUrl] = useState(mainImageUrl.mobile);
 
   const { ref, inView } = useInView({
     triggerOnce: false,
@@ -83,6 +90,14 @@ export default function SectionFindObject({ isDesktop }) {
     config: { duration: 600 },
     delay: 400, // 延遲效果
   });
+
+  useEffect(() => {
+    if (isDesktop) {
+      setImageUrl(mainImageUrl.desktop);
+    } else {
+      setImageUrl(mainImageUrl.mobile);
+    }
+  }, [isDesktop]);
 
   return (
     <StyledPageWrapper ref={ref}>
@@ -115,7 +130,7 @@ export default function SectionFindObject({ isDesktop }) {
             />
             <MainSectionWrapper>
               <GameSection
-                imageSrc="/images/index/find_object_main.png"
+                imageSrc={imageUrl}
                 imageAlt="find_object_game"
                 bevelColor={theme.colors.green}
                 bevelTextColor={theme.colors.black}

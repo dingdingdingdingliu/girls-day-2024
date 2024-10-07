@@ -17,15 +17,16 @@ const SlideCardWrapper = styled.div`
   position: absolute;
   transition: box-shadow 0.3s ease-in-out;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0); /* 初始無陰影 */
-  cursor: ${(props) => (props.isPointer ? "pointer" : "default")};
+  cursor: pointer;
   z-index: 1;
   width: 94%;
   height: 100%;
   top: 0;
   left: 0;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); /* 右下方向的陰影，並加上暈染效果 */
 
   &:hover {
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2); /* 右下方向的陰影，並加上暈染效果 */
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2); /* 右下方向的陰影，並加上暈染效果 */
   }
 
   @media (max-width: ${globalConfig.sliderMobile}) {
@@ -159,10 +160,11 @@ export function ReportSlideCard({ cardColor, cardData, onClick = null }) {
 
 export function ExtendedSlideCard({
   cardColor,
-  isShowLabel,
   cardData,
   dialogContent,
   setDialogData,
+  labelText,
+  isSociety,
   isDragging,
   handleMouseDown,
   handleMouseMove,
@@ -171,18 +173,21 @@ export function ExtendedSlideCard({
   const { imageSrc, imageAlt, title, cardContent, order } = cardData;
   const theme = useTheme();
 
-  const onCardClick = () => {
-    if (isShowLabel) return;
-    if (!isDragging) {
+  const onCardClick = (e) => {
+    e.preventDefault();
+    if (isSociety && cardData?.linkUrl) {
+      window.open(cardData?.linkUrl, "_blank", "noopener,noreferrer");
+    }
+    if (!isSociety && !isDragging) {
       setDialogData(dialogContent[order]);
     }
   };
+
   return (
     <>
       <SlideCardWrapper
         onClick={onCardClick}
         cardColor={cardColor}
-        isPointer={!isShowLabel}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
@@ -212,21 +217,13 @@ export function ExtendedSlideCard({
             <ExtendedCopyWrite>{cardContent}</ExtendedCopyWrite>
           </ContentWrapper>
         </ContentCardWrapper>
-        {isShowLabel && (
-          <AbsoluteSlideLabelWrapper>
-            <a
-              href={cardData.linkUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <SlideSingleLeftBevelLabel
-                labelColor={theme.colors.black}
-                fontcolor={theme.colors.yellow}
-                labelText="詳情請前往查看"
-              />
-            </a>
-          </AbsoluteSlideLabelWrapper>
-        )}
+        <AbsoluteSlideLabelWrapper>
+          <SlideSingleLeftBevelLabel
+            labelColor={theme.colors.black}
+            fontcolor={theme.colors.green}
+            labelText={labelText}
+          />
+        </AbsoluteSlideLabelWrapper>
       </SlideCardWrapper>
     </>
   );

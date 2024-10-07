@@ -70,11 +70,10 @@ const CardContentWrapper = styled.div`
 const ImageSectionWrapper = styled.div`
   width: 35%;
   height: auto;
-  aspect-ratio: 3 / 4; // 1 / 2
+  aspect-ratio: 3 / 4;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    width: 110;
-    height: 210px;
+    width: 215px;
     margin-bottom: 25px;
   }
 `;

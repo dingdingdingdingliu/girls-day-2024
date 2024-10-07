@@ -43,7 +43,8 @@ function SocietySlider() {
       <OverThreeResponsiveSlider
         cardColor={theme.colors.light}
         sliderData={societyCardData}
-        isShowLabel={true}
+        labelText="詳情請前往查看"
+        isSociety={true}
       />
     </ActionWrapper>
   );

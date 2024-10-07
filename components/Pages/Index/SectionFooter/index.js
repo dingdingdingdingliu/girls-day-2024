@@ -186,7 +186,7 @@ function Partner() {
 function DramaPartner() {
   return (
     <LogoWrapper>
-      <Title>議題顧問</Title>
+      <Title>戲劇合作</Title>
       <LogoImagesWrapper>
         <a
           href="https://www.facebook.com/thinkfeelmove.tw/"

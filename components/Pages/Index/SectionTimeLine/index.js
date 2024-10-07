@@ -18,6 +18,7 @@ const titleCopyWrite =
 const StyledPageWrapper = styled(PageWrapper)`
   background-color: ${(props) => props.theme.colors.black};
   position: relative;
+  padding-bottom: 20px;
 `;
 
 // 頁面內層

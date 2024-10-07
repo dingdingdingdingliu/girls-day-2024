@@ -74,7 +74,7 @@ const Intro = styled.p`
 const HashTag = styled.p`
   font-size: ${(props) => props.theme.fontSizes[14]};
   font-weight: ${(props) => props.theme.fontWeights.normal};
-  color: ${(props) => props.theme.colors.green};
+  color: ${(props) => props.theme.colors.pink};
   white-space: pre-wrap;
   letter-spacing: 1px;
 `;

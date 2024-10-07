@@ -44,11 +44,11 @@ function FilmSlider({ setDialogData, setIsDialogOpen }) {
     <ActionWrapper>
       <UnderThreeResponsiveSlider
         cardColor={theme.colors.light}
-        isShowLabel={false}
         sliderData={filmCardData}
         dialogContent={filmDialogData}
         setDialogData={setDialogData}
         setIsDialogOpen={setIsDialogOpen}
+        labelText="點擊查看"
       />
     </ActionWrapper>
   );
