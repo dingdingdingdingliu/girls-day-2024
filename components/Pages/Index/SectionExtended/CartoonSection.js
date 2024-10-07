@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
-import globalConfig from "@/styles/globalConfig";
-import { OverThreeResponsiveSlider } from "@/components/Common/Slider";
 import Image from "next/image";
+import globalConfig from "@/styles/globalConfig";
+import { useInView } from "react-intersection-observer";
+import { useSpring } from "@react-spring/web";
+import { OverThreeResponsiveSlider } from "@/components/Common/Slider";
 import { useTheme } from "@emotion/react";
 import { cartoonCardData } from "./extendedData";
 import { cartoonDialogData } from "./extendedDialogData";
@@ -12,6 +14,7 @@ import {
   IntroWrapper,
   IntroImageWrapper,
   ActionWrapper,
+  AnimatedWrapper,
 } from "./Components";
 import {
   PageWrapper,
@@ -58,8 +61,8 @@ function CartoonTitleSection() {
       <IntroImageWrapper>
         <ImageWrapper>
           <Image
-            src="/images/visionImage.png"
-            alt="visionImage"
+            src="/images/index/cartoonSection/cartoon_intro.png"
+            alt="cartoon_intro"
             fill
             style={{
               objectFit: "contain",
@@ -73,18 +76,31 @@ function CartoonTitleSection() {
 }
 
 export default function CartoonSection({ setDialogData, setIsDialogOpen }) {
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.2,
+  });
+
+  const fadeIn = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateX(0)" : "translateY(-20px)",
+    config: { duration: 700 },
+    delay: 300,
+  });
   return (
     <StyledPageWrapper>
-      <StyledContentWrapper>
-        <InnerContentWrapper>
-          <SectionWrapper>
-            <CartoonTitleSection />
-            <CartoonSlider
-              setDialogData={setDialogData}
-              setIsDialogOpen={setIsDialogOpen}
-            />
-          </SectionWrapper>
-        </InnerContentWrapper>
+      <StyledContentWrapper ref={ref}>
+        <AnimatedWrapper style={fadeIn}>
+          <InnerContentWrapper>
+            <SectionWrapper>
+              <CartoonTitleSection />
+              <CartoonSlider
+                setDialogData={setDialogData}
+                setIsDialogOpen={setIsDialogOpen}
+              />
+            </SectionWrapper>
+          </InnerContentWrapper>
+        </AnimatedWrapper>
       </StyledContentWrapper>
     </StyledPageWrapper>
   );

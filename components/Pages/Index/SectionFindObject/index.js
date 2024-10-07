@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import { useInView } from "react-intersection-observer";
+import { useSpring, animated } from "@react-spring/web";
 import { useTheme } from "@emotion/react";
 import { PageWrapper, ContentWrapper } from "@/components/Common/Index/Wrapper";
 import { GameSection, ImageSection } from "@/components/Common/GameSection";
@@ -26,6 +28,10 @@ const StyledContentWrapper = styled(ContentWrapper)`
     margin-top: ${(props) => props.theme.spacing.pageTopSpacing};
     margin-bottom: 25px;
   }
+`;
+
+const AnimateWrapper = styled(animated.div)`
+  width: 100%;
 `;
 
 // 內容完整區塊層，含圖片顯示層與主要內容層
@@ -66,14 +72,27 @@ const LabelWrapper = styled(AbsoluteLabelWrapper)`
 export default function SectionFindObject({ isDesktop }) {
   const theme = useTheme();
 
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.2,
+  });
+
+  const fadeIn = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateY(0)" : "translateY(-120px)",
+    config: { duration: 600 },
+    delay: 400, // 延遲效果
+  });
+
   return (
-    <StyledPageWrapper>
+    <StyledPageWrapper ref={ref}>
       {!isDesktop && (
         <LabelWrapper id="findObject">
           <BevelLabel
             buttonColor={theme.colors.black}
             textColor={theme.colors.green}
             labelText="展售區"
+            inView={inView}
           />
         </LabelWrapper>
       )}
@@ -84,25 +103,29 @@ export default function SectionFindObject({ isDesktop }) {
               buttonColor={theme.colors.black}
               textColor={theme.colors.green}
               labelText="展售區"
+              inView={inView}
             />
           </LabelWrapper>
         )}
-        <SectionIntroWrapper>
-          <ImageSection
-            titleImageSrc="/images/visionImage.png"
-            titleImageAlt="visionImage"
-          />
-          <MainSectionWrapper>
-            <GameSection
-              imageSrc="/images/chiikawa.jpeg"
-              imageAlt="chiikawa"
-              bevelColor={theme.colors.green}
-              bevelTextColor={theme.colors.black}
-              buttonText="前往挑款"
-              linkHref="/game-two"
+        <AnimateWrapper style={fadeIn}>
+          <SectionIntroWrapper>
+            <ImageSection
+              titleImageSrc="/images/index/find_object_theme.png"
+              titleImageAlt="find_object_game"
             />
-          </MainSectionWrapper>
-        </SectionIntroWrapper>
+            <MainSectionWrapper>
+              <GameSection
+                imageSrc="/images/index/find_object_main.png"
+                imageAlt="find_object_game"
+                bevelColor={theme.colors.green}
+                bevelTextColor={theme.colors.black}
+                buttonText="前往挑款"
+                linkHref="/game-two"
+                isVisionGame={false}
+              />
+            </MainSectionWrapper>
+          </SectionIntroWrapper>
+        </AnimateWrapper>
       </StyledContentWrapper>
     </StyledPageWrapper>
   );

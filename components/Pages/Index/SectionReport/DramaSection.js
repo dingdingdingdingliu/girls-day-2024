@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
 import { useTheme } from "@emotion/react";
+import { useSpring } from "@react-spring/web";
+import { useInView } from "react-intersection-observer";
 import { DramaTitle } from "@/components/Common/Index/TitleWithLine";
 import {
-  SectionWrapper,
+  AnimatedSectionWrapper,
   IntroWrapper,
   CopyWriteWrapper,
   ActionWrapper,
@@ -94,8 +96,8 @@ function DramaAction() {
       <DramaContentWrapper>
         <StyledImageWrapper>
           <Image
-            src="/images/chiikawa.jpeg"
-            alt="chiikawa"
+            src="/images/index/report_drama.png"
+            alt="drama_section"
             fill
             style={{
               objectFit: "cover",
@@ -124,10 +126,22 @@ function DramaAction() {
 }
 
 export default function DramaSection() {
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0,
+  });
+
+  const fadeIn = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateX(0)" : "translateX(-100px)",
+    config: { duration: 600 },
+    delay: 300, // 延遲效果
+  });
+
   return (
-    <SectionWrapper>
+    <AnimatedSectionWrapper style={fadeIn} ref={ref}>
       <DramaIntro />
       <DramaAction />
-    </SectionWrapper>
+    </AnimatedSectionWrapper>
   );
 }

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import { useSpring, animated } from "@react-spring/web";
@@ -9,6 +10,9 @@ import {
 import BevelButton from "@/components/Common/Button/BevelButton";
 import ResponsiveContainer from "@/components/Common/ResponsiveContainer";
 
+const desktopImageUrl = "images/index/entrance_desktop.gif";
+const mobileImageUrl = "images/index/entrance_mobile.gif";
+
 const StyledPageWrapper = styled(PageWrapper)`
   background-color: ${(props) => props.theme.colors.mediumGrey};
   height: 100%;
@@ -17,28 +21,31 @@ const StyledPageWrapper = styled(PageWrapper)`
 const StyledContentWrapper = styled(IndexContentWrapper)`
   height: 100%;
   position: relative;
-  background-image: url("images/indexDesktop.png");
+  background-image: url(${desktopImageUrl});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 
-  @media (max-width: ${globalConfig.mediaQuery}) {
-    background-image: url("images/indexMobile.png");
+  @media (max-width: ${globalConfig.tablet}) {
+    background-image: url(${(props) =>
+      props.isLandscape ? desktopImageUrl : mobileImageUrl});
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
+    background-size: cover;
   }
 `;
 
 const ButtonWrapper = styled.div`
   display: inline-block;
   position: absolute;
-  top: 82%;
+  bottom: 30px;
   left: 50%;
   transform: translate(-50%, 0);
-
-  @media (max-width: ${globalConfig.mediaQuery}) {
-    top: 78%;
+  @media (max-width: ${globalConfig.tablet}) {
+    bottom: 30px;
+  }
+  @media (max-width: ${globalConfig.mobile}) {
+    bottom: 80px;
   }
 `;
 
@@ -48,6 +55,7 @@ const AnimatedWrapper = styled(animated.div)`
 
 export default function SectionEntrance() {
   const theme = useTheme();
+  const [isLandscape, setIsLandscape] = useState(false);
 
   // 彈簧效果
   const fadeInEntrance = useSpring({
@@ -62,10 +70,29 @@ export default function SectionEntrance() {
     delay: 800, // 延遲效果
   });
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // 檢查 window 是否存在，確保在客戶端執行
+      const mediaQuery = window.matchMedia("(orientation: landscape)");
+
+      const handleOrientationChange = (event) => {
+        setIsLandscape(event.matches);
+      };
+
+      setIsLandscape(mediaQuery.matches); // 初次檢查方向
+      mediaQuery.addEventListener("change", handleOrientationChange);
+
+      // 清除監聽器
+      return () => {
+        mediaQuery.removeEventListener("change", handleOrientationChange);
+      };
+    }
+  }, []);
+
   return (
     <ResponsiveContainer heightUnit={100} widthUnit={100}>
       <StyledPageWrapper>
-        <StyledContentWrapper>
+        <StyledContentWrapper isLandscape={isLandscape}>
           <ButtonWrapper>
             <AnimatedWrapper style={fadeInEntrance}>
               <a href="#reception">
@@ -74,6 +101,7 @@ export default function SectionEntrance() {
                   buttonColor={theme.colors.black}
                   textColor={theme.colors.white}
                   buttonText="推門進入"
+                  isTablet={true}
                 ></BevelButton>
               </a>
             </AnimatedWrapper>

@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import { useInView } from "react-intersection-observer";
+import { useSpring, animated } from "@react-spring/web";
 import { useTheme } from "@emotion/react";
 import { PageWrapper, ContentWrapper } from "@/components/Common/Index/Wrapper";
 import { GameSection, ImageSection } from "@/components/Common/GameSection";
@@ -15,6 +17,10 @@ const StyledPageWrapper = styled(PageWrapper)`
     ${props.theme.colors.lightPink} 1%, 
     ${props.theme.colors.mediumGrey} 40%)`};
   position: relative;
+`;
+
+const AnimateWrapper = styled(animated.div)`
+  width: 100%;
 `;
 
 // 頁面內層
@@ -66,17 +72,31 @@ const LabelWrapper = styled(AbsoluteLabelWrapper)`
 export default function SectionVision({ isDesktop }) {
   const theme = useTheme();
 
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.4,
+  });
+
+  const fadeIn = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateY(0)" : "translateY(-120px)",
+    config: { duration: 800 },
+    delay: 400, // 延遲效果
+  });
+
   return (
-    <StyledPageWrapper>
+    <StyledPageWrapper ref={ref}>
       {!isDesktop && (
         <LabelWrapper id="vision">
           <BevelLabel
             buttonColor={theme.colors.black}
             textColor={theme.colors.pink}
             labelText="驗光室"
+            inView={inView}
           />
         </LabelWrapper>
       )}
+
       <StyledContentWrapper>
         {isDesktop && (
           <LabelWrapper id="vision">
@@ -84,25 +104,29 @@ export default function SectionVision({ isDesktop }) {
               buttonColor={theme.colors.black}
               textColor={theme.colors.pink}
               labelText="驗光室"
+              inView={inView}
             />
           </LabelWrapper>
         )}
-        <SectionIntroWrapper>
-          <ImageSection
-            titleImageSrc="/images/visionImage.png"
-            titleImageAlt="visionImage"
-          />
-          <MainSectionWrapper>
-            <GameSection
-              imageSrc="/images/chiikawa.jpeg"
-              imageAlt="chiikawa"
-              bevelColor={theme.colors.pink}
-              bevelTextColor={theme.colors.white}
-              buttonText="前往驗光"
-              linkHref="/game-one"
+        <AnimateWrapper style={fadeIn}>
+          <SectionIntroWrapper>
+            <ImageSection
+              titleImageSrc="/images/index/vision_theme.png"
+              titleImageAlt="visionImage"
             />
-          </MainSectionWrapper>
-        </SectionIntroWrapper>
+            <MainSectionWrapper>
+              <GameSection
+                imageSrc="/images/index/vision_main.png"
+                imageAlt="visionImage"
+                bevelColor={theme.colors.pink}
+                bevelTextColor={theme.colors.white}
+                buttonText="前往驗光"
+                linkHref="/game-one"
+                isVisionGame={true}
+              />
+            </MainSectionWrapper>
+          </SectionIntroWrapper>
+        </AnimateWrapper>
       </StyledContentWrapper>
     </StyledPageWrapper>
   );

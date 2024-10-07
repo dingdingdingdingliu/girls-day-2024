@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import { animated } from "@react-spring/web";
 
-// 內容分區底層
-export const SectionWrapper = styled.div`
+// 內容分區動畫底層
+export const AnimatedSectionWrapper = styled(animated.div)`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -45,6 +46,16 @@ export const CopyWriteWrapper = styled.div`
 // slider or download
 export const ActionWrapper = styled.div`
   width: 65%;
+
+  @media (max-width: ${globalConfig.mediaQuery}) {
+    width: 100%;
+  }
+`;
+
+export const ComingSoonWrapper = styled.div`
+  width: 65%;
+  height: auto;
+  aspect-ratio: 5 / 2;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     width: 100%;

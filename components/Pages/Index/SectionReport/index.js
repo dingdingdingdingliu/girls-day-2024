@@ -16,8 +16,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
   padding-bottom: 0;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    padding: 0;
-    padding-top: 24px;
+    padding: 24px 0;
   }
 `;
 
@@ -56,18 +55,18 @@ const ImageMobileWrapper = styled.div`
   }
 `;
 
-export default function SectionReport() {
+export default function SectionReport({ isFirstEdition }) {
   return (
     <StyledPageWrapper>
       <StyledContentWrapper>
         <InnerContentWrapper>
-          <ReportSection />
+          <ReportSection isFirstEdition={isFirstEdition} />
           <DramaSection />
         </InnerContentWrapper>
         <ImageDesktopWrapper>
           <Image
-            src="/images/reportDesktopImage.png"
-            alt="reportDesktopImage"
+            src="/images/index/report_bottom_image.png"
+            alt="report_image"
             fill
             style={{
               objectFit: "cover",
@@ -78,8 +77,8 @@ export default function SectionReport() {
       </StyledContentWrapper>
       <ImageMobileWrapper>
         <Image
-          src="/images/reportMobileImage.png"
-          alt="reportMobileImage"
+          src="/images/index/report_bottom_image.png"
+          alt="report_image"
           fill
           style={{
             objectFit: "cover",

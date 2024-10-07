@@ -19,10 +19,10 @@ const copyWrite = {
   themeFirst:
     "2024 年臺灣女孩日，將透過《偏見眼鏡行》中「戲劇體驗工作坊」和「主題網頁策展」兩大內容，來認識生活中無處不在的偏見言論和刻板印象來源，並鼓勵女孩「打破偏見」學習勇敢表達自我，突破限制！",
 };
+
 // 女孩日與主題區塊層
 const SubSectionWrapper = styled.div`
   border-radius: 2px;
-  padding: 30px 5%;
   display: flex;
   flex-direction: row;
   justify-content: start;
@@ -31,13 +31,17 @@ const SubSectionWrapper = styled.div`
   @media (max-width: ${globalConfig.mediaQuery}) {
     flex-direction: column;
     align-items: start;
-    padding: 25px;
   }
 `;
 
 // 女孩日區塊層
 const GirlsDaySectionWrapper = styled(SubSectionWrapper)`
   background-color: ${(props) => props.theme.colors.white};
+  padding: 30px 5%;
+
+  @media (max-width: ${globalConfig.mediaQuery}) {
+    padding: 25px;
+  }
 `;
 
 // 主題區塊層
@@ -49,9 +53,11 @@ const ThemeSectionWrapper = styled(SubSectionWrapper)`
     ${props.theme.colors.lightPink} 80%)`};
   margin-top: 20px;
   position: relative;
+  padding: 30px 5%;
+  padding-right: 0px;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    margin-top: 15px;
+    padding: 25px;
   }
 `;
 
@@ -88,7 +94,7 @@ const AnimatedContentWrapper = styled(animated.div)`
 
 // 圖片顯示層
 export const ThemeImageWrapper = styled.div`
-  width: 30%;
+  width: 24%;
   height: 100%;
   position: absolute;
   top: 0;
@@ -102,7 +108,7 @@ export const ThemeImageWrapper = styled.div`
 
 export function GirlDaySection() {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.2,
   });
 
@@ -140,7 +146,7 @@ export function GirlDaySection() {
 
 export function ThemeSection() {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.2,
   });
 
@@ -148,14 +154,14 @@ export function ThemeSection() {
     opacity: inView ? 1 : 0,
     transform: inView ? "translateX(0)" : "translateX(-20px)",
     config: { duration: 600 },
-    delay: 700, // 延遲效果
+    delay: 400, // 延遲效果
   });
 
   const fadeInContent = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView ? "translateX(0)" : "translateX(40px)",
     config: { duration: 600 },
-    delay: 900, // 延遲效果
+    delay: 600, // 延遲效果
   });
 
   return (
@@ -171,11 +177,11 @@ export function ThemeSection() {
       <ThemeImageWrapper>
         <ImageWrapper>
           <Image
-            src="/images/themeSectionImage.png"
+            src="/images/index/intro_theme.png"
             alt="imageSections"
             fill
             style={{
-              objectFit: "cover",
+              objectFit: "contain",
               objectPosition: "center",
             }}
           />

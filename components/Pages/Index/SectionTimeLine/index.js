@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import { useInView } from "react-intersection-observer";
+import { useSpring, animated } from "@react-spring/web";
 import { useTheme } from "@emotion/react";
 import { PageWrapper, ContentWrapper } from "@/components/Common/Index/Wrapper";
 import {
@@ -30,7 +32,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
 `;
 
 // 內容區塊，和專題報導區左右兩側切齊，內含上層標題層和下層時間軸層
-const InnerContentWrapper = styled.div`
+const InnerContentWrapper = styled(animated.div)`
   width: 75%;
   margin: 0 auto;
 
@@ -126,14 +128,28 @@ const LabelWrapper = styled(AbsoluteLabelWrapper)`
 
 export default function SectionTimeLine({ isDesktop }) {
   const theme = useTheme();
+
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.2,
+  });
+
+  const fadeIn = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateX(0)" : "translateY(-50px)",
+    config: { duration: 800 },
+    delay: 400, // 延遲效果
+  });
+
   return (
-    <StyledPageWrapper>
+    <StyledPageWrapper ref={ref}>
       {!isDesktop && (
         <LabelWrapper id="processing">
           <BevelLabel
             buttonColor={theme.colors.green}
             textColor={theme.colors.black}
             labelText="加工區"
+            inView={inView}
           />
         </LabelWrapper>
       )}
@@ -144,10 +160,11 @@ export default function SectionTimeLine({ isDesktop }) {
               buttonColor={theme.colors.green}
               textColor={theme.colors.black}
               labelText="加工區"
+              inView={inView}
             />
           </LabelWrapper>
         )}
-        <InnerContentWrapper>
+        <InnerContentWrapper style={fadeIn}>
           <TitleContentOuterWrapper>
             <TitleContentWrapper>
               <TimeLineTitle />

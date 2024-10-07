@@ -18,21 +18,22 @@ const AnimatedImageSectionWrapper = styled(animated.div)`
 
 export default function ImageSection() {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.5,
   });
 
   const fadeInImage = useSpring({
-    delay: 300,
-    config: { duration: 2000 }, // 動畫持續時間
     opacity: inView ? 1 : 0,
+    transform: inView ? "translateY(0)" : "translateY(-50px)",
+    config: { duration: 1500 },
+    delay: 400, // 延遲效果
   });
 
   return (
     <AnimatedImageSectionWrapper style={fadeInImage} ref={ref}>
       <ImageWrapper>
         <Image
-          src="/images/themeMainImage.png"
+          src="/images/index/intro_image.png"
           alt="imageSections"
           fill
           style={{
