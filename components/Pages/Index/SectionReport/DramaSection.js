@@ -89,7 +89,7 @@ function DramaIntro() {
   );
 }
 
-function DramaAction() {
+function DramaAction({ isFirstEdition }) {
   const theme = useTheme();
   return (
     <DramaActionWrapper>
@@ -112,7 +112,7 @@ function DramaAction() {
       <DramaButtonWrapper>
         <AbsoluteButtonWrapper>
           <SingleLeftBevelLabel
-            labelText="點擊下載"
+            labelText={isFirstEdition ? "即將上線" : "點擊下載"}
             isPointer={true}
             onClick={() => {}}
             labelColor={theme.colors.pink}
@@ -125,7 +125,7 @@ function DramaAction() {
   );
 }
 
-export default function DramaSection() {
+export default function DramaSection({ isFirstEdition }) {
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0,
@@ -141,7 +141,7 @@ export default function DramaSection() {
   return (
     <AnimatedSectionWrapper style={fadeIn} ref={ref}>
       <DramaIntro />
-      <DramaAction />
+      <DramaAction isFirstEdition={isFirstEdition} />
     </AnimatedSectionWrapper>
   );
 }

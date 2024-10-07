@@ -43,11 +43,11 @@ function BookSlider({ setDialogData, setIsDialogOpen }) {
     <ActionWrapper>
       <OverThreeResponsiveSlider
         cardColor={theme.colors.light}
-        isShowLabel={false}
         sliderData={bookCardData}
         dialogContent={bookDialogData}
         setDialogData={setDialogData}
         setIsDialogOpen={setIsDialogOpen}
+        labelText="點擊查看"
       />
     </ActionWrapper>
   );

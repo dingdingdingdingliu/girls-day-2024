@@ -66,19 +66,21 @@ export default function SectionPickUp({ isDesktop }) {
   return (
     <StyledPageWrapper ref={ref}>
       {!isDesktop && (
-        <AnimatedImageSectionWrapper style={fadeInImage}>
-          <ImageWrapper>
-            <Image
-              src="/images/index/pickup_intro.png"
-              alt="pickup_intro"
-              fill
-              style={{
-                objectFit: "contain",
-                objectPosition: "center",
-              }}
-            />
-          </ImageWrapper>
-        </AnimatedImageSectionWrapper>
+        <ImageOuterWrapper>
+          <AnimatedImageSectionWrapper style={fadeInImage}>
+            <ImageWrapper>
+              <Image
+                src="/images/index/pickup_intro.png"
+                alt="pickup_intro"
+                fill
+                style={{
+                  objectFit: "contain",
+                  objectPosition: "center",
+                }}
+              />
+            </ImageWrapper>
+          </AnimatedImageSectionWrapper>
+        </ImageOuterWrapper>
       )}
 
       {!isDesktop && (

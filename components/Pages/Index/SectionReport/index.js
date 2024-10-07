@@ -54,7 +54,7 @@ export default function SectionReport({ isFirstEdition }) {
       <StyledContentWrapper>
         <InnerContentWrapper>
           <ReportSection isFirstEdition={isFirstEdition} />
-          <DramaSection />
+          <DramaSection isFirstEdition={isFirstEdition} />
         </InnerContentWrapper>
       </StyledContentWrapper>
       <ImageWrapper>

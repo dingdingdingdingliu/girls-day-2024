@@ -61,19 +61,12 @@ export const CardWrapper = styled.div`
 const TitleSection = styled.p`
   font-size: ${(props) => props.theme.fontSizes[18]};
   font-weight: ${(props) => props.theme.fontWeights.bold};
-  color: ${(props) => props.theme.colors.green};
+  color: ${(props) => props.theme.colors.pink};
   white-space: pre-wrap;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     font-size: ${(props) => props.theme.fontSizes[12]};
   }
-`;
-
-const AnimatedArrowWrapper = styled(animated.div)`
-  width: 14px;
-  height: 100%;
-  max-height: 100%;
-  overflow: hidden;
 `;
 
 const ContentWrapper = styled.div`
@@ -83,9 +76,7 @@ const ContentWrapper = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   margin-top: 24px;
-  display: flex;
-  justify-content: start;
-  align-items: start;
+  position: relative;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     height: 75%;
@@ -94,15 +85,25 @@ const ContentWrapper = styled.div`
 `;
 
 const ContentSection = styled.div`
+  width: calc(100% - 12px);
   font-size: ${(props) => props.theme.fontSizes[16]};
   font-weight: ${(props) => props.theme.fontWeights.normal};
   color: ${(props) => props.theme.colors.black};
   letter-spacing: 2px;
-  width: calc(100% - 14px);
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     font-size: ${(props) => props.theme.fontSizes[10]};
   }
+`;
+
+const AnimatedArrowWrapper = styled(animated.div)`
+  width: 14px;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 
 // isAbove: 卡片在 TimeLine 上方，指引線在卡片之下

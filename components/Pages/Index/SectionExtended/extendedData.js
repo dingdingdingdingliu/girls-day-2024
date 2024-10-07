@@ -21,6 +21,7 @@ export const societyCardData = [
     imageAlt: "society_110",
     title: "內政部警政署",
     cardContent: "手機下載app「110視訊報案」：可透過定位播出有聲或無聲電話",
+    linkUrl: "https://www.npa.gov.tw/ch/index",
   },
   {
     imageSrc: "/images/index/societySection/society_hopeFoundation.png",

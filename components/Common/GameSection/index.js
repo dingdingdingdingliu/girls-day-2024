@@ -79,7 +79,7 @@ export function GameSection({
           />
         </ImageWrapper>
       </GameImageSection>
-      <Link href={linkHref}>
+      <Link href={linkHref} target="_blank" rel="noopener noreferrer">
         <SmallBevelButton
           buttonColor={bevelColor}
           textColor={bevelTextColor}
