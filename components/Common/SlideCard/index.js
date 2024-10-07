@@ -163,12 +163,19 @@ export function ExtendedSlideCard({
   cardData,
   dialogContent,
   setDialogData,
+  isDragging,
+  handleMouseDown,
+  handleMouseMove,
+  handleMouseUp,
 }) {
   const { imageSrc, imageAlt, title, cardContent, order } = cardData;
   const theme = useTheme();
+
   const onCardClick = () => {
     if (isShowLabel) return;
-    setDialogData(dialogContent[order]);
+    if (!isDragging) {
+      setDialogData(dialogContent[order]);
+    }
   };
   return (
     <>
@@ -176,6 +183,10 @@ export function ExtendedSlideCard({
         onClick={onCardClick}
         cardColor={cardColor}
         isPointer={!isShowLabel}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
       >
         <CardImageWrapper>
           <ImageWrapper>
