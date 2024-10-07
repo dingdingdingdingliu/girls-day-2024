@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import { useSpring, animated } from "@react-spring/web";
 import { MdOutlineKeyboardDoubleArrowDown } from "react-icons/md";
+import useAppleDeviceCheck from "@/hooks/useAppleDeviceCheck";
 
 // 卡片區塊底層(含卡片+指引線)
 const TimeCardWrapper = styled.div`
@@ -108,6 +109,7 @@ const AnimatedArrowWrapper = styled(animated.div)`
 
 // isAbove: 卡片在 TimeLine 上方，指引線在卡片之下
 export default function TimeLineCard({ cardData }) {
+  const isAppleDevice = useAppleDeviceCheck();
   const [reverse, setReverse] = useState(false);
   const { title, content, lineColor, isBorder, position } = cardData;
 
@@ -118,6 +120,7 @@ export default function TimeLineCard({ cardData }) {
     onRest: () => setReverse(!reverse), // 動畫完成後反轉
     loop: true, // 無限循環
   });
+
   return (
     <div>
       {position === "above" ? (
@@ -127,9 +130,11 @@ export default function TimeLineCard({ cardData }) {
             <TitleSection>{title}</TitleSection>
             <ContentWrapper>
               <ContentSection>{content}</ContentSection>
-              <AnimatedArrowWrapper style={flashingIcon}>
-                <MdOutlineKeyboardDoubleArrowDown />
-              </AnimatedArrowWrapper>
+              {isAppleDevice && (
+                <AnimatedArrowWrapper style={flashingIcon}>
+                  <MdOutlineKeyboardDoubleArrowDown />
+                </AnimatedArrowWrapper>
+              )}
             </ContentWrapper>
           </CardWrapper>
         </TopTimeCardWrapper>
@@ -140,9 +145,11 @@ export default function TimeLineCard({ cardData }) {
             <TitleSection>{title}</TitleSection>
             <ContentWrapper>
               <ContentSection>{content}</ContentSection>
-              <AnimatedArrowWrapper style={flashingIcon}>
-                <MdOutlineKeyboardDoubleArrowDown />
-              </AnimatedArrowWrapper>
+              {isAppleDevice && (
+                <AnimatedArrowWrapper style={flashingIcon}>
+                  <MdOutlineKeyboardDoubleArrowDown />
+                </AnimatedArrowWrapper>
+              )}
             </ContentWrapper>
           </CardWrapper>
         </BottomTimeCardWrapper>
