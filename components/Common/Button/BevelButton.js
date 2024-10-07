@@ -30,6 +30,10 @@ const BevelButtonText = styled.div`
   justify-content: space-around;
   align-items: center;
   font-size: ${(props) => props.theme.fontSizes[40]};
+  font-weight: ${(props) =>
+    props.isBold
+      ? props.theme.fontWeights.bold
+      : props.theme.fontWeights.normal};
   color: ${(props) => props.textColor};
   letter-spacing: 8px;
 
@@ -74,6 +78,7 @@ export default function BevelButton({
   buttonText,
   onClick,
   isTablet = false,
+  isBold = false,
 }) {
   const [reverse, setReverse] = useState(false);
 
@@ -92,7 +97,12 @@ export default function BevelButton({
       onClick={onClick}
       isTablet={isTablet}
     >
-      <BevelButtonText size={size} textColor={textColor} isTablet={isTablet}>
+      <BevelButtonText
+        size={size}
+        textColor={textColor}
+        isTablet={isTablet}
+        isBold={isBold}
+      >
         <AnimatedArrowWrapper style={flashingIcon}>
           <ArrowDownStyle isTablet={isTablet} />
         </AnimatedArrowWrapper>

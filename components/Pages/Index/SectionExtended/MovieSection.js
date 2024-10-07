@@ -43,11 +43,11 @@ function MovieSlider({ setDialogData, setIsDialogOpen }) {
     <ActionWrapper>
       <OverThreeResponsiveSlider
         cardColor={theme.colors.white}
-        isShowLabel={false}
         sliderData={movieCardData}
         dialogContent={movieDialogData}
         setDialogData={setDialogData}
         setIsDialogOpen={setIsDialogOpen}
+        labelText="點擊查看"
       />
     </ActionWrapper>
   );

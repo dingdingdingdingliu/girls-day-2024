@@ -87,6 +87,7 @@ const SloganImage = styled.img`
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     width: 100%;
+    margin-right: ${(props) => props.isMargin && "18px"};
   }
 `;
 
@@ -125,7 +126,7 @@ export default function SectionIntro({ isDesktop }) {
         <LabelWrapper id="reception">
           <BevelLabel
             buttonColor={theme.colors.black}
-            textColor={theme.colors.yellow}
+            textColor={theme.colors.green}
             labelText="接待櫃檯"
             inView={inView}
           />

@@ -14,6 +14,8 @@ const SlideWrapper = styled.div`
   .slick-dots {
     position: absolute;
     bottom: -30px;
+    height: 36px;
+    overflow: hidden;
   }
 
   .slick-slide {
@@ -115,12 +117,13 @@ const ThreeSetting = {
 
 function OverThreeResponsiveSlider({
   cardColor,
-  isShowLabel,
   isReport = false,
+  isSociety = false,
   sliderData = [],
   dialogContent = [],
   setDialogData,
   setIsDialogOpen,
+  labelText,
 }) {
   const sliderRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -173,7 +176,6 @@ function OverThreeResponsiveSlider({
               <ReportSlideCard
                 key={index}
                 cardColor={cardColor}
-                isShowLabel={isShowLabel}
                 cardData={data}
               />
             );
@@ -184,12 +186,13 @@ function OverThreeResponsiveSlider({
               <ExtendedSlideCard
                 key={index}
                 cardColor={cardColor}
-                isShowLabel={isShowLabel}
                 cardData={data}
+                labelText={labelText}
                 dialogContent={dialogContent}
                 setDialogData={setDialogData}
                 setIsDialogOpen={setIsDialogOpen}
                 isDragging={isDragging}
+                isSociety={isSociety}
                 handleMouseDown={handleMouseDown}
                 handleMouseMove={handleMouseMove}
                 handleMouseUp={handleMouseUp}
@@ -203,12 +206,12 @@ function OverThreeResponsiveSlider({
 
 function UnderThreeResponsiveSlider({
   cardColor,
-  isShowLabel,
   isReport = false,
   sliderData = [],
   dialogContent = [],
   setDialogData,
   setIsDialogOpen,
+  labelText,
 }) {
   const isSlideTablet = useMediaQuery({
     minWidth: globalConfig.sliderTablet,
@@ -270,7 +273,6 @@ function UnderThreeResponsiveSlider({
               <ReportSlideCard
                 key={index}
                 cardColor={cardColor}
-                isShowLabel={isShowLabel}
                 cardData={data}
               />
             );
@@ -281,8 +283,8 @@ function UnderThreeResponsiveSlider({
               <ExtendedSlideCard
                 key={index}
                 cardColor={cardColor}
-                isShowLabel={isShowLabel}
                 cardData={data}
+                labelText={labelText}
                 dialogContent={dialogContent}
                 setDialogData={setDialogData}
                 setIsDialogOpen={setIsDialogOpen}

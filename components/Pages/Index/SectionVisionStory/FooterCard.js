@@ -143,7 +143,7 @@ export default function FooterCard({ title, copyWrite, count }) {
   const onCardClick = () => setIsVisible((visible) => !visible);
 
   const { ref, inView } = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
     threshold: 0,
   });
 

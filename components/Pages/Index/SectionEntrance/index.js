@@ -42,11 +42,12 @@ const ButtonWrapper = styled.div`
   bottom: 30px;
   left: 50%;
   transform: translate(-50%, 0);
+
   @media (max-width: ${globalConfig.tablet}) {
     bottom: 30px;
   }
   @media (max-width: ${globalConfig.mobile}) {
-    bottom: 80px;
+    bottom: 70px;
   }
 `;
 
@@ -103,6 +104,7 @@ export default function SectionEntrance() {
                   textColor={theme.colors.white}
                   buttonText="推門進入"
                   isTablet={true}
+                  isBold={true}
                 ></BevelButton>
               </a>
             </AnimatedWrapper>
