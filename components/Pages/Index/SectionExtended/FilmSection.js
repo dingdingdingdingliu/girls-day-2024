@@ -44,6 +44,7 @@ function FilmSlider({ setDialogData, setIsDialogOpen }) {
     <ActionWrapper>
       <UnderThreeResponsiveSlider
         cardColor={theme.colors.light}
+        bgColor={theme.colors.white}
         sliderData={filmCardData}
         dialogContent={filmDialogData}
         setDialogData={setDialogData}

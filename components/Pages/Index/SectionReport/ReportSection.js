@@ -71,6 +71,7 @@ function ReportSlider({ isFirstEdition }) {
         <ActionWrapper>
           <OverThreeResponsiveSlider
             cardColor={theme.colors.light}
+            bgColor={theme.colors.white}
             isReport={true}
             sliderData={sliderData}
           />
