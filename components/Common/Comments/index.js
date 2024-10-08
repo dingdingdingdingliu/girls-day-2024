@@ -17,7 +17,8 @@ const CommentsWord = styled.span`
   }
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    ${(props) => props.position === "timeCard" && props.theme.fontSizes[10]}
+    font-size: ${(props) =>
+      props.position === "timeCard" && props.theme.fontSizes[10]};
   }
 `;
 
@@ -41,7 +42,7 @@ const NoteText = styled.p`
   color: ${(props) => props.theme.colors.black};
 `;
 
-export default function Comments({ comments, position = "normal" }) {
+export default function Comments({ comments, position = "" }) {
   const [hoverPosition, setHoverPosition] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
   const commentsWordRef = useRef(null);
