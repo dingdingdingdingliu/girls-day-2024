@@ -86,7 +86,7 @@ const GirlsDayContentWrapper = styled(SectionContentWrapper)`
 
 // 主題內容層，40% 為留給左側圖片區域，135px 為底線標題區域
 const ThemeContentWrapper = styled(SectionContentWrapper)`
-  width: calc(60% - 135px);
+  width: calc(55% - 135px);
 `;
 
 const AnimatedTitleWrapper = styled(animated.div)`
@@ -99,14 +99,14 @@ const AnimatedContentWrapper = styled(animated.div)`
 
 // 圖片顯示層
 export const ThemeImageWrapper = styled.div`
-  width: 24%;
+  width: 35%;
   height: 100%;
   position: absolute;
   top: 0;
   right: 0;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    width: 160px;
+    width: 125px;
     height: 90px;
   }
 `;
@@ -190,7 +190,7 @@ export function ThemeSection() {
             alt="imageSections"
             fill
             style={{
-              objectFit: "contain",
+              objectFit: "cover",
               objectPosition: "center",
             }}
           />
