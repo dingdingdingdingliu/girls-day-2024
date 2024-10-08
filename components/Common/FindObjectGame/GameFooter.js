@@ -61,6 +61,16 @@ function Organizer() {
           alt="MOHW"
           style={{ marginLeft: "10px" }}
         />
+        <LogoImg
+          src="/images/logos/charity-lottery.png"
+          alt="charity-lottery"
+          style={{ marginLeft: "10px" }}
+        />
+        <LogoImg
+          src="/images/logos/child-welfare.png"
+          alt="child-welfare"
+          style={{ marginLeft: "10px" }}
+        />
       </LogoImagesWrapper>
     </LogoWrapper>
   );
@@ -82,23 +92,7 @@ function Consultant() {
     <LogoWrapper>
       <Title>議題顧問</Title>
       <LogoImagesWrapper>
-        <LogoImg src="/images/logos/gohLogo.svg" alt="gohLogo" />
-      </LogoImagesWrapper>
-    </LogoWrapper>
-  );
-}
-
-function Partner() {
-  return (
-    <LogoWrapper>
-      <Title>廣告</Title>
-      <LogoImagesWrapper>
-        <LogoImg src="/images/logos/logoOne.png" alt="logoOne" />
-        <LogoImg
-          src="/images/logos/logoTwo.png"
-          alt="logoTwo"
-          style={{ marginLeft: "10px" }}
-        />
+        <LogoImg src="/images/logos/gohTaiwanLogo.png" alt="gohTaiwanLogo" />
       </LogoImagesWrapper>
     </LogoWrapper>
   );
@@ -110,7 +104,6 @@ export default function Footer() {
       <Organizer />
       <CoOrganizer />
       <Consultant />
-      <Partner />
     </LogosWrapper>
   );
 }

@@ -41,6 +41,8 @@ const SectionIntroWrapper = styled.div`
   @media (max-width: ${globalConfig.mediaQuery}) {
     width: 100%;
     flex-direction: column;
+    justify-content: start;
+    align-items: center;
     margin: 0px auto;
     margin-top: 50px;
   }
@@ -144,7 +146,7 @@ export default function SectionIntro({ isDesktop }) {
           </LabelWrapper>
         )}
         <SectionIntroWrapper>
-          <ImageContent />
+          <ImageContent isDesktop={isDesktop} />
           <MainSectionWrapper>
             <GirlDaySection />
             <ThemeSection />
