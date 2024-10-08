@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { createPortal } from "react-dom";
 import styled from "@emotion/styled";
+import globalConfig from "@/styles/globalConfig";
 
 const CommentsWord = styled.span`
   font-size: ${(props) => props.theme.fontSizes[14]};
@@ -13,6 +14,10 @@ const CommentsWord = styled.span`
     visibility: visible;
     opacity: 1;
     transform: translateY(-10px);
+  }
+
+  @media (max-width: ${globalConfig.mediaQuery}) {
+    ${(props) => props.position === "timeCard" && props.theme.fontSizes[10]}
   }
 `;
 
@@ -36,7 +41,7 @@ const NoteText = styled.p`
   color: ${(props) => props.theme.colors.black};
 `;
 
-export default function Comments({ comments }) {
+export default function Comments({ comments, position = "normal" }) {
   const [hoverPosition, setHoverPosition] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
   const commentsWordRef = useRef(null);
@@ -45,7 +50,7 @@ export default function Comments({ comments }) {
     const rect = commentsWordRef.current.getBoundingClientRect();
     setHoverPosition({
       top: rect.top + 18, // 控制浮動元素的高度
-      left: rect.left - 80,
+      left: rect.left - 100,
       width: 200,
     });
     setIsHovered(true);
@@ -60,6 +65,7 @@ export default function Comments({ comments }) {
       ref={commentsWordRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      position={position}
     >
       [註]
       {isHovered &&
