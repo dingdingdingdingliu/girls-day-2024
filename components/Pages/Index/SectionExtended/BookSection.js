@@ -43,6 +43,7 @@ function BookSlider({ setDialogData, setIsDialogOpen }) {
     <ActionWrapper>
       <OverThreeResponsiveSlider
         cardColor={theme.colors.light}
+        bgColor={theme.colors.white}
         sliderData={bookCardData}
         dialogContent={bookDialogData}
         setDialogData={setDialogData}
