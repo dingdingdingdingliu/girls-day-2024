@@ -10,6 +10,11 @@ import { ReportSlideCard, ExtendedSlideCard } from "../SlideCard";
 // 定義卡片樣式，使其能夠根據父層的寬度動態調整
 const SlideWrapper = styled.div`
   width: 100%;
+  border-right: ${(props) => `10px solid ${props.borderColor}`};
+
+  @media (max-width: ${globalConfig.sliderMobile}) {
+    border-right: ${(props) => `8px solid ${props.borderColor}`};
+  }
 
   .slick-dots {
     position: absolute;
@@ -117,6 +122,7 @@ const ThreeSetting = {
 
 function OverThreeResponsiveSlider({
   cardColor,
+  bgColor,
   isReport = false,
   isSociety = false,
   sliderData = [],
@@ -168,7 +174,7 @@ function OverThreeResponsiveSlider({
   };
 
   return (
-    <SlideWrapper>
+    <SlideWrapper borderColor={bgColor}>
       <StyledSlider {...OverThreeSetting}>
         {isReport &&
           sliderData?.map((data, index) => {
@@ -206,6 +212,7 @@ function OverThreeResponsiveSlider({
 
 function UnderThreeResponsiveSlider({
   cardColor,
+  bgColor,
   isReport = false,
   sliderData = [],
   dialogContent = [],
@@ -265,7 +272,7 @@ function UnderThreeResponsiveSlider({
   };
 
   return (
-    <SlideWrapper>
+    <SlideWrapper borderColor={bgColor}>
       <StyledSlider {...ThreeSetting}>
         {isReport &&
           sliderData?.map((data, index) => {

@@ -42,6 +42,7 @@ function SocietySlider() {
     <ActionWrapper>
       <OverThreeResponsiveSlider
         cardColor={theme.colors.light}
+        bgColor={theme.colors.white}
         sliderData={societyCardData}
         labelText="詳情請前往查看"
         isSociety={true}

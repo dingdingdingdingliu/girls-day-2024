@@ -43,6 +43,7 @@ function CartoonSlider({ setDialogData, setIsDialogOpen }) {
     <ActionWrapper>
       <OverThreeResponsiveSlider
         cardColor={theme.colors.white}
+        bgColor={theme.colors.lightGrey}
         sliderData={cartoonCardData}
         dialogContent={cartoonDialogData}
         setDialogData={setDialogData}
