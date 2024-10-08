@@ -61,7 +61,7 @@ export default function SmallBevelButton({
   const flashingIcon = useSpring({
     from: { opacity: reverse ? 1 : 0.1 },
     to: { opacity: reverse ? 0.1 : 1 },
-    config: { duration: 500 }, // 每個階段的時間一致
+    config: { duration: 800 }, // 每個階段的時間一致
     onRest: () => setReverse(!reverse), // 動畫完成後反轉
     loop: true, // 無限循環
   });

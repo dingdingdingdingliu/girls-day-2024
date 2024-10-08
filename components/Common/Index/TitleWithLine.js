@@ -361,7 +361,8 @@ export function ExtendedTitle({ upperTitle, lowerTitle }) {
         }}
         fontSize={{
           upper: theme.fontSizes[28],
-          lower: theme.fontSizes[40],
+          lower:
+            lowerTitle.length > 4 ? theme.fontSizes[34] : theme.fontSizes[40],
           mobileUpper: theme.fontSizes[12],
           mobileLower: theme.fontSizes[18],
         }}
