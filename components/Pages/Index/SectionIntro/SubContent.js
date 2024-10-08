@@ -8,14 +8,19 @@ import {
   ThemeTitle,
 } from "@/components/Common/Index/TitleWithLine";
 import { ImageWrapper } from "@/components/Common/Index/Wrapper";
+import Comments from "@/components/Common/Comments";
 
 const copyWrite = {
   girlsDayFirst:
     "說到「女孩」，你腦中浮現什麼呢？是芭比、蝴蝶結？也有大隊接力搶跑道、學生會主席、機器人嗎？",
   girlsDaySecond:
     "聯合國號召各國重視、投資女孩，將10月11日訂為「國際女童日」，臺灣響應此訂為「臺灣女孩日」，自信、內向、高矮胖瘦、帥氣、可愛、說不同語言的女孩們，都值得受到栽培發揮潛力。",
-  girlsDayThird:
-    "女孩兼具「女性」和「兒童」身分，聯合國關於女孩的公約有兩部，臺灣都已加入。行政院列出參與決策、受教權、性健康、學科性別隔離、性別暴力等重點努力方向，看見臺灣女孩的一百種可能，用培力讓偏見現形瓦解！",
+  girlsDayThird: "女孩兼具「女性」和「兒童」身分，聯合國關於女孩的公約",
+  girlsDayForth:
+    "有兩部，臺灣都已加入。行政院列出參與決策、受教權、性健康、學科性別隔離、性別暴力等重點努力方向，看見臺灣女孩的一百種可能，用培力讓偏見現形瓦解！",
+  comments: {
+    text: "臺灣有國內法律效力的女孩權益相關公約，包含2011年生效的《消除對婦女一切形式歧視公約》（CEDAW）和2014年生效的《兒童權利公約》（CRC）。",
+  },
   themeFirst:
     "2024 年臺灣女孩日，將透過《偏見眼鏡行》中「戲劇體驗工作坊」和「主題網頁策展」兩大內容，來認識生活中無處不在的偏見言論和刻板印象來源，並鼓勵女孩「打破偏見」學習勇敢表達自我，突破限制！",
 };
@@ -137,7 +142,11 @@ export function GirlDaySection() {
           <br />
           <p>{copyWrite.girlsDaySecond}</p>
           <br />
-          <p>{copyWrite.girlsDayThird}</p>
+          <p>
+            <span>{copyWrite.girlsDayThird}</span>
+            <Comments comments={copyWrite.comments} />
+            <span>{copyWrite.girlsDayForth}</span>
+          </p>
         </AnimatedContentWrapper>
       </GirlsDayContentWrapper>
     </GirlsDaySectionWrapper>

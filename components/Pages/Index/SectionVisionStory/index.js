@@ -31,7 +31,11 @@ const cardData = [
     imageSrc: "/images/index/visionGameGirls/science_girl.png",
     imageAlt: "science_girl",
     copyWrite:
-      "高中、高職、大學的科系選擇依然浮現「男理工、女人文」的趨勢，理工學院的同儕玩笑例如「那個系女生那麼少，教授一定給分更甜啊」，呈現兩層性別偏見：預設教授是異性戀男性，且是會給女學生不當待遇的老師；女學生取得成就被認為是仰賴男性。支撐這些玩笑話的，是自然科學領域長期受陽剛男性把持，女性難以在其中發展。教育單位和企業都積極扭轉此局勢，例如台積電邀請女員工回母校女校演講、舉辦「台積電女科學家之旅」吸引女孩投入科技業。高衡權、劉家樺（2024）的研究更發現《性平法》對女學生選自然組具正面影響。",
+      "高中、高職、大學的科系選擇依然浮現「男理工、女人文」的趨勢，理工學院的同儕玩笑例如「那個系女生那麼少，教授一定給分更甜啊」，呈現兩層性別偏見：預設教授是異性戀男性，且是會給女學生不當待遇的老師；女學生取得成就被認為是仰賴男性。支撐這些玩笑話的，是自然科學領域長期受陽剛男性把持，女性難以在其中發展。教育單位和企業都積極扭轉此局勢，例如台積電邀請女員工回母校女校演講、舉辦「台積電女科學家之旅」吸引女孩投入科技業。高衡權、劉家樺（2024）的研究",
+    copyWriteSecond: "更發現《性平法》對女學生選自然組具正面影響。",
+    comments: {
+      text: "「2004 年《性別平等教育法》 對高中生選組的影響」，《人文及社會科學集刊》，第三十六卷第一期（113/3） , pp. 101 – 161",
+    },
   },
   {
     title: "棉花糖女孩",
@@ -212,12 +216,9 @@ export default function SectionVisionStory() {
                   <GameStoryCard
                     key={index}
                     id={index + 1}
-                    labelText={data?.title}
-                    imageSrc={data?.imageSrc}
-                    imageAlt={data?.imageAlt}
-                    copyWrite={data?.copyWrite}
                     labelColor={theme.colors.pink}
                     textColor={theme.colors.white}
+                    data={data}
                   />
                 );
               })}
