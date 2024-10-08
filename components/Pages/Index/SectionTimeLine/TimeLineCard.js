@@ -133,7 +133,7 @@ export default function TimeLineCard({ cardData }) {
               <ContentSection>
                 {content}
                 {cardData?.comments && (
-                  <Comments comments={cardData?.comments} />
+                  <Comments comments={cardData?.comments} position="timeCard" />
                 )}
               </ContentSection>
               {isAppleDevice && (
@@ -153,7 +153,7 @@ export default function TimeLineCard({ cardData }) {
               <ContentSection>
                 {content}
                 {cardData?.comments && (
-                  <Comments comments={cardData?.comments} />
+                  <Comments comments={cardData?.comments} position="timeCard" />
                 )}
               </ContentSection>
               {isAppleDevice && (
