@@ -205,8 +205,7 @@ export const cartoonCardData = [
     imageAlt: "cartoon_TurningRed",
     title: "《青春養成記》",
     engTitle: "Turning Red",
-    cardContent:
-      "美國皮克斯動畫工作室製作｜華特迪士尼影業發行\n2022｜動畫\n普通級",
+    cardContent: "Pixar 製作｜Disney 發行發行\n2022｜動畫\n普通級",
   },
   {
     order: 3,
