@@ -4,6 +4,7 @@ import globalConfig from "@/styles/globalConfig";
 import { useSpring, animated } from "@react-spring/web";
 import { MdOutlineKeyboardDoubleArrowDown } from "react-icons/md";
 import useAppleDeviceCheck from "@/hooks/useAppleDeviceCheck";
+import Comments from "@/components/Common/Comments";
 
 // 卡片區塊底層(含卡片+指引線)
 const TimeCardWrapper = styled.div`
@@ -129,7 +130,12 @@ export default function TimeLineCard({ cardData }) {
           <CardWrapper isBorder={isBorder}>
             <TitleSection>{title}</TitleSection>
             <ContentWrapper>
-              <ContentSection>{content}</ContentSection>
+              <ContentSection>
+                {content}
+                {cardData?.comments && (
+                  <Comments comments={cardData?.comments} />
+                )}
+              </ContentSection>
               {isAppleDevice && (
                 <AnimatedArrowWrapper style={flashingIcon}>
                   <MdOutlineKeyboardDoubleArrowDown />
@@ -144,7 +150,12 @@ export default function TimeLineCard({ cardData }) {
           <CardWrapper isBorder={isBorder}>
             <TitleSection>{title}</TitleSection>
             <ContentWrapper>
-              <ContentSection>{content}</ContentSection>
+              <ContentSection>
+                {content}
+                {cardData?.comments && (
+                  <Comments comments={cardData?.comments} />
+                )}
+              </ContentSection>
               {isAppleDevice && (
                 <AnimatedArrowWrapper style={flashingIcon}>
                   <MdOutlineKeyboardDoubleArrowDown />

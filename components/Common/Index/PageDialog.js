@@ -1,7 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useSpring, animated } from "@react-spring/web";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import { RxCross2 } from "react-icons/rx";
+import { MdOutlineKeyboardDoubleArrowDown } from "react-icons/md";
+import useAppleDeviceCheck from "@/hooks/useAppleDeviceCheck";
 
 // 覆蓋層
 const Overlay = styled.div`
@@ -93,6 +96,7 @@ const ContentWrapper = styled.div`
   letter-spacing: 1px;
   padding-right: 14px;
   margin-top: 36px;
+  position: relative;
 `;
 
 const Footer = styled.p`
@@ -105,6 +109,20 @@ const Footer = styled.p`
   text-align: end;
 `;
 
+const AnimatedArrowWrapper = styled(animated.div)`
+  width: 18px;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+`;
+
+const StyleDoubleArrowDown = styled(MdOutlineKeyboardDoubleArrowDown)`
+  font-size: 20px;
+`;
+
 export default function PageDialog({
   isDialogOpen = true,
   setIsDialogOpen,
@@ -112,6 +130,17 @@ export default function PageDialog({
   dialogData,
   isDesktop,
 }) {
+  const isAppleDevice = useAppleDeviceCheck();
+  const [reverse, setReverse] = useState(false);
+
+  const flashingIcon = useSpring({
+    from: { opacity: reverse ? 1 : 0.2 },
+    to: { opacity: reverse ? 0.2 : 1 },
+    config: { duration: 500 }, // 每個階段的時間一致
+    onRest: () => setReverse(!reverse), // 動畫完成後反轉
+    loop: true, // 無限循環
+  });
+
   const onDesktopCloseClick = () => setDialogData({});
   const onOverlayClick = () => {
     if (!isDesktop) return;
@@ -137,6 +166,11 @@ export default function PageDialog({
           <ContentWrapper>
             {dialogData?.content}
             {dialogData?.footer && <Footer>{dialogData?.footer}</Footer>}
+            {isAppleDevice && (
+              <AnimatedArrowWrapper style={flashingIcon}>
+                <StyleDoubleArrowDown />
+              </AnimatedArrowWrapper>
+            )}
           </ContentWrapper>
         </DialogWrapper>
       </Wrapper>
