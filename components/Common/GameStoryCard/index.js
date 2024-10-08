@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "@react-spring/web";
 import { ImageWrapper } from "../Index/Wrapper";
+import Comments from "@/components/Common/Comments";
 
 const delay = (i) => Number(i) * 150;
 
@@ -108,15 +109,7 @@ function BevelTitle({ labelText, labelColor, textColor }) {
   );
 }
 
-export default function GameStoryCard({
-  labelText,
-  imageSrc,
-  imageAlt,
-  copyWrite,
-  labelColor,
-  textColor,
-  id,
-}) {
+export default function GameStoryCard({ data, labelColor, textColor, id }) {
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0,
@@ -133,7 +126,7 @@ export default function GameStoryCard({
   return (
     <AnimatedStoryCardWrapper style={getSpringProps(id)} ref={ref}>
       <BevelTitle
-        labelText={labelText}
+        labelText={data?.title}
         labelColor={labelColor}
         textColor={textColor}
       />
@@ -141,8 +134,8 @@ export default function GameStoryCard({
         <ImageSectionWrapper>
           <ImageWrapper>
             <Image
-              src={imageSrc}
-              alt={imageAlt}
+              src={data?.imageSrc}
+              alt={data?.imageAlt}
               fill
               style={{
                 objectFit: "contain",
@@ -151,8 +144,13 @@ export default function GameStoryCard({
             />
           </ImageWrapper>
         </ImageSectionWrapper>
+        {}
         <CopyWriteSectionWrapper>
-          <CopyWrite>{copyWrite}</CopyWrite>
+          <CopyWrite>
+            {data?.copyWrite}
+            {data?.comments && <Comments comments={data?.comments} />}
+            {data?.copyWriteSecond && data?.copyWriteSecond}
+          </CopyWrite>
         </CopyWriteSectionWrapper>
       </CardContentWrapper>
     </AnimatedStoryCardWrapper>

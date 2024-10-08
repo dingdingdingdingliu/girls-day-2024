@@ -198,11 +198,9 @@ export default function SectionVisionStory() {
                 return (
                   <GameStoryCard
                     key={index}
-                    labelText={data?.title}
-                    imageSrc={data?.imageSrc}
-                    copyWrite={data?.copyWrite}
                     labelColor={theme.colors.green}
                     textColor={theme.colors.black}
+                    data={data}
                   />
                 );
               })}
