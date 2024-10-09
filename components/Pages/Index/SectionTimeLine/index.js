@@ -186,7 +186,7 @@ export default function SectionTimeLine({ isDesktop }) {
     if (isMaskOpen) {
       const timeout = setTimeout(() => {
         setIsMaskOpen(false);
-      }, 6000);
+      }, 4000);
 
       return () => clearTimeout(timeout);
     }
