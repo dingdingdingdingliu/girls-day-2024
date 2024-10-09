@@ -5,6 +5,7 @@ const globalTheme = {
     grey: "#919191",
     lightGrey: "#ececec",
     mediumGrey: "#DDDDDD",
+    timeGrey: "#b1b1b1",
     light: "#F5F5F5",
     yellow: "#ffff00",
     green: "#00FF93",

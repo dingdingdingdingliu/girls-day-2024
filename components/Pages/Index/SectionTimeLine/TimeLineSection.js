@@ -17,7 +17,7 @@ const TimeLine = styled.div`
   width: 5002px;
   max-height: 12px;
   max-width: 5002px;
-  background-color: ${(props) => props.theme.colors.grey};
+  background-color: ${(props) => props.theme.colors.timeGrey};
   position: absolute;
   top: 50%;
   left: 0;
