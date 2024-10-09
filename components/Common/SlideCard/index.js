@@ -57,6 +57,7 @@ const ContentCardWrapper = styled.div`
 const TitleWrapper = styled.div`
   overflow: auto;
   display: block;
+  overflow: hidden;
 
   @media (max-width: ${globalConfig.sliderCardContentLimit}) {
     overflow: hidden;
@@ -93,6 +94,7 @@ const ExtendedTitle = styled.p`
   font-size: ${(props) => props.theme.fontSizes[18]};
   font-weight: ${(props) => props.theme.fontWeights.bold};
   color: ${(props) => props.theme.colors.black};
+  overflow: hidden;
   word-break: break-word;
   overflow-wrap: break-word;
   margin-bottom: 6px;
