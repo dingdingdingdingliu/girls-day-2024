@@ -84,18 +84,15 @@ export default function Home() {
       <SectionEntrance />
       <SectionIntro isDesktop={isDesktop} />
       <SectionPromoVideo isFirstEdition={isFirstEdition} />
-      <SectionReport isFirstEdition={isFirstEdition} />
+      {!isFirstEdition && <SectionReport isFirstEdition={isFirstEdition} />}
       <SectionVision isDesktop={isDesktop} />
-      <SectionVisionStory />
+      <SectionVisionStory setDialogData={setDialogData} />
       <SectionFindObject isDesktop={isDesktop} />
       <SectionFindObjectStory />
       <SectionTimeLine isDesktop={isDesktop} />
       <SectionGirlImage />
       <SectionPickUp isDesktop={isDesktop} />
-      <SectionExtended
-        setDialogData={setDialogData}
-        setIsDialogOpen={setIsDialogOpen}
-      />
+      <SectionExtended setDialogData={setDialogData} />
       <Footer />
     </ResponsiveContainer>
   );
