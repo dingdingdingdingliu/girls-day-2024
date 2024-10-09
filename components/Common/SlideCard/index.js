@@ -175,7 +175,7 @@ export function ExtendedSlideCard({
 
   const onCardClick = (e) => {
     e.preventDefault();
-    if (isSociety && cardData?.linkUrl) {
+    if (isSociety && cardData?.linkUrl && !isDragging) {
       window.open(cardData?.linkUrl, "_blank", "noopener,noreferrer");
     }
     if (!isSociety && !isDragging) {
