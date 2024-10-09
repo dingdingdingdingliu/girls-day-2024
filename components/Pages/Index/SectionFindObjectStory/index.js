@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
@@ -23,6 +23,7 @@ import {
 } from "@/components/Common/Index/GameStoryWrapper";
 import { GameStoryTitle } from "@/components/Common/Index/TitleWithLine";
 import GameStoryCard from "@/components/Common/GameStoryCard";
+import useCreateArray from "@/hooks/useCreateArray";
 
 // 卡片資料
 const cardData = [
@@ -89,38 +90,44 @@ const StyledTitleSectionWrapper = styled(TitleSectionWrapper)`
     ${props.theme.colors.white} 85%)`};
 `;
 
-// 電腦版底部滿版圖層
-const AnimatedImageDesktopWrapper = styled(animated.div)`
-  width: 100%;
-  height: 200px;
-  position: relative; /* 必須設置 position relative 以便內部圖片填滿 */
-  margin: 68px 0;
-
-  @media (max-width: ${globalConfig.mediaQuery}) {
-    display: none;
-  }
-`;
-
-// 手機版底部滿版圖層
-const AnimatedImageMobileWrapper = styled(animated.div)`
-  display: none;
-
-  @media (max-width: ${globalConfig.mediaQuery}) {
-    display: block;
-    width: 100%;
-    height: 100px;
-    position: relative; /* 必須設置 position relative 以便內部圖片填滿 */
-    margin-top: 24px;
-    padding: 0 8px;
-  }
-`;
-
 const AnimatedTitleSection = styled(animated.div)`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: start;
+`;
+
+const ImageContainer = styled.div`
+  overflow: hidden;
+  position: relative;
+  width: 98%;
+  height: 140px;
+  margin: 68px 0;
+  will-change: transform;
+
+  @media (max-width: ${globalConfig.mediaQuery}) {
+    width: 98%;
+    height: 60px;
+    margin: 34px 0;
+  }
+`;
+
+const AnimatedImageWrapper = styled(animated.div)`
+  display: flex;
+  width: 200%;
+  height: 100%;
+  will-change: transform;
+`;
+
+const GlassImage = styled.img`
+  width: 100%;
+  object-fit: cover;
+  margin-right: ${(props) => props.isMargin && "60px"};
+
+  @media (max-width: ${globalConfig.mediaQuery}) {
+    margin-right: ${(props) => props.isMargin && "18px"};
+  }
 `;
 
 // 標題內容區塊元件
@@ -171,21 +178,25 @@ export function TitleSection({ inView }) {
 }
 
 export default function SectionVisionStory() {
-  const [reverse, setReverse] = useState(false);
+  const imageArray = useCreateArray(6);
+  const theme = useTheme();
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0,
   });
 
-  const theme = useTheme();
+  const [{ x }, api] = useSpring(() => ({
+    x: 0,
+    config: { duration: 10000, easing: (t) => t }, // 延长时间控制滑动速度
+  }));
 
-  const flashingImage = useSpring({
-    from: { opacity: reverse ? 1 : 0.2 },
-    to: { opacity: reverse ? 0.2 : 1 },
-    config: { duration: 500 }, // 每個階段的時間一致
-    onRest: () => setReverse(!reverse), // 動畫完成後反轉
-    loop: true, // 無限循環
-  });
+  useEffect(() => {
+    api.start({
+      from: { x: 0 },
+      to: { x: -100 },
+      loop: true,
+    });
+  }, [api]);
 
   return (
     <StyledPageWrapper ref={ref}>
@@ -207,29 +218,23 @@ export default function SectionVisionStory() {
             </ContentSectionWrapper>
           </MainSectionWrapper>
         </StorySectionWrapper>
-        <AnimatedImageDesktopWrapper style={flashingImage}>
-          <Image
-            src="/images/index/game_bottom_image.png"
-            alt="game_bottom_image"
-            fill
-            style={{
-              objectFit: "contain",
-              objectPosition: "center",
-            }}
-          />
-        </AnimatedImageDesktopWrapper>
       </StyledContentWrapper>
-      <AnimatedImageMobileWrapper style={flashingImage}>
-        <Image
-          src="/images/index/game_bottom_image.png"
-          alt="game_bottom_image"
-          fill
+      <ImageContainer>
+        <AnimatedImageWrapper
           style={{
-            objectFit: "contain",
-            objectPosition: "center",
+            x: x.to((x) => `${x}%`),
           }}
-        />
-      </AnimatedImageMobileWrapper>
+        >
+          {imageArray?.map((num) => (
+            <GlassImage
+              src="/images/index/game_bottom_image.png"
+              alt="game_bottom_image"
+              key={num}
+              isMargin={num === imageArray.length}
+            />
+          ))}
+        </AnimatedImageWrapper>
+      </ImageContainer>
     </StyledPageWrapper>
   );
 }

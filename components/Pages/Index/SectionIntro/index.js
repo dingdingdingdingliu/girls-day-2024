@@ -11,6 +11,7 @@ import {
   BevelLabel,
   AbsoluteLabelWrapper,
 } from "@/components/Common/Label/BevelLabel";
+import useCreateArray from "@/hooks/useCreateArray";
 
 const sloganImageSrc = "/images/index/intro_slogan.png";
 
@@ -76,7 +77,7 @@ const SloganContainer = styled.div`
   }
 `;
 
-const ScrollWrapper = styled(animated.div)`
+const AnimatedSloganWrapper = styled(animated.div)`
   display: flex;
   width: 200%;
   will-change: transform;
@@ -103,6 +104,7 @@ const LabelWrapper = styled(AbsoluteLabelWrapper)`
 
 export default function SectionIntro({ isDesktop }) {
   const theme = useTheme();
+  const logoArray = useCreateArray(6);
 
   const { ref, inView } = useInView({
     triggerOnce: false,
@@ -153,18 +155,20 @@ export default function SectionIntro({ isDesktop }) {
           </MainSectionWrapper>
         </SectionIntroWrapper>
         <SloganContainer>
-          <ScrollWrapper
+          <AnimatedSloganWrapper
             style={{
               x: x.to((x) => `${x}%`),
             }}
           >
-            <SloganImage src={sloganImageSrc} alt="slogan" isMargin />
-            <SloganImage src={sloganImageSrc} alt="slogan" isMargin />
-            <SloganImage src={sloganImageSrc} alt="slogan" isMargin />
-            <SloganImage src={sloganImageSrc} alt="slogan" isMargin />
-            <SloganImage src={sloganImageSrc} alt="slogan" isMargin />
-            <SloganImage src={sloganImageSrc} alt="slogan" />
-          </ScrollWrapper>
+            {logoArray?.map((num) => (
+              <SloganImage
+                src={sloganImageSrc}
+                alt="slogan"
+                key={num}
+                isMargin={num === logoArray.length}
+              />
+            ))}
+          </AnimatedSloganWrapper>
         </SloganContainer>
       </StyledContentWrapper>
     </StyledPageWrapper>
