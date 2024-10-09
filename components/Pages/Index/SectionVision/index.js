@@ -81,7 +81,7 @@ export default function SectionVision({ isDesktop }) {
 
   const { ref, inView } = useInView({
     triggerOnce: false,
-    threshold: 0.4,
+    threshold: 0.2,
   });
 
   const fadeIn = useSpring({
