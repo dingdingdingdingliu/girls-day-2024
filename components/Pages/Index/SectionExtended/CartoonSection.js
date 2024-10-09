@@ -58,7 +58,7 @@ function CartoonSlider({ setDialogData, setIsDialogOpen }) {
 function CartoonTitleSection() {
   return (
     <IntroWrapper>
-      <ExtendedTitle upperTitle="延伸閱讀" lowerTitle="動漫" />
+      <ExtendedTitle upperTitle="延伸閱讀" lowerTitle="動畫漫畫繪本" />
       <IntroImageWrapper>
         <ImageWrapper>
           <Image
@@ -76,7 +76,7 @@ function CartoonTitleSection() {
   );
 }
 
-export default function CartoonSection({ setDialogData, setIsDialogOpen }) {
+export default function CartoonSection({ setDialogData }) {
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0.2,
@@ -95,10 +95,7 @@ export default function CartoonSection({ setDialogData, setIsDialogOpen }) {
           <InnerContentWrapper>
             <SectionWrapper>
               <CartoonTitleSection />
-              <CartoonSlider
-                setDialogData={setDialogData}
-                setIsDialogOpen={setIsDialogOpen}
-              />
+              <CartoonSlider setDialogData={setDialogData} />
             </SectionWrapper>
           </InnerContentWrapper>
         </AnimatedWrapper>

@@ -11,6 +11,7 @@ import {
   BevelLabel,
   AbsoluteLabelWrapper,
 } from "@/components/Common/Label/BevelLabel";
+import useCreateArray from "@/hooks/useCreateArray";
 
 const sloganImageSrc = "/images/index/intro_slogan.png";
 
@@ -41,6 +42,8 @@ const SectionIntroWrapper = styled.div`
   @media (max-width: ${globalConfig.mediaQuery}) {
     width: 100%;
     flex-direction: column;
+    justify-content: start;
+    align-items: center;
     margin: 0px auto;
     margin-top: 50px;
   }
@@ -74,7 +77,7 @@ const SloganContainer = styled.div`
   }
 `;
 
-const ScrollWrapper = styled(animated.div)`
+const AnimatedSloganWrapper = styled(animated.div)`
   display: flex;
   width: 200%;
   will-change: transform;
@@ -101,6 +104,7 @@ const LabelWrapper = styled(AbsoluteLabelWrapper)`
 
 export default function SectionIntro({ isDesktop }) {
   const theme = useTheme();
+  const logoArray = useCreateArray(6);
 
   const { ref, inView } = useInView({
     triggerOnce: false,
@@ -144,25 +148,27 @@ export default function SectionIntro({ isDesktop }) {
           </LabelWrapper>
         )}
         <SectionIntroWrapper>
-          <ImageContent />
+          <ImageContent isDesktop={isDesktop} />
           <MainSectionWrapper>
             <GirlDaySection />
             <ThemeSection />
           </MainSectionWrapper>
         </SectionIntroWrapper>
         <SloganContainer>
-          <ScrollWrapper
+          <AnimatedSloganWrapper
             style={{
               x: x.to((x) => `${x}%`),
             }}
           >
-            <SloganImage src={sloganImageSrc} alt="slogan" isMargin />
-            <SloganImage src={sloganImageSrc} alt="slogan" isMargin />
-            <SloganImage src={sloganImageSrc} alt="slogan" isMargin />
-            <SloganImage src={sloganImageSrc} alt="slogan" isMargin />
-            <SloganImage src={sloganImageSrc} alt="slogan" isMargin />
-            <SloganImage src={sloganImageSrc} alt="slogan" />
-          </ScrollWrapper>
+            {logoArray?.map((num) => (
+              <SloganImage
+                src={sloganImageSrc}
+                alt="slogan"
+                key={num}
+                isMargin={num === logoArray.length}
+              />
+            ))}
+          </AnimatedSloganWrapper>
         </SloganContainer>
       </StyledContentWrapper>
     </StyledPageWrapper>
