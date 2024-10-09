@@ -37,7 +37,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
 `;
 
 // Slide 卡片區塊
-function MovieSlider({ setDialogData, setIsDialogOpen }) {
+function MovieSlider({ setDialogData }) {
   const theme = useTheme();
   return (
     <ActionWrapper>
@@ -47,7 +47,6 @@ function MovieSlider({ setDialogData, setIsDialogOpen }) {
         sliderData={movieCardData}
         dialogContent={movieDialogData}
         setDialogData={setDialogData}
-        setIsDialogOpen={setIsDialogOpen}
         labelText="點擊查看"
       />
     </ActionWrapper>

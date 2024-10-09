@@ -77,7 +77,7 @@ function FilmTitleSection() {
   );
 }
 
-export default function FilmSection({ setDialogData, setIsDialogOpen }) {
+export default function FilmSection({ setDialogData }) {
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0.2,
@@ -96,10 +96,7 @@ export default function FilmSection({ setDialogData, setIsDialogOpen }) {
           <InnerContentWrapper>
             <SectionWrapper>
               <FilmTitleSection />
-              <FilmSlider
-                setDialogData={setDialogData}
-                setIsDialogOpen={setIsDialogOpen}
-              />
+              <FilmSlider setDialogData={setDialogData} />
             </SectionWrapper>
           </InnerContentWrapper>
         </AnimatedWrapper>

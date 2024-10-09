@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "@react-spring/web";
 import { ImageWrapper } from "../Index/Wrapper";
 import Comments from "@/components/Common/Comments";
+import useFormattedText from "@/hooks/useFormattedText";
 
 const delay = (i) => Number(i) * 150;
 
@@ -99,6 +100,10 @@ const CopyWrite = styled.p`
   }
 `;
 
+const StyledSpan = styled.span`
+  display: inline-block;
+`;
+
 function BevelTitle({ labelText, labelColor, textColor }) {
   return (
     <TitleContentWrapper>
@@ -108,6 +113,17 @@ function BevelTitle({ labelText, labelColor, textColor }) {
     </TitleContentWrapper>
   );
 }
+
+const CopyWriteContent = ({ content, children }) => {
+  const formattedText = useFormattedText(content, "20px");
+
+  return (
+    <StyledSpan>
+      {formattedText}
+      {children}
+    </StyledSpan>
+  );
+};
 
 export default function GameStoryCard({ data, labelColor, textColor, id }) {
   const { ref, inView } = useInView({
@@ -144,12 +160,12 @@ export default function GameStoryCard({ data, labelColor, textColor, id }) {
             />
           </ImageWrapper>
         </ImageSectionWrapper>
-        {}
         <CopyWriteSectionWrapper>
           <CopyWrite>
-            {data?.copyWrite}
-            {data?.comments && <Comments comments={data?.comments} />}
-            {data?.copyWriteSecond && data?.copyWriteSecond}
+            <CopyWriteContent content={data?.copyWrite}>
+              {data?.comments && <Comments comments={data?.comments} />}
+              {data?.copyWriteSecond && data?.copyWriteSecond}
+            </CopyWriteContent>
           </CopyWrite>
         </CopyWriteSectionWrapper>
       </CardContentWrapper>

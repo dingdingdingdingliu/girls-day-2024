@@ -33,3 +33,7 @@ a {
 .under-line {
   text-decoration: underline;
 }
+
+.slick-dots li.slick-active button:before {
+  display: none;
+}

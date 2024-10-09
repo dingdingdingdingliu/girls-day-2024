@@ -18,16 +18,49 @@ const SlideWrapper = styled.div`
 
   .slick-dots {
     position: absolute;
-    bottom: -30px;
+    bottom: -45px;
     height: 36px;
     overflow: hidden;
-  }
-
-  .slick-slide {
     width: 100%;
-    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex !important;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: ${globalConfig.sliderMobile}) {
+      bottom: -40px;
+    }
+
+    li {
+      margin: 0 8px;
+
+      @media (max-width: ${globalConfig.sliderMobile}) {
+        margin: 0;
+      }
+    }
+
+    button {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: #919191;
+      border: none;
+
+      :before {
+        color: transparent;
+      }
+
+      @media (max-width: ${globalConfig.sliderMobile}) {
+        width: 8px;
+        height: 8px;
+      }
+    }
+
+    .slick-active button {
+      background-color: black;
+    }
   }
 `;
 
@@ -294,7 +327,6 @@ function UnderThreeResponsiveSlider({
                 labelText={labelText}
                 dialogContent={dialogContent}
                 setDialogData={setDialogData}
-                setIsDialogOpen={setIsDialogOpen}
                 isDragging={isDragging}
                 handleMouseDown={handleMouseDown}
                 handleMouseMove={handleMouseMove}

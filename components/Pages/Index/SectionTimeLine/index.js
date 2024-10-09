@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import { useInView } from "react-intersection-observer";
@@ -10,13 +11,20 @@ import {
 } from "@/components/Common/Label/BevelLabel";
 import { TimeLineTitle } from "@/components/Common/Index/TitleWithLine";
 import TimeLineSection from "./TimeLineSection";
+import HintMask from "./HintMask";
 
 const titleCopyWrite =
   "臺灣的性別運動發展至今，以婦女運動為先驅，到出現同志運動、男性研究，更多專精特定性別議題的民間團體，而政府部門也積極實踐聯合國的「性別主流化」概念，把性別議題從邊緣拉到主流，融入各項業務中。整體來說，臺灣的性別人權發展有著透過修法、立法、行政組織帶來改變，並回應國際重要議題的特徵。";
 
 // 頁面底層底色延展
 const StyledPageWrapper = styled(PageWrapper)`
-  background-color: ${(props) => props.theme.colors.black};
+  background-image: ${(props) =>
+    `linear-gradient(to bottom, 
+    ${props.theme.colors.lightGreen} 0%, 
+    ${props.theme.colors.lightOrange} 50%, 
+    ${props.theme.colors.lightPink} 92%,
+		${props.theme.colors.black} 100%)
+		`};
   position: relative;
   padding-bottom: 20px;
 `;
@@ -70,7 +78,7 @@ const TitleContent = styled.p`
   width: 50%;
   font-size: ${(props) => props.theme.fontSizes[20]};
   font-weight: ${(props) => props.theme.fontWeights.normal};
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.black};
   letter-spacing: 2px;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
@@ -96,27 +104,42 @@ const TimeLineScrollWrapper = styled.div`
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
+  position: relative;
 `;
 
 // 陰影層
 const ShadowWrapper = styled.div`
-  width: 80px;
+  width: 50px;
   height: 100%;
   position: absolute;
   top: 0;
-  z-index: 4;
+  z-index: 40;
+
+  @media (max-width: ${globalConfig.mediaQuery}) {
+    width: 28px;
+  }
 `;
 
 // 左側陰影層
 const ShadowLeftWrapper = styled(ShadowWrapper)`
-  background-image: linear-gradient(to right, #000000, transparent 70%);
-  left: 0;
+  background-image: linear-gradient(
+    to right,
+    rgba(200, 200, 200, 0.08),
+    transparent 90%
+  );
+  backdrop-filter: blur(0.5px);
+  left: -2px;
 `;
 
 // 右側陰影層
 const ShadowRightWrapper = styled(ShadowWrapper)`
-  background-image: linear-gradient(to left, #000000, transparent 70%);
-  right: 0;
+  background-image: linear-gradient(
+    to left,
+    rgba(200, 200, 200, 0.08),
+    transparent 90%
+  );
+  backdrop-filter: blur(0.5px);
+  right: -2px;
 `;
 
 const LabelWrapper = styled(AbsoluteLabelWrapper)`
@@ -129,9 +152,11 @@ const LabelWrapper = styled(AbsoluteLabelWrapper)`
 
 export default function SectionTimeLine({ isDesktop }) {
   const theme = useTheme();
+  const [isMaskOpen, setIsMaskOpen] = useState(false);
+  const [maskShownOnce, setMaskShownOnce] = useState(false);
 
   const { ref, inView } = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
     threshold: 0.2,
   });
 
@@ -142,13 +167,38 @@ export default function SectionTimeLine({ isDesktop }) {
     delay: 400, // 延遲效果
   });
 
+  const fadeInHint = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+    config: { duration: 800 }, // 動畫持續時間
+    delay: isMaskOpen && 600, // 只有在 isGameEnd 為 true 時設置延遲
+    reset: false,
+  });
+
+  useEffect(() => {
+    if (inView && !maskShownOnce) {
+      setIsMaskOpen(true);
+      setMaskShownOnce(true);
+    }
+  }, [inView, maskShownOnce]);
+
+  useEffect(() => {
+    if (isMaskOpen) {
+      const timeout = setTimeout(() => {
+        setIsMaskOpen(false);
+      }, 6000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [isMaskOpen]);
+
   return (
     <StyledPageWrapper ref={ref}>
       {!isDesktop && (
         <LabelWrapper id="processing">
           <BevelLabel
-            buttonColor={theme.colors.green}
-            textColor={theme.colors.black}
+            buttonColor={theme.colors.black}
+            textColor={theme.colors.green}
             labelText="加工區"
             inView={inView}
           />
@@ -158,8 +208,8 @@ export default function SectionTimeLine({ isDesktop }) {
         {isDesktop && (
           <LabelWrapper id="processing">
             <BevelLabel
-              buttonColor={theme.colors.green}
-              textColor={theme.colors.black}
+              buttonColor={theme.colors.black}
+              textColor={theme.colors.green}
               labelText="加工區"
               inView={inView}
             />
@@ -175,6 +225,7 @@ export default function SectionTimeLine({ isDesktop }) {
           <ShadowRelativeWrapper>
             <ShadowLeftWrapper />
             <TimeLineScrollWrapper>
+              <HintMask fadeInHint={fadeInHint} isMaskOpen={isMaskOpen} />
               <TimeLineSection />
             </TimeLineScrollWrapper>
             <ShadowRightWrapper />

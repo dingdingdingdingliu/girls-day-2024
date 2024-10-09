@@ -13,6 +13,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
   padding: 60px 0;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
+    width: 92%;
     padding: 48px 0;
   }
 `;
@@ -45,7 +46,7 @@ const LogoWrapper = styled.div`
   align-items: start;
 
   @media (max-width: ${globalConfig.sliderCardContentLimit}) {
-    width: 90%;
+    width: 100%;
     flex-direction: row;
     justify-content: start;
     align-items: center;
@@ -70,21 +71,8 @@ const Title = styled.p`
   }
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    font-size: ${(props) => props.theme.fontSizes[16]};
-    margin: 0 24px 0 0;
-  }
-`;
-
-const FakeTitle = styled.p`
-  display: inline-block;
-  font-size: ${(props) => props.theme.fontSizes[20]};
-  font-weight: ${(props) => props.theme.fontWeights.bold};
-  color: transparent;
-  margin-bottom: 15px;
-  white-space: nowrap;
-
-  @media (max-width: ${globalConfig.sliderCardContentLimit}) {
-    display: none;
+    font-size: ${(props) => props.theme.fontSizes[14]};
+    margin: 0 12px 0 0;
   }
 `;
 
@@ -98,13 +86,11 @@ const LogoImagesWrapper = styled.div`
 const LogoImg = styled.img`
   height: 40px;
   width: auto;
+  margin-left: ${(props) => props.isMarginLeft && "24px"};
 
   @media (max-width: ${globalConfig.sliderTablet}) {
     height: 28px;
-  }
-
-  @media (max-width: ${globalConfig.mediaQuery}) {
-    height: 32px;
+    margin-left: ${(props) => props.isMarginLeft && "16px"};
   }
 `;
 
@@ -118,13 +104,25 @@ function Organizer() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <LogoImg src="/images/logos/welfare-logo.png" alt="welfare" />
-          <LogoImg
-            src="/images/logos/MOHW.png"
-            alt="MOHW"
-            style={{ marginLeft: "24px" }}
-          />
+          <LogoImagesWrapper>
+            <LogoImg src="/images/logos/welfare-logo.png" alt="welfare" />
+            <LogoImg
+              src="/images/logos/MOHW.png"
+              alt="MOHW"
+              isMarginLeft={true}
+            />
+          </LogoImagesWrapper>
         </a>
+        <LogoImg
+          src="/images/logos/charity-lottery.png"
+          alt="charity-lottery"
+          isMarginLeft={true}
+        />
+        <LogoImg
+          src="/images/logos/child-welfare.png"
+          alt="child-welfare"
+          isMarginLeft={true}
+        />
       </LogoImagesWrapper>
     </LogoWrapper>
   );
@@ -164,25 +162,6 @@ function Consultant() {
   );
 }
 
-function Partner() {
-  return (
-    <LogoWrapper>
-      <FakeTitle>合作夥伴</FakeTitle>
-      <LogoImagesWrapper>
-        <LogoImg
-          src="/images/logos/charity-lottery.png"
-          alt="charity-lottery"
-        />
-        <LogoImg
-          src="/images/logos/child-welfare.png"
-          alt="child-welfare"
-          style={{ marginLeft: "24px" }}
-        />
-      </LogoImagesWrapper>
-    </LogoWrapper>
-  );
-}
-
 function DramaPartner() {
   return (
     <LogoWrapper>
@@ -209,7 +188,6 @@ export default function Footer() {
           <CoOrganizer />
           <DramaPartner />
           <Consultant />
-          <Partner />
         </LogosWrapper>
       </StyledContentWrapper>
     </StyledPageWrapper>

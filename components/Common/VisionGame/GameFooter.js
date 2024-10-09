@@ -17,10 +17,10 @@ const LogoWrapper = styled.div`
 `;
 
 const Title = styled.p`
-  font-size: ${(props) => props.theme.fontSizes[12]};
+  font-size: ${(props) => props.theme.fontSizes[10]};
   font-weight: ${(props) => props.theme.fontWeights.normal};
   color: ${(props) => props.theme.colors.black};
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   white-space: nowrap;
 `;
 
@@ -32,7 +32,7 @@ const LogoImagesWrapper = styled.div`
 `;
 
 const LogoImg = styled.img`
-  height: 16px;
+  height: 13px;
   width: auto;
 `;
 
@@ -45,6 +45,16 @@ function Organizer() {
         <LogoImg
           src="/images/logos/MOHW.png"
           alt="MOHW"
+          style={{ marginLeft: "10px" }}
+        />
+        <LogoImg
+          src="/images/logos/charity-lottery.png"
+          alt="charity-lottery"
+          style={{ marginLeft: "10px" }}
+        />
+        <LogoImg
+          src="/images/logos/child-welfare.png"
+          alt="child-welfare"
           style={{ marginLeft: "10px" }}
         />
       </LogoImagesWrapper>
@@ -68,23 +78,7 @@ function Consultant() {
     <LogoWrapper>
       <Title>議題顧問</Title>
       <LogoImagesWrapper>
-        <LogoImg src="/images/logos/gohLogo.svg" alt="gohLogo" />
-      </LogoImagesWrapper>
-    </LogoWrapper>
-  );
-}
-
-function Partner() {
-  return (
-    <LogoWrapper>
-      <Title>廣告</Title>
-      <LogoImagesWrapper>
-        <LogoImg src="/images/logos/logoOne.png" alt="logoOne" />
-        <LogoImg
-          src="/images/logos/logoTwo.png"
-          alt="logoTwo"
-          style={{ marginLeft: "10px" }}
-        />
+        <LogoImg src="/images/logos/gohTaiwanLogo.png" alt="gohTaiwanLogo" />
       </LogoImagesWrapper>
     </LogoWrapper>
   );
@@ -96,7 +90,6 @@ export default function Footer() {
       <Organizer />
       <CoOrganizer />
       <Consultant />
-      <Partner />
     </LogosWrapper>
   );
 }

@@ -37,7 +37,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
 `;
 
 // Slide 卡片區塊
-function BookSlider({ setDialogData, setIsDialogOpen }) {
+function BookSlider({ setDialogData }) {
   const theme = useTheme();
   return (
     <ActionWrapper>
@@ -47,7 +47,6 @@ function BookSlider({ setDialogData, setIsDialogOpen }) {
         sliderData={bookCardData}
         dialogContent={bookDialogData}
         setDialogData={setDialogData}
-        setIsDialogOpen={setIsDialogOpen}
         labelText="點擊查看"
       />
     </ActionWrapper>

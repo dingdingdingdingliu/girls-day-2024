@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import { RxCross2 } from "react-icons/rx";
 import { MdOutlineKeyboardDoubleArrowDown } from "react-icons/md";
 import useAppleDeviceCheck from "@/hooks/useAppleDeviceCheck";
+import useFormattedText from "@/hooks/useFormattedText";
+import useBodyScrollLock from "@/hooks/useBodyScrollLock";
 
 // 覆蓋層
 const Overlay = styled.div`
@@ -30,7 +32,8 @@ const Wrapper = styled.div`
 // 1/4 區塊
 const DialogWrapper = styled.div`
   width: 500px;
-  height: 450px;
+  max-width: 500px;
+  max-height: 450px;
   background-color: ${(props) => props.theme.colors.white};
   display: flex;
   flex-direction: column;
@@ -38,24 +41,15 @@ const DialogWrapper = styled.div`
   justify-content: start;
   border-radius: 2px;
   position: relative;
-  padding: 48px;
+  padding: 32px 36px;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     width: 90%;
-    height: 580px;
+    max-width: 90%;
+    max-height: 580px;
   }
-`;
-
-const IconWrapper = styled.div`
-  position: absolute;
-  top: 16px;
-  right: 16px;
-`;
-
-const StyledRxCross = styled(RxCross2)`
-  color: ${(props) => props.theme.colors.grey};
-  cursor: pointer;
-  font-size: 30px;
 `;
 
 const Title = styled.p`
@@ -85,18 +79,13 @@ const HashTag = styled.p`
 // 內容層
 const ContentWrapper = styled.div`
   width: 100%;
-  height: auto;
-  max-height: 310px;
-  overflow-y: auto;
-  overflow-x: hidden;
   word-break: break-all;
   white-space: pre-wrap;
   font-size: ${(props) => props.theme.fontSizes[18]};
   color: ${(props) => props.theme.colors.black};
   letter-spacing: 1px;
-  padding-right: 14px;
+  padding-right: 20px;
   margin-top: 36px;
-  position: relative;
 `;
 
 const Footer = styled.p`
@@ -105,33 +94,70 @@ const Footer = styled.p`
   color: ${(props) => props.theme.colors.black};
   white-space: pre-wrap;
   letter-spacing: 1px;
-  margin: 8px 0 36px 0;
+  margin-top: 8px;
   text-align: end;
+`;
+
+const AbsoluteXIconWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+`;
+
+const IconWrapper = styled.div`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+`;
+
+const StyledRxCross = styled(RxCross2)`
+  color: ${(props) => props.theme.colors.grey};
+  cursor: pointer;
+  font-size: 30px;
 `;
 
 const AnimatedArrowWrapper = styled(animated.div)`
   width: 18px;
-  height: 100%;
-  max-height: 100%;
-  overflow: hidden;
   position: absolute;
-  top: 0;
+  top: 50%;
   right: 0;
 `;
 
 const StyleDoubleArrowDown = styled(MdOutlineKeyboardDoubleArrowDown)`
-  font-size: 20px;
+  font-size: 18px;
 `;
 
+const StyledSpan = styled.span`
+  display: inline-block;
+`;
+
+const CopyWriteContent = ({ content, children }) => {
+  const formattedText = useFormattedText(content, "20px");
+
+  return (
+    <StyledSpan>
+      {formattedText}
+      {children}
+    </StyledSpan>
+  );
+};
+
 export default function PageDialog({
-  isDialogOpen = true,
+  isDialogOpen,
   setIsDialogOpen,
   setDialogData,
   dialogData,
   isDesktop,
 }) {
+  useBodyScrollLock(isDialogOpen);
   const isAppleDevice = useAppleDeviceCheck();
   const [reverse, setReverse] = useState(false);
+  const [hasScrollbar, setHasScrollbar] = useState(false);
+  const divRef = useRef(null);
+  const observerRef = useRef(null);
 
   const flashingIcon = useSpring({
     from: { opacity: reverse ? 1 : 0.2 },
@@ -145,6 +171,7 @@ export default function PageDialog({
   const onOverlayClick = () => {
     if (!isDesktop) return;
     setIsDialogOpen((pre) => !pre);
+    setDialogData({});
   };
 
   useEffect(() => {
@@ -152,21 +179,51 @@ export default function PageDialog({
     if (Object.keys(dialogData).length <= 0) setIsDialogOpen(false);
   }, [dialogData]);
 
+  useEffect(() => {
+    const checkForScrollbars = () => {
+      if (divRef.current) {
+        const { scrollHeight, clientHeight } = divRef.current;
+        setHasScrollbar(scrollHeight > clientHeight);
+      }
+    };
+
+    if (divRef.current) {
+      checkForScrollbars();
+      observerRef.current = new ResizeObserver(() => {
+        checkForScrollbars();
+      });
+      observerRef.current.observe(divRef.current);
+    }
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+        observerRef.current = null;
+      }
+    };
+  }, [divRef.current]);
+
+  if (!isDialogOpen) return null;
+
   return (
     <Overlay isOpen={isDialogOpen} onClick={onOverlayClick}>
       <Wrapper>
-        <DialogWrapper>
-          <IconWrapper onClick={() => onDesktopCloseClick()}>
-            <StyledRxCross />
-          </IconWrapper>
+        <DialogWrapper ref={divRef}>
+          <AbsoluteXIconWrapper>
+            <IconWrapper onClick={() => onDesktopCloseClick()}>
+              <StyledRxCross />
+            </IconWrapper>
+          </AbsoluteXIconWrapper>
           <Title>{dialogData?.title}</Title>
           {dialogData?.engTitle && <Title>{dialogData?.engTitle}</Title>}
-          <Intro>{dialogData?.intro}</Intro>
+          {dialogData?.intro && <Intro>{dialogData?.intro}</Intro>}
           {dialogData?.hashTag && <HashTag>{dialogData?.hashTag}</HashTag>}
           <ContentWrapper>
-            {dialogData?.content}
+            {dialogData?.content && (
+              <CopyWriteContent content={dialogData?.content} />
+            )}
             {dialogData?.footer && <Footer>{dialogData?.footer}</Footer>}
-            {isAppleDevice && (
+            {isAppleDevice && hasScrollbar && (
               <AnimatedArrowWrapper style={flashingIcon}>
                 <StyleDoubleArrowDown />
               </AnimatedArrowWrapper>

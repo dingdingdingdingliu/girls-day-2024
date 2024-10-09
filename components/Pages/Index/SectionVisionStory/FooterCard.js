@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "@react-spring/web";
 import styled from "@emotion/styled";
@@ -8,12 +7,12 @@ import {
   MdOutlineKeyboardArrowDown,
 } from "react-icons/md";
 
+const isVisible = true;
+
 const AnimatedFooterCardWrapper = styled(animated.div)`
   display: flex;
   flex-direction: column;
   align-items: start;
-  position: relative;
-  z-index: ${(props) => (props.isVisible ? 10 : 1)};
 `;
 
 const FooterCardButtonWrapper = styled.div`
@@ -105,42 +104,12 @@ const ContentTitleStyle = styled.p`
   }
 `;
 
-const RelativePosition = styled.div`
-  background-color: ${(props) => props.theme.colors.black};
-  width: 100%;
-  height: 1px;
-`;
-
-const AnimatedCopyWriteWrapper = styled(animated.div)`
-  background-color: ${(props) => props.theme.colors.white};
-  width: 100%;
-  padding: 16px 24px;
-  border: 4px solid ${(props) => props.theme.colors.black};
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-
-  @media (max-width: ${globalConfig.mediaQuery}) {
-    padding: 24px 36px;
-  }
-`;
-
-const CopyWriteStyle = styled.p`s
-  color: ${(props) => props.theme.colors.black};
-  font-size: ${(props) => props.theme.fontSizes[20]};
-  font-weight: ${(props) => props.theme.fontWeights.normal};
-  letter-spacing: 2px;
-  margin: 0 auto;
-
-  @media (max-width: ${globalConfig.mediaQuery}) {
-    font-size: ${(props) => props.theme.fontSizes[16]};
-  }
-`;
-
-export default function FooterCard({ title, copyWrite, count }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const onCardClick = () => setIsVisible((visible) => !visible);
+export default function FooterCard({ cardData, setDialogData }) {
+  const { title, copyWrite } = cardData;
+  const dialogData = {
+    title,
+    content: copyWrite,
+  };
 
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -154,15 +123,12 @@ export default function FooterCard({ title, copyWrite, count }) {
     delay: 400, // 延遲效果
   });
 
-  const fadeInCard = useSpring({
-    opacity: isVisible ? 1 : 0,
-    transform: isVisible ? "translateX(0)" : "translateY(-10px)",
-    zIndex: isVisible ? (10 - count) * 100 : 0,
-    config: { duration: 100 },
-  });
+  const onCardClick = () => {
+    setDialogData(dialogData);
+  };
 
   return (
-    <AnimatedFooterCardWrapper ref={ref} style={fadeIn} isVisible={isVisible}>
+    <AnimatedFooterCardWrapper ref={ref} style={fadeIn}>
       <FooterCardButtonWrapper onClick={onCardClick}>
         <ExplainTitleStyle>名詞解釋</ExplainTitleStyle>
         <ContentTitleWrapper>
@@ -171,11 +137,6 @@ export default function FooterCard({ title, copyWrite, count }) {
           {isVisible ? <ArrowUpStyle /> : <ArrowDownStyle />}
         </ContentTitleWrapper>
       </FooterCardButtonWrapper>
-      <RelativePosition>
-        <AnimatedCopyWriteWrapper style={fadeInCard}>
-          <CopyWriteStyle>{copyWrite}</CopyWriteStyle>
-        </AnimatedCopyWriteWrapper>
-      </RelativePosition>
     </AnimatedFooterCardWrapper>
   );
 }
