@@ -160,6 +160,11 @@ export default function SectionTimeLine({ isDesktop }) {
     threshold: 0.2,
   });
 
+  const { maskRef, maskInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
   const fadeIn = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView ? "translateX(0)" : "translateY(-50px)",
@@ -176,11 +181,11 @@ export default function SectionTimeLine({ isDesktop }) {
   });
 
   useEffect(() => {
-    if (inView && !maskShownOnce) {
+    if (maskInView && !maskShownOnce) {
       setIsMaskOpen(true);
       setMaskShownOnce(true);
     }
-  }, [inView, maskShownOnce]);
+  }, [maskInView, maskShownOnce]);
 
   useEffect(() => {
     if (isMaskOpen) {
@@ -224,7 +229,7 @@ export default function SectionTimeLine({ isDesktop }) {
           </TitleContentOuterWrapper>
           <ShadowRelativeWrapper>
             <ShadowLeftWrapper />
-            <TimeLineScrollWrapper>
+            <TimeLineScrollWrapper ref={maskRef}>
               <HintMask fadeInHint={fadeInHint} isMaskOpen={isMaskOpen} />
               <TimeLineSection />
             </TimeLineScrollWrapper>
