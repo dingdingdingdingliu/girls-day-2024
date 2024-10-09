@@ -16,6 +16,10 @@ const SlideWrapper = styled.div`
     border-right: ${(props) => `8px solid ${props.borderColor}`};
   }
 
+  .slick-slider {
+    will-change: transform;
+  }
+
   .slick-dots {
     position: absolute;
     bottom: -45px;
@@ -82,7 +86,7 @@ const StyledSlider = styled(Slider)`
 
 const OverThreeSetting = {
   dots: true,
-  infinite: false,
+  infinite: true,
   speed: 500,
   slidesToShow: 3,
   slidesToScroll: 3,
@@ -91,6 +95,7 @@ const OverThreeSetting = {
   swipe: true,
   touchMove: true,
   draggable: true,
+  lazyLoad: "ondemand",
   responsive: [
     {
       breakpoint: 1440,
@@ -128,6 +133,7 @@ const ThreeSetting = {
   swipe: true,
   touchMove: true,
   draggable: true,
+  lazyLoad: "ondemand",
   responsive: [
     {
       breakpoint: 1440,
@@ -161,12 +167,17 @@ function OverThreeResponsiveSlider({
   sliderData = [],
   dialogContent = [],
   setDialogData,
-  setIsDialogOpen,
   labelText,
 }) {
   const sliderRef = useRef(null);
+  const isDesktopSize = useMediaQuery({ minWidth: globalConfig.mediaQuery });
   const [isDragging, setIsDragging] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(true);
   const [startX, setStartX] = useState(0);
+
+  useEffect(() => {
+    setIsDesktop(isDesktopSize);
+  }, [isDesktopSize]);
 
   useEffect(() => {
     const handleWheel = (e) => {
@@ -180,16 +191,16 @@ function OverThreeResponsiveSlider({
     };
 
     const sliderElement = sliderRef.current?.innerSlider.list;
-    if (sliderElement) {
+    if (sliderElement && isDesktop) {
       sliderElement.addEventListener("wheel", handleWheel, { passive: false });
     }
 
     return () => {
-      if (sliderElement) {
+      if (sliderElement && isDesktop) {
         sliderElement.removeEventListener("wheel", handleWheel);
       }
     };
-  }, []);
+  }, [isDesktop]);
 
   const handleMouseDown = (e) => {
     setIsDragging(false);
@@ -229,7 +240,6 @@ function OverThreeResponsiveSlider({
                 labelText={labelText}
                 dialogContent={dialogContent}
                 setDialogData={setDialogData}
-                setIsDialogOpen={setIsDialogOpen}
                 isDragging={isDragging}
                 isSociety={isSociety}
                 handleMouseDown={handleMouseDown}
@@ -250,17 +260,22 @@ function UnderThreeResponsiveSlider({
   sliderData = [],
   dialogContent = [],
   setDialogData,
-  setIsDialogOpen,
   labelText,
 }) {
   const isSlideTablet = useMediaQuery({
     minWidth: globalConfig.sliderTablet,
   });
 
-  const [isSetThreeCard, setIsSetThreeCard] = useState(true);
   const sliderRef = useRef(null);
+  const isDesktopSize = useMediaQuery({ minWidth: globalConfig.mediaQuery });
+  const [isSetThreeCard, setIsSetThreeCard] = useState(true);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    setIsDesktop(isDesktopSize);
+  }, [isDesktopSize]);
 
   useEffect(() => {
     setIsSetThreeCard(isSlideTablet);
@@ -278,16 +293,16 @@ function UnderThreeResponsiveSlider({
     };
 
     const sliderElement = sliderRef.current?.innerSlider.list;
-    if (sliderElement) {
+    if (sliderElement && isDesktop) {
       sliderElement.addEventListener("wheel", handleWheel, { passive: false });
     }
 
     return () => {
-      if (sliderElement) {
+      if (sliderElement && isDesktop) {
         sliderElement.removeEventListener("wheel", handleWheel);
       }
     };
-  }, []);
+  }, [isDesktop]);
 
   const handleMouseDown = (e) => {
     setIsDragging(false);
