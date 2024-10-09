@@ -108,7 +108,7 @@ const ImageContainer = styled.div`
 
   @media (max-width: ${globalConfig.mediaQuery}) {
     width: 98%;
-    height: 60px;
+    height: 56px;
     margin: 34px 0;
   }
 `;
