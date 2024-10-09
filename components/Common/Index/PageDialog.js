@@ -27,6 +27,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
 // 1/4 區塊
@@ -41,7 +42,6 @@ const DialogWrapper = styled.div`
   justify-content: start;
   border-radius: 2px;
   position: relative;
-  padding: 32px 36px;
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -50,6 +50,15 @@ const DialogWrapper = styled.div`
     max-width: 90%;
     max-height: 580px;
   }
+`;
+
+const BodyWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  padding: 0 36px 32px 36px;
 `;
 
 const Title = styled.p`
@@ -98,19 +107,11 @@ const Footer = styled.p`
   text-align: end;
 `;
 
-const AbsoluteXIconWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-`;
-
-const IconWrapper = styled.div`
-  position: absolute;
+const StickyIconWrapper = styled.div`
+  position: sticky;
   top: 16px;
   right: 16px;
+  align-self: flex-end;
 `;
 
 const StyledRxCross = styled(RxCross2)`
@@ -209,26 +210,26 @@ export default function PageDialog({
     <Overlay isOpen={isDialogOpen} onClick={onOverlayClick}>
       <Wrapper>
         <DialogWrapper ref={divRef}>
-          <AbsoluteXIconWrapper>
-            <IconWrapper onClick={() => onDesktopCloseClick()}>
-              <StyledRxCross />
-            </IconWrapper>
-          </AbsoluteXIconWrapper>
-          <Title>{dialogData?.title}</Title>
-          {dialogData?.engTitle && <Title>{dialogData?.engTitle}</Title>}
-          {dialogData?.intro && <Intro>{dialogData?.intro}</Intro>}
-          {dialogData?.hashTag && <HashTag>{dialogData?.hashTag}</HashTag>}
-          <ContentWrapper>
-            {dialogData?.content && (
-              <CopyWriteContent content={dialogData?.content} />
-            )}
-            {dialogData?.footer && <Footer>{dialogData?.footer}</Footer>}
-            {isAppleDevice && hasScrollbar && (
-              <AnimatedArrowWrapper style={flashingIcon}>
-                <StyleDoubleArrowDown />
-              </AnimatedArrowWrapper>
-            )}
-          </ContentWrapper>
+          <StickyIconWrapper onClick={() => onDesktopCloseClick()}>
+            <StyledRxCross />
+          </StickyIconWrapper>
+          <BodyWrapper>
+            <Title>{dialogData?.title}</Title>
+            {dialogData?.engTitle && <Title>{dialogData?.engTitle}</Title>}
+            {dialogData?.intro && <Intro>{dialogData?.intro}</Intro>}
+            {dialogData?.hashTag && <HashTag>{dialogData?.hashTag}</HashTag>}
+            <ContentWrapper>
+              {dialogData?.content && (
+                <CopyWriteContent content={dialogData?.content} />
+              )}
+              {dialogData?.footer && <Footer>{dialogData?.footer}</Footer>}
+              {isAppleDevice && hasScrollbar && (
+                <AnimatedArrowWrapper style={flashingIcon}>
+                  <StyleDoubleArrowDown />
+                </AnimatedArrowWrapper>
+              )}
+            </ContentWrapper>
+          </BodyWrapper>
         </DialogWrapper>
       </Wrapper>
     </Overlay>
