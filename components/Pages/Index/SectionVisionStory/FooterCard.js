@@ -2,12 +2,7 @@ import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "@react-spring/web";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
-import {
-  MdOutlineKeyboardArrowUp,
-  MdOutlineKeyboardArrowDown,
-} from "react-icons/md";
-
-const isVisible = true;
+import { GiClick } from "react-icons/gi";
 
 const AnimatedFooterCardWrapper = styled(animated.div)`
   display: flex;
@@ -17,6 +12,7 @@ const AnimatedFooterCardWrapper = styled(animated.div)`
 
 const FooterCardButtonWrapper = styled.div`
   background-color: ${(props) => props.theme.colors.black};
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -33,6 +29,7 @@ const ExplainTitleStyle = styled.p`
   font-size: ${(props) => props.theme.fontSizes[16]};
   white-space: nowrap;
   border-bottom: ${(props) => `0.75px solid ${props.theme.colors.pink}`};
+	obrder
   padding-bottom: 6px;
   margin-bottom: 12px;
 
@@ -53,33 +50,16 @@ const ContentTitleWrapper = styled.div`
   align-items: center;
 `;
 
-const ArrowDownStyle = styled(MdOutlineKeyboardArrowDown)`
+const ArrowStyle = styled(GiClick)`
   color: ${(props) => props.theme.colors.pink};
-  font-size: 32px;
-  margin-bottom: -2px;
+  font-size: 16px;
 
   @media (max-width: ${globalConfig.sliderTablet}) {
-    font-size: 20px;
+    font-size: 12px;
   }
 
   @media (max-width: ${globalConfig.mediaQuery}) {
-    font-size: 28px;
-    margin-bottom: -1px;
-  }
-`;
-
-const ArrowUpStyle = styled(MdOutlineKeyboardArrowUp)`
-  color: ${(props) => props.theme.colors.pink};
-  font-size: 32px;
-  margin-bottom: -2px;
-
-  @media (max-width: ${globalConfig.sliderTablet}) {
     font-size: 20px;
-  }
-
-  @media (max-width: ${globalConfig.mediaQuery}) {
-    font-size: 28px;
-    margin-bottom: -1px;
   }
 `;
 
@@ -88,13 +68,13 @@ const ContentTitleStyle = styled.p`
   font-size: ${(props) => props.theme.fontSizes[20]};
   font-weight: ${(props) => props.theme.fontWeights.bold};
   white-space: nowrap;
-  margin: 0 4px;
+  margin: 0 6px;
   letter-spacing: 1px;
 
   @media (max-width: ${globalConfig.sliderTablet}) {
     font-size: ${(props) => props.theme.fontSizes[12]};
     letter-spacing: 0px;
-    margin: 0;
+    margin: 0 2px;
   }
 
   @media (max-width: ${globalConfig.mediaQuery}) {
@@ -132,9 +112,9 @@ export default function FooterCard({ cardData, setDialogData }) {
       <FooterCardButtonWrapper onClick={onCardClick}>
         <ExplainTitleStyle>名詞解釋</ExplainTitleStyle>
         <ContentTitleWrapper>
-          {isVisible ? <ArrowUpStyle /> : <ArrowDownStyle />}
+          <ArrowStyle />
           <ContentTitleStyle>{title}</ContentTitleStyle>
-          {isVisible ? <ArrowUpStyle /> : <ArrowDownStyle />}
+          <ArrowStyle />
         </ContentTitleWrapper>
       </FooterCardButtonWrapper>
     </AnimatedFooterCardWrapper>
