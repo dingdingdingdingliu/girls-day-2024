@@ -88,8 +88,8 @@ export default function GameAnswerCard({ data }) {
             : answerImageData.wrong
         }
         alt="answerIcon"
-        width={36}
-        height={36}
+        width={32}
+        height={32}
       />
       {!isCorrect && <StyledRxCross />}
     </SectionWrapper>

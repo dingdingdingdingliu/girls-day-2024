@@ -5,8 +5,9 @@ const LogosWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 80px 0 28px 0;
+  margin: 40px 0 28px 0;
   padding: 0 10px;
+  overflow: hidden;
 `;
 
 const LogoWrapper = styled.div`
@@ -20,7 +21,7 @@ const Title = styled.p`
   font-size: ${(props) => props.theme.fontSizes[10]};
   font-weight: ${(props) => props.theme.fontWeights.normal};
   color: ${(props) => props.theme.colors.black};
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   white-space: nowrap;
 `;
 
@@ -32,7 +33,7 @@ const LogoImagesWrapper = styled.div`
 `;
 
 const LogoImg = styled.img`
-  height: 13px;
+  height: 18px;
   width: auto;
 `;
 
@@ -45,17 +46,17 @@ function Organizer() {
         <LogoImg
           src="/images/logos/MOHW.png"
           alt="MOHW"
-          style={{ marginLeft: "10px" }}
+          style={{ marginLeft: "8px" }}
         />
         <LogoImg
           src="/images/logos/charity-lottery.png"
           alt="charity-lottery"
-          style={{ marginLeft: "10px" }}
+          style={{ marginLeft: "8px" }}
         />
         <LogoImg
           src="/images/logos/child-welfare.png"
           alt="child-welfare"
-          style={{ marginLeft: "10px" }}
+          style={{ marginLeft: "8px" }}
         />
       </LogoImagesWrapper>
     </LogoWrapper>

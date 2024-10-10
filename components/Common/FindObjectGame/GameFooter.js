@@ -2,17 +2,29 @@ import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 
 const LogosWrapper = styled.div`
-  width: 360px;
-  min-width: 360px;
+  width: 400px;
+  min-width: 400px;
+  height: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 28px;
-  padding: 20px 0;
+  margin: 20px 0 28px 0;
+  overflow: hidden;
 
   @media (max-width: ${globalConfig.findObjectGame}) {
-    width: 80%;
-    min-width: 270px;
+    width: 290px;
+    min-width: 290px;
+    height: 50px;
+    min-height: 50px;
+    margin-top: 0;
+  }
+
+  @media (max-width: ${globalConfig.mobile}) {
+    width: 85%;
+    min-width: 290px;
+    height: 50px;
+    min-height: 50px;
+    margin-top: 0;
   }
 `;
 
@@ -27,10 +39,11 @@ const Title = styled.p`
   font-size: ${(props) => props.theme.fontSizes[12]};
   font-weight: ${(props) => props.theme.fontWeights.normal};
   color: ${(props) => props.theme.colors.black};
-  margin-bottom: 6px;
+  margin-bottom: 10px;
   white-space: nowrap;
 
   @media (max-width: ${globalConfig.findObjectGame}) {
+    margin-bottom: 8px;
     font-size: ${(props) => props.theme.fontSizes[10]};
   }
 `;
@@ -43,10 +56,11 @@ const LogoImagesWrapper = styled.div`
 `;
 
 const LogoImg = styled.img`
-  height: 16px;
+  height: 20px;
   width: auto;
+
   @media (max-width: ${globalConfig.findObjectGame}) {
-    height: 12px;
+    height: 14px;
   }
 `;
 
@@ -59,17 +73,17 @@ function Organizer() {
         <LogoImg
           src="/images/logos/MOHW.png"
           alt="MOHW"
-          style={{ marginLeft: "10px" }}
+          style={{ marginLeft: "8px" }}
         />
         <LogoImg
           src="/images/logos/charity-lottery.png"
           alt="charity-lottery"
-          style={{ marginLeft: "10px" }}
+          style={{ marginLeft: "8px" }}
         />
         <LogoImg
           src="/images/logos/child-welfare.png"
           alt="child-welfare"
-          style={{ marginLeft: "10px" }}
+          style={{ marginLeft: "8px" }}
         />
       </LogoImagesWrapper>
     </LogoWrapper>
