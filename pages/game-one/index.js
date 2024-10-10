@@ -28,7 +28,7 @@ const StyledPageWrapper = styled(PageWrapper)`
 `;
 
 const StyledContentWrapper = styled(ContentWrapper)`
-  padding: 20px 40px;
+  padding: 20px;
 `;
 
 const Wrapper = styled.div`
@@ -46,7 +46,7 @@ const AnimatedIntroWrapper = styled(animated.div)`
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 `;
 
 const TitleOne = styled.p`
@@ -70,7 +70,7 @@ const MainImageWrapper = styled.div`
   height: 200px;
   min-width: 270px;
   min-height: 200px;
-  margin: 10px 0 20px 0;
+  margin: 10px 0 16px 0;
 `;
 
 const CopyWrite = styled.p`
@@ -89,7 +89,7 @@ const GameTopicOuterWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 14px 0;
+  margin: 12px 0;
 `;
 
 // GameTopic 內容層
