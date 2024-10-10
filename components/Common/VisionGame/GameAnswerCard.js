@@ -11,7 +11,7 @@ const delay = (i) => Number(i) * 100;
 const SectionWrapper = styled(animated.div)`
   width: 100%;
   display: flex;
-  padding: 18px 18px 18px 30px;
+  padding: 20px 18px 20px 30px;
   justify-content: space-around;
   align-items: center;
   background-image: ${(props) =>
@@ -88,8 +88,8 @@ export default function GameAnswerCard({ data }) {
             : answerImageData.wrong
         }
         alt="answerIcon"
-        width={31}
-        height={31}
+        width={36}
+        height={36}
       />
       {!isCorrect && <StyledRxCross />}
     </SectionWrapper>
