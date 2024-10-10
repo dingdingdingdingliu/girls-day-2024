@@ -4,6 +4,7 @@ import globalConfig from "@/styles/globalConfig";
 import { useSpring, animated } from "@react-spring/web";
 import { MdOutlineKeyboardDoubleArrowDown } from "react-icons/md";
 import useAppleDeviceCheck from "@/hooks/useAppleDeviceCheck";
+import useFormattedText from "@/hooks/useFormattedText";
 import Comments from "@/components/Common/Comments";
 
 // 卡片區塊底層(含卡片+指引線)
@@ -108,6 +109,21 @@ const AnimatedArrowWrapper = styled(animated.div)`
   right: 0;
 `;
 
+const StyledSpan = styled.span`
+  display: inline-block;
+`;
+
+const CopyWriteContent = ({ content, children }) => {
+  const formattedText = useFormattedText(content, "20px");
+
+  return (
+    <StyledSpan>
+      {formattedText}
+      {children}
+    </StyledSpan>
+  );
+};
+
 // isAbove: 卡片在 TimeLine 上方，指引線在卡片之下
 export default function TimeLineCard({ cardData }) {
   const isAppleDevice = useAppleDeviceCheck();
@@ -131,10 +147,14 @@ export default function TimeLineCard({ cardData }) {
             <TitleSection>{title}</TitleSection>
             <ContentWrapper>
               <ContentSection>
-                {content}
-                {cardData?.comments && (
-                  <Comments comments={cardData?.comments} position="timeCard" />
-                )}
+                <CopyWriteContent content={content}>
+                  {cardData?.comments && (
+                    <Comments
+                      comments={cardData?.comments}
+                      position="timeCard"
+                    />
+                  )}
+                </CopyWriteContent>
               </ContentSection>
               {isAppleDevice && (
                 <AnimatedArrowWrapper style={flashingIcon}>
@@ -151,10 +171,14 @@ export default function TimeLineCard({ cardData }) {
             <TitleSection>{title}</TitleSection>
             <ContentWrapper>
               <ContentSection>
-                {content}
-                {cardData?.comments && (
-                  <Comments comments={cardData?.comments} position="timeCard" />
-                )}
+                <CopyWriteContent content={content}>
+                  {cardData?.comments && (
+                    <Comments
+                      comments={cardData?.comments}
+                      position="timeCard"
+                    />
+                  )}
+                </CopyWriteContent>
               </ContentSection>
               {isAppleDevice && (
                 <AnimatedArrowWrapper style={flashingIcon}>
