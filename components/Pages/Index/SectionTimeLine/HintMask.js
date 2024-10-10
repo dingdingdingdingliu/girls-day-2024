@@ -6,14 +6,13 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 // 提示遮罩動態元件，尺寸同時間軸區塊
 const AnimatedHintWrapper = styled(animated.div)`
   width: 100%;
-  height: 100%;
-  max-height: 100%;
-  position: absolute;
-  top: 0;
+  height: 640px;
+  position: fixed;
+  bottom: 0;
   right: 0;
   z-index: 39;
   background-color: rgba(200, 200, 200, 0.05);
-  backdrop-filter: blur(5px); /* 模糊效果 */
+  backdrop-filter: blur(2px); /* 模糊效果 */
   display: ${(props) => (props.isMaskOpen ? "flex" : "none")};
   justify-content: center;
   align-items: center;
