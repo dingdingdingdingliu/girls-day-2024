@@ -4,6 +4,12 @@ import Image from "next/image";
 import { PageWrapper, ContentWrapper } from "@/components/Common/Index/Wrapper";
 import ReportSection from "./ReportSection";
 import DramaSection from "./DramaSection";
+import useWebPImage from "@/hooks/useWebPImage";
+
+const reportBottomImage = {
+  imagePng: "/images/index/report_bottom_image.png",
+  imageWebP: "/images/index/report_bottom_image.webp",
+};
 
 // 頁面底層底色延展
 const StyledPageWrapper = styled(PageWrapper)`
@@ -49,6 +55,10 @@ const ImageWrapper = styled.div`
 `;
 
 export default function SectionReport({ isFirstEdition }) {
+  const imageUrl = useWebPImage(
+    reportBottomImage?.imagePng,
+    reportBottomImage?.imageWebP,
+  );
   return (
     <StyledPageWrapper>
       <StyledContentWrapper>
@@ -59,7 +69,7 @@ export default function SectionReport({ isFirstEdition }) {
       </StyledContentWrapper>
       <ImageWrapper>
         <Image
-          src="/images/index/report_bottom_image.png"
+          src={imageUrl}
           alt="report_image"
           fill
           style={{

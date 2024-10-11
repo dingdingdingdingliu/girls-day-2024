@@ -13,6 +13,12 @@ import {
   BevelLabel,
   AbsoluteLabelWrapper,
 } from "@/components/Common/Label/BevelLabel";
+import useWebPImage from "@/hooks/useWebPImage";
+
+const pickupImage = {
+  imagePng: "/images/index/pickup_intro.png",
+  imageWebP: "/images/index/pickup_intro.webp",
+};
 
 // 頁面底層底色延展
 const StyledPageWrapper = styled(PageWrapper)`
@@ -49,6 +55,10 @@ const AnimatedImageSectionWrapper = styled(animated.div)`
 `;
 
 export default function SectionPickUp({ isDesktop }) {
+  const pickupImageUrl = useWebPImage(
+    pickupImage?.imagePng,
+    pickupImage?.imageWebP,
+  );
   const theme = useTheme();
 
   const { ref, inView } = useInView({
@@ -70,7 +80,7 @@ export default function SectionPickUp({ isDesktop }) {
           <AnimatedImageSectionWrapper style={fadeInImage}>
             <ImageWrapper>
               <Image
-                src="/images/index/pickup_intro.png"
+                src={pickupImageUrl}
                 alt="pickup_intro"
                 fill
                 style={{
@@ -99,7 +109,7 @@ export default function SectionPickUp({ isDesktop }) {
             <AnimatedImageSectionWrapper style={fadeInImage}>
               <ImageWrapper>
                 <Image
-                  src="/images/index/pickup_intro.png"
+                  src={pickupImageUrl}
                   alt="pickup_intro"
                   fill
                   style={{

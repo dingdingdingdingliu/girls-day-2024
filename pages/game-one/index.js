@@ -11,6 +11,10 @@ import {
 import { GameSmallBevelButton } from "@/components/Common/Button/GameUsedBevelButton";
 import { answerImageData } from "../../components/Common/VisionGame/gameImageData";
 import ResponsiveContainer from "@/components/Common/ResponsiveContainer";
+import useWebPImage from "@/hooks/useWebPImage";
+
+const indexImagePng = "/images/visionGame/vision_game_index.png";
+const indexImageWebP = "/images/visionGame/vision_game_index.webp";
 
 const introCopyWrite =
   "歡迎來到偏見眼鏡行的驗光室！\n共有12道題目，每題限時5秒";
@@ -131,6 +135,8 @@ const AnimatedButtonWrapper = styled(animated.div)`
 
 export default function VisionGameIndex() {
   const theme = useTheme();
+  const indexImage = useWebPImage(indexImagePng, indexImageWebP);
+
   // 使用 useSpring 定義淡入動畫
   const fadeInIntro = useSpring({
     opacity: 1,
@@ -157,7 +163,7 @@ export default function VisionGameIndex() {
               <MainImageWrapper>
                 <ImageWrapper>
                   <Image
-                    src="/images/visionGame/vision_game_index.png"
+                    src={indexImage}
                     alt="vision_game_index"
                     width={270}
                     height={200}

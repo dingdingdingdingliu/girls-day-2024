@@ -12,8 +12,10 @@ import {
   AbsoluteLabelWrapper,
 } from "@/components/Common/Label/BevelLabel";
 import useCreateArray from "@/hooks/useCreateArray";
+import useWebPImage from "@/hooks/useWebPImage";
 
-const sloganImageSrc = "/images/index/intro_slogan.png";
+const sloganImagePng = "/images/index/intro_slogan.png";
+const sloganImageWebP = "/images/index/intro_slogan.webp";
 
 // 頁面底層灰色底色延展
 const StyledPageWrapper = styled(PageWrapper)`
@@ -104,7 +106,8 @@ const LabelWrapper = styled(AbsoluteLabelWrapper)`
 
 export default function SectionIntro({ isDesktop }) {
   const theme = useTheme();
-  const logoArray = useCreateArray(6);
+  const logoArray = useCreateArray(5);
+  const sloganImage = useWebPImage(sloganImagePng, sloganImageWebP);
 
   const { ref, inView } = useInView({
     triggerOnce: false,
@@ -162,7 +165,7 @@ export default function SectionIntro({ isDesktop }) {
           >
             {logoArray?.map((num) => (
               <SloganImage
-                src={sloganImageSrc}
+                src={sloganImage}
                 alt="slogan"
                 key={num}
                 isMargin={num === logoArray.length}

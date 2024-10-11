@@ -8,6 +8,12 @@ import {
   ContentWrapper,
   ImageWrapper,
 } from "@/components/Common/Index/Wrapper";
+import useWebPImage from "@/hooks/useWebPImage";
+
+const comingSoonImage = {
+  imagePng: "/images/index/index_coming_soon.png",
+  imageWebP: "/images/index/index_coming_soon.webp",
+};
 
 // 頁面底層底色延展
 const StyledPageWrapper = styled(PageWrapper)`
@@ -55,6 +61,10 @@ const AnimatedVideoWrapper = styled(animated.div)`
 `;
 
 export default function SectionPromoVideo({ isFirstEdition }) {
+  const imageUrl = useWebPImage(
+    comingSoonImage?.imagePng,
+    comingSoonImage?.imageWebP,
+  );
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0.2,
@@ -99,7 +109,7 @@ export default function SectionPromoVideo({ isFirstEdition }) {
           {isFirstEdition && (
             <ImageWrapper>
               <Image
-                src="/images/index/index_coming_soon.png"
+                src={imageUrl}
                 alt="coming_soon"
                 fill
                 style={{

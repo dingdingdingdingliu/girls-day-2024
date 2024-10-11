@@ -126,9 +126,13 @@ export default function SectionVision({ isDesktop }) {
         <AnimateWrapper style={fadeIn}>
           <SectionIntroWrapper>
             <ImageSection
-              titleImageSrc="/images/index/vision_theme.png"
               titleImageAlt="visionImage"
+              titleImageSrc={{
+                imagePng: "/images/index/vision_theme.png",
+                imageWebP: "/images/index/vision_theme.webp",
+              }}
             />
+
             <MainSectionWrapper>
               <GameSection
                 imageSrc={imageUrl}

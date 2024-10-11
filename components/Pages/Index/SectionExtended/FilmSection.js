@@ -21,6 +21,7 @@ import {
   ContentWrapper,
   ImageWrapper,
 } from "@/components/Common/Index/Wrapper";
+import useWebPImage from "@/hooks/useWebPImage";
 
 // 頁面底層底色延展
 const StyledPageWrapper = styled(PageWrapper)`
@@ -57,13 +58,17 @@ function FilmSlider({ setDialogData, setIsDialogOpen }) {
 
 // 電影標題區塊
 function FilmTitleSection() {
+  const imagePng = "/images/index/filmSection/film_intro.png";
+  const imageWebP = "/images/index/filmSection/film_intro.webp";
+  const imageSrc = useWebPImage(imagePng, imageWebP);
+
   return (
     <IntroWrapper>
       <ExtendedTitle upperTitle="延伸閱讀" lowerTitle="影集" />
       <IntroImageWrapper>
         <ImageWrapper>
           <Image
-            src="/images/index/filmSection/film_intro.png"
+            src={imageSrc}
             alt="film_intro"
             fill
             style={{

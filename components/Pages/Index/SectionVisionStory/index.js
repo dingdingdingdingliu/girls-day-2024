@@ -23,12 +23,21 @@ import {
 import { GameStoryTitle } from "@/components/Common/Index/TitleWithLine";
 import GameStoryCard from "@/components/Common/GameStoryCard";
 import FooterCard from "./FooterCard";
+import useWebPImage from "@/hooks/useWebPImage";
+
+const introImage = {
+  imagePng: "/images/index/vision_game_intro.png",
+  imageWebP: "/images/index/vision_game_intro.webp",
+};
 
 // 卡片資料
 const cardData = [
   {
     title: "理工科女孩",
-    imageSrc: "/images/index/visionGameGirls/science_girl.png",
+    imageSrc: {
+      imagePng: "/images/index/visionGameGirls/science_girl.png",
+      imageWebP: "/images/index/visionGameGirls/science_girl.webp",
+    },
     imageAlt: "science_girl",
     copyWrite:
       "高中、高職、大學的科系選擇依然浮現「男理工、女人文」的趨勢，理工學院的同儕玩笑例如「那個系女生那麼少，教授一定給分更甜啊」，呈現兩層性別偏見：預設教授是異性戀男性，且是會給女學生不當待遇的老師；女學生取得成就被認為是仰賴男性。支撐這些玩笑話的，是自然科學領域長期受陽剛男性把持，女性難以在其中發展。\n教育單位和企業都積極扭轉此局勢，例如台積電邀請女員工回母校女校演講、舉辦「台積電女科學家之旅」吸引女孩投入科技業。高衡權、劉家樺（2024）的研究",
@@ -39,21 +48,30 @@ const cardData = [
   },
   {
     title: "棉花糖女孩",
-    imageSrc: "/images/index/visionGameGirls/marshmallow_girl.png",
+    imageSrc: {
+      imagePng: "/images/index/visionGameGirls/marshmallow_girl.png",
+      imageWebP: "/images/index/visionGameGirls/marshmallow_girl.webp",
+    },
     imageAlt: "marshmallow_girl",
     copyWrite:
       "每天打開社群，看到的藝人、網紅、模特大多數是纖細身材，廣告電視過度強化「肥胖＝不健康」的連結。不健康的因素很多，基因、飲食習慣、熬夜、缺乏運動等，然而肥胖卻多了一層汙名，單一審美觀讓棉花糖女孩面臨被排擠、被身材羞辱的人際危機，一天到晚被關心「何時要減肥」，購買服裝時，架上沒有可試穿的尺寸。\n近年有些服飾品牌開始出現「棉花糖女孩區」，跨國品牌並刻意呈現多元身體的模特──坐著腹部有肉、有副乳、有肥胖紋、有疤痕，都可以是健康好看的身體。",
   },
   {
     title: "外型亮麗的女孩",
-    imageSrc: "/images/index/visionGameGirls/beauty_girl.png",
+    imageSrc: {
+      imagePng: "/images/index/visionGameGirls/beauty_girl.png",
+      imageWebP: "/images/index/visionGameGirls/beauty_girl.webp",
+    },
     imageAlt: "beauty_girl",
     copyWrite:
       "社會審美戴著放大鏡檢視女性外貌，但是，對於符合主流審美的「漂亮女生」卻也不是真心肯定，而是藏著「貶低陰柔氣質」的邏輯，總能找到理由進行攻擊。\n外貌姣好的女孩更容易面對能力被低估、被性化、被蕩婦羞辱的危機，例如，「打扮那麼漂亮一定是花瓶」、「心思都在打扮了，成績怎麼會好」或是「穿那樣被騷擾活該」，這些評論忽略了把自己打理好是一種能力，美感與選擇的能力，也可以通往造型師、彩妝師、服裝設計等專業領域。",
   },
   {
     title: "勇於表現的女孩",
-    imageSrc: "/images/index/visionGameGirls/brave_girl.png",
+    imageSrc: {
+      imagePng: "/images/index/visionGameGirls/brave_girl.png",
+      imageWebP: "/images/index/visionGameGirls/brave_girl.webp",
+    },
     imageAlt: "brave_girl",
     copyWrite:
       "二元性別觀，盲目地期待男孩表現優秀的陽剛特質，期待女孩表現聽話、察言觀色、好幫手的陰柔氣質，形成矛盾期待——女孩要優秀但不能鋒芒明顯，不能氣焰強過男性。\n擅於表現的女孩可能被大人「提醒」那樣不討喜，同性格的男孩則被肯定其領導能力，例如英國演員艾瑪華森2014年擔任聯合國世界婦女親善大使時，提及小時候被指責「太強勢」的經驗，然而同樣優秀且勇於表現的男同學未受指責。打破二元期待，才能讓每個孩子發揮天賦。",
@@ -150,6 +168,7 @@ const AnimatedTitleSection = styled(animated.div)`
 
 // 標題內容區塊元件
 export function TitleSection({ inView }) {
+  const imageUrl = useWebPImage(introImage?.imagePng, introImage?.imageWebP);
   const fadeIn = useSpring({
     opacity: inView ? 1 : 0,
     config: { duration: 1500 },
@@ -165,7 +184,7 @@ export function TitleSection({ inView }) {
             <TitleImageMobileWrapper>
               <ImageWrapper>
                 <Image
-                  src="/images/index/vision_game_intro.png"
+                  src={imageUrl}
                   alt="vision_game_intro"
                   fill
                   style={{
@@ -180,7 +199,7 @@ export function TitleSection({ inView }) {
           <TitleImageDesktopWrapper>
             <ImageWrapper>
               <Image
-                src="/images/index/vision_game_intro.png"
+                src={imageUrl}
                 alt="vision_game_intro"
                 fill
                 style={{
