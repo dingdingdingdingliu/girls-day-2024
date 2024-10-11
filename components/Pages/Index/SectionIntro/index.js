@@ -14,8 +14,10 @@ import {
 import useCreateArray from "@/hooks/useCreateArray";
 import useWebPImage from "@/hooks/useWebPImage";
 
-const sloganImagePng = "/images/index/intro_slogan.png";
-const sloganImageWebP = "/images/index/intro_slogan.webp";
+const sloganImage = {
+  imagePng: "/images/index/intro_slogan.png",
+  imageWebp: "/images/index/intro_slogan.webp",
+};
 
 // 頁面底層灰色底色延展
 const StyledPageWrapper = styled(PageWrapper)`
@@ -107,7 +109,7 @@ const LabelWrapper = styled(AbsoluteLabelWrapper)`
 export default function SectionIntro({ isDesktop }) {
   const theme = useTheme();
   const logoArray = useCreateArray(5);
-  const sloganImage = useWebPImage(sloganImagePng, sloganImageWebP);
+  const imageUrl = useWebPImage(sloganImage?.imagePng, sloganImage?.imageWebp);
 
   const { ref, inView } = useInView({
     triggerOnce: false,
@@ -165,7 +167,7 @@ export default function SectionIntro({ isDesktop }) {
           >
             {logoArray?.map((num) => (
               <SloganImage
-                src={sloganImage}
+                src={imageUrl}
                 alt="slogan"
                 key={num}
                 isMargin={num === logoArray.length}

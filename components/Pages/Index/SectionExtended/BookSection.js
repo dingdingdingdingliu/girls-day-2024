@@ -23,6 +23,11 @@ import {
 } from "@/components/Common/Index/Wrapper";
 import useWebPImage from "@/hooks/useWebPImage";
 
+const bookIntroImage = {
+  imagePng: "/images/index/bookSection/book_intro.png",
+  imageWebP: "/images/index/bookSection/book_intro.webp",
+};
+
 // 頁面底層底色延展
 const StyledPageWrapper = styled(PageWrapper)`
   background-color: ${(props) => props.theme.colors.white};
@@ -56,9 +61,10 @@ function BookSlider({ setDialogData }) {
 
 // 電影標題區塊
 function BookTitleSection() {
-  const imagePng = "/images/index/bookSection/book_intro.png";
-  const imageWebP = "/images/index/bookSection/book_intro.webp";
-  const imageSrc = useWebPImage(imagePng, imageWebP);
+  const imageSrc = useWebPImage(
+    bookIntroImage?.imagePng,
+    bookIntroImage?.imageWebP,
+  );
 
   return (
     <IntroWrapper>
