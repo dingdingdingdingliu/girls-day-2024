@@ -20,6 +20,12 @@ import {
   ContentWrapper,
   ImageWrapper,
 } from "@/components/Common/Index/Wrapper";
+import useWebPImage from "@/hooks/useWebPImage";
+
+const societyIntroImage = {
+  imagePng: "/images/index/societySection/society_intro.png",
+  imageWebP: "/images/index/societySection/society_intro.webp",
+};
 
 // 頁面底層底色延展
 const StyledPageWrapper = styled(PageWrapper)`
@@ -53,13 +59,18 @@ function SocietySlider() {
 
 // 社會資源標題區塊
 function SocietyTitleSection() {
+  const imageSrc = useWebPImage(
+    societyIntroImage?.imagePng,
+    societyIntroImage?.imageWebP,
+  );
+
   return (
     <IntroWrapper>
       <SocietyTitle />
       <IntroImageWrapper>
         <ImageWrapper>
           <Image
-            src="/images/index/societySection/society_intro.png"
+            src={imageSrc}
             alt="society_intro"
             fill
             style={{

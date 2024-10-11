@@ -125,7 +125,10 @@ export default function SectionFindObject({ isDesktop }) {
         <AnimateWrapper style={fadeIn}>
           <SectionIntroWrapper>
             <ImageSection
-              titleImageSrc="/images/index/find_object_theme.png"
+              titleImageSrc={{
+                imagePng: "/images/index/find_object_theme.png",
+                imageWebP: "/images/index/find_object_theme.webp",
+              }}
               titleImageAlt="find_object_game"
             />
             <MainSectionWrapper>

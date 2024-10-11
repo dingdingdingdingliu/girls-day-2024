@@ -9,9 +9,17 @@ import {
 } from "@/components/Common/Index/Wrapper";
 import BevelButton from "@/components/Common/Button/BevelButton";
 import ResponsiveContainer from "@/components/Common/ResponsiveContainer";
+import useWebPImage from "@/hooks/useWebPImage";
 
-const desktopImageUrl = "images/index/entrance_desktop.gif";
-const mobileImageUrl = "images/index/entrance_mobile.gif";
+const desktopImage = {
+  imageGif: "images/index/entrance_desktop.gif",
+  imageWebP: "images/index/entrance_desktop.webp",
+};
+
+const mobileImage = {
+  imageGif: "images/index/entrance_mobile.gif",
+  imageWebP: "images/index/entrance_mobile.webp",
+};
 
 const StyledPageWrapper = styled(PageWrapper)`
   background-color: ${(props) => props.theme.colors.mediumGrey};
@@ -22,14 +30,14 @@ const StyledContentWrapper = styled(IndexContentWrapper)`
   height: 100%;
   max-width: none;
   position: relative;
-  background-image: url(${desktopImageUrl});
+  background-image: url(${(props) => props.desktopImageUrl});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 
   @media (max-width: ${globalConfig.tablet}) {
     background-image: url(${(props) =>
-      props.isLandscape ? desktopImageUrl : mobileImageUrl});
+      props.isLandscape ? props.desktopImageUrl : props.mobileImageUrl});
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -58,6 +66,14 @@ const AnimatedWrapper = styled(animated.div)`
 export default function SectionEntrance() {
   const theme = useTheme();
   const [isLandscape, setIsLandscape] = useState(false);
+  const desktopImageUrl = useWebPImage(
+    desktopImage?.imageGif,
+    desktopImage?.imageWebP,
+  );
+  const mobileImageUrl = useWebPImage(
+    mobileImage?.imageGif,
+    mobileImage?.imageWebP,
+  );
 
   // 彈簧效果
   const fadeInEntrance = useSpring({
@@ -69,7 +85,7 @@ export default function SectionEntrance() {
       friction: 20, // 摩擦力，值越小弹簧的回弹效果越明显
       mass: 3, // 质量，值越大，弹簧越沉，惯性越强
     },
-    delay: 800, // 延遲效果
+    delay: 600, // 延遲效果
   });
 
   useEffect(() => {
@@ -94,7 +110,11 @@ export default function SectionEntrance() {
   return (
     <ResponsiveContainer heightUnit={100} widthUnit={100}>
       <StyledPageWrapper>
-        <StyledContentWrapper isLandscape={isLandscape}>
+        <StyledContentWrapper
+          isLandscape={isLandscape}
+          desktopImageUrl={desktopImageUrl}
+          mobileImageUrl={mobileImageUrl}
+        >
           <ButtonWrapper>
             <AnimatedWrapper style={fadeInEntrance}>
               <a href="#reception">

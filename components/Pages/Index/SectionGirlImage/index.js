@@ -2,6 +2,12 @@ import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
 import { ImageWrapper } from "@/components/Common/Index/Wrapper";
+import useWebPImage from "@/hooks/useWebPImage";
+
+const mainGirlImage = {
+  imagePng: "/images/index/main_girl_image.png",
+  imageWebP: "/images/index/main_girl_image.webp",
+};
 
 // 電腦版底部滿版圖層
 const ImageOuterWrapper = styled.div`
@@ -16,11 +22,16 @@ const ImageOuterWrapper = styled.div`
   }
 `;
 export default function SectionGirlImage() {
+  const imageSrc = useWebPImage(
+    mainGirlImage?.imagePng,
+    mainGirlImage?.imageWebP,
+  );
+
   return (
     <ImageOuterWrapper>
       <ImageWrapper>
         <Image
-          src="/images/index/main_girl_image.png"
+          src={imageSrc}
           alt="girl_image"
           fill
           style={{

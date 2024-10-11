@@ -21,6 +21,12 @@ import {
   ContentWrapper,
   ImageWrapper,
 } from "@/components/Common/Index/Wrapper";
+import useWebPImage from "@/hooks/useWebPImage";
+
+const bookIntroImage = {
+  imagePng: "/images/index/bookSection/book_intro.png",
+  imageWebP: "/images/index/bookSection/book_intro.webp",
+};
 
 // 頁面底層底色延展
 const StyledPageWrapper = styled(PageWrapper)`
@@ -55,13 +61,18 @@ function BookSlider({ setDialogData }) {
 
 // 電影標題區塊
 function BookTitleSection() {
+  const imageSrc = useWebPImage(
+    bookIntroImage?.imagePng,
+    bookIntroImage?.imageWebP,
+  );
+
   return (
     <IntroWrapper>
       <ExtendedTitle upperTitle="延伸閱讀" lowerTitle="書籍" />
       <IntroImageWrapper>
         <ImageWrapper>
           <Image
-            src="/images/index/bookSection/book_intro.png"
+            src={imageSrc}
             alt="book_intro"
             fill
             style={{

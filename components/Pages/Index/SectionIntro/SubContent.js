@@ -9,6 +9,12 @@ import {
 } from "@/components/Common/Index/TitleWithLine";
 import { ImageWrapper } from "@/components/Common/Index/Wrapper";
 import Comments from "@/components/Common/Comments";
+import useWebPImage from "@/hooks/useWebPImage";
+
+const introThemeImage = {
+  imagePng: "/images/index/intro_theme.png",
+  imageWebP: "/images/index/intro_theme.webp",
+};
 
 const copyWrite = {
   girlsDayFirst:
@@ -154,6 +160,10 @@ export function GirlDaySection() {
 }
 
 export function ThemeSection() {
+  const imageUrl = useWebPImage(
+    introThemeImage?.imagePng,
+    introThemeImage?.imageWebP,
+  );
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0.2,
@@ -186,7 +196,7 @@ export function ThemeSection() {
       <ThemeImageWrapper>
         <ImageWrapper>
           <Image
-            src="/images/index/intro_theme.png"
+            src={imageUrl}
             alt="imageSections"
             fill
             style={{
