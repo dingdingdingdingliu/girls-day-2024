@@ -23,6 +23,11 @@ import {
 } from "@/components/Common/Index/Wrapper";
 import useWebPImage from "@/hooks/useWebPImage";
 
+const movieIntroImage = {
+  imagePng: "/images/index/movieSection/movie_intro.png",
+  imageWebP: "/images/index/movieSection/movie_intro.webp",
+};
+
 // 頁面底層底色延展
 const StyledPageWrapper = styled(PageWrapper)`
   background-color: ${(props) => props.theme.colors.lightGrey};
@@ -56,9 +61,10 @@ function MovieSlider({ setDialogData }) {
 
 // 電影標題區塊
 function MovieTitleSection() {
-  const imagePng = "/images/index/movieSection/movie_intro.png";
-  const imageWebP = "/images/index/movieSection/movie_intro.webp";
-  const imageSrc = useWebPImage(imagePng, imageWebP);
+  const imageSrc = useWebPImage(
+    movieIntroImage?.imagePng,
+    movieIntroImage?.imageWebP,
+  );
 
   return (
     <IntroWrapper>

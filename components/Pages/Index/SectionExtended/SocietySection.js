@@ -22,6 +22,11 @@ import {
 } from "@/components/Common/Index/Wrapper";
 import useWebPImage from "@/hooks/useWebPImage";
 
+const societyIntroImage = {
+  imagePng: "/images/index/societySection/society_intro.png",
+  imageWebP: "/images/index/societySection/society_intro.webp",
+};
+
 // 頁面底層底色延展
 const StyledPageWrapper = styled(PageWrapper)`
   background-color: ${(props) => props.theme.colors.white};
@@ -54,9 +59,10 @@ function SocietySlider() {
 
 // 社會資源標題區塊
 function SocietyTitleSection() {
-  const imagePng = "/images/index/societySection/society_intro.png";
-  const imageWebP = "/images/index/societySection/society_intro.webp";
-  const imageSrc = useWebPImage(imagePng, imageWebP);
+  const imageSrc = useWebPImage(
+    societyIntroImage?.imagePng,
+    societyIntroImage?.imageWebP,
+  );
 
   return (
     <IntroWrapper>

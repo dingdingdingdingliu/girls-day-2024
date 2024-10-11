@@ -4,6 +4,11 @@ import Image from "next/image";
 import { ImageWrapper } from "@/components/Common/Index/Wrapper";
 import useWebPImage from "@/hooks/useWebPImage";
 
+const mainGirlImage = {
+  imagePng: "/images/index/main_girl_image.png",
+  imageWebP: "/images/index/main_girl_image.webp",
+};
+
 // 電腦版底部滿版圖層
 const ImageOuterWrapper = styled.div`
   width: 100%;
@@ -17,9 +22,10 @@ const ImageOuterWrapper = styled.div`
   }
 `;
 export default function SectionGirlImage() {
-  const imagePng = "/images/index/main_girl_image.png";
-  const imageWebP = "/images/index/main_girl_image.webp";
-  const imageSrc = useWebPImage(imagePng, imageWebP);
+  const imageSrc = useWebPImage(
+    mainGirlImage?.imagePng,
+    mainGirlImage?.imageWebP,
+  );
 
   return (
     <ImageOuterWrapper>
