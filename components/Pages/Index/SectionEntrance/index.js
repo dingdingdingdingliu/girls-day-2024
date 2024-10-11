@@ -9,17 +9,6 @@ import {
 } from "@/components/Common/Index/Wrapper";
 import BevelButton from "@/components/Common/Button/BevelButton";
 import ResponsiveContainer from "@/components/Common/ResponsiveContainer";
-// import useWebPImage from "@/hooks/useWebPImage";
-
-// const desktopImage = {
-//   imageGif: "images/index/entrance_desktop.gif",
-//   imageWebP: "images/index/entrance_desktop.webp",
-// };
-
-// const mobileImage = {
-//   imageGif: "images/index/entrance_mobile.gif",
-//   imageWebP: "images/index/entrance_mobile.webp",
-// };
 
 const desktopImage = "images/index/entrance_desktop.gif";
 const mobileImage = "images/index/entrance_mobile.gif";
@@ -69,14 +58,6 @@ const AnimatedWrapper = styled(animated.div)`
 export default function SectionEntrance() {
   const theme = useTheme();
   const [isLandscape, setIsLandscape] = useState(false);
-  // const desktopImageUrl = useWebPImage(
-  //   desktopImage?.imageGif,
-  //   desktopImage?.imageWebP,
-  // );
-  // const mobileImageUrl = useWebPImage(
-  //   mobileImage?.imageGif,
-  //   mobileImage?.imageWebP,
-  // );
 
   // 彈簧效果
   const fadeInEntrance = useSpring({
