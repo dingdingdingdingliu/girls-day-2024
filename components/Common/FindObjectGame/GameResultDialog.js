@@ -13,6 +13,7 @@ import {
 } from "@/components/Common/FindObjectGame/WrapperComponent";
 import FindObjectGameBevelButton from "@/components/Common/FindObjectGame/BevelButton";
 import GameFooter from "./GameFooter";
+import useWebPImage from "@/hooks/useWebPImage";
 
 const resultCopyWrite = {
   good: {
@@ -21,7 +22,8 @@ const resultCopyWrite = {
       "你的覺察力良好，與你的眼鏡是絕佳拍檔！\n絕對可以看到最遠的地方！",
     introMobile:
       "你的覺察力良好，\n與你的眼鏡是絕佳拍檔！\n絕對可以看到最遠的地方！",
-    imageSrc: "/images/findObjectGame/result_good.png",
+    imageSrcPng: "/images/findObjectGame/result_good.png",
+    imageSrcWebP: "/images/findObjectGame/result_good.webp",
   },
   average: {
     title: "Oops!",
@@ -29,7 +31,8 @@ const resultCopyWrite = {
       "覺察力就差一點點，與你的眼鏡還要練習默契，\n絕對可以看到最遠的地方！",
     introMobile:
       "覺察力就差一點點，\n與你的眼鏡還要練習默契，\n再靠近一點點就讓你看清",
-    imageSrc: "/images/findObjectGame/result_normal.png",
+    imageSrcPng: "/images/findObjectGame/result_normal.png",
+    imageSrcWebP: "/images/findObjectGame/result_normal.webp",
   },
   bad: {
     title: "哎唷喂呀",
@@ -37,7 +40,8 @@ const resultCopyWrite = {
       "與你的眼鏡不合，建議至店內重新配鏡，\n絕對可以看到最遠的地方！",
     introMobile:
       "與你的眼鏡不合，\n建議至店內重新配鏡，\n不然你想看清會越看越不清！",
-    imageSrc: "/images/findObjectGame/result_bad.png",
+    imageSrcPng: "/images/findObjectGame/result_bad.png",
+    imageSrcWebP: "/images/findObjectGame/result_bad.webp",
   },
 };
 
@@ -118,6 +122,10 @@ export default function GameResultDialog({
 }) {
   const [introCopyWrite, setIntroCopyWrite] = useState("");
   const gameResult = getResult(findCount);
+  const imageSrc = useWebPImage(
+    gameResult?.imageSrcPng,
+    gameResult?.imageSrcWebP,
+  );
 
   useEffect(() => {
     if (isGameEnd) {
@@ -147,7 +155,7 @@ export default function GameResultDialog({
             <GameImageSection>
               <ImageWrapper>
                 <Image
-                  src={gameResult?.imageSrc}
+                  src={imageSrc}
                   alt="find-object-game-result"
                   fill
                   style={{

@@ -13,10 +13,22 @@ import {
 import FindObjectGameBevelButton from "@/components/Common/FindObjectGame/BevelButton";
 import AnimatedMainHint from "./MainHint";
 import AnimatedListHint from "./ListHint";
+import useWebPImage from "@/hooks/useWebPImage";
 
 const introCopyWrite = {
   upperContent: "請在限時 120 秒內，\n在畫面中找到並點擊欄位中的 12 個內容。",
   lowerContent: "來測測你與眼鏡行內的眼鏡是否為天作之合吧！",
+};
+
+const mainImage = {
+  desktop: {
+    imagePng: "/images/findObjectGame/desktop_main_dialog.png",
+    imageWebP: "/images/findObjectGame/desktop_main_dialog.webp",
+  },
+  mobile: {
+    imagePng: "/images/findObjectGame/mobile_main_dialog.png",
+    imageWebP: "/images/findObjectGame/mobile_main_dialog.webp",
+  },
 };
 
 const BoldTitle = styled.p`
@@ -82,6 +94,16 @@ const Button = styled.div`
 
 // 展售區主要 Dialog
 function AnimatedDialog({ fadeInDialog, isDesktop, onButtonClick }) {
+  const desktopImage = useWebPImage(
+    mainImage?.desktop?.imagePng,
+    mainImage?.desktop?.imageWebP,
+  );
+
+  const mobileImage = useWebPImage(
+    mainImage?.mobile?.imagePng,
+    mainImage?.mobile?.imageWebP,
+  );
+
   return (
     <AnimatedDialogWrapper style={fadeInDialog}>
       <ContentWrapper>
@@ -90,11 +112,7 @@ function AnimatedDialog({ fadeInDialog, isDesktop, onButtonClick }) {
         <GameImageSection>
           <ImageWrapper>
             <Image
-              src={
-                isDesktop
-                  ? "/images/findObjectGame/desktop_main_dialog.png"
-                  : "/images/findObjectGame/mobile_main_dialog.png"
-              }
+              src={isDesktop ? desktopImage : mobileImage}
               alt="find-object-game"
               fill
               style={{

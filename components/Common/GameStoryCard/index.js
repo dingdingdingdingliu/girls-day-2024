@@ -6,6 +6,7 @@ import { useSpring, animated } from "@react-spring/web";
 import { ImageWrapper } from "../Index/Wrapper";
 import Comments from "@/components/Common/Comments";
 import useFormattedText from "@/hooks/useFormattedText";
+import useWebPImage from "@/hooks/useWebPImage";
 
 const delay = (i) => Number(i) * 150;
 
@@ -126,6 +127,10 @@ const CopyWriteContent = ({ content, children }) => {
 };
 
 export default function GameStoryCard({ data, labelColor, textColor, id }) {
+  const imageUrl = useWebPImage(
+    data?.imageSrc?.imagePng,
+    data?.imageSrc?.imageWebP,
+  );
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0,
@@ -150,7 +155,7 @@ export default function GameStoryCard({ data, labelColor, textColor, id }) {
         <ImageSectionWrapper>
           <ImageWrapper>
             <Image
-              src={data?.imageSrc}
+              src={imageUrl}
               alt={data?.imageAlt}
               fill
               style={{

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ImageWrapper } from "@/components/Common/Index/Wrapper";
 import SmallBevelButton from "@/components/Common/Button/SmallBevelButton";
+import useWebPImage from "@/hooks/useWebPImage";
 
 // Label圖片顯示層
 const ImageSectionWrapper = styled.div`
@@ -36,11 +37,15 @@ const GameImageSection = styled.div`
 `;
 
 export function ImageSection({ titleImageSrc, titleImageAlt }) {
+  const imageSrc = useWebPImage(
+    titleImageSrc?.imagePng,
+    titleImageSrc?.imageWebP,
+  );
   return (
     <ImageSectionWrapper>
       <ImageWrapper>
         <Image
-          src={titleImageSrc}
+          src={imageSrc}
           alt={titleImageAlt}
           fill
           style={{
