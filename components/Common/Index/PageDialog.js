@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import Image from "next/image";
 import { RxCross2 } from "react-icons/rx";
 import { MdOutlineKeyboardDoubleArrowDown } from "react-icons/md";
 import useAppleDeviceCheck from "@/hooks/useAppleDeviceCheck";
@@ -61,11 +62,45 @@ const BodyWrapper = styled.div`
   padding: 0 36px 32px 36px;
 `;
 
+const UpperWrapper = styled.div`
+  width: 100%;
+  height: auto;
+  min-height: 110px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const TitleWrapper = styled.div`
+  width: calc(100% - 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+`;
+
 const Title = styled.p`
   font-size: ${(props) => props.theme.fontSizes[28]};
   font-weight: ${(props) => props.theme.fontWeights.bold};
   color: ${(props) => props.theme.colors.black};
   letter-spacing: 1px;
+`;
+
+const EngTitle = styled.p`
+  font-size: ${(props) => props.theme.fontSizes[24]};
+  font-weight: ${(props) => props.theme.fontWeights.bold};
+  color: ${(props) => props.theme.colors.black};
+  letter-spacing: 1px;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+`;
+
+const IconImageWrapper = styled.div`
+  width: 120px;
+  margin: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Intro = styled.p`
@@ -214,9 +249,25 @@ export default function PageDialog({
             <StyledRxCross />
           </StickyIconWrapper>
           <BodyWrapper>
-            <Title>{dialogData?.title}</Title>
-            {dialogData?.engTitle && <Title>{dialogData?.engTitle}</Title>}
-            {dialogData?.intro && <Intro>{dialogData?.intro}</Intro>}
+            <UpperWrapper>
+              <TitleWrapper>
+                <Title>{dialogData?.title}</Title>
+                {dialogData?.engTitle && (
+                  <EngTitle>{dialogData?.engTitle}</EngTitle>
+                )}
+                {dialogData?.intro && <Intro>{dialogData?.intro}</Intro>}
+              </TitleWrapper>
+              {dialogData?.iconUrl && (
+                <IconImageWrapper>
+                  <Image
+                    src={dialogData?.iconUrl}
+                    alt=""
+                    width={110}
+                    height={110}
+                  />
+                </IconImageWrapper>
+              )}
+            </UpperWrapper>
             {dialogData?.hashTag && <HashTag>{dialogData?.hashTag}</HashTag>}
             <ContentWrapper>
               {dialogData?.content && (
