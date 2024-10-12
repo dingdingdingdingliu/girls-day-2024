@@ -1,6 +1,8 @@
-import styled from "@emotion/styled";
+import { useContext } from "react";
 import Image from "next/image";
+import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import { ImageUsedContext } from "@/context/ImageUsedContext";
 import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "@react-spring/web";
 import { useTheme } from "@emotion/react";
@@ -13,7 +15,6 @@ import {
   BevelLabel,
   AbsoluteLabelWrapper,
 } from "@/components/Common/Label/BevelLabel";
-import useWebPImage from "@/hooks/useWebPImage";
 
 const pickupImage = {
   imagePng: "/images/index/pickup_intro.png",
@@ -55,11 +56,12 @@ const AnimatedImageSectionWrapper = styled(animated.div)`
 `;
 
 export default function SectionPickUp({ isDesktop }) {
-  const pickupImageUrl = useWebPImage(
-    pickupImage?.imagePng,
-    pickupImage?.imageWebP,
-  );
   const theme = useTheme();
+  const { isWebPUsed } = useContext(ImageUsedContext);
+
+  const pickupImageUrl = isWebPUsed
+    ? pickupImage?.imageWebP
+    : pickupImage?.imagePng;
 
   const { ref, inView } = useInView({
     triggerOnce: false,

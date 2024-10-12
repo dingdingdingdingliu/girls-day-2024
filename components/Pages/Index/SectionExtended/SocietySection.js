@@ -1,6 +1,8 @@
-import styled from "@emotion/styled";
+import { useContext } from "react";
 import Image from "next/image";
+import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import { ImageUsedContext } from "@/context/ImageUsedContext";
 import { useInView } from "react-intersection-observer";
 import { useSpring } from "@react-spring/web";
 import { OverThreeResponsiveSlider } from "@/components/Common/Slider";
@@ -20,7 +22,6 @@ import {
   ContentWrapper,
   ImageWrapper,
 } from "@/components/Common/Index/Wrapper";
-import useWebPImage from "@/hooks/useWebPImage";
 
 const societyIntroImage = {
   imagePng: "/images/index/societySection/society_intro.png",
@@ -59,10 +60,11 @@ function SocietySlider() {
 
 // 社會資源標題區塊
 function SocietyTitleSection() {
-  const imageSrc = useWebPImage(
-    societyIntroImage?.imagePng,
-    societyIntroImage?.imageWebP,
-  );
+  const { isWebPUsed } = useContext(ImageUsedContext);
+
+  const imageSrc = isWebPUsed
+    ? societyIntroImage?.imageWebP
+    : societyIntroImage?.imagePng;
 
   return (
     <IntroWrapper>

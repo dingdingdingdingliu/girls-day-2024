@@ -1,8 +1,9 @@
+import { useContext } from "react";
+import Image from "next/image";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
-import Image from "next/image";
+import { ImageUsedContext } from "@/context/ImageUsedContext";
 import { ImageWrapper } from "@/components/Common/Index/Wrapper";
-import useWebPImage from "@/hooks/useWebPImage";
 
 const mainGirlImage = {
   imagePng: "/images/index/main_girl_image.png",
@@ -22,10 +23,11 @@ const ImageOuterWrapper = styled.div`
   }
 `;
 export default function SectionGirlImage() {
-  const imageSrc = useWebPImage(
-    mainGirlImage?.imagePng,
-    mainGirlImage?.imageWebP,
-  );
+  const { isWebPUsed } = useContext(ImageUsedContext);
+
+  const imageSrc = isWebPUsed
+    ? mainGirlImage?.imageWebP
+    : mainGirlImage?.imagePng;
 
   return (
     <ImageOuterWrapper>

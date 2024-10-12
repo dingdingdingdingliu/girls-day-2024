@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import { ThemeProvider } from "@emotion/react";
 import { VisionGameProvider } from "@/context/VisionGameContext";
+import { ImageUsedProvider } from "@/context/ImageUsedContext";
 import theme from "../styles/theme";
 import { Noto_Sans_TC as NotoSansTC } from "next/font/google";
 import "../styles/globals.css";
@@ -40,9 +41,11 @@ export default function App({ Component, pageProps }) {
       </Head>
       <ThemeProvider theme={theme}>
         <VisionGameProvider>
-          <div className={notoSansTC.className}>
-            <Component {...pageProps} />
-          </div>
+          <ImageUsedProvider>
+            <div className={notoSansTC.className}>
+              <Component {...pageProps} />
+            </div>
+          </ImageUsedProvider>
         </VisionGameProvider>
       </ThemeProvider>
     </>

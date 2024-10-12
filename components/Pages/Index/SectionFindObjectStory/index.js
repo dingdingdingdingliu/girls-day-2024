@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
+import { ImageUsedContext } from "@/context/ImageUsedContext";
 import { useTheme } from "@emotion/react";
 import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "@react-spring/web";
@@ -24,7 +25,6 @@ import {
 import { GameStoryTitle } from "@/components/Common/Index/TitleWithLine";
 import GameStoryCard from "@/components/Common/GameStoryCard";
 import useCreateArray from "@/hooks/useCreateArray";
-import useWebPImage from "@/hooks/useWebPImage";
 
 const glassImage = {
   imagePng: "/images/index/game_bottom_image.png",
@@ -158,10 +158,12 @@ const GlassImage = styled.img`
 
 // 標題內容區塊元件
 export function TitleSection({ inView }) {
-  const introImageUrl = useWebPImage(
-    gameIntroImage?.imagePng,
-    gameIntroImage?.imageWebP,
-  );
+  const { isWebPUsed } = useContext(ImageUsedContext);
+
+  const introImageUrl = isWebPUsed
+    ? gameIntroImage?.imageWebP
+    : gameIntroImage?.imagePng;
+
   const fadeIn = useSpring({
     opacity: inView ? 1 : 0,
     config: { duration: 1500 },
@@ -209,10 +211,12 @@ export function TitleSection({ inView }) {
 
 export default function SectionVisionStory() {
   const imageArray = useCreateArray(5);
-  const gameBottomImage = useWebPImage(
-    glassImage?.imagePng,
-    glassImage?.imageWebP,
-  );
+  const { isWebPUsed } = useContext(ImageUsedContext);
+
+  const gameBottomImage = isWebPUsed
+    ? glassImage?.imageWebP
+    : glassImage?.imagePng;
+
   const theme = useTheme();
   const { ref, inView } = useInView({
     triggerOnce: false,

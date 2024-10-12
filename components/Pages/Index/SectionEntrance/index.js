@@ -65,9 +65,9 @@ export default function SectionEntrance() {
     transform: "translateY(0);",
     from: { opacity: 0, transform: "translateY(-100px)" },
     config: {
-      tension: 800, // 张力，值越大弹簧的速度越快
-      friction: 20, // 摩擦力，值越小弹簧的回弹效果越明显
-      mass: 3, // 质量，值越大，弹簧越沉，惯性越强
+      tension: 800, // 張力，值越大彈簧速度越快
+      friction: 20, // 摩擦力，值越小回彈效果越明顯
+      mass: 3, // 重量，值越大，彈簧慣性越強
     },
     delay: 700, // 延遲效果
   });
