@@ -1,6 +1,8 @@
+import { useContext } from "react";
+import Image from "next/image";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
-import Image from "next/image";
+import { ImageUsedContext } from "@/context/ImageUsedContext";
 import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "@react-spring/web";
 import { useTheme } from "@emotion/react";
@@ -23,7 +25,6 @@ import {
 import { GameStoryTitle } from "@/components/Common/Index/TitleWithLine";
 import GameStoryCard from "@/components/Common/GameStoryCard";
 import FooterCard from "./FooterCard";
-import useWebPImage from "@/hooks/useWebPImage";
 
 const introImage = {
   imagePng: "/images/index/vision_game_intro.png",
@@ -168,7 +169,8 @@ const AnimatedTitleSection = styled(animated.div)`
 
 // 標題內容區塊元件
 export function TitleSection({ inView }) {
-  const imageUrl = useWebPImage(introImage?.imagePng, introImage?.imageWebP);
+  const { isWebPUsed } = useContext(ImageUsedContext);
+  const imageUrl = isWebPUsed ? introImage?.imageWebP : introImage?.imagePng;
   const fadeIn = useSpring({
     opacity: inView ? 1 : 0,
     config: { duration: 1500 },

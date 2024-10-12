@@ -7,6 +7,7 @@ import MobileNavCard from "@/components/Common/Index/MobileNavCard";
 import DesktopNavCard from "@/components/Common/Index/DesktopNavCard";
 import PageDialog from "@/components/Common/Index/PageDialog";
 
+// import FirstEditionIndex from "@/components/Pages/Index/FirstEditionIndex";
 import SectionEntrance from "../components/Pages/Index/SectionEntrance";
 import SectionIntro from "../components/Pages/Index/SectionIntro";
 import SectionPromoVideo from "@/components/Pages/Index/SectionPromoVideo";
@@ -23,7 +24,6 @@ import Footer from "@/components/Pages/Index/SectionFooter";
 import ResponsiveContainer from "@/components/Common/ResponsiveContainer";
 
 const isFirstEdition = true;
-// import FirstEditionIndex from "@/components/Pages/Index/FirstEditionIndex";
 
 export default function Home() {
   const isDesktopSize = useMediaQuery({ minWidth: globalConfig.mediaQuery });

@@ -1,9 +1,10 @@
 export const movieDialogData = [
   {
     title: "《追浪少女》",
-    engTitle: "（Young Woman and the Sea）",
+    engTitle: "Young Woman and the Sea",
     intro: "喬奇姆羅寧導演 2024｜美國｜劇情片\n12+",
     hashTag: "#女性運動員 #移民女孩 #真實故事 #培力女孩",
+    iconUrl: "/images/index/movieSection/young-woman-and-the-sea-icon.png",
     content:
       "改編自首位成功泳渡英吉利海峽的女性——楚迪艾德力，其不同凡響的真實故事。由黛西蕾德莉飾演這名傑出的游泳運動員。\n楚迪於1905年出生在一個紐約市的移民家庭。在姊姊及教練堅定的支持下，她克服逆境與男權社會滿滿的敵意，於奧林匹克游泳隊中嶄露頭角，並從法國泳渡英國，完成這項21英里的長泳壯舉。",
     footer: "——取自官方公開簡介",
@@ -12,51 +13,57 @@ export const movieDialogData = [
     title: "《哈勇家》",
     intro: "陳潔瑤導演 2022｜臺灣｜劇情片\n普通級",
     hashTag: "#年輕母親 #原住民族女孩 #家庭關係 #親密關係 #女性導演",
+    iconUrl: "/images/index/movieSection/gaga-icon.png",
     content:
       "在一處高山部落，住著哈勇一家三代同堂。但在哈勇阿公離世不久，大兒子巴尚不顧母親的反對參選鄉長，讓家人被迫一同捲入競選風暴。剛從紐西蘭回國的孫女阿莉，則被家人發現未婚懷孕。\n當代生活方式與部落傳統規範間的兩難，讓哈勇一家成員間埋藏著難解的糾結。不過，泰雅族祖訓Gaga就如大自然般無所不在地守護著他們，透過親情與愛，為哈勇家指引著一個和解的方向。入圍第59屆金馬獎六大獎項。",
     footer: "——取自報導者",
   },
   {
     title: "《美國女孩》",
-    engTitle: "（American Girl）",
+    engTitle: "American Girl",
     intro: "阮鳳儀導演 2021｜臺灣｜劇情片\n普通級",
     hashTag: "#家庭關係 #認同探索 #移民女孩 #女性導演",
+    iconUrl: "/images/index/movieSection/americangirl-icon.png",
     content:
       "本片改編自導演的真實人生，以千禧年後第一個全球流行病SARS疫情為背景，設定在2003年初的新店，母親罹患乳癌自美返台治療，圍繞著飽受家庭與文化適應的青少女成長片段的故事。\n以母女情感為核心，闡述「即使是不完美的家人，也有療癒彼此的力量」。該片於第58屆金馬獎入圍7個獎項，其中最佳新導演、最佳新演員、最佳攝影3項獲獎。",
     footer: "——取自高雄市電影館",
   },
   {
     title: "《青春未知數》",
-    engTitle: "（Haif Of It）",
+    engTitle: "Half Of It",
     intro: "伍思薇導演 2020｜劇情片\n13+",
     hashTag: "#LGBTQ+ #高中女生 #親密關係 #女性導演",
+    iconUrl: "/images/index/movieSection/halfofit-icon.png",
     content:
       "手頭拮据的聰慧少女楚艾莉答應替一名運動健將寫情書，沒想到過程中，自己不只和他成為朋友，還愛上他暗戀的對象。",
     footer: "——取自官方公開簡介",
   },
   {
     title: "《關鍵少數》",
-    engTitle: "（The Hidden Figures）",
+    engTitle: "The Hidden Figures",
     intro: "西奧多．梅爾菲執導兼編劇 2016｜美國｜劇情片\n普通級",
     hashTag: "#學科性別隔離 #STEAM教育 #女性科學家 #參與決策 #職業的性別隔離",
+    iconUrl: "/images/index/movieSection/the-hidden-figures-icon.png",
     content:
       "1960年代初美國與蘇聯進行太空競賽和美國種族歧視時期，三名非裔女性凱薩琳、桃樂絲、瑪麗在NASA的蘭利研究中心進行與水星計劃相關的計算工作，期間三人時常因膚色和性別受到刁難和歧視，但她們仍不放棄自己的理想和本分，最終幫助NASA，在1962年2月，讓約翰·格倫成為美國首位進入地球軌道的太空人（格倫本人於該電影首映前約兩週逝世）。",
     footer: "——取自維基百科",
   },
   {
     title: "《志氣》",
-    engTitle: "（Step Back to Glory）",
+    engTitle: "Step Back to Glory",
     intro: "張柏瑞導演 2013｜臺灣｜劇情片\n保護級",
     hashTag: "#女性運動員 #高中女子校隊 #體育教育 #真實故事",
+    iconUrl: "/images/index/movieSection/step-back-to-glory-icon.png",
     content:
       "改編自景美女中拔河隊的真實故事。春英與大部份來自單親家庭及經濟狀況不佳的同學一起加入高中拔河隊。這群年僅15、16歲的女孩認份卻不認命，她們天天接受嚴格訓練，卻受到同校師生們的質疑，比賽當前，她們如何以汗水與淚水闖出屬於自己的前途？",
     footer: "——取自CATCHPLAY",
   },
   {
     title: "《薯片》",
-    engTitle: "（Chicharon）",
+    engTitle: "Chicharon",
     intro: "鄒隆娜導演 2013｜臺灣｜劇情片\n適用國小高年級",
     hashTag: "#新二代女孩 #混血女孩 #認同探索 #女性導演",
+    iconUrl: "/images/index/movieSection/chicharon-icon.png",
     content:
       "台菲混血新二代導演獲第36屆金穗獎學生作品獎的出道之作。\n國小4年級轉學生劉芳婷和班上其他同學長得不太一樣，她皮膚黝黑，頭髮粗捲，她嘗試交朋友，但同學們卻是冷淡以對。芳婷的母親是菲律賓人，由於丈夫負債、婆媳不睦而身心俱疲。\n這天，母親帶著芳婷到教堂向神父吿解，芳婷遇見了來自菲律賓的小男孩Jason。芳婷只會說中文，Jason只會說菲律賓語，Jason卻帶領芳婷認識臺灣這個陌生的家鄉，以及流竄在她血液裡的熱帶靈魂。",
     footer: "——取自官方公開簡介",
@@ -66,9 +73,10 @@ export const movieDialogData = [
 export const filmDialogData = [
   {
     title: "《性愛自修室》",
-    engTitle: "（Sex Education）",
+    engTitle: "Sex Education",
     intro: "Netflix\n2019-2023｜共四季\n16+",
     hashTag: "#性教育 #高中生 #LGBTQ+ #培力女孩",
+    iconUrl: "/images/index/filmSection/sex-education-icon.png",
     content:
       "珍．米爾本是一名性治療醫師，她的兒子歐帝斯也因此對性愛很了解。歐帝斯與同學梅芙一起在學校設立地下性愛治療診所，解決同學們各式各樣的問題。\n影集內容除了試圖消除性與性病污名化、科普健康的性知識，還提倡多元性別性向平等，教導建立良好的人際關係和家庭互動。",
     footer: "——取自官方公開簡介",
@@ -76,9 +84,10 @@ export const filmDialogData = [
 
   {
     title: "《Unnatural 法醫女王》",
-    engTitle: "（アンナチュラル）",
+    engTitle: "アンナチュラル",
     intro: "日本TBS電視台\n2018｜十集\n13+",
     hashTag: "#學科性別隔離 #STEAM教育 #女性法醫 #投資女孩",
+    iconUrl: "/images/index/filmSection/unnatural-icon.png",
     content:
       "三澄美琴身為專門查明死因的法醫解剖醫，無法容許「不自然死亡」的個案，認為在這背後一定有需要查明的真相，如偽裝殺人、醫療疏失、未知疾病...。她在「不自然死因追查研究所」（UDI 研究所）與個性十足的專業解剖師們一起面對每個運送到研究室的遺體，希望藉此能拯救更多的人！",
     footer: "——取自官方公開簡介",
@@ -91,6 +100,7 @@ export const cartoonDialogData = [
     engTitle: "Encanto",
     intro: "Disney 製作\n2021｜美國｜動畫\n普通級",
     hashTag: "#家族關係 #培力女孩 #認同探索",
+    iconUrl: "/images/index/cartoonSection/encanto-icon.png",
     content:
       "故事講述在哥倫比亞知名魔法家族出身、卻是唯一沒有獲得魔法天賦的成員米拉貝兒·馬瑞格，在察覺家族發生危機的時刻，為家族排憂解難、帶來改變並獲得成長的冒險。",
     footer: "——取自Disney+",
@@ -99,6 +109,7 @@ export const cartoonDialogData = [
     title: "《依莉的娃娃》",
     intro: "伊芙．邦婷｜劉清彥（譯）\n2007｜道聲出版社｜繪本",
     hashTag: "#年輕母親 #性教育 #健康權 #受教權",
+    iconUrl: "/images/index/cartoonSection/dollbaby-icon.png",
     content:
       "依莉還是小女孩時，她有個名叫黛西的洋娃娃。現在，依莉十五歲了，她有個真正的寶寶。但是寶寶不是洋娃娃，照顧安琪也和照顧黛西不一樣。事實上，那比依莉想像的要辛苦多了。\n伊芙．邦婷以真誠平實的文字，娓娓述說這個溫暖又動人的故事，並且具實描繪小媽媽從懷孕到為人母，悲喜交織、充滿愛與失落的心路歷程。",
     footer: "——取自博客來",
@@ -108,6 +119,7 @@ export const cartoonDialogData = [
     engTitle: "Turning Red",
     intro: "Pixar 製作｜Disney 發行\n2022｜動畫\n普通級",
     hashTag: "#家庭關係 #移民女孩 #培力女孩",
+    iconUrl: "/images/index/cartoonSection/turning-red-icon.png",
     content:
       "迪士尼和皮克斯的《青春養成記》刻畫了 13 歲女孩李美玲。她有些笨拙，卻自信滿滿。美玲一邊要做聽話的孝順女兒，一邊又要面對青春期的矛盾混亂。母親過份保護她，總愛跟在身邊，讓她很為難。美玲的興趣、人際關係與身體的改變已經夠麻煩了，偏偏她一興奮（幾乎總是如此）還會變成大紅熊貓！",
     footer: "——取自 Disney＋",
@@ -116,6 +128,7 @@ export const cartoonDialogData = [
     title: "《守娘》",
     intro: "小峱峱｜CCC創作集9號：硬是要做獨立遊戲\n2018｜漫畫",
     hashTag: "#習俗的性別刻板印象 #培力女孩 #家庭關係",
+    iconUrl: "/images/index/cartoonSection/guardienne-icon.png",
     content:
       "「如果我嫁了人，是不是就得像大嫂那樣，下半輩子好與不好，全繫在肚皮上？」府城少女潔娘時時面臨被逼婚的煩惱，眼見為了求子費盡心機的大嫂，以及迷信的親戚，讓潔娘對自己的命運遲疑不已。一具河邊的女屍，一場前所未見的儀式，突破困境的出口，似乎就繫在那名神祕女子身上——",
     footer: "——取自CCC",
@@ -124,6 +137,7 @@ export const cartoonDialogData = [
     title: "《蝴蝶朵朵》",
     intro: "幸佳慧著，陳潔晧、徐思寧繪\n2019｜字畝文化｜繪本",
     hashTag: "#性暴力 #熟人性侵 #性教育 #人身安全",
+    iconUrl: "/images/index/cartoonSection/butterfly-icon.png",
     content:
       "這是一個教孩子保護自己，避免遭受性侵害的故事，預防，永遠比治療重要。由臺灣兩大兒少機構——台灣兒童暨家庭扶助基金會，勵馨社會福利專業基金會，參與規劃，提供專業知識與經驗。\n隨書附贈《蝴蝶朵朵 應用指導手冊》，適合一線專業機構與人員，以及二線的教育系統、家庭社區使用。共讀繪本之後，與孩子進行完整的對話與討論。",
     footer: "——取自兒童文化館",
@@ -135,6 +149,7 @@ export const bookDialogData = [
     title: "《妳想活出怎樣的人生？：東大教授寫給女孩與女人的性別入門讀本》",
     intro: "上野千鶴子\n2022｜這邊出版",
     hashTag: "#性別意識啟蒙 #參與決策 #拆解二元框架 #培力女孩",
+    iconUrl: "/images/index/bookSection/book_9786269600342-icon.png",
     content:
       "上野千鶴子教授長年投身性別研究與女性運動，在本書中，她著眼於家庭、校園、感情、職場與社會等面向，透過淺顯易懂的筆法，以一問一答的QA形式回答44道乍看單純卻十分值得深入討論的性別議題，囊括女孩子在成長路上與出社會之際會面臨的各種困境，令人對性別意識有更多的認識和啟發，既是一冊性別教育的入門讀本，也可以視為一門女性主義的先修課，從學生、教師到家長，人人必修的性別學分。",
     footer: "——取自博客來",
@@ -143,6 +158,7 @@ export const bookDialogData = [
     title: "《我們都應該是女性主義者》",
     intro: "Chimamanda Ngozi Adichie著，施清真譯\n2022｜木馬文化",
     hashTag: "#性別意識啟蒙 #參與決策 #拆解二元框架 #培力女孩",
+    iconUrl: "/images/index/bookSection/book_9789863599029-icon.png",
     content:
       "歐美學校指定教學用書，瑞典發放給全國16歲高中生每人一冊。改編自TEDx talk知名演講，Youtube瀏覽次數超過700萬。\n性別運動發展至今，不平等問題仍持續存在。然而要做出改變，這個社會不只是需要女性的力量，若你相信性別平權，就該大聲疾呼：「我們都應該是女性主義者！」",
     footer: "——取自博客來",
@@ -151,6 +167,7 @@ export const bookDialogData = [
     title: "《夜遊：解嚴前夕一個國中女生的身體時代記》",
     intro: "房慧真\n2024｜春山出版",
     hashTag: "#性別意識啟蒙 #性別與歷史 #國中女生",
+    iconUrl: "/images/index/bookSection/book_9786267478028-icon.png",
     content:
       "作家房慧真於解嚴前後經歷──仍停留在威權時空的學校體罰、青春少女的身體啟蒙、MTV迪斯可隨身聽情色電影院的文化大雜燴──同時，臺灣社會正產生巨大的轟鳴。當她三十多年後回望這一切，身體的記憶是當下而強烈，政治的意識卻是後知後覺。",
     footer: "——取自博客來",
@@ -160,6 +177,7 @@ export const bookDialogData = [
     intro:
       "廖之韻編，朱宥勳、朱家安、李筱涵、陳茻、盛浩偉、趙弘毅、廖宏杰、鄭芳婷撰文\n2019｜奇異果文創",
     hashTag: "#性別平等教育 #性別與文學 #受教權",
+    iconUrl: "/images/index/bookSection/book_9789869759113-icon.png",
     content:
       "針對十二年國教課綱中的「性別平等教育」議題編撰，適合高中生選讀，選文廣泛，包含詩、小說、散文、劇本、論述、古文，一次讀好讀滿，剖析文本中的性別議題！\n探討女性權益與情慾、身體自主、婚姻、跨性別、扮裝、同性戀、性別與政治、性別氣質、刻板印象⋯⋯希望從出生起就被標籤的女孩或男孩，能更自在的做女孩或男孩，或做女孩也做男孩，因為——我們只是生而為人。",
     footer: "——取自誠品",
@@ -168,6 +186,7 @@ export const bookDialogData = [
     title: "《那些少女沒有抵達》",
     intro: "吳曉樂\n2023｜鏡文學",
     hashTag: "#升學壓力 #高中女生 #受教權 #家庭關係",
+    iconUrl: "/images/index/bookSection/book_9786267229620-icon.png",
     content:
       "「十七歲那年妳也非常想自殺，妳沒有做到，妳的學生做到了……。」每個人都曾經或即將經歷十七歲，故事從一個17歲少女的墜樓開始，一個悲劇串出一個又一個關於校園的、家庭的、青春的……各種壓抑的無聲吶喊。\n看著一個個出場角色，彷彿也看見了人生跑馬燈飛轉，曾經活過的每一天、每個人生階段，你可能都曾與這些角色擦身而過，甚至，曾經就是這些角色的一部份。無論現在的你是個怎樣的大人，或許都該把這個故事看到最後，看倖存的、逝去的少女們沒有抵達的，究竟是什麼地方？",
     footer: "——取自博客來",
@@ -176,6 +195,7 @@ export const bookDialogData = [
     title: "《祖靈遺忘的孩子》",
     intro: "利格拉樂．阿烏\n2015｜前衛出版",
     hashTag: "#性別與歷史 #原住民族女孩 #混血女孩 #家族關係",
+    iconUrl: "/images/index/bookSection/book_9789578017863-icon.png",
     content:
       "在外省父親與排灣族母親的血緣之間，利格拉樂．阿女烏的眷村童年，經歷了難以被理解的歧視與傷害。\n父親去世後，循著母親穆莉淡的生命經驗再次回到部落，竟又是另一次的流離──不同的是，經歷了外省第二代與原住民母系的認同艱難與擺盪，她將在流離返家的過程中拾回自己，也再次拾回母親、外婆與部落女人的故事，寫下屬於原住民女性的生命之歌，重新回到祖靈的懷抱……",
     footer: "——取自博客來",
@@ -184,6 +204,7 @@ export const bookDialogData = [
     title: "《愛的自由式：女同志故事書》",
     intro: "張娟芬\n2011｜時報出版",
     hashTag: "#LGBTQ+ #性別與歷史 #臺灣女同志",
+    iconUrl: "/images/index/bookSection/book_9571353884-icon.png",
     content:
       "書寫女同志多元的愛情故事與生命風貌，受到不同世代讀者喜愛，至今仍是許多人認識同志的第一本書。作者張娟芬以優美可親的文字為臺灣女同志的生命與歷史留下珍貴紀錄。\n十年過去，時報特別重出新版這本臺灣女同志書寫的經典之作，《愛的自由式》新增同志運動者張秉瑩的推薦序，以及「附錄：多元性別（LGBT）資源簡介」。",
     footer: "——取自博客來",
@@ -192,6 +213,7 @@ export const bookDialogData = [
     title: "《有真與有真》",
     intro: "李琴䬁著，李煥然譯\n2023｜聯經出版公司",
     hashTag: "#性暴力 #性教育 #青少年霸凌",
+    iconUrl: "/images/index/bookSection/book_9789570868951-icon.png",
     content:
       "《有真與有真》是李琴䬁的第一部青少年小說，也是她的代表作，由於內容涉及兒童性暴力等敏感社會話題，加上探討青少年霸凌與成長創傷等議題，2004年於韓國出版時引起廣大迴響。\n出版迄今20年來，陪伴無數迷惘的青少年和孩童，並溫柔地撫慰他們：「即使重重落下，還是能再高高飛起。」",
     footer: "——取自聯經",
@@ -200,6 +222,7 @@ export const bookDialogData = [
     title: "《沉默的島嶼: 校園性侵事件簿作》",
     intro: "陳昭如\n2018｜財團法人人本教育文教基金會",
     hashTag: "#受教權 #校園性平事件 #性別與司法",
+    iconUrl: "/images/index/bookSection/book_9789869667333-icon.png",
     content:
       "校園裡，總會發生大事小事；而習慣上，人們總想著大事化小，小事化無。縱使連老師性侵害學生，都被當成是不能說的秘密，沒有人願意出手；縱使有學生勇敢出面要求學校主持公道，卻被當成是「你情我願」的師生戀……有多少足以揭露體制缺失的事件，就這麼被遺忘？有多少承受傷痛的心靈，就這麼遭噤聲？又，有多少犯下錯誤的人就這麼逃逸，再也不用面對他們的錯？\n作者陳昭如以報導文學的筆法，一一敘述我們這塊島嶼，曾經承載過的沉默傷痛與被隱匿的罪惡。曾發生的，終究不應無聲。",
     footer: "——取自誠品",

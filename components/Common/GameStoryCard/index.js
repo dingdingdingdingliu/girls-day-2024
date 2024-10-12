@@ -1,12 +1,13 @@
+import { useContext } from "react";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
+import { ImageUsedContext } from "@/context/ImageUsedContext";
 import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "@react-spring/web";
 import { ImageWrapper } from "../Index/Wrapper";
 import Comments from "@/components/Common/Comments";
 import useFormattedText from "@/hooks/useFormattedText";
-import useWebPImage from "@/hooks/useWebPImage";
 
 const delay = (i) => Number(i) * 150;
 
@@ -127,10 +128,12 @@ const CopyWriteContent = ({ content, children }) => {
 };
 
 export default function GameStoryCard({ data, labelColor, textColor, id }) {
-  const imageUrl = useWebPImage(
-    data?.imageSrc?.imagePng,
-    data?.imageSrc?.imageWebP,
-  );
+  const { isWebPUsed } = useContext(ImageUsedContext);
+
+  const imageUrl = isWebPUsed
+    ? data?.imageSrc?.imageWebP
+    : data?.imageSrc?.imagePng;
+
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0,

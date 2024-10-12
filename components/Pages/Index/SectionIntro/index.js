@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import { ImageUsedContext } from "@/context/ImageUsedContext";
 import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "@react-spring/web";
 import { useTheme } from "@emotion/react";
@@ -12,7 +13,6 @@ import {
   AbsoluteLabelWrapper,
 } from "@/components/Common/Label/BevelLabel";
 import useCreateArray from "@/hooks/useCreateArray";
-import useWebPImage from "@/hooks/useWebPImage";
 
 const sloganImage = {
   imagePng: "/images/index/intro_slogan.png",
@@ -109,7 +109,9 @@ const LabelWrapper = styled(AbsoluteLabelWrapper)`
 export default function SectionIntro({ isDesktop }) {
   const theme = useTheme();
   const logoArray = useCreateArray(5);
-  const imageUrl = useWebPImage(sloganImage?.imagePng, sloganImage?.imageWebp);
+  const { isWebPUsed } = useContext(ImageUsedContext);
+
+  const imageUrl = isWebPUsed ? sloganImage?.imageWebp : sloganImage?.imagePng;
 
   const { ref, inView } = useInView({
     triggerOnce: false,

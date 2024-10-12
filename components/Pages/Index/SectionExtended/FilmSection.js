@@ -1,6 +1,8 @@
-import styled from "@emotion/styled";
+import { useContext } from "react";
 import Image from "next/image";
+import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import { ImageUsedContext } from "@/context/ImageUsedContext";
 import { useInView } from "react-intersection-observer";
 import { useSpring } from "@react-spring/web";
 import { UnderThreeResponsiveSlider } from "@/components/Common/Slider";
@@ -21,7 +23,6 @@ import {
   ContentWrapper,
   ImageWrapper,
 } from "@/components/Common/Index/Wrapper";
-import useWebPImage from "@/hooks/useWebPImage";
 
 const filmIntroImage = {
   imagePng: "/images/index/filmSection/film_intro.png",
@@ -63,10 +64,11 @@ function FilmSlider({ setDialogData, setIsDialogOpen }) {
 
 // 電影標題區塊
 function FilmTitleSection() {
-  const imageSrc = useWebPImage(
-    filmIntroImage?.imagePng,
-    filmIntroImage?.imageWebP,
-  );
+  const { isWebPUsed } = useContext(ImageUsedContext);
+
+  const imageSrc = isWebPUsed
+    ? filmIntroImage?.imageWebP
+    : filmIntroImage?.imagePng;
 
   return (
     <IntroWrapper>

@@ -12,18 +12,18 @@ function supportsWebP() {
   });
 }
 
-const useWebPImage = (pngSrc, webpSrc) => {
-  const [imageSrc, setImageSrc] = useState(pngSrc);
+const useWebPImage = () => {
+  const [isWebPUsed, setIsWebPUsed] = useState(false);
 
   useEffect(() => {
     supportsWebP().then((isSupported) => {
       if (isSupported) {
-        setImageSrc(webpSrc);
+        setIsWebPUsed(true);
       }
     });
-  }, [pngSrc, webpSrc]);
+  }, []);
 
-  return imageSrc;
+  return isWebPUsed;
 };
 
 export default useWebPImage;

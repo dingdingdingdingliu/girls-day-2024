@@ -1,6 +1,8 @@
+import { useContext } from "react";
+import Image from "next/image";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
-import Image from "next/image";
+import { ImageUsedContext } from "@/context/ImageUsedContext";
 import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "@react-spring/web";
 import {
@@ -9,7 +11,6 @@ import {
 } from "@/components/Common/Index/TitleWithLine";
 import { ImageWrapper } from "@/components/Common/Index/Wrapper";
 import Comments from "@/components/Common/Comments";
-import useWebPImage from "@/hooks/useWebPImage";
 
 const introThemeImage = {
   imagePng: "/images/index/intro_theme.png",
@@ -160,10 +161,12 @@ export function GirlDaySection() {
 }
 
 export function ThemeSection() {
-  const imageUrl = useWebPImage(
-    introThemeImage?.imagePng,
-    introThemeImage?.imageWebP,
-  );
+  const { isWebPUsed } = useContext(ImageUsedContext);
+
+  const imageUrl = isWebPUsed
+    ? introThemeImage?.imageWebP
+    : introThemeImage?.imagePng;
+
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0.2,
