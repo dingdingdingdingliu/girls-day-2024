@@ -69,6 +69,13 @@ const UpperWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: ${globalConfig.mediaQuery}) {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: start;
+  }
 `;
 
 const TitleWrapper = styled.div`
@@ -77,6 +84,10 @@ const TitleWrapper = styled.div`
   flex-direction: column;
   align-items: start;
   justify-content: start;
+
+  @media (max-width: ${globalConfig.mediaQuery}) {
+    width: 100%;
+  }
 `;
 
 const Title = styled.p`
@@ -101,6 +112,10 @@ const IconImageWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: ${globalConfig.mediaQuery}) {
+    width: 130px;
+  }
 `;
 
 const Intro = styled.p`
@@ -262,8 +277,8 @@ export default function PageDialog({
                   <Image
                     src={dialogData?.iconUrl}
                     alt=""
-                    width={110}
-                    height={110}
+                    width={isDesktop ? 110 : 130}
+                    height={isDesktop ? 110 : 130}
                   />
                 </IconImageWrapper>
               )}
