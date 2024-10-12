@@ -1,6 +1,8 @@
-import styled from "@emotion/styled";
-import Link from "next/link";
+import { useContext } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import styled from "@emotion/styled";
+import { ImageUsedContext } from "@/context/ImageUsedContext";
 import { useTheme } from "@emotion/react";
 import { useSpring, animated } from "@react-spring/web";
 import {
@@ -11,7 +13,6 @@ import {
 import { GameSmallBevelButton } from "@/components/Common/Button/GameUsedBevelButton";
 import { answerImageData } from "../../components/Common/VisionGame/gameImageData";
 import ResponsiveContainer from "@/components/Common/ResponsiveContainer";
-import useWebPImage from "@/hooks/useWebPImage";
 
 const indexImagePng = "/images/visionGame/vision_game_index.png";
 const indexImageWebP = "/images/visionGame/vision_game_index.webp";
@@ -134,8 +135,9 @@ const AnimatedButtonWrapper = styled(animated.div)`
 `;
 
 export default function VisionGameIndex() {
+  const { isWebPUsed } = useContext(ImageUsedContext);
   const theme = useTheme();
-  const indexImage = useWebPImage(indexImagePng, indexImageWebP);
+  const indexImage = isWebPUsed ? indexImageWebP : indexImagePng;
 
   // 使用 useSpring 定義淡入動畫
   const fadeInIntro = useSpring({

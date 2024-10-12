@@ -1,10 +1,11 @@
+import { useContext } from "react";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
 import Link from "next/link";
+import { ImageUsedContext } from "@/context/ImageUsedContext";
 import { ImageWrapper } from "@/components/Common/Index/Wrapper";
 import SmallBevelButton from "@/components/Common/Button/SmallBevelButton";
-import useWebPImage from "@/hooks/useWebPImage";
 
 // Label圖片顯示層
 const ImageSectionWrapper = styled.div`
@@ -37,10 +38,12 @@ const GameImageSection = styled.div`
 `;
 
 export function ImageSection({ titleImageSrc, titleImageAlt }) {
-  const imageSrc = useWebPImage(
-    titleImageSrc?.imagePng,
-    titleImageSrc?.imageWebP,
-  );
+  const { isWebPUsed } = useContext(ImageUsedContext);
+
+  const imageSrc = isWebPUsed
+    ? titleImageSrc?.imageWebP
+    : titleImageSrc?.imagePng;
+
   return (
     <ImageSectionWrapper>
       <ImageWrapper>

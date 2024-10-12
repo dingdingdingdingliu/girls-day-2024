@@ -1,10 +1,11 @@
+import { useContext } from "react";
+import Image from "next/image";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
-import Image from "next/image";
+import { ImageUsedContext } from "@/context/ImageUsedContext";
 import { PageWrapper, ContentWrapper } from "@/components/Common/Index/Wrapper";
 import ReportSection from "./ReportSection";
 import DramaSection from "./DramaSection";
-import useWebPImage from "@/hooks/useWebPImage";
 
 const reportBottomImage = {
   imagePng: "/images/index/report_bottom_image.png",
@@ -55,10 +56,12 @@ const ImageWrapper = styled.div`
 `;
 
 export default function SectionReport({ isFirstEdition }) {
-  const imageUrl = useWebPImage(
-    reportBottomImage?.imagePng,
-    reportBottomImage?.imageWebP,
-  );
+  const { isWebPUsed } = useContext(ImageUsedContext);
+
+  const imageUrl = isWebPUsed
+    ? reportBottomImage?.imageWebP
+    : reportBottomImage?.imagePng;
+
   return (
     <StyledPageWrapper>
       <StyledContentWrapper>

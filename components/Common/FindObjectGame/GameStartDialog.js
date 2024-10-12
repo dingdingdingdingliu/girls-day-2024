@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useSpring } from "@react-spring/web";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
 import Image from "next/image";
+import { ImageUsedContext } from "@/context/ImageUsedContext";
 import {
   ImageWrapper,
   Overlay,
@@ -13,7 +14,6 @@ import {
 import FindObjectGameBevelButton from "@/components/Common/FindObjectGame/BevelButton";
 import AnimatedMainHint from "./MainHint";
 import AnimatedListHint from "./ListHint";
-import useWebPImage from "@/hooks/useWebPImage";
 
 const introCopyWrite = {
   upperContent: "請在限時 120 秒內，\n在畫面中找到並點擊欄位中的 12 個內容。",
@@ -94,15 +94,15 @@ const Button = styled.div`
 
 // 展售區主要 Dialog
 function AnimatedDialog({ fadeInDialog, isDesktop, onButtonClick }) {
-  const desktopImage = useWebPImage(
-    mainImage?.desktop?.imagePng,
-    mainImage?.desktop?.imageWebP,
-  );
+  const { isWebPUsed } = useContext(ImageUsedContext);
 
-  const mobileImage = useWebPImage(
-    mainImage?.mobile?.imagePng,
-    mainImage?.mobile?.imageWebP,
-  );
+  const desktopImage = isWebPUsed
+    ? mainImage?.desktop?.imageWebP
+    : mainImage?.desktop?.imagePng;
+
+  const mobileImage = isWebPUsed
+    ? mainImage?.mobile?.imageWebP
+    : mainImage?.mobile?.imagePng;
 
   return (
     <AnimatedDialogWrapper style={fadeInDialog}>

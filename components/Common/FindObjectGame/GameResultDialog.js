@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useSpring } from "@react-spring/web";
 import Link from "next/link";
 import Image from "next/image";
 import styled from "@emotion/styled";
 import globalConfig from "@/styles/globalConfig";
+import { ImageUsedContext } from "@/context/ImageUsedContext";
 import {
   ImageWrapper,
   Overlay,
@@ -13,7 +14,6 @@ import {
 } from "@/components/Common/FindObjectGame/WrapperComponent";
 import FindObjectGameBevelButton from "@/components/Common/FindObjectGame/BevelButton";
 import GameFooter from "./GameFooter";
-import useWebPImage from "@/hooks/useWebPImage";
 
 const resultCopyWrite = {
   good: {
@@ -122,10 +122,11 @@ export default function GameResultDialog({
 }) {
   const [introCopyWrite, setIntroCopyWrite] = useState("");
   const gameResult = getResult(findCount);
-  const imageSrc = useWebPImage(
-    gameResult?.imageSrcPng,
-    gameResult?.imageSrcWebP,
-  );
+  const { isWebPUsed } = useContext(ImageUsedContext);
+
+  const imageSrc = isWebPUsed
+    ? gameResult?.imageSrcWebP
+    : gameResult?.imageSrcPng;
 
   useEffect(() => {
     if (isGameEnd) {
