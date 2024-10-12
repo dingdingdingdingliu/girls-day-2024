@@ -65,14 +65,14 @@ const BodyWrapper = styled.div`
 const UpperWrapper = styled.div`
   width: 100%;
   height: auto;
-  min-height: 110px;
+  min-height: ${(props) => props.isIconImage && "110px"};
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
 const TitleWrapper = styled.div`
-  width: calc(100% - 120px);
+  width: ${(props) => (props.isIconImage ? "calc(100% - 120px)" : "auto")};
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -249,8 +249,8 @@ export default function PageDialog({
             <StyledRxCross />
           </StickyIconWrapper>
           <BodyWrapper>
-            <UpperWrapper>
-              <TitleWrapper>
+            <UpperWrapper isIconImage={dialogData?.iconUrl}>
+              <TitleWrapper isIconImage={dialogData?.iconUrl}>
                 <Title>{dialogData?.title}</Title>
                 {dialogData?.engTitle && (
                   <EngTitle>{dialogData?.engTitle}</EngTitle>
